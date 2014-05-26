@@ -6,7 +6,7 @@ typedef struct maillon {
 }maillon;
 
 //ce type represente la liste
-typedef struct TesteListe *maillon;
+typedef struct TeteListe *maillon;
 
 //Ajoute en Tete une lettre et sa frequence
 //a faire
