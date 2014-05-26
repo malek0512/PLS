@@ -17,17 +17,13 @@ maillon* readFromFile(char *nom){
     //freq[c-'a'] ++;
     //if (c != EOF){ 
     do { 
-        if (c>'a' && c<'z')
-        { 
+        if (c>='a' && c<='z'){  
             freq[c-'a'] ++;
-            c = fgetc(data);
         }
-        else if (c>'A' && c<'Z')
-        {
+        else if (c>='A' && c<='Z'){
             freq[c-'A'] ++;
-            c = fgetc(data);
         }
-        printf("waza");
+        c = fgetc(data);
     }
     while (c != EOF);
       
