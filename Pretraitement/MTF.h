@@ -1,10 +1,8 @@
 #ifndef DEF_MTF
 #define DEF_MTF
 
-//#include "blabla.h"
-//#include "blabla.c"
-
 #include <stdlib.h>
+#include "liste_manager.h"
  
 
 //Déclaration de la liste chainée
