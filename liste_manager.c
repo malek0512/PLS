@@ -20,5 +20,28 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
     
 }
 
+<<<<<<< HEAD
+int size(maillon* tete)
+{
+int res = 1;
+maillon* save=tete;
 
+if (save == NULL)
+	return 0;
+while(save->suivant != NULL)
+	{
+	save = save->suivant;
+	res++;
+	}
+}
+
+void liberer(maillon* tete)
+{
+	if(tete->suivant != NULL)
+		liberer(tete->suivant);
+	free(tete);
+}
+=======
+
+>>>>>>> 1304043140192d205128257e0f6fc02c909869d3
 
