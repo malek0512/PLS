@@ -1,20 +1,38 @@
-typedef struct cellule
-{
-	int value;
-}cellule;
+#ifndef DEF_MTF
+#define DEF_MTF
 
-//abre binaire
-typedef struct arbre
-{
-	struct arbre *G;
-	struct arbre *D;
-	cellule i;
-}arbre;
+//#include "blabla.h"
+//#include "blabla.c"
 
-//liste chainée
+#include <stdlib.h>
+ 
 
-typedef struct liste
+//Déclaration de la liste chainée
+typedef struct element element;
+struct element
 {
-	struct liste *Suite;
-	cellule i;
-}liste;
+	int val;
+	int indice;	
+	struct element *nxt;
+};
+ 
+typedef element* llist;
+
+
+
+//Ajoute un élément en tete
+llist ajouterEnTete(llist liste, int valeur);
+
+
+//Affiche la liste chainée
+void afficherListe(llist liste);
+
+//Réalise le prétraitement MTF
+//void MTF();
+
+//Verifie si la liste est vide
+int estVide(lliste liste);
+
+#endif
+
+
