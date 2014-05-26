@@ -20,7 +20,6 @@ void ajoutEnTete(maillon* Tete, int lettre, int frequence){
     
 }
 
-<<<<<<< HEAD
 int size(maillon* tete)
 {
 int res = 1;
@@ -41,7 +40,14 @@ void liberer(maillon* tete)
 		liberer(tete->suivant);
 	free(tete);
 }
-=======
 
->>>>>>> 1304043140192d205128257e0f6fc02c909869d3
+void print(maillon* tete)
+{
+	maillon* save;
+	while(save != NULL)
+	{
+	printf("Symbole/Autre : %d / %d\n", save->lettre, save->autre);
+	save = save->suivant;	
+	}
 
+}
