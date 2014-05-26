@@ -62,14 +62,14 @@ int estVide(maillon* liste)
     }
 }
 
-<<<<<<< HEAD
+
 maillon* Allouer(int lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
     return cellule;
 }
-=======
+
 
 //Recherche d'un élément
 maillon* rechercherElement(maillon* liste, int valeur)
@@ -111,4 +111,3 @@ maillon* find_indice(maillon* liste, int indice)
 }
 
 
->>>>>>> ead0619b6002f3754f5edb4c76b8baa3c565e261
