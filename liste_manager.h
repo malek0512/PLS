@@ -33,13 +33,19 @@ int estVide(maillon liste);
 //author : Alexandre
 void liberer(maillon* tete);
 
+//Aloue une cellule de type maillon, avec les paramètres lettre et (frequence ou Prob)
+maillon* Allouer(int lettre, int autre);
+
 //Recherche d'un élément
 //author : Quentin
 maillon* rechercherElement(maillon liste, int valeur);
 
+<<<<<<< HEAD
 //Recherche du ieme element
 //author : Quentin
 maillon* find_indice(maillon* liste, int indice);
 
 #endif
 
+=======
+>>>>>>> f4dc5ea920211a0925c355ac9d6e7a6ecc854f9f

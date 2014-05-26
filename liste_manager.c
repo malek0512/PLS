@@ -2,7 +2,6 @@
 
 
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
-
 	// On crée un nouvel élément 
 	maillon* nouvelElement = malloc(sizeof(maillon));
  
@@ -17,8 +16,7 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
  
 	//On retourne la nouvelle liste, i.e. le pointeur sur le premier élément
 	return nouvelElement;
-    
-}
+} 
 
 int size(maillon* tete)
 {
@@ -64,6 +62,14 @@ int estVide(maillon* liste)
     }
 }
 
+<<<<<<< HEAD
+maillon* Allouer(int lettre, int autre){
+    maillon* cellule = malloc(sizeof(maillon));
+    cellule->lettre = lettre;
+    cellule->autre = autre;
+    return cellule;
+}
+=======
 
 //Recherche d'un élément
 maillon* rechercherElement(maillon* liste, int valeur)
@@ -105,3 +111,4 @@ maillon* find_indice(maillon* liste, int indice)
 }
 
 
+>>>>>>> ead0619b6002f3754f5edb4c76b8baa3c565e261
