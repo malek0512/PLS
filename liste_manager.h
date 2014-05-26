@@ -1,3 +1,6 @@
+#ifndef DEF_LISTE_MANAGER
+#define DEF_LISTE_MANAGER
+
 //Liste chainee
 typedef struct maillon {
     int lettre; //information contenant les info du symbole
@@ -32,4 +35,8 @@ void liberer(maillon* tete);
 
 //Aloue une cellule de type maillon, avec les paramètres lettre et (frequence ou Prob)
 maillon* Allouer(int lettre, int autre);
+
+//Recherche d'un élément
+//author : Quentin
+maillon* rechercherElement(maillon liste, int valeur);
 

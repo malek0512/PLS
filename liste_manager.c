@@ -50,7 +50,7 @@ void print(maillon* tete)
 
 
 //Verifie si la liste est vide
-int estVide(maillon liste)
+int estVide(maillon* liste)
 {
     if(liste == NULL)
     {
@@ -62,9 +62,32 @@ int estVide(maillon liste)
     }
 }
 
+<<<<<<< HEAD
 maillon* Allouer(int lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
     return cellule;
 }
+=======
+
+//Recherche d'un élément
+maillon* rechercherElement(maillon* liste, int valeur)
+{
+    maillon *tmp=liste;
+    //Tant que l'on n'est pas au bout de la liste 
+    while(tmp != NULL)
+    {
+        if(tmp->lettre == valeur)
+        {
+            // Si l'élément a la valeur recherchée, on renvoie son adresse
+            return tmp;
+        }
+        tmp = tmp->suivant;
+    }
+    return NULL;
+}
+
+
+
+>>>>>>> ead0619b6002f3754f5edb4c76b8baa3c565e261
