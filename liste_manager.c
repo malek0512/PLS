@@ -52,7 +52,7 @@ void print(maillon* tete)
 
 
 //Verifie si la liste est vide
-int estVide(maillon liste)
+int estVide(maillon* liste)
 {
     if(liste == NULL)
     {
@@ -63,3 +63,24 @@ int estVide(maillon liste)
         return 0;
     }
 }
+
+
+//Recherche d'un élément
+maillon* rechercherElement(maillon* liste, int valeur)
+{
+    maillon *tmp=liste;
+    //Tant que l'on n'est pas au bout de la liste 
+    while(tmp != NULL)
+    {
+        if(tmp->lettre == valeur)
+        {
+            // Si l'élément a la valeur recherchée, on renvoie son adresse
+            return tmp;
+        }
+        tmp = tmp->suivant;
+    }
+    return NULL;
+}
+
+
+
