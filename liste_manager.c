@@ -1,3 +1,5 @@
+#include<stdio.h>
+#include<stdlib.h>
 #include "liste_manager.h"
 
 
@@ -41,13 +43,13 @@ void liberer(maillon* tete)
 
 void print(maillon* tete)
 {
-	maillon* save;
+	maillon* save = tete;
 	while(save != NULL)
 	{
-	printf("Symbole/Autre : %d / %d\n", save->lettre, save->autre);
+	printf("Symbole/Autre : %c / %d\n", save->lettre+'a', save->autre);
 	save = save->suivant;	
 	}
-
+}
 
 //Verifie si la liste est vide
 int estVide(maillon* liste)
@@ -62,14 +64,12 @@ int estVide(maillon* liste)
     }
 }
 
-<<<<<<< HEAD
 maillon* Allouer(int lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
     return cellule;
 }
-=======
 
 //Recherche d'un élément
 maillon* rechercherElement(maillon* liste, int valeur)
@@ -88,6 +88,3 @@ maillon* rechercherElement(maillon* liste, int valeur)
     return NULL;
 }
 
-
-
->>>>>>> ead0619b6002f3754f5edb4c76b8baa3c565e261

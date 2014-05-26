@@ -9,7 +9,7 @@ typedef struct maillon {
 }maillon;
 
 //ce type represente la liste
-typedef struct TeteListe *maillon;
+//typedef struct TeteListe *maillon;
 
 //Ajoute en Tete une lettre et sa frequence
 //author Quentin
@@ -25,7 +25,7 @@ int size(maillon* tete);
 
 //Verifie si la liste est vide
 //author : Quentin
-int estVide(maillon liste);
+int estVide(maillon* liste);
 
 //libere tout les elements de la liste
 //a utiliser que si la liste deviens inutile
@@ -38,5 +38,6 @@ maillon* Allouer(int lettre, int autre);
 
 //Recherche d'un élément
 //author : Quentin
-maillon* rechercherElement(maillon liste, int valeur);
+maillon* rechercherElement(maillon* liste, int valeur);
 
+#endif
