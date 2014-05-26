@@ -20,7 +20,7 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
     
 }
 
-<<<<<<< HEAD
+
 int size(maillon* tete)
 {
 int res = 1;
@@ -41,7 +41,5 @@ void liberer(maillon* tete)
 		liberer(tete->suivant);
 	free(tete);
 }
-=======
 
->>>>>>> 1304043140192d205128257e0f6fc02c909869d3
 
