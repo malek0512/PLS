@@ -4,7 +4,7 @@
 static arbre* tab[N]; //tableau de pointeur sur les arbres
 
 
-void hufman(arbre* tab)
+void hufman(TeteListe liste)
 {	
 	//création de l'arbre a inserer
 	arbre* new; //le nouvelle arbre
@@ -83,9 +83,7 @@ void letItGo(arbre* tree)
 {
 	if(tree->G != NULL)
 		letItGo(tree->G);
-	if(tree->D != NULL)
-		letItGo(tree->D);
-	free(tree);
+
 }
 
 void jeVoudraisUnBonhommeDeNeige()

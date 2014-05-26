@@ -12,4 +12,12 @@ typedef struct TeteListe *maillon;
 //a faire
 void ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
+//renvoie la taille de la liste a partir du pointeur donée
+//author : Alexandre
+int size(maillon* tete);
 
+//libere tout les elements de la liste
+//a utiliser que si la liste deviens inutile
+//a utiliser impérativement avant la fin du programme pour chaque liste
+//author : Alexandre
+void liberer(maillon* tete);
