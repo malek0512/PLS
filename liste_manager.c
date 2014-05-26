@@ -1,6 +1,6 @@
-
+#include "liste_manager.h"
 
 //a faire
-maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
+void ajoutEnTete(maillon* Tete, int lettre, int frequence){
     
 }

@@ -1,12 +1,15 @@
 //Liste chainee
 typedef struct maillon {
-    int lettre;
-    unsigned int frequence;
+    int lettre; //information contenant les info du symbole
+    int autre; //information auxiliaire
     struct maillon* suivant;
 }maillon;
 
+//ce type represente la liste
+typedef struct TesteListe *maillon;
+
 //Ajoute en Tete une lettre et sa frequence
 //a faire
-maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
+void ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
 
