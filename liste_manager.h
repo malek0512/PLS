@@ -10,4 +10,5 @@ typedef struct maillon {
 //Ajoute en Tete une lettre et sa frequence
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
-
+//Aloue une cellule de type maillon, avec les paramètres lettre et (frequence ou Prob)
+maillon* Allouer(int lettre, int autre);

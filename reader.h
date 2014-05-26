@@ -1,0 +1,2 @@
+
+maillon* readFromFile(char *nom);
