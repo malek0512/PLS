@@ -9,18 +9,20 @@ typedef struct maillon {
 typedef struct TeteListe *maillon;
 
 //Ajoute en Tete une lettre et sa frequence
+//author Quentin
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
 //affiche la liste chainer
 //author : Alexandre
-void print(maillon* tete)
+void print(maillon* tete);
 
 //renvoie la taille de la liste a partir du pointeur donée
 //author : Alexandre
 int size(maillon* tete);
 
 //Verifie si la liste est vide
-int estVide(maillon liste)
+//author : Quentin
+int estVide(maillon liste);
 
 //libere tout les elements de la liste
 //a utiliser que si la liste deviens inutile
