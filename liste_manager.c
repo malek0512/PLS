@@ -43,3 +43,19 @@ void liberer(maillon* tete)
 }
 
 
+
+//Verifie si la liste est vide
+int estVide(maillon liste)
+{
+    if(liste == NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+
+
