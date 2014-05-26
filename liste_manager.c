@@ -1,7 +1,7 @@
 #include "liste_manager.h"
 
 
-void ajoutEnTete(maillon* Tete, int lettre, int frequence){
+maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
 
 	// On crée un nouvel élément 
 	maillon* nouvelElement = malloc(sizeof(maillon));

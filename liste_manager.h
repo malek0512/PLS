@@ -12,8 +12,7 @@ typedef struct maillon {
 typedef struct TeteListe *maillon;
 
 //Ajoute en Tete une lettre et sa frequence
-//a faire
-void ajoutEnTete(maillon* Tete, int lettre, int frequence);
+maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
 
 #endif
