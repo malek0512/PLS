@@ -2,10 +2,10 @@
 #include "MTF.h"
 
 
+void MTF(maillon* liste){
 
 
-void MTF(llist liste, )
-{
+
 
 }
 

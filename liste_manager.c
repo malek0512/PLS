@@ -82,5 +82,26 @@ maillon* rechercherElement(maillon* liste, int valeur)
     return NULL;
 }
 
+//Recherche du ieme element
+maillon* find_indice(maillon* liste, int indice)
+{
+    int i;
+    // On se déplace de i cases, tant que c'est possible 
+    for(i=0; i<indice && liste != NULL; i++)
+    {
+        liste = liste->suivant;
+    }
+ 
+    // Si l'élément est NULL, c'est que la liste contient moins de i éléments 
+    if(liste == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        // Sinon on renvoie l'adresse de l'élément i 
+        return liste;
+    }
+}
 
 

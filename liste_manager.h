@@ -37,5 +37,9 @@ void liberer(maillon* tete);
 //author : Quentin
 maillon* rechercherElement(maillon liste, int valeur);
 
+//Recherche du ieme element
+//author : Quentin
+maillon* find_indice(maillon* liste, int indice);
+
 #endif
 
