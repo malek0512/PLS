@@ -15,7 +15,10 @@ typedef struct arbre
 	info i;
 }arbre;
 
-void hufman();//Applique huffman et crée l'arbre
-void jeVoudraisUnBonhommeDeNeige(); //init le tableau
-void print();//affiche la table d'huffman
-void letItGo();//libere le tableau
+//Applique huffman et crée l'arbre
+//la recuperation du resultat reste a decider
+void hufman(maillon* liste);
+
+//tranfere les info contenu sous forme de liste chainé
+//en une liste d'arbre utiliser pour le codage d'huffman :D
+void transfert(maillon* liste,arbre *tab, int taille);
