@@ -1,3 +1,6 @@
+#ifndef DEF_LISTE_MANAGER
+#define DEF_LISTE_MANAGER
+
 //Liste chainee
 typedef struct maillon {
     int lettre; //information contenant les info du symbole
@@ -12,4 +15,6 @@ typedef struct TeteListe *maillon;
 //a faire
 void ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
+
+#endif
 
