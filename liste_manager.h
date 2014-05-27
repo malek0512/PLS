@@ -34,7 +34,7 @@ int estVide(maillon* liste);
 void liberer(maillon* tete);
 
 //Aloue une cellule de type maillon, avec les paramètres lettre et (frequence ou Prob)
-maillon* Allouer(int lettre, int autre);
+maillon* Allouer(char lettre, int autre);
 
 //Recherche d'un élément
 //author : Quentin

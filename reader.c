@@ -2,11 +2,14 @@
 #include<stdlib.h>
 #include"liste_manager.h"
 
+char buffer=0;
+int windowBuffer=7;
+
 maillon* readFromFileAlphabet(char *nom){
     FILE *data;
-    data = fopen(nom, "r+");
-    maillon* Tete, AC;
-    
+    data = fopen(nom, "r");
+    maillon* Tete, AC;    
+
     // Initialisation du tableau de fréquences, indicé par lettre de 0 a 25
     int freq[26];
 
@@ -16,59 +19,134 @@ maillon* readFromFileAlphabet(char *nom){
     char c=fgetc(data);
     //freq[c-'a'] ++;
     //if (c != EOF){ 
-    do { 
-        if (c>='a' && c<='z'){  
-            freq[c-'a'] ++;
+    if (c != EOF){ 
+        do { 
+            if (c>='a' && c<='z'){  
+                freq[c-'a'] ++;
+            }
+            else if (c>='A' && c<='Z'){
+                freq[c-'A'] ++;
+            }
+            c = fgetc(data);
         }
-        else if (c>='A' && c<='Z'){
-            freq[c-'A'] ++;
-        }
-        c = fgetc(data);
+        while (c != EOF);
     }
-    while (c != EOF);
-      
-    //}
-
     Tete = NULL;
     for(int i=0; i<26; i++){
         if (freq[i] != 0)
             Tete = ajoutEnTete(Tete, (char) i, freq[i]);
     }
 
+    fclose(data);
     return Tete;
 }
 
-maillon* readFromFileBytes(char *nom){
+void ajoutEnQueue(maillon** Queue, char byte, int autre){
+    maillon* AC = Allouer( byte, autre );
+    (*Queue)->suivant = AC;
+    *Queue = AC;
+}
+void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, char *nom){
     FILE *data;
-    data = fopen(nom, "r+");
-    maillon* Tete, AC;
+    data = fopen(nom, "r");
+    maillon* AC;
     char octet = 0;
-    char c;
+    //char c;
     int nb=0;
-    
+
     // Initialisation du tableau de fréquences, indicé par 0 à 255 pour chaque octet
     int freq[256];
 
     for(int i=0; i<256; i++)
         freq[i]=0;
 
-    //char c=fgetc(data);
-    //nb = fread(&octet,sizeof(char),1,data);
-    do { 
-        c = fgetc(data);
-        //nb = fread(&octet,sizeof(char),1,data);
-        printf("Octet numero %d \n",(int) c);
+    do {
+        nb = fread(&octet,sizeof(char),1,data);
+        /*printf("Octet numero %d \n",(int) octet);*/
         if (octet != EOF )
-            freq[(int) c] ++;
+            freq[(int) octet] ++;
     }
-    while ( c != EOF ); //nb !=0);
-      
-    Tete = NULL;
-    for(int i=0; i<256; i++){
-        if (freq[i] != 0)
-            Tete = ajoutEnTete(Tete, (char) i, freq[i]);
-    }
+    while ( nb != 0); 
 
-    return Tete;
+    *Tete = NULL;
+    for(int i=0; i<256; i++){
+        if (freq[i] != 0){ 
+            if (i==0){ 
+                *Queue = ajoutEnTete(*Queue, (char) i, freq[i]);
+                *Tete = *Queue;
+            } else
+                ajoutEnQueue(Queue, (char) i, freq[i]);
+        }
+    }
+    fclose(data);
 }
 
+void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, char *nom){
+    FILE *data;
+    data = fopen(nom, "r");
+    maillon* AC;
+    char octet = 0;
+    int nb=0, nb_octet=0;
+
+    *Queue = NULL;
+    *Tete = NULL;
+    do { 
+        nb = fread(&octet,sizeof(char),1,data);
+        if (octet != EOF ){ 
+            //Ajout en Queue avec fonction ajout en tete
+            if (nb_octet==0){  
+                *Queue = ajoutEnTete(*Queue, octet, -1);
+                *Tete = *Queue;
+            } else
+                ajoutEnQueue(Queue, octet, -1);
+
+            nb_octet++;
+        }
+    }
+    while ( nb != 0); 
+    fclose(data);
+}
+
+void writeListeBytes(maillon* Tete, maillon* Queue, FILE* data){
+    maillon* AC = Queue;
+    //Si Queue == NULL alors Tete == NULL donc la liste est vide
+    if (AC != NULL){ 
+        //On se trouve a la derniere cellule, on ecrit le nombre de bit significatif du dernier octet 
+        fwrite(&(AC->autre), sizeof(AC->autre),1,data); //L'affichage sous hexpdumb -Cn 60 "fichier" confirme l'ecriture de l'integer. Peut etre mal interprété par l'editeur de texte
+        fputc('\n', data);
+
+        AC = Tete;
+        while (AC != NULL){
+            fputc(AC->lettre, data);
+            AC = AC->suivant;
+        }
+    }
+}
+
+void writeBit(maillon** Tete, maillon** Queue, char bit){
+
+    maillon* cellule;
+
+    // Masque le bit a la position windowBuffer
+    //buffer &= ~(1<<windowBuffer);
+
+    //Place le bit dans le buffer
+    buffer |= (bit & 1) << windowBuffer;
+
+    //La windowBuffer diminue
+    windowBuffer--;
+
+    // La windowBuffer == 0, il faut inserer dans le fichier les 8 bits
+    if (windowBuffer==0) {  
+        //Ajout en queue
+        cellule = Allouer(buffer,-1);
+        if (*Queue != NULL){
+            (*Queue)->suivant = cellule;
+        }
+        *Queue = cellule;
+
+        //Reinitialisation du buffer et windows
+        buffer = 0;
+        windowBuffer = 7;
+    }
+}

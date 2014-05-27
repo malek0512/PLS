@@ -77,7 +77,7 @@ int estVide(maillon* liste)
     }
 }
 
-maillon* Allouer(int lettre, int autre){
+maillon* Allouer(char lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
