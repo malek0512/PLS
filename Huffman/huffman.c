@@ -1,10 +1,32 @@
 #include "huffman.h"
 
+bool readBit(char source, int numero)
+{
+	return (source > numero)&1;
+}
 
-//la liste de retour sera de la forme 
+//la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
 maillon* codageHuffman(maillon *liste, arbre *tableHuffman)
 {
-	return NULL;
+maillon *tete;
+maillon *queue;
+char
+
+//création de la table dictionnaire a partir de l'arbre d'huffman
+
+//Parcour de la liste
+	//lecture d'un octet
+	
+	//ajout de l'information a l'octet en cours de création
+
+	//si octet en cours de création full, ajout en queue
+
+	//avancement dans la liste
+
+//ajout de l'octet en cours de préparation
+
+//retourner le resultat
+return NULL;
 }
 
 /*
