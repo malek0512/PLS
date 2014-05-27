@@ -2,10 +2,9 @@
 
 arbre* ArbreHufman(maillon* liste)
 {	
-
 	arbre* tab[size(liste)];	//création de l'arbre de codage
 	arbre* new; //le nouvelle arbre
-	maillon* save;
+	maillon* save=liste;
 	int i,cpt; //cpt de for
 	int min1,min2; //proba minimals, min1<=min2
 	int i1,i2; //indice ou sont trouver les valeurs min
@@ -23,7 +22,7 @@ arbre* ArbreHufman(maillon* liste)
 		save = save->suivant;//avancement
 	}
 
-	while(tailleT>1)
+	while(tailleT>=2)
 	{//tant que tous les symbole sont non traité (au moins deux arbre a fusionner) :
 		//initialisation des varaible min1 et min2 au premiers indice
 			//min1
@@ -50,9 +49,16 @@ arbre* ArbreHufman(maillon* liste)
 				min1 = tab[cpt]->i.proba; //maj du min1
 				i1 = cpt;
 			}
+			
+			else if(tab[cpt]->i.proba<min2)
+			{
+				min2 = tab[cpt]->i.proba;  //maj du min2
+				i2 = cpt;
+			}
+			
 		}
 		new = malloc(sizeof(arbre)); //le nouvelle arbre
-		new->i.proba= tab[i1]->i.proba + tab[i2]->i.proba;
+		new->i.proba= min1 + min2;
 		new->G = tab[i1];
 		new->D = tab[i2];
 	
@@ -68,7 +74,6 @@ arbre* ArbreHufman(maillon* liste)
 			//on maj le tableau
 		tailleT --;
 	}
-	printf("tab[0].symbole = %d\n",tab[0]->i.proba);
 	return *tab;
 }
 
@@ -84,18 +89,17 @@ void printArbre_rec(arbre* tree,int value,int taille)
 {
 	if(tree->D == NULL && tree->G == NULL)
 	{
-		printf("Valeur/Symbole :");
+		printf("Valeur/Symbole/Proba :");
 		for (i=taille-1;i>=0;i--)
-			printf("%d",(value>>i)%2);
-		printf(" / %d\n",tree->i.symbole);
-	
+			printf("%d",(value>>i)&1);
+		printf(" / %c / %d\n",tree->i.symbole,tree->i.proba);
 	}
 	else
 	{
 		if(tree->D!=NULL)
-			printArbre_rec(tree->D,(value<<1),taille+1);
+			printArbre_rec(tree->D,(value<<1)+1,taille+1);
 		if(tree->G!=NULL)
-			printArbre_rec(tree->G,(value<<1) + 1,taille+1);
+			printArbre_rec(tree->G,(value<<1),taille+1);
 	}
 }
 }

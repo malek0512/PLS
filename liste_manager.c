@@ -47,8 +47,20 @@ void print(maillon* tete)
 	maillon* save = tete;
 	while(save != NULL)
 	{
-	printf("Symbole/Autre : %c / %d\n", save->lettre+'a', save->autre);
-	save = save->suivant;	
+        if (save->lettre == -1)
+            //On signal que c'est un caractere de EOF, théoriquement non present dans la liste
+            printf("Symbole/Autre : %s / %d\n","Fin de fichier\0" , save->autre);
+        else if (save->lettre == '\n')
+            //On signal que c'est un retour charriot
+            printf("Symbole/Autre : %s / %d\n","Retour charriot\0" , save->autre);
+        else if (save->lettre <128 || save->lettre>=0)
+            //On affiche le carctere
+            printf("Symbole/Autre : %c / %d\n", save->lettre, save->autre);
+        else
+            //On affiche son numero
+            printf("Symbole/Autre : Caractère numero %d / %d\n", save->lettre, save->autre);
+        
+    	save = save->suivant;	
 	}
 }
 
