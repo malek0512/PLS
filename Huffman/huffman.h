@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../liste_manager.h"
 
+//gauche zero ; droite 1
 //#### TypeDef ###//
 typedef struct info
 {
