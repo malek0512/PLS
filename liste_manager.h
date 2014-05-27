@@ -15,6 +15,10 @@ typedef struct maillon {
 // Auteur : Marie
 maillon* initialiser(maillon* l);
 
+// Insère un élément A après un élément B
+// Auteur : Marie
+void insererElement(maillon* A, maillon* B);
+
 //Ajoute en Tete une lettre et sa frequence
 //author Quentin
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
