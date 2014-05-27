@@ -80,6 +80,7 @@ maillon* copieList(maillon *liste);
 //Afficher la liste
 void afficherListe(maillon *liste);
 
+//A tester
 //Ecrit un bit dans la liste chainée passée en parametre. N'effectue que des ajouts en queue
 //Attention, NE PAS OUBLIER d'ECRIRE LE NOMBRE DE BITS SIGNIFICATIF (après encodage) DANS LA CELULLE QUEUE (champs <autre>).
 //author : Malek

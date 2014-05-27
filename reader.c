@@ -2,9 +2,6 @@
 #include<stdlib.h>
 #include"liste_manager.h"
 
-char buffer=0;
-int windowBuffer=7;
-
 maillon* readFromFileAlphabet(char *nom){
     FILE *data;
     data = fopen(nom, "r");
@@ -118,4 +115,3 @@ void writeListeBytes(maillon* Tete, maillon* Queue, FILE* data){
     }
 }
 
-}

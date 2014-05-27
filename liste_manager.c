@@ -2,11 +2,15 @@
 #include<stdlib.h>
 #include "liste_manager.h"
 
+//Variables globale de la fonction writeBit
+char buffer=0;
+int windowBuffer=7;
+
 // Initialise une liste vide
 // Auteur : Marie
 maillon* initialiser(maillon* l){
 	l = malloc(sizeof(maillon));
-	l = NULL;
+	l = NULL; // Attention erreur possible
 	return l;
 }
 
@@ -280,14 +284,10 @@ void writeBit(maillon** Tete, maillon** Queue, char bit){
 
     // La windowBuffer == 0, il faut inserer dans le fichier les 8 bits
     if (windowBuffer==0) {  
-        //Ajout en queue
-        cellule = Allouer(buffer,-1);
-        if (*Queue != NULL){
-            (*Queue)->suivant = cellule;
-        }
-        *Queue = cellule;
+        ajoutEnQueue(Queue, buffer, -1);
 
         //Reinitialisation du buffer et windows
         buffer = 0;
         windowBuffer = 7;
     }
+}
