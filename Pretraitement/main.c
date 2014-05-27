@@ -5,7 +5,7 @@ void afficherListe();
 
 int main (int argc, char *argv[])
 {
-	//maillon *tmp;
+	maillon *tmp;
 
 	char chaine[9]; 
 	chaine[0] = 'f';
@@ -30,7 +30,9 @@ int main (int argc, char *argv[])
 	liste = ajoutEnTete( liste, 'b', 1);
 	liste = ajoutEnTete( liste, 'a', 0);
 
-	MTF( liste,chaine);
+	tmp = MTF(liste,chaine);
+
+	afficherListe(tmp);
 
     return 0;
 }
