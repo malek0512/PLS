@@ -26,6 +26,10 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 //Ajout en queue
 maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence);
 
+//Ajoute en Queue un maillon
+//Author : Malek
+void ajoutEnQueue(maillon** Queue, char byte, int autre);
+
 //affiche la liste chainer
 //author : Alexandre
 void print(maillon* tete);
@@ -75,6 +79,11 @@ maillon* copieList(maillon *liste);
 
 //Afficher la liste
 void afficherListe(maillon *liste);
+
+//Ecrit un bit dans la liste chainée passée en parametre. N'effectue que des ajouts en queue
+//Attention, NE PAS OUBLIER d'ECRIRE LE NOMBRE DE BITS SIGNIFICATIF (après encodage) DANS LA CELULLE QUEUE (champs <autre>).
+//author : Malek
+void writeBit(maillon** Tete, maillon** Queue, char bit);
 
 #endif
 

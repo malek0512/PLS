@@ -62,6 +62,12 @@ maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
     	}
 }
 
+void ajoutEnQueue(maillon** Queue, char byte, int autre){
+    maillon* AC = Allouer( byte, autre );
+    (*Queue)->suivant = AC;
+    *Queue = AC;
+}
+
 int size(maillon* tete)
 {
 int res = 1;
@@ -258,3 +264,30 @@ void afficherListe(maillon *liste)
     }
 	printf("\n");	}
 }
+
+void writeBit(maillon** Tete, maillon** Queue, char bit){
+
+    maillon* cellule;
+
+    // Masque le bit a la position windowBuffer
+    //buffer &= ~(1<<windowBuffer);
+
+    //Place le bit dans le buffer
+    buffer |= (bit & 1) << windowBuffer;
+
+    //La windowBuffer diminue
+    windowBuffer--;
+
+    // La windowBuffer == 0, il faut inserer dans le fichier les 8 bits
+    if (windowBuffer==0) {  
+        //Ajout en queue
+        cellule = Allouer(buffer,-1);
+        if (*Queue != NULL){
+            (*Queue)->suivant = cellule;
+        }
+        *Queue = cellule;
+
+        //Reinitialisation du buffer et windows
+        buffer = 0;
+        windowBuffer = 7;
+    }
