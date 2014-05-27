@@ -39,8 +39,43 @@ resultat :
 */
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
+	maillon *res = NULL;
+	maillon *tmp= liste;
+	int i = 7;
+	while(tmp != NULL)
+	{
+		for(i;i>0;i--)
+		{	
+			while((tableHuffman->G != NULL) && (tableHuffman->D != NULL))	
+			{
+				if(!(reabBit((tmp->lettre),i))
+				{tableHuffman = (tableHuffman->D);}
+				else
+				{tableHuffman = (tableHuffman->G);}
+			}
+		}
+
+	}
+
+	
 	return NULL;
 }
+/*		
+maillon* rechercherElement(maillon* liste, int valeur)
+{
+    maillon *tmp=liste;
+    //Tant que l'on n'est pas au bout de la liste 
+    while(tmp != NULL)
+    {
+        if(tmp->lettre == valeur)
+        {
+            // Si l'élément a la valeur recherchée, on renvoie son adresse
+            return tmp;
+        }
+        tmp = tmp->suivant;
+    }
+    return NULL;
+}*/
 
 arbre* ArbreHufman(maillon* liste)
 {	
