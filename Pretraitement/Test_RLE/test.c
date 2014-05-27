@@ -28,16 +28,15 @@ int main(void){
 	printf("Affichage de la liste initiale\n");
 	print(l);
 
-	printf("Application de l'algorithme RLE sur la liste\n");
+	printf("\nTest n°1 : Application de l'algorithme RLE sur la liste\n");
 	coderRle(l);
 	print(l);
 
-// Gros gros bug (boucle infinie)
-/*	printf("Test batard n°1 : coder une liste déjà codée\n");
+	printf("\nTest n°2 : coder une liste déjà codée\n");
 	coderRle(l);
 	print(l);
-*/
-	printf("Décodage de la nouvelle liste\n");
+
+	printf("\nTest n°3 : Décodage de la nouvelle liste\n");
 	decoderRle(l);
 	print(l);
 

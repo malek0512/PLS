@@ -72,7 +72,6 @@ void decoderRle(maillon* tete){
 					new->autre = tmp->autre;
 					insererElement(new, tmp);
 				}
-				tmp = tmp->suivant;
 			}
 			else{
 				if(tmp->suivant != NULL)
