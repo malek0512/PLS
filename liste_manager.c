@@ -8,14 +8,14 @@ maillon* initialiser(maillon* l){
 	l = malloc(sizeof(maillon));
 	l = NULL;
 	return l;
-};
+}
 
 // Insère un élément A après un élément B
 // Auteur : Marie
 void insererElement(maillon* A, maillon* B){
 	A->suivant = B->suivant;
 	B->suivant = A;
-};
+}
 
 maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 	// On crée un nouvel élément 

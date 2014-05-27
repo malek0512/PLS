@@ -1,5 +1,6 @@
 #ifndef DEF_RLE
 #define DEF_RLE
+#include <stdlib.h>
 #include "../liste_manager.h"
 
 // On traite la liste tete en suivant l'algorithme RLE
