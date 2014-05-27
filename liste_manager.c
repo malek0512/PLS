@@ -230,7 +230,7 @@ void supprimer(maillon* A, maillon* tete){
 		tmp->suivant = A->suivant;
 		free(A);
 	}
-};
+}
 
 maillon* copieList(maillon *liste)
 {
