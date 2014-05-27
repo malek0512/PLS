@@ -110,3 +110,53 @@ maillon* find_indice(maillon* liste, int indice)
     }
 }
 
+
+//Fonction inutile pour l'instant ( j'en avais pas besoin enfaite , je la laisse a disposition si jamais )
+//retourne l'indice d'un element
+int return_indice(maillon* liste, int lettre, int autre)
+{
+	maillon *tmp=liste;
+	int i=0;
+
+	while(tmp != NULL)
+	{
+		if((tmp->lettre == lettre) && (tmp->autre == autre))
+		{return i;}
+		else
+		{
+			tmp = tmp->suivant;
+			i++;
+		}
+	}
+	printf("Erreur dans return_indice");
+}
+
+//Effacer tous les éléments ayant une certaine valeur
+maillon* supprimerElement(maillon* liste, int lettre, int autre)
+{
+    // Liste vide, il n'y a plus rien à supprimer 
+    if(liste == NULL)
+        return NULL;
+ 
+    // Si l'élément en cours de traitement doit être supprimé 
+    if((liste->lettre == lettre) && (liste->autre == autre))
+    {
+        /* On le supprime en prenant soin de mémoriser 
+        l'adresse de l'élément suivant */
+        maillon* tmp = liste->suivant;
+        free(liste);
+        // L'élément ayant été supprimé, la liste commencera à l'élément suivant pointant sur une liste qui ne contient plus aucun élément ayant la valeur recherchée 
+        tmp = supprimerElement(tmp, lettre);
+        return tmp;
+    }
+    else
+    {
+        /* Si l'élement en cours de traitement ne doit pas être supprimé,
+        alors la liste finale commencera par cet élément et suivra une liste ne contenant
+        plus d'élément ayant la valeur recherchée */
+        liste->suivant = supprimerElement(liste->suivant, letttre);
+        return liste;
+    }
+}
+
+

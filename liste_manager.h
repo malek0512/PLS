@@ -44,5 +44,13 @@ maillon* rechercherElement(maillon* liste, int valeur);
 //author : Quentin
 maillon* find_indice(maillon* liste, int indice);
 
+//Fonction inutile pour l'instant ( j'en avais pas besoin enfaite , je la laisse a disposition si jamais )
+//retourne l'indice d'un element
+//author : Quentin
+int return_indice(maillon* liste, int lettre, int autre);
+
+//Effacer tous les éléments ayant une certaine valeur
+maillon* supprimerElement(maillon* liste, int lettre, int autre);
+
 #endif
 
