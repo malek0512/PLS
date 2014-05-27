@@ -64,6 +64,11 @@ int return_indice(maillon* liste, int lettre, int autre);
 //author : Quentin
 maillon* supprimerElement(maillon* liste, int lettre, int autre);
 
+// Supprime l'élément A de la liste tete (et seulement celui là)
+// S'il n'est pas présent dans la liste, on affiche un message
+// Auteur : Marie
+void supprimer(maillon* A, maillon* tete);
+
 //Renvoie une copie de la liste donnée en argument
 //author : Alexandre
 maillon* copieList(maillon *liste);

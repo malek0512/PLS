@@ -214,6 +214,24 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
     }
 }
 
+// Supprime l'élément A de la liste tete (et seulement celui là)
+// S'il n'est pas présent dans la liste, on affiche un message
+// Auteur : Marie
+void supprimer(maillon* A, maillon* tete){
+	maillon* tmp;
+	tmp = tete;
+	while(tmp->suivant != NULL && tmp->suivant != A){
+		tmp = tmp->suivant;
+	}
+	if(tmp->suivant==NULL)
+		printf("Erreur : l'élément n'est pas dans la liste");
+	else
+	{
+		tmp->suivant = A->suivant;
+		free(A);
+	}
+};
+
 maillon* copieList(maillon *liste)
 {
 maillon *res;
