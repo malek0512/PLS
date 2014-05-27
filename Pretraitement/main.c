@@ -19,22 +19,22 @@ int main (int argc, char *argv[])
 	maillon* liste = NULL;
 	    	printf("lol1");
 	
-   	ajoutEnTete( liste, 'h', 000);
-	fprintf(stderr,"lol2");	
-	ajoutEnTete( liste, 'g', 001);
-	fprintf(stderr,"lol3");
-	ajoutEnTete( liste, 'f', 010);
-	fprintf(stderr,"lol4");
-	ajoutEnTete( liste, 'e', 011);
-	fprintf(stderr,"lol5");
-	ajoutEnTete( liste, 'd', 100);
-	fprintf(stderr,"lol6");
-	ajoutEnTete( liste, 'c', 101);
-	fprintf(stderr,"lol7");
-	ajoutEnTete( liste, 'b', 110);
-	fprintf(stderr,"lol8");
-	ajoutEnTete( liste, 'a', 111);
-	fprintf(stderr,"lol9");
+   	liste = ajoutEnTete(liste, 'h', 000);
+	printf("lol2");	
+	liste =  ajoutEnTete( liste, 'g', 001);
+	printf("lol3");
+	liste = ajoutEnTete( liste, 'f', 010);
+	printf("lol4");
+	liste = ajoutEnTete( liste, 'e', 011);
+	printf("lol5");
+	liste = ajoutEnTete( liste, 'd', 100);
+	printf("lol6");
+	liste = ajoutEnTete( liste, 'c', 101);
+	printf("lol7");
+	liste = ajoutEnTete( liste, 'b', 110);
+	printf("lol8");
+	liste = ajoutEnTete( liste, 'a', 111);
+	printf("lol9");
 
     	afficherListe(liste);
  	
