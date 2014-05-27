@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
 
 void afficherListe(maillon liste)
 {
-   	maillon *tmp = &liste;
+   	maillon* tmp = &liste;
 
     while(tmp != NULL)
     {
