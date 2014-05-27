@@ -31,21 +31,21 @@ maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
  
 	if(liste == NULL)
 	{
-        // Si la liste est videé il suffit de renvoyer l'élément créé 
-        return nouvelElement;
+		// Si la liste est videé il suffit de renvoyer l'élément créé 
+		return nouvelElement;
 	}
 	else
 	{
-        /* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
-        indique que le dernier élément de la liste est relié au nouvel élément */
-        maillon* tmp=liste;
-        while(tmp->suivant != NULL)
-        {
-            tmp = tmp->suivant;
-        }
-        tmp->suivant = nouvelElement;
-        return liste;
-    }
+		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
+		indique que le dernier élément de la liste est relié au nouvel élément */
+		maillon* tmp=liste;
+		while(tmp->suivant != NULL)
+		{
+			tmp = tmp->suivant;
+		}
+		tmp->suivant = nouvelElement;
+		return liste;
+    	}
 }
 
 int size(maillon* tete)

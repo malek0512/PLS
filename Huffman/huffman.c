@@ -1,5 +1,15 @@
 #include "huffman.h"
 
+maillon* codageHuffman(maillon *liste, arbre *tableHuffman)
+{
+	return NULL;
+}
+
+maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
+{
+	return NULL;
+}
+
 arbre* ArbreHufman(maillon* liste)
 {	
 	arbre* tab[size(liste)];	//création de l'arbre de codage

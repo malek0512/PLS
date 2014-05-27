@@ -15,6 +15,9 @@ typedef struct maillon {
 //author Quentin
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
+//Ajout en queue
+maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence);
+
 //affiche la liste chainer
 //author : Alexandre
 void print(maillon* tete);

@@ -16,8 +16,16 @@ typedef struct arbre
 	info i;
 }arbre;
 
-//Applique huffman et crée l'arbre
-//la recuperation du resultat reste a decider
+
+//Prend en argument une liste et ca table de huffman, crée par la fonction ArbreHuffman
+//retourne la liste codé
+maillon* codageHuffman(maillon *liste, arbre *tableHuffman);
+
+//Prend en argument une liste codé par huffman et ca table de huffman, crée par la fonction ArbreHuffman
+//retourne la liste décodé
+maillon* decodageHuffman(maillon *liste, arbre *tableHuffman);
+
+//Crée la table d'huffman associer a la liste donné
 arbre* ArbreHufman(maillon* liste);
 
 //affiche le tableau de huffman
