@@ -53,5 +53,9 @@ int return_indice(maillon* liste, int lettre, int autre);
 //author : Quentin
 maillon* supprimerElement(maillon* liste, int lettre, int autre);
 
+//Renvoie une copie de la liste donnée en argument
+//author : Alexandre
+maillon* copieList(maillon *liste);
+
 #endif
 

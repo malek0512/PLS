@@ -172,4 +172,13 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
     }
 }
 
-
+maillon* copieList(maillon *liste)
+{
+maillon *res;
+maillon *save = liste;
+while(save != NULL)
+	{
+	ajoutEnTete(res,save->lettre,save->autre);
+	save = save->suivant;
+	}
+}

@@ -9,7 +9,6 @@ arbre* ArbreHufman(maillon* liste)
 	int min1,min2; //proba minimals, min1<=min2
 	int i1,i2; //indice ou sont trouver les valeurs min
 	int tailleT = size(liste);//nombre de caractere different dans notre liste
-	printf("taille : %d\n", tailleT);
 	//on copie les information contenu dans la liste maillon
 	//dans une liste d'arbre
 	for (i=0;i<tailleT;i++)
@@ -79,6 +78,7 @@ arbre* ArbreHufman(maillon* liste)
 
 void printArbre(arbre* tree)
 {
+printf("\n\nAffichage de l'arbre d'huffman : \n");
 printArbre_rec(tree,0,0); //peut etre mettre taille a 1, a voir...
 }
 
@@ -89,10 +89,10 @@ void printArbre_rec(arbre* tree,int value,int taille)
 {
 	if(tree->D == NULL && tree->G == NULL)
 	{
-		printf("Valeur/Symbole/Proba :");
+		printf("Symbole/Valeur : %c / ",tree->i.symbole);
 		for (i=taille-1;i>=0;i--)
 			printf("%d",(value>>i)&1);
-		printf(" / %c / %d\n",tree->i.symbole,tree->i.proba);
+		printf("\n");
 	}
 	else
 	{
