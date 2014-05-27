@@ -2,6 +2,7 @@
 #define DEF_READER
 
 
-maillon* readFromFile(char *nom);
+maillon* readFromFileAlphabet(char *nom);
+maillon* readFromFileBytes(char *nom);
 
 #endif
