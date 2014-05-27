@@ -1,10 +1,20 @@
 #include "huffman.h"
 
+
+//la liste de retour sera de la forme 
 maillon* codageHuffman(maillon *liste, arbre *tableHuffman)
 {
 	return NULL;
 }
 
+/*
+Argument : 
+	-liste : chaque cellule contient ( un octet , le nombre de bits significatif (uniquement valable pour la toute derniere cellule !!!))
+	-tableHuffman, un arbre binaire de la table binaire
+
+resultat :
+	maillon* : contient une liste d'octet tout simplement
+*/
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
 	return NULL;
