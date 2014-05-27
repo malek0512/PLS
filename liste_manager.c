@@ -3,7 +3,7 @@
 #include "liste_manager.h"
 
 
-maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
+maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 	// On crée un nouvel élément 
 	maillon* nouvelElement = malloc(sizeof(maillon));
  
@@ -14,11 +14,39 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
 	nouvelElement->autre = frequence;
  
 	//On assigne l'adresse de l'élément suivant au nouvel élément 
-	nouvelElement->suivant = Tete;
+	nouvelElement->suivant = liste;
  
 	//On retourne la nouvelle liste, i.e. le pointeur sur le premier élément
 	return nouvelElement;
 } 
+
+
+maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
+{
+	maillon* nouvelElement = malloc(sizeof(maillon));  
+	nouvelElement->lettre = lettre;
+	nouvelElement->autre = frequence;
+ 	// On ajoute en fin, donc aucun élément ne va suivre 
+	nouvelElement->suivant = NULL;
+ 
+	if(liste == NULL)
+	{
+        // Si la liste est videé il suffit de renvoyer l'élément créé 
+        return nouvelElement;
+	}
+	else
+	{
+        /* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
+        indique que le dernier élément de la liste est relié au nouvel élément */
+        maillon* tmp=liste;
+        while(tmp->suivant != NULL)
+        {
+            tmp = tmp->suivant;
+        }
+        tmp->suivant = nouvelElement;
+        return liste;
+    }
+}
 
 int size(maillon* tete)
 {
