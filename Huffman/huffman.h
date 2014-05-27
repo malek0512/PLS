@@ -20,6 +20,9 @@ typedef struct arbre
 //la recuperation du resultat reste a decider
 arbre* ArbreHufman(maillon* liste);
 
-//tranfere les info contenu sous forme de liste chainé
-//en une liste d'arbre utiliser pour le codage d'huffman :D
-void transfert(maillon* liste,arbre **tab, int taille);
+//affiche le tableau de huffman
+void printArbre(arbre* tree);
+
+//utiliser pour le printAbre
+void printArbre_rec(arbre* tree,int value,int taille);
+

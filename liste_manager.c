@@ -32,6 +32,7 @@ while(save->suivant != NULL)
 	save = save->suivant;
 	res++;
 	}
+	return res;
 }
 
 void liberer(maillon* tete)
