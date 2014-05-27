@@ -2,8 +2,22 @@
 #include<stdlib.h>
 #include "liste_manager.h"
 
+// Initialise une liste vide
+// Auteur : Marie
+maillon* initialiser(maillon* l){
+	l = malloc(sizeof(maillon));
+	l = NULL;
+	return l;
+}
 
-maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
+// Insère un élément A après un élément B
+// Auteur : Marie
+void insererElement(maillon* A, maillon* B){
+	A->suivant = B->suivant;
+	B->suivant = A;
+}
+
+maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 	// On crée un nouvel élément 
 	maillon* nouvelElement = malloc(sizeof(maillon));
  
@@ -14,11 +28,39 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence){
 	nouvelElement->autre = frequence;
  
 	//On assigne l'adresse de l'élément suivant au nouvel élément 
-	nouvelElement->suivant = Tete;
+	nouvelElement->suivant = liste;
  
 	//On retourne la nouvelle liste, i.e. le pointeur sur le premier élément
 	return nouvelElement;
 } 
+
+
+maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
+{
+	maillon* nouvelElement = malloc(sizeof(maillon));  
+	nouvelElement->lettre = lettre;
+	nouvelElement->autre = frequence;
+ 	// On ajoute en fin, donc aucun élément ne va suivre 
+	nouvelElement->suivant = NULL;
+ 
+	if(liste == NULL)
+	{
+		// Si la liste est videé il suffit de renvoyer l'élément créé 
+		return nouvelElement;
+	}
+	else
+	{
+		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
+		indique que le dernier élément de la liste est relié au nouvel élément */
+		maillon* tmp=liste;
+		while(tmp->suivant != NULL)
+		{
+			tmp = tmp->suivant;
+		}
+		tmp->suivant = nouvelElement;
+		return liste;
+    	}
+}
 
 int size(maillon* tete)
 {
@@ -172,4 +214,47 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
     }
 }
 
+// Supprime l'élément A de la liste tete (et seulement celui là)
+// S'il n'est pas présent dans la liste, on affiche un message
+// Auteur : Marie
+void supprimer(maillon* A, maillon* tete){
+	maillon* tmp;
+	tmp = tete;
+	while(tmp->suivant != NULL && tmp->suivant != A){
+		tmp = tmp->suivant;
+	}
+	if(tmp->suivant==NULL)
+		printf("Erreur : l'élément n'est pas dans la liste");
+	else
+	{
+		tmp->suivant = A->suivant;
+		free(A);
+	}
+}	
 
+maillon* copieList(maillon *liste)
+{
+maillon *res;
+maillon *save = liste;
+while(save != NULL)
+	{
+	res=ajouterEnQueue(res,save->lettre,save->autre);
+	save = save->suivant;
+	}
+	return res;	
+}
+
+
+void afficherListe(maillon *liste)
+{
+   	maillon *tmp = liste;
+    if(tmp != NULL) {
+    while(tmp != NULL)
+    {
+
+        printf("\n%c, %d ", tmp->lettre,tmp->autre);
+
+        tmp = tmp->suivant;
+    }
+	printf("\n");	}
+}

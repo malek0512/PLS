@@ -1,5 +1,93 @@
 #include "huffman.h"
 
+bool readBit(char source, int numero)
+{
+	return (source > numero)&1;
+}
+
+maillon* creationTableHuffman(arbre* arbreHuffman)
+{
+return NULL;
+}
+
+//la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
+maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
+{
+maillon *tete;
+maillon *queue;
+maillon *save = liste;
+int i;
+//création de la table dictionnaire a partir de l'arbre d'huffman
+maillon *tableHuffman = creationTableHuffman(arbreHuffman);
+
+//Parcour de la liste
+while(save != NULL)
+{	
+	//lecture d'un octet
+	i=0;
+	while (tableHuffman[i].symbole != save->symbole)
+	{//le symbole apartient donc wdec de check la valeur du i
+		i++:
+	}
+	
+	for(i=sizeBit(tableHuffman[i].code)-1;i>=0;i--)
+	{
+		writeBit((tableHuffman[i].code) > i)&1);
+	}
+	save = save->suivant;	
+}
+free(tableHuffman);
+return tete;
+}
+
+/*
+Argument : 
+	-liste : chaque cellule contient ( un octet , le nombre de bits significatif (uniquement valable pour la toute derniere cellule !!!))
+	-tableHuffman, un arbre binaire de la table binaire
+
+resultat :
+	maillon* : contient une liste d'octet tout simplement
+*/
+maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
+{
+	maillon *res = NULL;
+	maillon *tmp= liste;
+	int i = 7;
+	while(tmp != NULL)
+	{
+		for(i;i>0;i--)
+		{	
+			while((tableHuffman->G != NULL) && (tableHuffman->D != NULL))	
+			{
+				if(!(reabBit((tmp->lettre),i))
+				{tableHuffman = (tableHuffman->D);}
+				else
+				{tableHuffman = (tableHuffman->G);}
+			}
+		}
+
+	}
+
+	
+	return NULL;
+}
+/*		
+maillon* rechercherElement(maillon* liste, int valeur)
+{
+    maillon *tmp=liste;
+    //Tant que l'on n'est pas au bout de la liste 
+    while(tmp != NULL)
+    {
+        if(tmp->lettre == valeur)
+        {
+            // Si l'élément a la valeur recherchée, on renvoie son adresse
+            return tmp;
+        }
+        tmp = tmp->suivant;
+    }
+    return NULL;
+}*/
+
 arbre* ArbreHufman(maillon* liste)
 {	
 	arbre* tab[size(liste)];	//création de l'arbre de codage
@@ -9,7 +97,6 @@ arbre* ArbreHufman(maillon* liste)
 	int min1,min2; //proba minimals, min1<=min2
 	int i1,i2; //indice ou sont trouver les valeurs min
 	int tailleT = size(liste);//nombre de caractere different dans notre liste
-	printf("taille : %d\n", tailleT);
 	//on copie les information contenu dans la liste maillon
 	//dans une liste d'arbre
 	for (i=0;i<tailleT;i++)
@@ -79,6 +166,7 @@ arbre* ArbreHufman(maillon* liste)
 
 void printArbre(arbre* tree)
 {
+printf("\n\nAffichage de l'arbre d'huffman : \n");
 printArbre_rec(tree,0,0); //peut etre mettre taille a 1, a voir...
 }
 
@@ -89,10 +177,10 @@ void printArbre_rec(arbre* tree,int value,int taille)
 {
 	if(tree->D == NULL && tree->G == NULL)
 	{
-		printf("Valeur/Symbole/Proba :");
+		printf("Symbole/Valeur : %c / ",tree->i.symbole);
 		for (i=taille-1;i>=0;i--)
 			printf("%d",(value>>i)&1);
-		printf(" / %c / %d\n",tree->i.symbole,tree->i.proba);
+		printf("\n");
 	}
 	else
 	{
