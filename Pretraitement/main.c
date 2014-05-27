@@ -1,6 +1,8 @@
 #include "MTF.h"
 #include "../liste_manager.h"
 #include <stdio.h>
+void afficherListe();
+
 int main (int argc, char *argv[])
 {
 	
@@ -44,9 +46,9 @@ int main (int argc, char *argv[])
 }
 
 
-void afficherListe(maillon liste)
+void afficherListe(maillon *liste)
 {
-   	maillon *tmp = &liste;
+   	maillon *tmp = liste;
 
     while(tmp != NULL)
     {

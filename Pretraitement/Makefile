@@ -1,5 +1,5 @@
 main : main.c MTF.o liste_manager.o
-	gcc -o $@ $^
+	gcc -o $@ $^ -Wall -Werror
 
 MTF.o : MTF.c MTF.h
 	gcc -c $<
