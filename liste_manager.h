@@ -50,6 +50,7 @@ maillon* find_indice(maillon* liste, int indice);
 int return_indice(maillon* liste, int lettre, int autre);
 
 //Effacer tous les éléments ayant une certaine valeur
+//author : Quentin
 maillon* supprimerElement(maillon* liste, int lettre, int autre);
 
 #endif
