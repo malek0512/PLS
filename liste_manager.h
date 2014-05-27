@@ -3,8 +3,8 @@
 
 //Liste chainee
 typedef struct maillon {
-    int lettre; //information contenant les info du symbole
-    int autre; //information auxiliaire
+    char lettre; //information contenant les info du symbole
+    char autre; //information auxiliaire
     struct maillon* suivant;
 }maillon;
 
