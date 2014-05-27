@@ -146,7 +146,7 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
         maillon* tmp = liste->suivant;
         free(liste);
         // L'élément ayant été supprimé, la liste commencera à l'élément suivant pointant sur une liste qui ne contient plus aucun élément ayant la valeur recherchée 
-        tmp = supprimerElement(tmp, lettre);
+        tmp = supprimerElement(tmp, lettre,autre);
         return tmp;
     }
     else
@@ -154,7 +154,7 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
         /* Si l'élement en cours de traitement ne doit pas être supprimé,
         alors la liste finale commencera par cet élément et suivra une liste ne contenant
         plus d'élément ayant la valeur recherchée */
-        liste->suivant = supprimerElement(liste->suivant, letttre);
+        liste->suivant = supprimerElement(liste->suivant, lettre,autre);
         return liste;
     }
 }
