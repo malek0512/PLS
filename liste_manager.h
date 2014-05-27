@@ -11,6 +11,10 @@ typedef struct maillon {
 //ce type represente la liste
 //typedef struct TeteListe *maillon;
 
+// Initialise une liste vide
+// Auteur : Marie
+maillon* initialiser(maillon* l);
+
 //Ajoute en Tete une lettre et sa frequence
 //author Quentin
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);

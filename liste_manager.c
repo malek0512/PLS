@@ -2,6 +2,13 @@
 #include<stdlib.h>
 #include "liste_manager.h"
 
+// Initialise une liste vide
+// Auteur : Marie
+maillon* initialiser(maillon* l){
+	l = malloc(sizeof(maillon));
+	l = NULL;
+	return l;
+};
 
 maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 	// On crée un nouvel élément 
