@@ -30,29 +30,11 @@ int main (int argc, char *argv[])
 	liste = ajoutEnTete( liste, 'b', 1);
 	liste = ajoutEnTete( liste, 'a', 0);
 
-    	afficherListe(liste);
-
 	MTF( liste,chaine);
 
-	/*printf("lol10");
-
-	afficherListe(liste);*/
- 
     return 0;
 }
 
 
-void afficherListe(maillon *liste)
-{
-   	maillon *tmp = liste;
 
-    while(tmp != NULL)
-    {
-
-        printf("\n%c, %d ", tmp->lettre,tmp->autre);
-
-        tmp = tmp->suivant;
-    }
-	printf("\n");	
-}
 

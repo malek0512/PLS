@@ -206,7 +206,23 @@ maillon *res;
 maillon *save = liste;
 while(save != NULL)
 	{
-	ajoutEnTete(res,save->lettre,save->autre);
+	res=ajouterEnQueue(res,save->lettre,save->autre);
 	save = save->suivant;
 	}
+	return res;	
+}
+
+
+void afficherListe(maillon *liste)
+{
+   	maillon *tmp = liste;
+    if(tmp != NULL) {
+    while(tmp != NULL)
+    {
+
+        printf("\n%c, %d ", tmp->lettre,tmp->autre);
+
+        tmp = tmp->suivant;
+    }
+	printf("\n");	}
 }

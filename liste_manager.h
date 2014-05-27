@@ -60,5 +60,8 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre);
 //author : Alexandre
 maillon* copieList(maillon *liste);
 
+//Afficher la liste
+void afficherListe(maillon *liste);
+
 #endif
 
