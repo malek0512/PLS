@@ -3,12 +3,13 @@
 #include <stdio.h>
 void afficherListe2(maillon *liste);
 
-void MTF(maillon* liste_retour,char *mot){
+void MTF(maillon* liste,char *mot){
 	int i=0;
 	int x;
 	maillon *tmp;
 	int taille = sizeof(mot);
-	//maillon *liste_retour = liste;
+	//maillon *liste_retour = liste
+	maillon *liste_retour = copieList(liste);
 	
 	if (!estVide(liste_retour))
 	{
@@ -24,7 +25,7 @@ void MTF(maillon* liste_retour,char *mot){
 			liste_retour = ajoutEnTete(liste_retour,copie.lettre,copie.autre);
 
 		}
-		afficherListe2(liste_retour);
+		afficherListe(liste_retour);
 		//changement des indices de la deuxieme liste chainée
 
 		

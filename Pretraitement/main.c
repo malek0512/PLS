@@ -32,7 +32,6 @@ int main (int argc, char *argv[])
 
     	afficherListe(liste);
 
-	
 	MTF( liste,chaine);
 
 	/*printf("lol10");
