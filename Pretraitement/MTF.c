@@ -10,7 +10,7 @@ void MTF(maillon* liste,char *mot){
 	int taille = sizeof(mot);
 	//maillon *liste_retour = liste
 	maillon *liste_retour = copieList(liste);
-	
+
 	if (!estVide(liste_retour))
 	{
 	
@@ -25,11 +25,12 @@ void MTF(maillon* liste,char *mot){
 			liste_retour = ajoutEnTete(liste_retour,copie.lettre,copie.autre);
 
 		}
+		afficherListe(liste);
 		afficherListe(liste_retour);
 		//changement des indices de la deuxieme liste chainée
 
-		
-		/*while((liste != NULL) && (liste_retour !=NULL))
+		afficherListe(liste);
+		while((liste != NULL) && (liste_retour !=NULL))
 		{
 			printf("test1\n");
 			afficherListe2(liste_retour);
@@ -49,7 +50,7 @@ void MTF(maillon* liste,char *mot){
 			printf("test4\n");
 			afficherListe2(liste_retour);
 			afficherListe2(liste);			
-		}*/
+		}
 
 	}
 }
