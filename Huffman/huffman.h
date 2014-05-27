@@ -6,7 +6,7 @@
 typedef struct info
 {
 	int proba;
-	int symbole;
+	char symbole;
 }info;
 
 typedef struct arbre
