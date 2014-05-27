@@ -5,28 +5,39 @@ bool readBit(char source, int numero)
 	return (source > numero)&1;
 }
 
+maillon* creationTableHuffman(arbre* arbreHuffman)
+{
+return NULL;
+}
+
 //la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
-maillon* codageHuffman(maillon *liste, arbre *tableHuffman)
+maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 {
 maillon *tete;
 maillon *queue;
-char
-
+maillon *save = liste;
+int i;
 //création de la table dictionnaire a partir de l'arbre d'huffman
+maillon *tableHuffman = creationTableHuffman(arbreHuffman);
 
 //Parcour de la liste
+while(save != NULL)
+{	
 	//lecture d'un octet
+	i=0;
+	while (tableHuffman[i].symbole != save->symbole)
+	{//le symbole apartient donc wdec de check la valeur du i
+		i++:
+	}
 	
-	//ajout de l'information a l'octet en cours de création
-
-	//si octet en cours de création full, ajout en queue
-
-	//avancement dans la liste
-
-//ajout de l'octet en cours de préparation
-
-//retourner le resultat
-return NULL;
+	for(i=sizeBit(tableHuffman[i].code)-1;i>=0;i--)
+	{
+		writeBit((tableHuffman[i].code) > i)&1);
+	}
+	save = save->suivant;	
+}
+free(tableHuffman);
+return tete;
 }
 
 /*

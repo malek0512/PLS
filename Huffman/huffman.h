@@ -26,6 +26,9 @@ maillon* codageHuffman(maillon *liste, arbre *tableHuffman);
 //retourne la liste décodé
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman);
 
+//Retourne la table d'huffman a partir de l'arbre
+maillon* creationTableHuffman(arbre* arbreHuffman)
+
 //Crée la table d'huffman associer a la liste donné
 arbre* ArbreHufman(maillon* liste);
 
