@@ -28,9 +28,8 @@ void coderRle(maillon* tete){
 				}
 
 				// On donne comme lettre au nouvel élément le nombre d'itérations qu'on a compté
-				// On rajoute le -'a' pour que l'affichage soit correct
 				maillon* new = malloc(sizeof(maillon));
-				new->lettre = (int) '0' + cmp - (int) 'a';
+				new->lettre = '0' + cmp;
 
 				// On applique une fréquence nulle au nouvel élément pour pouvoir les différencier
 				// facilement lors du décode de la liste
@@ -43,7 +42,7 @@ void coderRle(maillon* tete){
 			}
 		}
 	}
-};
+}
 
 // Permet de décoder une liste à laquelle on a appliqué l'algorithme RLE
 // Auteur : Marie
@@ -61,7 +60,7 @@ void decoderRle(maillon* tete){
 			if(tmp->suivant->autre == 0){
 
 				// On caste le caractère en entier correspondant à la valeur du caractère
-				nb = tmp->suivant->lettre -(int)'0'+(int)'a';
+				nb = tmp->suivant->lettre -(int)'0';
 
 				// On supprime l'élément qui nous indiquait la répétition
 				supprimer(tmp->suivant, tete);
@@ -81,4 +80,4 @@ void decoderRle(maillon* tete){
 			}
 		}
 	}
-};
+}
