@@ -4,7 +4,7 @@
 //Liste chainee
 typedef struct maillon {
     char lettre; //information contenant les info du symbole
-    char autre; //information auxiliaire
+    int autre; //information auxiliaire
     struct maillon* suivant;
 }maillon;
 
