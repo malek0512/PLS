@@ -2,6 +2,20 @@
 #include<stdlib.h>
 #include "liste_manager.h"
 
+// Initialise une liste vide
+// Auteur : Marie
+maillon* initialiser(maillon* l){
+	l = malloc(sizeof(maillon));
+	l = NULL;
+	return l;
+};
+
+// Insère un élément A après un élément B
+// Auteur : Marie
+void insererElement(maillon* A, maillon* B){
+	A->suivant = B->suivant;
+	B->suivant = A;
+};
 
 maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 	// On crée un nouvel élément 
@@ -199,6 +213,24 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
         return liste;
     }
 }
+
+// Supprime l'élément A de la liste tete (et seulement celui là)
+// S'il n'est pas présent dans la liste, on affiche un message
+// Auteur : Marie
+void supprimer(maillon* A, maillon* tete){
+	maillon* tmp;
+	tmp = tete;
+	while(tmp->suivant != NULL && tmp->suivant != A){
+		tmp = tmp->suivant;
+	}
+	if(tmp->suivant==NULL)
+		printf("Erreur : l'élément n'est pas dans la liste");
+	else
+	{
+		tmp->suivant = A->suivant;
+		free(A);
+	}
+};
 
 maillon* copieList(maillon *liste)
 {
