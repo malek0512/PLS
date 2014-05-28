@@ -4,7 +4,7 @@
 
 //Variables globale de la fonction writeBit
 static char buffer=0;
-static int windowBuffer=7;
+static int windowBuffer=0;
 
 // Initialise une liste vide
 // Auteur : Marie
@@ -74,24 +74,23 @@ void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
 	nouvelElement->autre2 = autre2;
  	// On ajoute en fin, donc aucun élément ne va suivre 
 	nouvelElement->suivant = NULL;
- 
+	maillon* tmp=*liste;
+
 	if(*liste == NULL)
 	{
 		// Si la liste est videé il suffit de renvoyer l'élément créé 
-		*liste=nouvelElement;
+		*liste = nouvelElement;
 	}
 	else
 	{
 		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
 		indique que le dernier élément de la liste est relié au nouvel élément */
-		maillon* tmp=*liste;
 		while(tmp->suivant != NULL)
 		{
 			tmp = tmp->suivant;
 		}
 		tmp->suivant = nouvelElement;
-    	}
-	
+	}
 }
 
 void ajoutEnQueue(maillon** Queue, char byte, int autre){
@@ -285,26 +284,18 @@ void afficherListe(maillon *liste)
 }
 
 void writeBit(maillon** Tete, maillon** Queue, char bit){
-
-    //maillon* cellule;
-
-    // Masque le bit a la position windowBuffer
-    //buffer &= ~(1<<windowBuffer);
-
-    //Place le bit dans le buffer
-    buffer |= (bit & 1) << windowBuffer;
-
-    //La windowBuffer diminue
-    windowBuffer--;
-
-    // La windowBuffer == 0, il faut inserer dans le fichier les 8 bits
-    if (windowBuffer==0) {  
-        ajoutEnQueue(Queue, buffer, -1);
-
-        //Reinitialisation du buffer et windows
-        buffer = 0;
-        windowBuffer = 7;
-    }
+	if (windowBuffer==0)
+	{
+	//si la windowBuffer est nul il faut ajouter un nouveau maillon
+	ajoutEnQueue(Queue,0,0);
+	//Reinitialisation du buffer et windows
+	windowBuffer = 8;
+	buffer = 0;
+	}
+	buffer |= (bit & 1) << (windowBuffer-1); //calcul du buffer
+	(*Queue)->lettre = buffer; //maj de la valeur dans Queue
+	(*Queue)->autre++; //maj du nombre de bit significatif dans Queue
+	windowBuffer--; //maj de la taille du buffer
 }
 
 void copieAutre(maillon* src, maillon* dest)

@@ -8,18 +8,18 @@ maillon* MTF(maillon* liste,char *mot){
 	int x;
 	maillon *tmp,*tmp2;
 	int taille = sizeof(mot);
-	maillon *liste_retour = copieList(liste);
+	maillon *liste_retour = NULL;
 	maillon *liste_tmp = copieList(liste);	
 
 
-	if (!estVide(liste_retour))
+	if (!estVide(liste))
 	{
 	
 		//creation d'une deuxieme liste chainée mettant dans l'orde les symbole
 		for (i;i<taille;i++)
 		{
 
-			tmp=rechercherElement(liste_retour,mot[i]);
+			tmp=rechercherElement(liste,mot[i]);
 			maillon copie;
 			copie.lettre = tmp->lettre;
 			copie.autre = tmp->autre;
@@ -29,8 +29,7 @@ maillon* MTF(maillon* liste,char *mot){
 			copie2.autre = tmp2->autre;
 			/*printf("lettre %c\n",tmp->lettre);
 			printf("autre %d\n",tmp->autre);*/
-			liste_retour = supprimerElement(liste_retour,copie.lettre,copie.autre);
-			liste_retour = ajoutEnTete(liste_retour,copie.lettre,copie2.autre);
+			liste_retour = ajouterEnQueue(liste_retour,copie.lettre,copie2.autre);
 			liste_tmp = supprimerElement(liste_tmp,copie2.lettre,copie2.autre);
 			liste_tmp = ajoutEnTete(liste_tmp,copie.lettre,copie.autre);
 /*
@@ -42,7 +41,7 @@ maillon* MTF(maillon* liste,char *mot){
 			printf("\n");
 			printf("liste tmp\n");
 			afficherListe(liste_tmp);
-			printf("\n");*/
+			printf("\n");*/	
 	
 			copieAutre(liste,liste_tmp);
 /*
@@ -51,8 +50,8 @@ maillon* MTF(maillon* liste,char *mot){
 			printf("\n");
 			printf("liste tmp 2\n");
 			afficherListe(liste_tmp);
-			printf("\n");
-*/
+			printf("\n");*/
+
 		}
 
 		return liste_retour;
