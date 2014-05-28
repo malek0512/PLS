@@ -27,8 +27,8 @@ maillon* MTF(maillon* liste,char *mot){
 			maillon copie2;
 			copie2.lettre = tmp2->lettre;
 			copie2.autre = tmp2->autre;
-			printf("lettre %c\n",tmp->lettre);
-			printf("autre %d\n",tmp->autre);
+			/*printf("lettre %c\n",tmp->lettre);
+			printf("autre %d\n",tmp->autre);*/
 			liste_retour = supprimerElement(liste_retour,copie.lettre,copie.autre);
 			liste_retour = ajoutEnTete(liste_retour,copie.lettre,copie2.autre);
 			liste_tmp = supprimerElement(liste_tmp,copie2.lettre,copie2.autre);
