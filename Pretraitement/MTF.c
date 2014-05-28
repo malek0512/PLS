@@ -1,7 +1,7 @@
 
 #include "MTF.h"
 #include <stdio.h>
-void afficherListe2(maillon *liste);
+
 
 maillon* MTF(maillon* liste,char *mot){
 	int i=0;
@@ -10,6 +10,11 @@ maillon* MTF(maillon* liste,char *mot){
 	int taille = sizeof(mot);
 	maillon *liste_retour = copieList(liste);
 	
+	printf("liste");
+	afficherListe(liste);
+	printf("liste retour");
+	afficherListe(liste_retour);
+
 	if (!estVide(liste_retour))
 	{
 	
