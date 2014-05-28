@@ -289,10 +289,10 @@ void writeBit(maillon** Tete, maillon** Queue, char bit){
 	//si la windowBuffer est nul il faut ajouter un nouveau maillon
 	ajoutEnQueue(Queue,0,0);
 	//Reinitialisation du buffer et windows
-	windowBuffer = 7;
+	windowBuffer = 8;
 	buffer = 0;
 	}
-	buffer |= (bit & 1) << windowBuffer; //calcul du buffer
+	buffer |= (bit & 1) << (windowBuffer-1); //calcul du buffer
 	(*Queue)->lettre = buffer; //maj de la valeur dans Queue
 	(*Queue)->autre++; //maj du nombre de bit significatif dans Queue
 	windowBuffer--; //maj de la taille du buffer

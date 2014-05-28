@@ -80,44 +80,75 @@ Argument :
 resultat :
 	maillon* : contient une liste d'octet tout simplement
 */
-/*
+
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
+
 	maillon *res = NULL;
+	arbre* tempArbre=tableHuffman;
 	maillon *tmp= liste;
-	int i = 7;
+
+		int i = 7;
+	printf("tempAbre");
+	printArbre(tempArbre);
+	printf("tableHuffman");
+	printArbre(tableHuffman);
 	while(tmp != NULL && (tmp->suivant != NULL))
 	{
+	
 		for(i=7;i>0;i--)
-		{	
+		{
 
-			if( (!(reabBit((tmp->lettre),i))) && (tableHuffman->G != NULL) )
-				tableHuffman = tableHuffman->D;
-			else if (   reabBit((tmp->lettre),i) && (tableHuffman->D != NULL))
-				tableHuffman = tableHuffman->G;
+			//printf("test2");	
+
+			if( (!(readBit((tmp->lettre),i))) && (tempArbre->G != NULL) )/*gauche*/{
+			/*fprintf(stderr,"lulz, %c", tmp->lettre);
+			fprintf(stderr,"lulz, %d", (!(readBit((tmp->lettre),i))));*/
+				fprintf(stderr,"\nif\n");
+				tempArbre = tempArbre->D;
+				printf("tempAbreboucle\n");
+				printArbre(tempArbre);}
+			else if (readBit((tmp->lettre),i) && (tempArbre->D != NULL))/*droite*/{
+			/*fprintf(stderr,"lolilol, %c", tmp->lettre);
+			fprintf(stderr,"lolilol, %d", readBit((tmp->lettre),i));
+			fprintf(stderr,"lolilol, %d", (tempArbre->D != NULL));
+			fprintf(stderr,"lulz, %d", (!(readBit((tmp->lettre),i))));
+			fprintf(stderr,"lulz, %d", tempArbre->G != NULL);*/
+				fprintf(stderr,"\nelse if\n");				
+				tempArbre = tempArbre->G;
+				printf("tempAbreboucle\n");
+				printArbre(tempArbre);}
 			else 
-				res = ajouterenQueue(res,tableHuffman->i.symbole,0);
+				{fprintf(stderr,"\nelse\n");	
+			fprintf(stderr,"\ndebut (valeur readbit : %d bit = 1)\n", readBit((tmp->lettre),i));
+			fprintf(stderr,"(arbre null ou non, %d)\n", (tempArbre->D != NULL));
+			fprintf(stderr,"(valeur readbit : %d bit = 0)\n", (!(readBit((tmp->lettre),i))));
+			fprintf(stderr,"(arbre null ou non, %d)fin \n\n", tempArbre->G != NULL);	
+				res = ajouterEnQueue(res,tempArbre->i.symbole,0);
+				/*afficherListe(res);*/}
+				
 		}
 		tmp = tmp->suivant;
+		tempArbre = tableHuffman;
 	}
-	if(tmp != NULL) 
+	/*if(tmp != NULL) 
 	{
 		tmp = tmp-> suivant;
 		i = tmp->autre;
-		for(i;i>0;i--)
+		for(i=7;i>0;i--)
 		{	
 
-			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
-				tableHuffman = (tableHuffman->D);
-			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
-				tableHuffman = (tableHuffman->G);
+			if( (!(readBit((tmp->lettre),i))) && (tableHuffman->G != NULL) )
+				tableHuffman = tableHuffman->D;
+			else if (   readBit((tmp->lettre),i) && (tableHuffman->D != NULL))
+				tableHuffman = tableHuffman->G;
 			else 
-				res = ajouterenQueue(res,tableHuffman->info.symbole,0);
+				res = ajouterEnQueue(res,tableHuffman->i.symbole,0);
 		}
-	
+	}*/
 	return res;
 }
-*/
+
 
 
 //author : Alex
