@@ -55,7 +55,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 	int i = 7;
 	while(tmp != NULL && (tmp->suivant != NULL))
 	{
-		for(i;i>0;i--)
+		for(i=7;i>0;i--)
 		{	
 
 			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
@@ -63,7 +63,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
 			{tableHuffman = (tableHuffman->G);}
 			else 
-			{res = ajouterenQueue(res,tableHuffman->info->symbole,0);}				
+			{res = ajouterenQueue(res,tableHuffman->info.symbole,0);}				
 		}
 		tmp = tmp->suivant;
 	}
@@ -79,7 +79,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
 			{tableHuffman = (tableHuffman->G);}
 			else 
-			{res = ajouterenQueue(res,tableHuffman->info->symbole,0);}				
+			{res = ajouterenQueue(res,tableHuffman->info.symbole,0);}				
 		}
 	
 	return res;
