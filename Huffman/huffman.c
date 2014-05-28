@@ -51,9 +51,9 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 		{//le symbole apartient donc wdec de check la valeur du i
 			i++;
 		}
-		for(i=sizeBit(tableHuffman[i].code)-1;i>=0;i--)
+		for(i=sizeBit(tableHuffman[i].lettre)-1;i>=0;i--)
 		{
-			writeBit(tete, queue, ( (tableHuffman[i].lettre)>>i)&1 ));
+			writeBit(&tete, &queue, ( (tableHuffman[i].lettre)>>i)&1);
 		}
 		save = save->suivant;	
 	}
@@ -79,12 +79,12 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 		for(i=7;i>0;i--)
 		{	
 
-			if( ! (reabBit((tmp->lettre),i)) && (tableHuffman->G != NULL) )
-				tableHuffman = (tableHuffman->D);
-			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
-				tableHuffman = (tableHuffman->G);
+			if( (!(reabBit((tmp->lettre),i))) && (tableHuffman->G != NULL) )
+				tableHuffman = tableHuffman->D;
+			else if (   reabBit((tmp->lettre),i) && (tableHuffman->D != NULL))
+				tableHuffman = tableHuffman->G;
 			else 
-				res = ajouterenQueue(res,tableHuffman->info.symbole,0);
+				res = ajouterenQueue(res,tableHuffman->i.symbole,0);
 		}
 		tmp = tmp->suivant;
 	}
@@ -96,11 +96,11 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 		{	
 
 			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
-			{tableHuffman = (tableHuffman->D);}
+				tableHuffman = (tableHuffman->D);
 			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
-			{tableHuffman = (tableHuffman->G);}
+				tableHuffman = (tableHuffman->G);
 			else 
-			{res = ajouterenQueue(res,tableHuffman->info.symbole,0);}				
+				res = ajouterenQueue(res,tableHuffman->info.symbole,0);
 		}
 	
 	return res;
