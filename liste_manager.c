@@ -3,8 +3,8 @@
 #include "liste_manager.h"
 
 //Variables globale de la fonction writeBit
-char buffer=0;
-int windowBuffer=7;
+static char buffer=0;
+static int windowBuffer=7;
 
 // Initialise une liste vide
 // Auteur : Marie
@@ -96,7 +96,9 @@ void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
 
 void ajoutEnQueue(maillon** Queue, char byte, int autre){
     maillon* AC = Allouer( byte, autre );
-    (*Queue)->suivant = AC;
+	if (*Queue != NULL)
+	    (*Queue)->suivant = AC;
+
     *Queue = AC;
 }
 
