@@ -1,8 +1,8 @@
 #include "huffman.h"
 
-bool readBit(char source, int numero)
+int readBit(char source, int numero)
 {
-	return (source > numero)&1;
+	return ((source > numero)&1);
 }
 
 maillon* creationTableHuffman(arbre* arbreHuffman)
@@ -58,9 +58,9 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 		for(i=7;i>0;i--)
 		{	
 
-			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
+			if(!(reabBit((tmp->lettre),i)) && (tableHuffman->G != NULL))		
 			{tableHuffman = (tableHuffman->D);}
-			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
+			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL))
 			{tableHuffman = (tableHuffman->G);}
 			else 
 			{res = ajouterenQueue(res,tableHuffman->info.symbole,0);}				

@@ -27,7 +27,7 @@ maillon* codageHuffman(maillon *liste, arbre *tableHuffman);
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman);
 
 //Retourne la table d'huffman a partir de l'arbre
-maillon* creationTableHuffman(arbre* arbreHuffman)
+maillon* creationTableHuffman(arbre* arbreHuffman);
 
 //Crée la table d'huffman associer a la liste donné
 arbre* ArbreHufman(maillon* liste);
@@ -37,4 +37,6 @@ void printArbre(arbre* tree);
 
 //utiliser pour le printAbre
 void printArbre_rec(arbre* tree,int value,int taille);
+
+int readBit(char source, int numero);
 
