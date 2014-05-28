@@ -140,7 +140,7 @@ void print(maillon* tete)
             //On signal que c'est un retour charriot
             printf("Symbole/Autre : %s / %d\n","Retour charriot\0" , save->autre);
         else if (save->lettre <128 && save->lettre>=0)
-            //On affiche le carctere
+            //On affiche le caractere
             printf("Symbole/Autre : %c / %d\n", save->lettre, save->autre);
         else
             //On affiche son numero
