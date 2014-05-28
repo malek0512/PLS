@@ -58,11 +58,7 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
     *Tete = NULL;
     for(int i=0; i<256; i++){
         if (freq[i] != 0){ 
-            if (i==0){ 
-                *Queue = ajoutEnTete(*Queue, (char) i, freq[i]);
-                *Tete = *Queue;
-            } else
-                ajoutEnQueue(Queue, (char) i, freq[i]);
+            ajoutEnQueue(Tete, Queue, (char) i, freq[i]);
         }
     }
 }
@@ -70,7 +66,7 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
 void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
     maillon* AC;
     char octet = 0;
-    int nb=0, nb_octet=0;
+    int nb=0;
 
     *Queue = NULL;
     *Tete = NULL;
@@ -78,13 +74,8 @@ void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
         nb = fread(&octet,sizeof(char),1,data);
         if (octet != EOF ){ 
             //Ajout en Queue avec fonction ajout en tete
-            if (nb_octet==0){  
-                *Queue = ajoutEnTete(*Queue, octet, -1);
-                *Tete = *Queue;
-            } else
-                ajoutEnQueue(Queue, octet, -1);
+            ajoutEnQueue(Tete,Queue, octet, -1);
 
-            nb_octet++;
         }
     }
     while ( nb != 0); 

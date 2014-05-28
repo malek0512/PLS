@@ -2,9 +2,11 @@
 #include<stdlib.h>
 #include "liste_manager.h"
 
-//Variables globale de la fonction writeBit
+//Variables globale de la fonction writeBit et readBit
 static char buffer=0;
-static int windowBuffer=0;
+static int windowBuffer=7;
+static maillon* pointeurDeListe=NULL; //Destiné a readBit exclusivement. Sert a se deplacer dans une liste d'octets
+static maillon* pointeurDeListeTete=NULL; //Destiné a readBit exclusivement. Sert a savoir s'il s'agit d'une nouvelle liste
 
 // Initialise une liste vide
 // Auteur : Marie
@@ -74,31 +76,35 @@ void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
 	nouvelElement->autre2 = autre2;
  	// On ajoute en fin, donc aucun élément ne va suivre 
 	nouvelElement->suivant = NULL;
-	maillon* tmp=*liste;
-
+ 
 	if(*liste == NULL)
 	{
 		// Si la liste est videé il suffit de renvoyer l'élément créé 
-		*liste = nouvelElement;
+		*liste=nouvelElement;
 	}
 	else
 	{
 		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
 		indique que le dernier élément de la liste est relié au nouvel élément */
+		maillon* tmp=*liste;
 		while(tmp->suivant != NULL)
 		{
 			tmp = tmp->suivant;
 		}
 		tmp->suivant = nouvelElement;
-	}
+    	}
+	
 }
 
-void ajoutEnQueue(maillon** Queue, char byte, int autre){
+void ajoutEnQueue(maillon** Tete, maillon** Queue, char byte, int autre){
     maillon* AC = Allouer( byte, autre );
 	if (*Queue != NULL)
 	    (*Queue)->suivant = AC;
 
     *Queue = AC;
+
+    if (*Tete ==NULL )
+        *Tete = *Queue;
 }
 
 int size(maillon* tete)
@@ -149,6 +155,27 @@ void print(maillon* tete)
 	}
 }
 
+void print2(maillon* tete)
+{
+	maillon* save = tete;
+	while(save != NULL)
+	{
+        if (save->lettre == -1)
+            //On signal que c'est un caractere de EOF, théoriquement non present dans la liste
+            printf("Symbole/Autre : %s / %d\n","Fin de fichier\0" , save->autre);
+        else if (save->lettre == '\n')
+            //On signal que c'est un retour charriot
+            printf("Symbole/Autre : %s / %d\n","Retour charriot\0" , save->autre);
+        else if (save->lettre <128 && save->lettre>=0)
+            //On affiche le caractere
+            printf("Symbole/Autre : %c / %d\n", save->lettre, save->autre);
+        else
+            //On affiche son numero
+            printf("Symbole/Autre : Caractère numero %d / %d\n", save->lettre, save->autre);
+        
+    	save = save->suivant;	
+	}
+}
 //Verifie si la liste est vide
 int estVide(maillon* liste)
 {
@@ -284,19 +311,82 @@ void afficherListe(maillon *liste)
 }
 
 void writeBit(maillon** Tete, maillon** Queue, char bit){
-	if (windowBuffer==0)
-	{
-	//si la windowBuffer est nul il faut ajouter un nouveau maillon
-	ajoutEnQueue(Queue,0,0);
-	//Reinitialisation du buffer et windows
-	windowBuffer = 8;
-	buffer = 0;
-	}
-	buffer |= (bit & 1) << (windowBuffer-1); //calcul du buffer
-	(*Queue)->lettre = buffer; //maj de la valeur dans Queue
-	(*Queue)->autre++; //maj du nombre de bit significatif dans Queue
-	windowBuffer--; //maj de la taille du buffer
+
+    // Masque le bit a la position windowBuffer
+    //buffer &= ~(1<<windowBuffer);
+
+    //Place le bit dans le buffer
+    buffer |= (bit & 1) << windowBuffer;
+
+    //La windowBuffer diminue
+    windowBuffer--;
+
+    // La windowBuffer == 0, il faut inserer dans le fichier les 8 bits
+    if (windowBuffer==0) {  
+        ajoutEnQueue(Tete, Queue, buffer, -1);
+        (*Queue)->autre2 = 7 - windowBuffer;
+
+        //Reinitialisation du buffer et windows
+        buffer = 0;
+        windowBuffer = 7;
+    }
 }
+
+int readBit(maillon* Tete, maillon* Queue, char* bit){
+    //Rmq: A chaque appelle de la fonction le bit à l'emplacement windowBuffer designe le bit retourné
+
+    //On verifie si la liste est vide
+    if(Tete !=NULL){ 
+
+        // On reactualise notre pointeurDeListe static s'il s'agit d'une nouvelle liste
+        if (pointeurDeListeTete != Tete){ 
+            pointeurDeListeTete = Tete;
+            pointeurDeListe = Tete;
+        }
+
+        //S'il y a au moins un bit a lire
+        if(pointeurDeListe->autre2 != 0){
+
+            *bit = 0;
+            *bit |= (buffer & (1<<windowBuffer)) >> windowBuffer;
+
+    fprintf(stderr,"\n%d",(int) buffer);
+            if (windowBuffer > (7 - pointeurDeListe->autre2)){ 
+                //windowBuffer > (TAILLE_BUFFER - NB_BIT_SGNIFICATIF)
+
+                //On avance dans notre buffer
+                windowBuffer--;
+
+            } else {
+                // Si on est arrivé a la fin du nombre d'octet significatif
+                // On cherche le bit suivant dans le flux d'octets
+
+                //On verifie si l'on peut entamer un autre octet
+                if(pointeurDeListe->suivant != NULL){
+
+                    //On avance d'un octet
+                    pointeurDeListe = pointeurDeListe->suivant;
+
+                    //On reinitialise le buffer au nouvel octet
+                    buffer = pointeurDeListe->lettre;
+
+                    //On reinitialise la windowBuffer
+                    windowBuffer=7;
+                } else
+                    return 0;
+
+            }
+
+            //Dans tous les cas on a lu un octet
+            return 1;
+        } else
+            // Aucun octet n'est significatif
+            return 0;
+    } else
+        // La liste est deja vide, aucun bit n'est lu
+        return 0;
+}
+
 
 void copieAutre(maillon* src, maillon* dest)
 {
