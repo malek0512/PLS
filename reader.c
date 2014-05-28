@@ -2,9 +2,7 @@
 #include<stdlib.h>
 #include"liste_manager.h"
 
-maillon* readFromFileAlphabet(char *nom){
-    FILE *data;
-    data = fopen(nom, "r");
+maillon* readFromFileAlphabet(FILE *data){
     maillon* Tete, AC;    
 
     // Initialisation du tableau de fréquences, indicé par lettre de 0 a 25
@@ -34,13 +32,10 @@ maillon* readFromFileAlphabet(char *nom){
             Tete = ajoutEnTete(Tete, (char) i, freq[i]);
     }
 
-    fclose(data);
     return Tete;
 }
 
-void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, char *nom){
-    FILE *data;
-    data = fopen(nom, "r");
+void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data){
     maillon* AC;
     char octet = 0;
     //char c;
@@ -70,12 +65,9 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, char *nom){
                 ajoutEnQueue(Queue, (char) i, freq[i]);
         }
     }
-    fclose(data);
 }
 
-void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, char *nom){
-    FILE *data;
-    data = fopen(nom, "r");
+void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
     maillon* AC;
     char octet = 0;
     int nb=0, nb_octet=0;
@@ -96,16 +88,26 @@ void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, char *nom){
         }
     }
     while ( nb != 0); 
-    fclose(data);
+}
+
+char readFromFileByte(FILE *data){
+    return fgetc(data);
+}
+
+
+int readFromFileInt(FILE *data){
+    int integer;
+    fread(&integer,sizeof(int),1,data);
+    return integer;
 }
 
 void writeListeBytes(maillon* Tete, maillon* Queue, FILE* data){
     maillon* AC = Queue;
     //Si Queue == NULL alors Tete == NULL donc la liste est vide
     if (AC != NULL){ 
-        //On se trouve a la derniere cellule, on ecrit le nombre de bit significatif du dernier octet 
-        fwrite(&(AC->autre), sizeof(AC->autre),1,data); //L'affichage sous hexpdumb -Cn 60 "fichier" confirme l'ecriture de l'integer. Peut etre mal interprété par l'editeur de texte
-        fputc('\n', data);
+//        //On se trouve a la derniere cellule, on ecrit le nombre de bit significatif du dernier octet 
+//        fwrite(&(AC->autre), sizeof(AC->autre),1,data); //L'affichage sous hexpdumb -Cn 60 "fichier" confirme l'ecriture de l'integer. Peut etre mal interprété par l'editeur de texte
+//        fputc('\n', data);
 
         AC = Tete;
         while (AC != NULL){
@@ -115,3 +117,14 @@ void writeListeBytes(maillon* Tete, maillon* Queue, FILE* data){
     }
 }
 
+void writeByte(char byte, FILE* data){
+    fputc(byte, data);
+}
+
+FILE* CreerFichier(char *nom_fichier){
+    return fopen(nom_fichier,"w");
+}
+
+FILE* OuvrirFichier(char *nom_fichier){
+    return fopen(nom_fichier,"r");
+}
