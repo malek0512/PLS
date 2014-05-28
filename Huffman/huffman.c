@@ -1,16 +1,10 @@
 #include "huffman.h"
 
-<<<<<<< HEAD
+
 int readBit(char source, int numero)
 {
 	return ((source > numero)&1);
-=======
-//author : Alex
-bool readBit(char source, int numero)
-{
-	return (source >> numero)&1;
->>>>>>> 79c25bcaa1a01d675cbda5f4859f9f56b673a3cd
-}
+
 
 /*
 	if(tree->D == NULL && tree->G == NULL)
