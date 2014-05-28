@@ -80,7 +80,7 @@ Argument :
 resultat :
 	maillon* : contient une liste d'octet tout simplement
 */
-/*
+
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
 	maillon *res = NULL;
@@ -91,12 +91,12 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 		for(i=7;i>0;i--)
 		{	
 
-			if( (!(reabBit((tmp->lettre),i))) && (tableHuffman->G != NULL) )
+			if( (!(readBit((tmp->lettre),i))) && (tableHuffman->G != NULL) )
 				tableHuffman = tableHuffman->D;
-			else if (   reabBit((tmp->lettre),i) && (tableHuffman->D != NULL))
+			else if (   readBit((tmp->lettre),i) && (tableHuffman->D != NULL))
 				tableHuffman = tableHuffman->G;
 			else 
-				res = ajouterenQueue(res,tableHuffman->i.symbole,0);
+				res = ajouterEnQueue(res,tableHuffman->i.symbole,0);
 		}
 		tmp = tmp->suivant;
 	}
@@ -107,17 +107,17 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 		for(i;i>0;i--)
 		{	
 
-			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
-				tableHuffman = (tableHuffman->D);
-			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
-				tableHuffman = (tableHuffman->G);
+			if( (!(readBit((tmp->lettre),i))) && (tableHuffman->G != NULL) )
+				tableHuffman = tableHuffman->D;
+			else if (   readBit((tmp->lettre),i) && (tableHuffman->D != NULL))
+				tableHuffman = tableHuffman->G;
 			else 
-				res = ajouterenQueue(res,tableHuffman->info.symbole,0);
+				res = ajouterEnQueue(res,tableHuffman->i.symbole,0);
 		}
-	
+	}
 	return res;
 }
-*/
+
 
 
 //author : Alex
