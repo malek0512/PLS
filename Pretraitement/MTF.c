@@ -1,6 +1,6 @@
 
 #include "MTF.h"
-#include <stdio.h>
+#include <stdio.h>	
 
 
 maillon* MTF(maillon* liste,char *mot){
@@ -33,7 +33,7 @@ maillon* MTF(maillon* liste,char *mot){
 			liste_retour = ajoutEnTete(liste_retour,copie.lettre,copie2.autre);
 			liste_tmp = supprimerElement(liste_tmp,copie2.lettre,copie2.autre);
 			liste_tmp = ajoutEnTete(liste_tmp,copie.lettre,copie.autre);
-
+/*
 			printf("liste\n");
 			afficherListe(liste);
 			printf("\n");
@@ -42,30 +42,20 @@ maillon* MTF(maillon* liste,char *mot){
 			printf("\n");
 			printf("liste tmp\n");
 			afficherListe(liste_tmp);
-			printf("\n");
+			printf("\n");*/
 	
 			copieAutre(liste,liste_tmp);
-
+/*
 			printf("liste 2 \n");
 			afficherListe(liste);
 			printf("\n");
 			printf("liste tmp 2\n");
 			afficherListe(liste_tmp);
 			printf("\n");
-
+*/
 		}
 
-		//changement des indices de la deuxieme liste chainée
-
-		maillon *save = liste_retour;
-		/*while((liste != NULL) && (liste_retour !=NULL))
-		{
-			liste_retour->autre = liste->autre;
-			liste_retour = liste_retour->suivant;
-			liste = liste->suivant;
-			
-		}*/
-		return save;
+		return liste_retour;
 	}
 	
 }
