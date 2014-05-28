@@ -206,23 +206,7 @@ maillon* find_indice(maillon* liste, int indice)
 
 //Fonction inutile pour l'instant ( j'en avais pas besoin enfaite , je la laisse a disposition si jamais )
 //retourne l'indice d'un element
-int return_indice(maillon* liste, int lettre, int autre)
-{
-	maillon *tmp=liste;
-	int i=0;
 
-	while(tmp != NULL)
-	{
-		if((tmp->lettre == lettre) && (tmp->autre == autre))
-		{return i;}
-		else
-		{
-			tmp = tmp->suivant;
-			i++;
-		}
-	}
-	printf("Erreur dans return_indice");
-}
 
 //Effacer tous les éléments ayant une certaine valeur
 maillon* supprimerElement(maillon* liste, int lettre, int autre)
@@ -272,7 +256,7 @@ void supprimer(maillon* A, maillon* tete){
 
 maillon* copieList(maillon *liste)
 {
-maillon *res;
+maillon *res=NULL;
 maillon *save = liste;
 while(save != NULL)
 	{
@@ -285,21 +269,17 @@ while(save != NULL)
 
 void afficherListe(maillon *liste)
 {
-   	maillon *tmp = liste;
-    if(tmp != NULL) {
-    while(tmp != NULL)
-    {
-
-        printf("\n%c, %d ", tmp->lettre,tmp->autre);
-
-        tmp = tmp->suivant;
-    }
-	printf("\n");	}
+   maillon *tmp = liste;
+	while(tmp != NULL)
+	{
+		printf("%c, %d \n", tmp->lettre,tmp->autre);
+		tmp = tmp->suivant;
+	}
 }
 
 void writeBit(maillon** Tete, maillon** Queue, char bit){
 
-    maillon* cellule;
+    //maillon* cellule;
 
     // Masque le bit a la position windowBuffer
     //buffer &= ~(1<<windowBuffer);
