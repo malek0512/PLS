@@ -66,7 +66,7 @@ maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
     	}
 }
 
-void ajouterEnQueue2(maillon* liste, int lettre, int autre, int autre2)
+void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
 {
 	maillon* nouvelElement = malloc(sizeof(maillon));  
 	nouvelElement->lettre = lettre;
@@ -75,22 +75,21 @@ void ajouterEnQueue2(maillon* liste, int lettre, int autre, int autre2)
  	// On ajoute en fin, donc aucun élément ne va suivre 
 	nouvelElement->suivant = NULL;
  
-	if(liste == NULL)
+	if(*liste == NULL)
 	{
 		// Si la liste est videé il suffit de renvoyer l'élément créé 
-		return nouvelElement;
+		*liste=nouvelElement;
 	}
 	else
 	{
 		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
 		indique que le dernier élément de la liste est relié au nouvel élément */
-		maillon* tmp=liste;
+		maillon* tmp=*liste;
 		while(tmp->suivant != NULL)
 		{
 			tmp = tmp->suivant;
 		}
 		tmp->suivant = nouvelElement;
-		return liste;
     	}
 	
 }

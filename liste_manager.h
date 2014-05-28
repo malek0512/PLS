@@ -28,7 +28,7 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence);
 
 //Ajout en queue avec 3 parametre
-void ajouterEnQueue2(maillon* liste, int lettre, int autre, int autre2);
+void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2);
 
 //Ajoute en Queue un maillon
 //Author : Malek
