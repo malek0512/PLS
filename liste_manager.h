@@ -90,5 +90,7 @@ void afficherListe(maillon *liste);
 //author : Malek
 void writeBit(maillon** Tete, maillon** Queue, char bit);
 
+void copieAutre(maillon* src, maillon* dest);
+
 #endif
 
