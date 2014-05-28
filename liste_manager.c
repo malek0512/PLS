@@ -299,3 +299,14 @@ void writeBit(maillon** Tete, maillon** Queue, char bit){
         windowBuffer = 7;
     }
 }
+
+void copieAutre(maillon* src, maillon* dest)
+{
+	while((src != NULL) && (dest !=NULL))
+	{
+		dest->autre = src->autre;
+		dest = dest->suivant;
+		src = src->suivant;
+
+	}
+}
