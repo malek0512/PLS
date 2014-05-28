@@ -66,6 +66,34 @@ maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
     	}
 }
 
+void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
+{
+	maillon* nouvelElement = malloc(sizeof(maillon));  
+	nouvelElement->lettre = lettre;
+	nouvelElement->autre = autre;
+	nouvelElement->autre2 = autre2;
+ 	// On ajoute en fin, donc aucun élément ne va suivre 
+	nouvelElement->suivant = NULL;
+ 
+	if(*liste == NULL)
+	{
+		// Si la liste est videé il suffit de renvoyer l'élément créé 
+		*liste=nouvelElement;
+	}
+	else
+	{
+		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
+		indique que le dernier élément de la liste est relié au nouvel élément */
+		maillon* tmp=*liste;
+		while(tmp->suivant != NULL)
+		{
+			tmp = tmp->suivant;
+		}
+		tmp->suivant = nouvelElement;
+    	}
+	
+}
+
 void ajoutEnQueue(maillon** Queue, char byte, int autre){
     maillon* AC = Allouer( byte, autre );
     (*Queue)->suivant = AC;
@@ -137,6 +165,7 @@ maillon* Allouer(char lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
+    cellule->suivant = NULL;
     return cellule;
 }
 
@@ -182,23 +211,7 @@ maillon* find_indice(maillon* liste, int indice)
 
 //Fonction inutile pour l'instant ( j'en avais pas besoin enfaite , je la laisse a disposition si jamais )
 //retourne l'indice d'un element
-int return_indice(maillon* liste, int lettre, int autre)
-{
-	maillon *tmp=liste;
-	int i=0;
 
-	while(tmp != NULL)
-	{
-		if((tmp->lettre == lettre) && (tmp->autre == autre))
-		{return i;}
-		else
-		{
-			tmp = tmp->suivant;
-			i++;
-		}
-	}
-	printf("Erreur dans return_indice");
-}
 
 //Effacer tous les éléments ayant une certaine valeur
 maillon* supprimerElement(maillon* liste, int lettre, int autre)
@@ -248,7 +261,7 @@ void supprimer(maillon* A, maillon* tete){
 
 maillon* copieList(maillon *liste)
 {
-maillon *res;
+maillon *res=NULL;
 maillon *save = liste;
 while(save != NULL)
 	{
@@ -261,21 +274,17 @@ while(save != NULL)
 
 void afficherListe(maillon *liste)
 {
-   	maillon *tmp = liste;
-    if(tmp != NULL) {
-    while(tmp != NULL)
-    {
-
-        printf("\n%c, %d ", tmp->lettre,tmp->autre);
-
-        tmp = tmp->suivant;
-    }
-	printf("\n");	}
+   maillon *tmp = liste;
+	while(tmp != NULL)
+	{
+		printf("%c, %d \n", tmp->lettre,tmp->autre);
+		tmp = tmp->suivant;
+	}
 }
 
 void writeBit(maillon** Tete, maillon** Queue, char bit){
 
-    maillon* cellule;
+    //maillon* cellule;
 
     // Masque le bit a la position windowBuffer
     //buffer &= ~(1<<windowBuffer);
