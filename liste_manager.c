@@ -3,8 +3,8 @@
 #include "liste_manager.h"
 
 //Variables globale de la fonction writeBit
-char buffer=0;
-int windowBuffer=7;
+static char buffer=0;
+static int windowBuffer=7;
 
 // Initialise une liste vide
 // Auteur : Marie
@@ -96,7 +96,9 @@ void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
 
 void ajoutEnQueue(maillon** Queue, char byte, int autre){
     maillon* AC = Allouer( byte, autre );
-    (*Queue)->suivant = AC;
+	if (*Queue != NULL)
+	    (*Queue)->suivant = AC;
+
     *Queue = AC;
 }
 
@@ -127,13 +129,17 @@ void print(maillon* tete)
 	maillon* save = tete;
 	while(save != NULL)
 	{
-        if (save->lettre == -1)
+		if(save->autre == 0)
+			// Si l'élément save indique une répétition, on affiche le nombre de répétitions associés et
+			// non le caractère correspondant à l'entier save->autre
+			printf("Symbole/Autre : %d / %d Nombre de répétitions\n", save->lettre, save->autre);
+        else if (save->lettre == -1)
             //On signal que c'est un caractere de EOF, théoriquement non present dans la liste
             printf("Symbole/Autre : %s / %d\n","Fin de fichier\0" , save->autre);
         else if (save->lettre == '\n')
             //On signal que c'est un retour charriot
             printf("Symbole/Autre : %s / %d\n","Retour charriot\0" , save->autre);
-        else if (save->lettre <128 || save->lettre>=0)
+        else if (save->lettre <128 && save->lettre>=0)
             //On affiche le carctere
             printf("Symbole/Autre : %c / %d\n", save->lettre, save->autre);
         else
@@ -161,6 +167,7 @@ maillon* Allouer(char lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
+    cellule->suivant = NULL;
     return cellule;
 }
 

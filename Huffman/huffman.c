@@ -13,11 +13,11 @@ int readBit(char source, int numero)
 //author : Alex
 maillon* creationTableHuffman(arbre* arbreHuffman)
 {
-	void creationTableHuffmanRec(arbre* arbreHuffman,int code, int taille,maillon* res)
+	void creationTableHuffmanRec(arbre* arbreHuffman,int code, int taille,maillon** res)
 	{
 		if(arbreHuffman->G == NULL && arbreHuffman->D == NULL)
 		{
-			ajouterEnQueue2(&res,arbreHuffman->i.symbole,code,taille);
+			ajouterEnQueue2(res,arbreHuffman->i.symbole,code,taille);
 		}
 		else
 		{
@@ -29,37 +29,48 @@ maillon* creationTableHuffman(arbre* arbreHuffman)
 	}
 
 	maillon *res = NULL;
-	creationTableHuffmanRec(arbreHuffman,0,0,res);
+	creationTableHuffmanRec(arbreHuffman,0,0,&res);
 	return res;
 }
-
-
 
 //author : Alex
 //la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
 maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 {
-	maillon *tete;
-	maillon *queue;
-	maillon *save = liste;
+	maillon *tete=NULL;
+	maillon *queue=NULL;
+	maillon *saveListe = liste;
 	int i;
+
 	//création de la table dictionnaire a partir de l'arbre d'huffman
 	maillon *tableHuffman = creationTableHuffman(arbreHuffman);
+	maillon *saveArbre = tableHuffman;
 
 	//Parcour de la liste
-	while(save != NULL)
+	while(saveListe != NULL)
 	{	
+		
 		//lecture d'un octet
-		i=0;
-		while (tableHuffman[i].lettre != save->lettre)
+i=0;
+fprintf(stderr,"%d\n",i);
+		saveArbre = tableHuffman;
+		while (saveArbre->lettre != saveListe->lettre)
 		{//le symbole apartient donc wdec de check la valeur du i
-			i++;
+			saveArbre= saveArbre->suivant;
+i++;
+fprintf(stderr,"%d\n",i);
 		}
-		for(i=sizeBit(tableHuffman[i].lettre)-1;i>=0;i--)
+fprintf(stderr,"he\n");
+		for(i=saveArbre->autre2;i>=0;i--)
 		{
-			writeBit(&tete, &queue, ( (tableHuffman[i].lettre)>>i)&1);
+			fprintf(stderr,"%d\n",i);
+			fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->lettre)>>i)&1);
+			if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
+				tete = queue;
+			writeBit(&tete, &queue, ( (saveArbre->lettre)>>i)&1);
 		}
-		save = save->suivant;	
+fprintf(stderr,"re\n");
+		saveListe = saveListe->suivant;	
 	}
 	liberer(tableHuffman);
 	return tete;
@@ -73,6 +84,7 @@ Argument :
 resultat :
 	maillon* : contient une liste d'octet tout simplement
 */
+/*
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
 	maillon *res = NULL;
@@ -123,7 +135,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 	
 	return res;
 }
-
+*/
 
 
 //author : Alex
