@@ -90,40 +90,39 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 	maillon *res = NULL;
 	maillon *tmp= liste;
 	int i = 7;
-	while(tmp != NULL)
+	while(tmp != NULL && (tmp->suivant != NULL))
 	{
+		for(i=7;i>0;i--)
+		{	
+
+			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
+			{tableHuffman = (tableHuffman->D);}
+			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
+			{tableHuffman = (tableHuffman->G);}
+			else 
+			{res = ajouterenQueue(res,tableHuffman->info.symbole,0);}				
+		}
+		tmp = tmp->suivant;
+	}
+	if(tmp != NULL) 
+	{
+		tmp = tmp-> suivant;
+		i = tmp->autre;
 		for(i;i>0;i--)
 		{	
-			while((tableHuffman->G != NULL) && (tableHuffman->D != NULL))	
-			{
-				if(!(reabBit((tmp->lettre),i))
-				{tableHuffman = (tableHuffman->D);}
-				else
-				{tableHuffman = (tableHuffman->G);}
-			}
+
+			if(!(reabBit((tmp->lettre),i) && (tableHuffman->G != NULL))
+			{tableHuffman = (tableHuffman->D);}
+			else if((reabBit((tmp->lettre),i) && (tableHuffman->D != NULL)
+			{tableHuffman = (tableHuffman->G);}
+			else 
+			{res = ajouterenQueue(res,tableHuffman->info.symbole,0);}				
 		}
-
-	}
-
 	
-	return NULL;
+	return res;
 }
-/*		
-maillon* rechercherElement(maillon* liste, int valeur)
-{
-    maillon *tmp=liste;
-    //Tant que l'on n'est pas au bout de la liste 
-    while(tmp != NULL)
-    {
-        if(tmp->lettre == valeur)
-        {
-            // Si l'élément a la valeur recherchée, on renvoie son adresse
-            return tmp;
-        }
-        tmp = tmp->suivant;
-    }
-    return NULL;
-}*/
+
+
 
 //author : Alex
 arbre* ArbreHufman(maillon* liste)
