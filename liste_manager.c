@@ -39,9 +39,7 @@ maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 } 
 
 
-maillon* 
-
-(maillon* liste, int lettre, int frequence)
+maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
 {
 	maillon* nouvelElement = malloc(sizeof(maillon));  
 	nouvelElement->lettre = lettre;
