@@ -133,7 +133,7 @@ void print(maillon* tete)
         else if (save->lettre == '\n')
             //On signal que c'est un retour charriot
             printf("Symbole/Autre : %s / %d\n","Retour charriot\0" , save->autre);
-        else if (save->lettre <128 || save->lettre>=0)
+        else if (save->lettre <128 && save->lettre>=0)
             //On affiche le carctere
             printf("Symbole/Autre : %c / %d\n", save->lettre, save->autre);
         else
@@ -161,6 +161,7 @@ maillon* Allouer(char lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
+    cellule->suivant = NULL;
     return cellule;
 }
 

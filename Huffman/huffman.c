@@ -29,14 +29,12 @@ maillon* creationTableHuffman(arbre* arbreHuffman)
 	return res;
 }
 
-
-
 //author : Alex
 //la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
 maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 {
-	maillon *tete;
-	maillon *queue;
+	maillon *tete=NULL;
+	maillon *queue=NULL;
 	maillon *save = liste;
 	int i;
 	//création de la table dictionnaire a partir de l'arbre d'huffman
@@ -51,7 +49,7 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 		{//le symbole apartient donc wdec de check la valeur du i
 			i++;
 		}
-		for(i=sizeBit(tableHuffman[i].lettre)-1;i>=0;i--)
+		for(i=7;i>=0;i--) //les lettre on tous une taille de 8bits, bon 8-1 = 7
 		{
 			writeBit(&tete, &queue, ( (tableHuffman[i].lettre)>>i)&1);
 		}
@@ -69,6 +67,7 @@ Argument :
 resultat :
 	maillon* : contient une liste d'octet tout simplement
 */
+/*
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
 	maillon *res = NULL;
@@ -105,7 +104,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 	
 	return res;
 }
-
+*/
 
 
 //author : Alex
