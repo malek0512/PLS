@@ -297,3 +297,14 @@ void writeBit(maillon** Tete, maillon** Queue, char bit){
 	(*Queue)->autre++; //maj du nombre de bit significatif dans Queue
 	windowBuffer--; //maj de la taille du buffer
 }
+
+void copieAutre(maillon* src, maillon* dest)
+{
+	while((src != NULL) && (dest !=NULL))
+	{
+		dest->autre = src->autre;
+		dest = dest->suivant;
+		src = src->suivant;
+
+	}
+}
