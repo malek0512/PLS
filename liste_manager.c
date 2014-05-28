@@ -128,11 +128,11 @@ void print(maillon* tete)
 	maillon* save = tete;
 	while(save != NULL)
 	{
-		//if(save->autre == 0)
+		if(save->autre == 0)
 			// Si l'élément save indique une répétition, on affiche le nombre de répétitions associés et
 			// non le caractère correspondant à l'entier save->autre
-		//	printf("Symbole/Autre : %d / %d Nombre de répétitions\n", save->lettre, save->autre);
-        if (save->lettre == -1)
+			printf("Symbole/Autre : %d / %d Nombre de répétitions\n", save->lettre, save->autre);
+        else if (save->lettre == -1)
             //On signal que c'est un caractere de EOF, théoriquement non present dans la liste
             printf("Symbole/Autre : %s / %d\n","Fin de fichier\0" , save->autre);
         else if (save->lettre == '\n')
