@@ -29,9 +29,9 @@ void coderRle(maillon* tete){
 
 				// On donne comme lettre au nouvel élément le nombre d'itérations qu'on a compté
 				maillon* new = malloc(sizeof(maillon));
-				new->lettre = '0' + cmp;
+				new->lettre = cmp;
 
-				// On applique une fréquence nulle au nouvel élément pour pouvoir les différencier
+				// On applique une fréquence nulle au nouvel élément pour pouvoir le différencier
 				// facilement lors du décode de la liste
 				new->autre = 0;
 				insererElement(new, tmp);
@@ -59,13 +59,14 @@ void decoderRle(maillon* tete){
 			// indiqué par cet élément
 			if(tmp->suivant->autre == 0){
 
-				// On caste le caractère en entier correspondant à la valeur du caractère
-				nb = tmp->suivant->lettre -(int)'0';
+				// On récupère le code de la lettre, qui correspond au nombre de fois où l'on doit
+				// répéter tmp
+				nb = tmp->suivant->lettre;
 
 				// On supprime l'élément qui nous indiquait la répétition
 				supprimer(tmp->suivant, tete);
 
-				// Si le nombre d'itérations est supérieur à 1, on répète nb fois l'élément tmp
+				// Si le nombre d'itérations est supérieur ou égal à 1, on répète nb fois l'élément tmp
 				for(i=1; i<=nb; i++){
 					maillon* new = malloc(sizeof(maillon));
 					new->lettre = tmp->lettre;
