@@ -5,6 +5,7 @@
 typedef struct maillon {
     char lettre; //information contenant les info du symbole
     int autre; //information auxiliaire
+    int autre2; //information axiliaire 2
     struct maillon* suivant;
 }maillon;
 
@@ -25,6 +26,9 @@ maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
 //Ajout en queue
 maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence);
+
+//Ajout en queue avec 3 parametre
+void ajouterEnQueue2(maillon* liste, int lettre, int autre, int autre2);
 
 //Ajoute en Queue un maillon
 //Author : Malek

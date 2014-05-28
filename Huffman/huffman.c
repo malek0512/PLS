@@ -1,15 +1,58 @@
 #include "huffman.h"
 
+<<<<<<< HEAD
 int readBit(char source, int numero)
 {
 	return ((source > numero)&1);
-}
-
-maillon* creationTableHuffman(arbre* arbreHuffman)
+=======
+//author : Alex
+bool readBit(char source, int numero)
 {
-return NULL;
+	return (source >> numero)&1;
+>>>>>>> 79c25bcaa1a01d675cbda5f4859f9f56b673a3cd
 }
 
+/*
+	if(tree->D == NULL && tree->G == NULL)
+	{
+		printf("Symbole/Valeur : %c / ",tree->i.symbole);
+		for (i=taille-1;i>=0;i--)
+			printf("%d",(value>>i)&1);
+		printf("\n");
+	}
+	else
+	{
+		if(tree->D!=NULL)
+			printArbre_rec(tree->D,(value<<1)+1,taille+1);
+		if(tree->G!=NULL)
+			printArbre_rec(tree->G,(value<<1),taille+1);
+	}
+*/
+//author : Alex
+maillon* creationTableHuffmanRec(arbre* arbreHuffman)
+{
+maillon *res = NULL;
+creationTableHuffmanRec(arbreHuffman,0,0,res);
+return res;
+}
+
+//author : Alex
+void creationTableHuffmanRec(arbre* arbreHuffman,int taille, int code,maillon* res)
+{
+	if(arbreHuffman->G == NULL && arbreHuffman->D == NULL)
+	{
+		ajouterEnQueue2(res,abreHuffman->i.symbole,code,taille);
+	}
+	else
+	{
+		if(arbreHuffman->D!=NULL)
+			creationTableHuffmanRec(tree->D,(value<<1)+1,taille+1,res);
+		if(arbreHuffman->G!=NULL)
+			creationTableHuffmanRec(tree->G,(value<<1),taille+1,res);
+	}
+}
+
+//author : Alex
 //la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
 maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 {
@@ -32,11 +75,11 @@ while(save != NULL)
 	
 	for(i=sizeBit(tableHuffman[i].code)-1;i>=0;i--)
 	{
-		writeBit((tableHuffman[i].code) > i)&1);
+		writeBit(((tableHuffman[i].code)>i)&1);
 	}
 	save = save->suivant;	
 }
-free(tableHuffman);
+liberer(tableHuffman);
 return tete;
 }
 
@@ -87,6 +130,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 
 
 
+//author : Alex
 arbre* ArbreHufman(maillon* liste)
 {	
 	arbre* tab[size(liste)];	//création de l'arbre de codage
@@ -163,12 +207,14 @@ arbre* ArbreHufman(maillon* liste)
 	return *tab;
 }
 
+//author : Alex
 void printArbre(arbre* tree)
 {
 printf("\n\nAffichage de l'arbre d'huffman : \n");
 printArbre_rec(tree,0,0); //peut etre mettre taille a 1, a voir...
 }
 
+//author : Alex
 void printArbre_rec(arbre* tree,int value,int taille)
 {
 	int i;
