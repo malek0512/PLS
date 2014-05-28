@@ -5,7 +5,7 @@
 #include <string.h>
 #include "../liste_manager.h"
  
-maillon* MTF(maillon* liste,char *alphabet);
+maillon* MTF(maillon* liste,char *mot);
 
 
 #endif
