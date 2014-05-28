@@ -47,25 +47,25 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 	{	
 		
 		//lecture d'un octet
-i=0;
-fprintf(stderr,"%d\n",i);
+//i=0;
+//fprintf(stderr,"%d\n",i);
 		saveArbre = tableHuffman;
 		while (saveArbre->lettre != saveListe->lettre)
 		{//le symbole apartient donc wdec de check la valeur du i
 			saveArbre= saveArbre->suivant;
-i++;
-fprintf(stderr,"%d\n",i);
+//i++;
+//fprintf(stderr,"%d\n",i);
 		}
-fprintf(stderr,"he\n");
-		for(i=saveArbre->autre2;i>=0;i--)
+//fprintf(stderr,"he\n");
+		for(i=saveArbre->autre2-1;i>=0;i--)
 		{
-			fprintf(stderr,"%d\n",i);
-			fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->lettre)>>i)&1);
+//			fprintf(stderr,"%d\n",i);
+			fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
 			if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
 				tete = queue;
-			writeBit(&tete, &queue, ( (saveArbre->lettre)>>i)&1);
+			writeBit(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
-fprintf(stderr,"re\n");
+//fprintf(stderr,"re\n");
 		saveListe = saveListe->suivant;	
 	}
 	liberer(tableHuffman);
