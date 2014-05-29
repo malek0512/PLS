@@ -41,10 +41,9 @@ int main()
     liste = ajouterEnQueue(liste,'b',2);
     liste = ajouterEnQueue(liste,'c',2);
     liste = ajouterEnQueue(liste,'d',4);
-//    liste = ajouterEnQueue(liste,'e',16);
+    liste = ajouterEnQueue(liste,'e',1);
     tab = ArbreHufman(liste);
-    //tableHuffman = creationTableHuffman(tab);
-    //print2(tableHuffman);
+
     printf("print du mot NON codé : \n");
     print3(liste);
 

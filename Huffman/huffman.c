@@ -47,25 +47,24 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 	{	
 		
 		//lecture d'un octet
-//i=0;
-//fprintf(stderr,"%d\n",i);
+i=0;
+fprintf(stderr,"%d\n",i);
 		saveArbre = tableHuffman;
 		while (saveArbre->lettre != saveListe->lettre)
 		{//le symbole apartient donc wdec de check la valeur du i
+fprintf(stderr,"Lettre chercher : %c \n Lettre lue : %c\n",saveListe->lettre,saveArbre->lettre);
 			saveArbre= saveArbre->suivant;
-//i++;
-//fprintf(stderr,"%d\n",i);
+i++;
+fprintf(stderr,"%d\n",i);
 		}
-//fprintf(stderr,"he\n");
+fprintf(stderr,"he\n");
 		for(i=saveArbre->autre2-1;i>=0;i--)
 		{
-//fprintf(stderr,"%d\n",i);
-//fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
-//if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
-//	tete = queue;
+fprintf(stderr,"%d\n",i);
+fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
 			writeBit2(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
-//fprintf(stderr,"re\n");
+fprintf(stderr,"re\n");
 		saveListe = saveListe->suivant;	
 	}
 	liberer(tableHuffman);
@@ -148,8 +147,9 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 //author : Alex
 arbre* ArbreHufman(maillon* liste)
 {	
+printf("   ### Dans fonction ArbreHuffman ### \n");
 	arbre* tab[size(liste)];	//création de l'arbre de codage
-	arbre* new; //le nouvelle arbre
+	arbre* new=NULL; //le nouvelle arbre
 	maillon* save=liste;
 	int i,cpt; //cpt de for
 	int min1,min2; //proba minimals, min1<=min2
@@ -164,6 +164,7 @@ arbre* ArbreHufman(maillon* liste)
 		tab[i] -> D= NULL;
 		tab[i] -> i.proba= save-> autre;
 		tab[i] -> i.symbole= save-> lettre;
+printf("Symbole copier : %c\n",save-> lettre);
 		save = save->suivant;//avancement
 	}
 
@@ -206,19 +207,27 @@ arbre* ArbreHufman(maillon* liste)
 		new->i.proba= min1 + min2;
 		new->G = tab[i1];
 		new->D = tab[i2];
-	
+printf("Noeud fusionner : %c / %c  // D'indice : %i / %i \n",tab[i1]->i.symbole,tab[i2]->i.symbole,i1,i2);
 		//maj de tailleT et du tableau
 		//on prévoit de réduire la taille du tableau de 1 cran
 		//les deux arbre fusionner doivent devenir innaccessible
 		//la fusion des deux arbres doit deveni r accessible
 			//on prépare supprime les deux arbre qui on substituer la fusion
-		tab[i1] =tab[tailleT-1]; 
-		tab[i2] =tab[tailleT-2];
+
+		if(i2==tailleT-2)
+			tab[i1] =tab[tailleT-1]; 
+		if(i2==tailleT-1)
+			tab[i1] =tab[tailleT-2];
+		if(i1==tailleT-2)
+			tab[i2] =tab[tailleT-1]; 
+		if(i1==tailleT-1)
+			tab[i2] =tab[tailleT-2];
+		tab[tailleT-2]=new;
 			//on ajoute a la fin futur du tableau la somme des deux anciens
-		tab[tailleT-2] = new;
 			//on maj le tableau
 		tailleT --;
 	}
+printf("\n   ### Sort de fonction ArbreHuffman ### \n\n");
 	return *tab;
 }
 
