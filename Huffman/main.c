@@ -8,13 +8,25 @@ void afficherK(maillon* res)
     maillon *tmp = res;
     while(tmp != NULL)
     {
-        for (i=tmp->autre;i>=0;i--)
-            printf("%d",(tmp->lettre >>i)&1);
+        for (i=8;i>8-tmp->autre;i--)
+            printf("%d",(tmp->lettre >>(i-1))&1);
         printf(" ");
         tmp = tmp->suivant;
     }
     printf("\n");
 
+}
+
+void print3(maillon* liste)
+{
+
+   maillon *tmp = liste;
+	printf("Liste : \n");
+	while(tmp != NULL)
+	{
+		printf("%c\n", tmp->lettre);
+		tmp = tmp->suivant;
+	}
 }
 
 
@@ -23,7 +35,7 @@ int main()
     maillon* liste = NULL;
     maillon* res=NULL;
     arbre* tab=NULL;
-    maillon* tableHuffman = NULL;
+    //maillon* tableHuffman = NULL;
     //init liste
     liste = ajouterEnQueue(liste,'a',1);
     liste = ajouterEnQueue(liste,'b',2);
@@ -31,17 +43,17 @@ int main()
     liste = ajouterEnQueue(liste,'d',4);
     //liste = ajouterEnQueue(liste,'e',16);
     tab = ArbreHufman(liste);
-    tableHuffman = creationTableHuffman(tab);
-    print2(tableHuffman);
+    //tableHuffman = creationTableHuffman(tab);
+    //print2(tableHuffman);
     printf("\n\nprint du mot NON codé : \n");
-    print2(liste);
+    print3(liste);
 
     tab = ArbreHufman(liste);
     printArbre(tab);
 
     res = codageHuffman(liste, tab);
     printf("\n\nprint du mot codé : \n");
-    print2(res);
+    afficherK(res);
     
     //afficherK(res);
     res = decodageHuffman(res,tab);

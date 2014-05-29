@@ -5,6 +5,8 @@
 //Variables globale de la fonction writeBit et readBit
 static char buffer=0;
 static int windowBuffer=7;
+static char buffer2=0;
+static int windowBuffer2=-1;
 static maillon* pointeurDeListe=NULL; //Destiné a readBit exclusivement. Sert a se deplacer dans une liste d'octets
 static maillon* pointeurDeListeTete=NULL; //Destiné a readBit exclusivement. Sert a savoir s'il s'agit d'une nouvelle liste
 
@@ -308,6 +310,24 @@ void afficherListe(maillon *liste)
 		printf("%c, %d \n", tmp->lettre,tmp->autre);
 		tmp = tmp->suivant;
 	}
+}
+
+void writeBit2(maillon **Tete, maillon **Queue, char bit)
+{
+if(windowBuffer2==-1)
+{//le buffer est archi full, on doit donc ajouter sur un octet libre, qui na pas était crée au préalable pour eviter d'avoir un octet vide...
+//il faut rajouter un octet
+	ajoutEnQueue(Tete,Queue,0,0);
+	windowBuffer2=7;
+	buffer2=0;
+}
+//l'octet est ok, on peut ajouter
+	//maj du buffer
+	buffer2 |= (bit & 1) << windowBuffer2;
+	windowBuffer2--;
+	(*Queue)->autre++;
+	(*Queue)->lettre= buffer2;
+
 }
 
 void writeBit(maillon** Tete, maillon** Queue, char bit){
