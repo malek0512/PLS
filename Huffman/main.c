@@ -53,7 +53,7 @@ int main()
 
     res = codageHuffman(liste, tab);
     printf("\n\nprint du mot codé : \n");
-    afficherK(res);
+    print2(res);
     
     //afficherK(res);
     res = decodageHuffman(res,tab);

@@ -325,7 +325,7 @@ if(windowBuffer2==-1)
 	//maj du buffer
 	buffer2 |= (bit & 1) << windowBuffer2;
 	windowBuffer2--;
-	(*Queue)->autre++;
+	(*Queue)->autre2++;
 	(*Queue)->lettre= buffer2;
 
 }
