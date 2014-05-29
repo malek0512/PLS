@@ -104,6 +104,10 @@ void afficherListe(maillon *liste);
 //author : Alex
 void writeBit2(maillon** Tete, maillon** Queue, char bit);
 
+//Et pas, un second miracle aparrait
+//author : Alex
+int readBit2(maillon* Tete);
+
 // Ecrit un bit dans la liste chainée passée en parametre. 
 // N'effectue que des ajouts en queue. 
 // Si Tete == Queue == NULL alors la Tete est mise a jour, par ajoutEnQueue
