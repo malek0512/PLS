@@ -1,12 +1,6 @@
 #include "huffman.h"
 
 //author : Alex
-//int readBit(char source, int numero)
-//{
-//	return (source >> numero)&1;
-//}
-
-//author : Alex
 maillon* creationTableHuffman(arbre* arbreHuffman)
 {
 	void creationTableHuffmanRec(arbre* arbreHuffman,int code, int taille,maillon** res)
@@ -47,24 +41,36 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 	{	
 		
 		//lecture d'un octet
+#ifdef DEBUG
 i=0;
 fprintf(stderr,"%d\n",i);
+#endif
 		saveArbre = tableHuffman;
 		while (saveArbre->lettre != saveListe->lettre)
 		{//le symbole apartient donc wdec de check la valeur du i
+#ifdef DEBUG
 fprintf(stderr,"Lettre chercher : %c \n Lettre lue : %c\n",saveListe->lettre,saveArbre->lettre);
+#endif
 			saveArbre= saveArbre->suivant;
+#ifdef DEBUG
 i++;
 fprintf(stderr,"%d\n",i);
+#endif
 		}
+#ifdef DEBUG
 fprintf(stderr,"he\n");
+#endif
 		for(i=saveArbre->autre2-1;i>=0;i--)
 		{
+#ifdef DEBUG
 fprintf(stderr,"%d\n",i);
 fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
+#endif
 			writeBit2(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
+#ifdef DEBUG
 fprintf(stderr,"re\n");
+#endif
 		saveListe = saveListe->suivant;	
 	}
 	liberer(tableHuffman);
@@ -82,24 +88,28 @@ maillon* decodageHuffman2(maillon *liste, arbre *tableHuffman)
 
     int bit = readBit2(Tete);
 
-//fprintf(stderr,"\n%d", OK);
 	while( bit != -1 )
 	{
+#ifdef DEBUG
 printf("bit lu : %d\n",bit);
+#endif
         	if (AvC->G !=NULL && (bit==0))
 			AvC = AvC->G;
 		else if (AvC->D !=NULL && (bit == 1))
 			AvC = AvC->D;
 		if (AvC->D == NULL && AvC->G == NULL)
 		{ 
+#ifdef DEBUG
 printf("ajout d'un mot\n");
+#endif
 	    		ajoutEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
 	    		AvC = tableHuffman;
 		}
 	        bit = readBit2(Tete);
 	}
-
-//    fprintf(stderr,"\n%d", resultatTete==NULL);
+#ifdef DEBUG
+    fprintf(stderr,"\n%d", resultatTete==NULL);
+#endif
     return resultatTete;
 }
 
@@ -146,8 +156,10 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 
 //author : Alex
 arbre* ArbreHufman(maillon* liste)
-{	
+{
+#ifdef DEBUG	
 printf("   ### Dans fonction ArbreHuffman ### \n");
+#endif
 	arbre* tab[size(liste)];	//création de l'arbre de codage
 	arbre* new=NULL; //le nouvelle arbre
 	maillon* save=liste;
@@ -164,7 +176,9 @@ printf("   ### Dans fonction ArbreHuffman ### \n");
 		tab[i] -> D= NULL;
 		tab[i] -> i.proba= save-> autre;
 		tab[i] -> i.symbole= save-> lettre;
+#ifdef DEBUG
 printf("Symbole copier : %c\n",save-> lettre);
+#endif
 		save = save->suivant;//avancement
 	}
 
@@ -207,7 +221,9 @@ printf("Symbole copier : %c\n",save-> lettre);
 		new->i.proba= min1 + min2;
 		new->G = tab[i1];
 		new->D = tab[i2];
+#ifdef DEBUG
 printf("Noeud fusionner : %c / %c  // D'indice : %i / %i \n",tab[i1]->i.symbole,tab[i2]->i.symbole,i1,i2);
+#endif
 		//maj de tailleT et du tableau
 		//on prévoit de réduire la taille du tableau de 1 cran
 		//les deux arbre fusionner doivent devenir innaccessible
@@ -227,7 +243,9 @@ printf("Noeud fusionner : %c / %c  // D'indice : %i / %i \n",tab[i1]->i.symbole,
 			//on maj le tableau
 		tailleT --;
 	}
+#ifdef DEBUG
 printf("\n   ### Sort de fonction ArbreHuffman ### \n\n");
+#endif
 	return *tab;
 }
 

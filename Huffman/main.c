@@ -34,6 +34,7 @@ int main()
 {
     maillon* liste = NULL;
     maillon* res=NULL;
+	maillon* listeR = NULL;
     arbre* tab=NULL;
     //maillon* tableHuffman = NULL;
     //init liste
@@ -42,15 +43,28 @@ int main()
     liste = ajouterEnQueue(liste,'c',2);
     liste = ajouterEnQueue(liste,'d',4);
     liste = ajouterEnQueue(liste,'e',1);
+
+    listeR = ajouterEnQueue(listeR,'a',1);
+    listeR = ajouterEnQueue(listeR,'b',1);
+    listeR = ajouterEnQueue(listeR,'c',1);
+    listeR = ajouterEnQueue(listeR,'d',1);
+    listeR = ajouterEnQueue(listeR,'d',1);
+    listeR = ajouterEnQueue(listeR,'c',1);
+    listeR = ajouterEnQueue(listeR,'d',1);
+    listeR = ajouterEnQueue(listeR,'b',1);
+    listeR = ajouterEnQueue(listeR,'e',1);
+    listeR = ajouterEnQueue(listeR,'d',1);
+
+
     tab = ArbreHufman(liste);
 
     printf("print du mot NON codé : \n");
-    print3(liste);
+    print3(listeR);
 
     tab = ArbreHufman(liste);
     printArbre(tab);
 
-    res = codageHuffman(liste, tab);
+    res = codageHuffman(listeR, tab);
     printf("\n\nprint du mot codé : \n");
     afficherK(res);
 
@@ -62,7 +76,7 @@ int main()
     //afficherK(res);
     //liberer
     liberer(liste);
-
+    liberer(listeR);
     return 0;
 }
 /*creationTableHuffman
