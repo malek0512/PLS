@@ -98,27 +98,29 @@ maillon* copieList(maillon *liste);
 //Afficher la liste
 void afficherListe(maillon *liste);
 
-//Ecrit un bit dans la liste chainée passée en parametre. N'effectue que des ajouts en queue
-//Attention, NE PAS OUBLIER d'ECRIRE LE NOMBRE DE BITS SIGNIFICATIF (après encodage) DANS LA CELULLE QUEUE (champs <autre>).
+// Ecrit un bit dans la liste chainée passée en parametre. 
+// N'effectue que des ajouts en queue. 
+// Si Tete == Queue == NULL alors la Tete est mise a jour, par ajoutEnQueue
+// Met a jour, le nombre de bit significatif
 //author : Malek
 void writeBit(maillon** Tete, maillon** Queue, char bit);
 
-//Lit un bit dans la liste chainée passée en parametre. 
-//Le bit lu est mis dans la variable bit en paramtre.
-//Indiquer s'il s'agit d'une nouvelle liste a lire dans isItNewList <=> boolean
-//@return: 0 si il n'y a plus de bit a lire, sinon renvoie 1.
-//Ne modifie pas la liste et n'utilise pas la Queue 
-//ATTENTION ! TANT QUE LA 1ERE LISTE N'EST PAS LU JUSQUA LA FIN, LE BUFFER N'EST PAS VIDE.
-//ATTENTION ! FONCTION A NE PAS UTILISER SUR DEUX LISTES DIFFERENTE EN SIMULTANÉ, OU EN MÊME TEMPS QUE writeBit
 // ********************************************************************************
-// *INVARIANT A GARANTIR
-// *          Si isItNewList==1 et la Tete != NULL alors 
-// *             au prochain appel de la fonction
-// *                 si isItNewList==0 alors Tete != NULL
+// *INVARIANT 
+// * Pré condition : Si windowBuffer != -1 alors il pointe sur le bit lu
+// *                 Sinon C'est qu'il n'y a plus rien a lire
+// * Post condition : Si windowBuffer != -1 alors windowBuffer pointe sur le bit suivant
+// *                  Sinon C'est qu'il n'y a plus rien a lire
 
-// * Ie Au 2eme appel de la fonction, s'il ne s'agit pas d'une nouvelle liste, 
-// * mettre isItNewList a 0, et la valeur de Tete en parametre ne doit pas changer 
-// * (du moins differente de NULL)
+// * Au 2eme appel de la fonction, s'il ne s'agit pas d'une nouvelle liste, 
+// * donc pointeurDeListeTete == Tete 
+// * Lit un bit dans la liste chainée passée en parametre. 
+// * Le bit lu est mis dans la variable *bit en paramtre.
+// * @return: 0 s'il a lu un bit, sinon renvoie 1.
+// * Ne modifie pas la liste et n'utilise pas la Queue 
+//_ATTENTION ! FONCTION A NE PAS UTILISER SUR DEUX LISTES DIFFERENTE EN SIMULTANÉ, 
+// OU EN MÊME TEMPS QUE writeBit
+//_ATTENTION ! TANT QU'UNE LISTE N'EST PAS LU JUSQUA LA FIN, LE BUFFER N'EST PAS VIDE.
 // *********************************************************************************
 //author : Malek
 int readBit(maillon* Tete, maillon* Queue, char* bit);
