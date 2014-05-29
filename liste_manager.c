@@ -346,15 +346,15 @@ int readBit2(maillon* Tete)
 		windowBuffer3=8;
 		}
 	if(ptMG ==NULL)
-//{
-//printf("\ncause du retour 1...\n");	
+{
+printf("\ncause du retour 1...\n");	
 		return -1; //plus rien a lire
-//}
-	if((windowBuffer3+ptMG->autre)<=8) //trouver la condition pour dire que sur l'octet actuelle on a fini de lire
-//	{		
-//printf("\ncause du retour 2...\n");	
+}
+	if((windowBuffer3+ptMG->autre)<8) //trouver la condition pour dire que sur l'octet actuelle on a fini de lire
+	{		
+printf("\ncause du retour 2...\n");	
 		return -1;
-//	}
+	}
 	windowBuffer3--;
 //printf("Dans fonction RB2 : \n valeur de la lettre a lire : %i\n",ptMG->lettre);
 	return (ptMG->lettre>>windowBuffer3)&1;

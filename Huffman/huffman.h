@@ -32,11 +32,6 @@ maillon* creationTableHuffman(arbre* arbreHuffman);
 //retourne la liste codé
 maillon* codageHuffman(maillon *liste, arbre *tableHuffman);
 
-//Prend en argument une liste codé par huffman et ca table de huffman, crée par la fonction ArbreHuffman
-//retourne la liste décodé
-//Author Malek
-maillon* decodageHuffman(maillon *liste, arbre *tableHuffman);
-
 //Et paf, un autre miracle apparait !
 //Author Alex
 maillon* decodageHuffman2(maillon *liste, arbre *tableHuffman);
