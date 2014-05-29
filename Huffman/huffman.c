@@ -64,6 +64,11 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 //if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
 //	tete = queue;
 			writeBit2(&tete, &queue, ( (saveArbre->autre)>>i)&1);
+//			fprintf(stderr,"%d\n",i);
+			fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
+			//if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
+			//	tete = queue;
+			writeBit(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
 //fprintf(stderr,"re\n");
 		saveListe = saveListe->suivant;	
@@ -114,7 +119,7 @@ resultat :
 	maillon* : contient une liste d'octet tout simplement
 */
 
-
+/*
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
     //Version Malek
@@ -130,19 +135,30 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
         if (AvC->G !=NULL && (bit & 1))
             AvC = AvC->G;
         else if (AvC->D !=NULL && !(bit & 1))
+    int jaiUnFils=0;
+    int jaiLu = readBit(Tete, Queue, &bit);
+    while( jaiUnFils || jaiLu ){        
+
+        if (AvC->D !=NULL && (bit & 1)) { 
             AvC = AvC->D;
-        else { 
+            jaiLu = readBit(Tete, Queue, &bit);
+            jaiUnFils=1;
+        } else if (AvC->G !=NULL && !(bit & 1)){ 
+            AvC = AvC->G;
+            jaiLu = readBit(Tete, Queue, &bit);
+            jaiUnFils = 1;
+        } else { 
             //Nous somme arrivé dans une feuille de l'arbre
-            ajoutEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
+            ajoutEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1);
             AvC = tableHuffman;
+            jaiUnFils=0; //Une feuille n'a pas d'enfant (c'est triste)
         }
         OK = readBit(Tete, Queue, &bit);  //read bit n'utilise pas Queue... (bis)
     }
 
-    fprintf(stderr,"\n%d", resultatTete==NULL);
     return resultatTete;
 }
-
+*/
 
 
 //author : Alex

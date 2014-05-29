@@ -373,19 +373,44 @@ void writeBit(maillon** Tete, maillon** Queue, char bit){
     //La windowBuffer diminue
     windowBuffer--;
 
-    // La windowBuffer == 0, il faut inserer dans le fichier les 8 bits
-    if (windowBuffer==0) {  
+    // La windowBuffer == 0, il faut inserer dans la liste les 8 bits
+    if (windowBuffer==-1) {  
         ajoutEnQueue(Tete, Queue, buffer, -1);
         (*Queue)->autre2 = 7 - windowBuffer;
 
         //Reinitialisation du buffer et windows
         buffer = 0;
         windowBuffer = 7;
+    } else if (*Queue != NULL){
+        (*Queue)->autre2 = 7 - windowBuffer;
     }
+
+//    if (*Queue == NULL){
+//        ajoutEnQueue(Tete,Queue, 0,0);
+//        (*Queue)->autre2 = 0;
+//    } else {
+//        windowBuffer = 7 - (*Queue)->autre2;
+//        if (windowBuffer == -1){
+//            ajoutEnQueue(Tete,Queue,0,-1);
+//            (*Queue)->autre2 = 0;
+//            windowBuffer = 7;
+//        } else 
+//            (*Queue)->lettre &= ~(1<<windowBuffer);
+//            
+////        } else {
+////            (*Queue)->autre2 = 7 - windowBuffer;
+////            (*Queue)->lettre = buffer;
+////        }
+//    }
+//    
+//    //Place le bit dans le buffer
+//    (*Queue)->lettre |= (bit & 1) << windowBuffer;
+//    windowBuffer--;
+//    (*Queue)->autre2 = 7 - windowBuffer;
 }
 
 int readBit(maillon* Tete, maillon* Queue, char* bit){
-    //Rmq: A chaque appelle de la fonction le bit à l'emplacement windowBuffer designe le bit retourné
+    //Rmq: A chaque appelle de la fonction le bit à l'emplacement windowBuffer designe le bit retourné. Si windowBuffer==-1, alors aucun bit n'est lu ET fin de lecture de la liste
 
     //On verifie si la liste est vide
     if(Tete !=NULL){ 
@@ -394,40 +419,34 @@ int readBit(maillon* Tete, maillon* Queue, char* bit){
         if (pointeurDeListeTete != Tete){ 
             pointeurDeListeTete = Tete;
             pointeurDeListe = Tete;
+            buffer = Tete->lettre;
+            windowBuffer=7;
         }
 
         //S'il y a au moins un bit a lire
-        if(pointeurDeListe->autre2 != 0){
+        if( windowBuffer != -1 && pointeurDeListe->autre2 != 0){
 
             *bit = 0;
             *bit |= (buffer & (1<<windowBuffer)) >> windowBuffer;
 
-    fprintf(stderr,"\n%d",(int) buffer);
-            if (windowBuffer > (7 - pointeurDeListe->autre2)){ 
-                //windowBuffer > (TAILLE_BUFFER - NB_BIT_SGNIFICATIF)
+            // Si on est arrivé a la fin du nombre d'octet significatif
+            // On cherche le bit suivant dans le flux d'octets
 
-                //On avance dans notre buffer
-                windowBuffer--;
+            //On verifie si l'on peut entamer un autre octet
+            if(pointeurDeListe->suivant != NULL){
 
-            } else {
-                // Si on est arrivé a la fin du nombre d'octet significatif
-                // On cherche le bit suivant dans le flux d'octets
+                //On avance d'un octet
+                pointeurDeListe = pointeurDeListe->suivant;
 
-                //On verifie si l'on peut entamer un autre octet
-                if(pointeurDeListe->suivant != NULL){
+                //On reinitialise le buffer au nouvel octet
+                buffer = pointeurDeListe->lettre;
 
-                    //On avance d'un octet
-                    pointeurDeListe = pointeurDeListe->suivant;
-
-                    //On reinitialise le buffer au nouvel octet
-                    buffer = pointeurDeListe->lettre;
-
-                    //On reinitialise la windowBuffer
-                    windowBuffer=7;
-                } else
-                    return 0;
-
+                //On reinitialise la windowBuffer
+                windowBuffer=7;
             }
+            //On avance dans notre buffer
+            windowBuffer--;
+
 
             //Dans tous les cas on a lu un octet
             return 1;
