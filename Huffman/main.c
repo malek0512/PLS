@@ -41,11 +41,11 @@ int main()
     liste = ajouterEnQueue(liste,'b',2);
     liste = ajouterEnQueue(liste,'c',2);
     liste = ajouterEnQueue(liste,'d',4);
-    //liste = ajouterEnQueue(liste,'e',16);
+    liste = ajouterEnQueue(liste,'e',16);
     tab = ArbreHufman(liste);
     //tableHuffman = creationTableHuffman(tab);
     //print2(tableHuffman);
-    printf("\n\nprint du mot NON codé : \n");
+    printf("print du mot NON codé : \n");
     print3(liste);
 
     tab = ArbreHufman(liste);
@@ -54,11 +54,11 @@ int main()
     res = codageHuffman(liste, tab);
     printf("\n\nprint du mot codé : \n");
     afficherK(res);
-    
+
     //afficherK(res);
-    res = decodageHuffman(res,tab);
+    res = decodageHuffman2(res,tab);
     printf("\n\nprint du mot décodé : \n");
-    print2(res);
+    print3(res);
     
     //afficherK(res);
     //liberer

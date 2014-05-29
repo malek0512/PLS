@@ -59,10 +59,10 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 //fprintf(stderr,"he\n");
 		for(i=saveArbre->autre2-1;i>=0;i--)
 		{
-//			fprintf(stderr,"%d\n",i);
-			fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
-			//if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
-			//	tete = queue;
+//fprintf(stderr,"%d\n",i);
+//fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
+//if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
+//	tete = queue;
 			writeBit2(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
 //fprintf(stderr,"re\n");
@@ -71,6 +71,39 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 	liberer(tableHuffman);
 	return tete;
 }
+
+
+maillon* decodageHuffman2(maillon *liste, arbre *tableHuffman)
+{
+    //Version Misterious Guy
+    maillon* resultatTete = NULL;
+    maillon* resultatQueue = NULL;
+    maillon* Tete = liste;
+    arbre* AvC = tableHuffman;
+
+    int bit = readBit2(Tete);
+
+//fprintf(stderr,"\n%d", OK);
+	while( bit != -1 )
+	{
+printf("bit lu : %d\n",bit);
+        	if (AvC->G !=NULL && (bit==0))
+			AvC = AvC->G;
+		else if (AvC->D !=NULL && (bit == 1))
+			AvC = AvC->D;
+		if (AvC->D == NULL && AvC->G == NULL)
+		{ 
+printf("ajout d'un mot\n");
+	    		ajoutEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
+	    		AvC = tableHuffman;
+		}
+	        bit = readBit2(Tete);
+	}
+
+//    fprintf(stderr,"\n%d", resultatTete==NULL);
+    return resultatTete;
+}
+
 
 /*
 Argument : 
@@ -81,18 +114,19 @@ resultat :
 	maillon* : contient une liste d'octet tout simplement
 */
 
+
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 {
     //Version Malek
     maillon* resultatTete = NULL;
     maillon* resultatQueue = NULL;
     maillon* Tete = liste;
-    maillon* Queue = NULL;
+    maillon* Queue = NULL; //Cette variable ne sert a rien !!!
     arbre* AvC = tableHuffman;
     char bit;
-    int OK = readBit(Tete, Queue, &bit);
+    int OK = readBit(Tete, Queue, &bit); //read bit n'utilise pas Queue...
     fprintf(stderr,"\n%d", OK);
-    while( OK ){
+    while( OK ){ //si readBit retourne une sorte de bool, pourquoi pas mettre directement la fonction dans la condition, et pas OK ?
         if (AvC->G !=NULL && (bit & 1))
             AvC = AvC->G;
         else if (AvC->D !=NULL && !(bit & 1))
@@ -102,7 +136,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
             ajoutEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
             AvC = tableHuffman;
         }
-        OK = readBit(Tete, Queue, &bit);
+        OK = readBit(Tete, Queue, &bit);  //read bit n'utilise pas Queue... (bis)
     }
 
     fprintf(stderr,"\n%d", resultatTete==NULL);

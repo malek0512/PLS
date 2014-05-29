@@ -37,6 +37,10 @@ maillon* codageHuffman(maillon *liste, arbre *tableHuffman);
 //Author Malek
 maillon* decodageHuffman(maillon *liste, arbre *tableHuffman);
 
+//Et paf, un autre miracle apparait !
+//Author Alex
+maillon* decodageHuffman2(maillon *liste, arbre *tableHuffman);
+
 //Retourne la table d'huffman a partir de l'arbre
 maillon* creationTableHuffman(arbre* arbreHuffman);
 

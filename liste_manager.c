@@ -7,6 +7,9 @@ static char buffer=0;
 static int windowBuffer=7;
 static char buffer2=0;
 static int windowBuffer2=-1;
+static int windowBuffer3=8;
+static maillon* ptMG = NULL;
+
 static maillon* pointeurDeListe=NULL; //Destiné a readBit exclusivement. Sert a se deplacer dans une liste d'octets
 static maillon* pointeurDeListeTete=NULL; //Destiné a readBit exclusivement. Sert a savoir s'il s'agit d'une nouvelle liste
 
@@ -329,6 +332,35 @@ if(windowBuffer2==-1)
 	(*Queue)->lettre= buffer2;
 
 }
+
+
+
+int readBit2(maillon* Tete)
+{
+	if(ptMG == NULL)
+		ptMG = Tete;
+	if(windowBuffer3==0)
+		{
+//printf(" ");
+		ptMG = ptMG->suivant;
+		windowBuffer3=8;
+		}
+	if(ptMG ==NULL)
+//{
+//printf("\ncause du retour 1...\n");	
+		return -1; //plus rien a lire
+//}
+	if((windowBuffer3+ptMG->autre)<=8) //trouver la condition pour dire que sur l'octet actuelle on a fini de lire
+//	{		
+//printf("\ncause du retour 2...\n");	
+		return -1;
+//	}
+	windowBuffer3--;
+//printf("Dans fonction RB2 : \n valeur de la lettre a lire : %i\n",ptMG->lettre);
+	return (ptMG->lettre>>windowBuffer3)&1;
+}
+
+
 
 void writeBit(maillon** Tete, maillon** Queue, char bit){
 
