@@ -5,6 +5,8 @@
 //Variables globale de la fonction writeBit et readBit
 static char buffer=0;
 static int windowBuffer=7;
+static char buffer2=0;
+static int windowBuffer2=-1;
 static maillon* pointeurDeListe=NULL; //Destiné a readBit exclusivement. Sert a se deplacer dans une liste d'octets
 static maillon* pointeurDeListeTete=NULL; //Destiné a readBit exclusivement. Sert a savoir s'il s'agit d'une nouvelle liste
 
@@ -310,6 +312,24 @@ void afficherListe(maillon *liste)
 	}
 }
 
+void writeBit2(maillon **Tete, maillon **Queue, char bit)
+{
+if(windowBuffer2==-1)
+{//le buffer est archi full, on doit donc ajouter sur un octet libre, qui na pas était crée au préalable pour eviter d'avoir un octet vide...
+//il faut rajouter un octet
+	ajoutEnQueue(Tete,Queue,0,0);
+	windowBuffer2=7;
+	buffer2=0;
+}
+//l'octet est ok, on peut ajouter
+	//maj du buffer
+	buffer2 |= (bit & 1) << windowBuffer2;
+	windowBuffer2--;
+	(*Queue)->autre++;
+	(*Queue)->lettre= buffer2;
+
+}
+
 void writeBit(maillon** Tete, maillon** Queue, char bit){
 
     // Masque le bit a la position windowBuffer
@@ -332,6 +352,29 @@ void writeBit(maillon** Tete, maillon** Queue, char bit){
     } else if (*Queue != NULL){
         (*Queue)->autre2 = 7 - windowBuffer;
     }
+
+//    if (*Queue == NULL){
+//        ajoutEnQueue(Tete,Queue, 0,0);
+//        (*Queue)->autre2 = 0;
+//    } else {
+//        windowBuffer = 7 - (*Queue)->autre2;
+//        if (windowBuffer == -1){
+//            ajoutEnQueue(Tete,Queue,0,-1);
+//            (*Queue)->autre2 = 0;
+//            windowBuffer = 7;
+//        } else 
+//            (*Queue)->lettre &= ~(1<<windowBuffer);
+//            
+////        } else {
+////            (*Queue)->autre2 = 7 - windowBuffer;
+////            (*Queue)->lettre = buffer;
+////        }
+//    }
+//    
+//    //Place le bit dans le buffer
+//    (*Queue)->lettre |= (bit & 1) << windowBuffer;
+//    windowBuffer--;
+//    (*Queue)->autre2 = 7 - windowBuffer;
 }
 
 int readBit(maillon* Tete, maillon* Queue, char* bit){

@@ -8,7 +8,7 @@ typedef struct maillon {
         //(Reader: Un octet lu)
     
     int autre; //information auxiliaire, 
-        //(Huffman: code du symbole) 
+        //(Huffman: code du symbole) dans la table de Huffman 
         //(Reader:Frequence)
     
     int autre2; //information axiliaire 2, 
@@ -98,10 +98,18 @@ maillon* copieList(maillon *liste);
 //Afficher la liste
 void afficherListe(maillon *liste);
 
+
+
+//Et pouf un miracle aparrait
+//author : Alex
+void writeBit2(maillon** Tete, maillon** Queue, char bit);
+
 // Ecrit un bit dans la liste chainée passée en parametre. 
 // N'effectue que des ajouts en queue. 
 // Si Tete == Queue == NULL alors la Tete est mise a jour, par ajoutEnQueue
 // Met a jour, le nombre de bit significatif
+//Ecrit un bit dans la liste chainée passée en parametre. N'effectue que des ajouts en queue
+//Attention, NE PAS OUBLIER d'ECRIRE LE NOMBRE DE BITS SIGNIFICATIF (après encodage) DANS LA CELULLE QUEUE (champs <autre>).
 //author : Malek
 void writeBit(maillon** Tete, maillon** Queue, char bit);
 

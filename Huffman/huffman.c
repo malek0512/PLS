@@ -61,8 +61,8 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 		{
 //			fprintf(stderr,"%d\n",i);
 			fprintf(stderr,"valeur ajouté :%d\n",( (saveArbre->autre)>>i)&1);
-			if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
-				tete = queue;
+			//if(tete ==NULL && queue != NULL) //a supprimer quand on aura regler les fonctions
+			//	tete = queue;
 			writeBit(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
 //fprintf(stderr,"re\n");
