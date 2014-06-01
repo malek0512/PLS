@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"liste_manager.h"
+#include"Huffman/huffman.h"
 
 maillon* readFromFileAlphabet(FILE *data){
     maillon* Tete;    
@@ -63,20 +64,23 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
 }
 
 void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
-    char octet = 0;
-    int nb=0;
+    int octet = 0;
+//    int nb=0;
 
     *Queue = NULL;
     *Tete = NULL;
-    do { 
-        nb = fread(&octet,sizeof(char),1,data);
-        if (octet != EOF ){ 
-            //Ajout en Queue avec fonction ajout en tete
-            ajoutEnQueue(Tete,Queue, octet, -1);
-
-        }
-    }
-    while ( nb != 0); 
+//    do { 
+//        nb = fread(&octet,sizeof(char),1,data);
+//        if (octet != EOF ){ 
+//            //Ajout en Queue avec fonction ajout en tete
+//            ajoutEnQueue(Tete,Queue, octet, -1);
+//
+//        }
+//    }
+//    while ( nb != 0); 
+      while((octet = fgetc(data)) != EOF){
+            ajoutEnQueue(Tete,Queue,(char) octet, -1);
+      }
 }
 
 char readFromFileByte(FILE *data){
@@ -108,7 +112,12 @@ FILE* CreerFichier(char *nom_fichier){
 }
 
 FILE* OuvrirFichier(char *nom_fichier){
-    return fopen(nom_fichier,"r");
+    FILE* f = fopen(nom_fichier,"r");
+    if (f == NULL){ 
+        printf("Erreur d'ouverture de fichier");
+        exit(1);
+    } else
+        return f;
 }
 maillon* calculateFrequency(maillon* Tete){
     maillon* AC = Tete;
@@ -124,11 +133,6 @@ maillon* calculateFrequency(maillon* Tete){
         AC = AC->suivant;
     }
 
-//    AC = Tete;
-//    while (AC != NULL){ 
-//        AC->autre = freq[(int) AC->lettre];
-//        AC = AC->suivant;
-//    }
     maillon *resTete = NULL, *resQueue=NULL;
     for(int i=0; i<256; i++){
         if (freq[i] != 0){ 
@@ -136,4 +140,17 @@ maillon* calculateFrequency(maillon* Tete){
         }
     }
     return resTete;
+}
+void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed){ 
+    maillon* Table =  creationTableHuffman(treeHuffman);
+    maillon* AC = Table;
+    while(AC != NULL){
+        writeByte(AC->lettre, fileCompressed);
+        writeByte((char) AC->autre, fileCompressed); //Le codage du symbole ne depasse pas 1 octet
+        writeByte((char) AC->autre2, fileCompressed); //Le nombre de bit significatif d'un octet est de toute façon limité a 0 < bit < 8 < 255.
+        AC = AC->suivant;
+    }
+    writeByte('#', fileCompressed);
+    writeByte('#', fileCompressed);
+    writeByte('#', fileCompressed);
 }

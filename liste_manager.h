@@ -141,5 +141,6 @@ void copieAutre(maillon* src, maillon* dest);
 
 //Renvoie la queue de la liste
 maillon* getQueue(maillon* Tete);
+void afficherK(maillon* res);
 #endif
 
