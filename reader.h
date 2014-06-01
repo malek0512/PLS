@@ -32,4 +32,5 @@ FILE* OuvrirFichier(char *nom_fichier);
 
 maillon* calculateFrequency(maillon* Tete);
 void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed); 
+maillon* readHuffmanTable(maillon** Tete, maillon** Queue); 
 #endif

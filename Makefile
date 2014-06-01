@@ -8,7 +8,7 @@ EXECUTABLES = codage decodage testReader
 #CINC = include/
 
 # FLAGS POUR GCC: -Idirectory cherche les fichiers des #include< >
-CFLAGS = -std=c99 -Wall -Werror
+CFLAGS = -std=c99 -Wall -Werror -g
 
 # NOM DU COMPILATEUR
 CC = gcc

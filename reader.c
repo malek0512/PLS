@@ -154,3 +154,65 @@ void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed){
     writeByte('#', fileCompressed);
     writeByte('#', fileCompressed);
 }
+
+
+maillon* readHuffmanTable(maillon** Tete, maillon** Queue){ 
+    //Declarations
+    maillon* AC = *Tete, *tableHead=NULL; 
+
+    if (AC != NULL && AC->suivant != NULL && AC->suivant->suivant !=NULL){ //Size>=3
+        //Nous lisons la table
+        //Tant que le maillon suivant AC != Queue (donc j'ai au moins 3 symbole a lire) et que ce n'est pas une succession de 3 #
+        while (AC != NULL && AC->suivant != *Queue && !(AC->lettre == '#' && AC->suivant->lettre == '#' && AC->suivant->suivant->lettre == '#')){
+
+            ajouterEnQueue2(&tableHead, AC->lettre, AC->suivant->lettre, AC->suivant->suivant->lettre);
+            AC = AC->suivant->suivant->suivant;
+        }
+        if (AC !=NULL && AC->suivant != *Queue) {
+            //C'est que j'ai fini de lire la table car j'ai rencontré les 3#
+
+            //On saute les 3#
+            AC = AC->suivant->suivant->suivant;
+
+            //Soit il n'y a aucun symbole, donc AC==NULL 
+            if (AC == NULL){
+                printf("\nNous avons lu la table. Il n'y a aucun symbole codé\n");
+                exit(1);
+            }
+            //Soit il ne reste qu'un octet et il manque le nombre de bit significatif, donc AC == Queue
+            if (AC == *Queue){
+                printf("\nNous avons lu la table. Mais il n'y a qu'un symbole de codé. Il manque donc le nombre de bit significatif du dernier octet\n");
+                exit(1);
+            }
+
+            //Soit il y a au moins 1 symbole et il est suivi de 1 octet indiquant le nombre de bit significatif, donc AC !=NULL et AC->suivant==Queue
+
+            *Tete = AC;
+            AC = *Tete;
+            while (AC->suivant != (*Queue)){
+                //Tous les octets avant l'avant dernier octet, ont 8 bits significatifs
+                AC->autre = 8;
+                AC = AC->suivant;
+            }
+            // On met a jour le nombre de bit significatif de l'avant dernier octet lu
+            AC->autre = (int) (*Queue)->lettre;
+
+            // Le dernier octet lu est le nombre de bit significatif de l'avant dernier octet
+            //On supprime le dernier octet
+            (*Queue) = AC;
+            (*Queue)->suivant = NULL;
+
+
+            return tableHead;
+        } else {
+            if(AC == NULL)
+                printf("Nous n'avons pas pu lire la table, AC==NULL");
+            else
+                printf("Nous n'avons pas pu lire la table, AC->suivant == Queue ");
+            exit(1);
+        }
+    } else { 
+        printf("Erreur de lecture de la table : Size(fichier)<3");
+        exit(1);
+    }
+}

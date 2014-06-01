@@ -32,8 +32,16 @@ int main(int argc, char *argv[]){
 
         switch(choix){
             case 1: 
-                coderRle(Tete); 
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE RLE ...                        *");
+                printf("\n**********************************************************\n");
+
+                coderRle(Tete);
                 writeListeBytes(Tete,fileCompressed);
+
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE RLE FIN                    *");
+                printf("\n**********************************************************\n");
                 break;
             case 2:{ 
 
@@ -66,7 +74,7 @@ int main(int argc, char *argv[]){
                 tree = ArbreHufman(listeFrequency);
                 
                 printf("\n Voici la table de Huffman \n");
-                printArbre(tree);
+                printArbre(arbreFromTable(creationTableHuffman(tree)));
 
                 //Encodage du fichier
                 resultatTete = codageHuffman(Tete, tree);
@@ -94,10 +102,62 @@ int main(int argc, char *argv[]){
                 break;
                     }
             case 4: 
-                //coderRle(Tete);
-                //resultatTete = codageHuffman(Tete, ArbreHufman(Tete));
-                //writeListeBytes(resultatTete,fileCompressed);
-                //liberer(resultatTete);
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE COCKTAIL ...                    *");
+                printf("\n**********************************************************\n");
+
+                printf("\n Voici le contenu du fichier en Hexa \n");
+                print2(Tete);
+
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE RLE ...                        *");
+                printf("\n**********************************************************\n");
+
+                coderRle(Tete);
+
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE RLE FIN                    *");
+                printf("\n**********************************************************\n");
+
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE HUFFMAN ...                     *");
+                printf("\n**********************************************************\n");
+                //Calcul des occurences
+                maillon *listeFrequency=NULL;
+                listeFrequency = calculateFrequency(Tete);
+                
+                //Calcul de la table de de Huffman
+                tree = ArbreHufman(listeFrequency);
+                
+                printf("\n Voici la table de Huffman \n");
+                printArbre(arbreFromTable(creationTableHuffman(tree)));
+
+                //Encodage du fichier
+                resultatTete = codageHuffman(Tete, tree);
+
+                printf("\n Voici le message codé en Hexa\n");
+                print2(resultatTete);
+                printf("\n Voici le message codé en Binaire\n");
+                afficherK(resultatTete);
+
+                //Ecriture de la table dans le fichier
+                writeHuffmanTable(tree, fileCompressed);
+
+                //Ecriture de l'encodage dans le fichier
+                writeListeBytes(resultatTete,fileCompressed);
+
+                //Ecriture du nombre de bit significatif du dernier octet
+                writeByte( (char) getQueue(resultatTete)->autre,fileCompressed);
+
+                //Restitution de la memoire allouée
+                liberer(resultatTete);
+                liberer(listeFrequency);
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE HUFFMAN FIN                     *");
+                printf("\n**********************************************************\n");
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE COCKTAIL FIN                    *");
+                printf("\n**********************************************************\n");
                 break;
 
             default: printf("Erreur de choix");
