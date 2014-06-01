@@ -27,6 +27,9 @@ void writeListeBytes(maillon* Tete, FILE* data);
 //Ecrit un octet passé en parametre, dans le fichier passé en paramètre
 void writeByte(char byte, FILE* data);
 
+//Ecrit un octet passé en parametre, dans le fichier passé en paramètre
+void writeInt(int Int, FILE* data);
+
 FILE* CreerFichier(char *nom_fichier);
 FILE* OuvrirFichier(char *nom_fichier);
 

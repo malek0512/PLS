@@ -7,6 +7,13 @@
 #include"reader.h"
 #include<string.h>
 
+
+//Author Malek
+//Selon une entree d'octets d'un fichier, effectue l'ensemble des etapes 
+//de separation de la table du message coder etc
+maillon* decodageHuffmanFinal(maillon** Tete, maillon** Queue); 
+
+
 int main(int argc, char *argv[]){
     if (argc != 2){
         printf("Donner un fichier en argument\n");
@@ -38,24 +45,8 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************");
                 printf("\n*               DECODAGE HUFFMAN ...                     *");
                 printf("\n**********************************************************\n");
-                //Declarations
-                maillon *tableHead=NULL;
+                resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
 
-                //Recupération de la table de Huffman
-                tableHead = readHuffmanTable(&Tete,&Queue);
-                
-                printf("\n Voici la table Huffman \n");
-                print4(tableHead);
-
-                printf("\n Voici le mot non décodé en Binaire \n");
-                afficherK(Tete);
-
-                //Conversion de la table de Huffman de type maillon en type arbre
-                arbre* tree = arbreFromTable(tableHead);
-                printArbre(tree);
-
-                //Decodage du message
-                resultatTete = decodageHuffman2(Tete,tree);
                 printf("\nVoici le message décodé en Hexa\n");
                 print2(resultatTete);
                 
@@ -69,24 +60,7 @@ int main(int argc, char *argv[]){
                 break;
                    }
             case 4:{  
-                //Declarations
-                maillon *tableHead=NULL;
-
-                //Recupération de la table de Huffman
-                tableHead = readHuffmanTable(&Tete,&Queue);
-                
-                printf("\n Voici la table Huffman \n");
-                print4(tableHead);
-
-                printf("\n Voici le mot non décodé en Binaire \n");
-                afficherK(Tete);
-
-                //Conversion de la table de Huffman de type maillon en type arbre
-                arbre* tree = arbreFromTable(tableHead);
-                printArbre(tree);
-
-                //Decodage du message
-                resultatTete = decodageHuffman2(Tete,tree);
+                resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
                 decoderRle(resultatTete);
                 printf("\nVoici le message décodé en Hexa\n");
                 print2(resultatTete);
@@ -103,4 +77,25 @@ int main(int argc, char *argv[]){
                 fclose(fileCompressed);
     }
     return 0;
+}
+
+maillon* decodageHuffmanFinal(maillon** Tete, maillon** Queue){ 
+    //Declarations
+    maillon *tableHead=NULL;
+
+    //Recupération de la table de Huffman
+    tableHead = readHuffmanTable(Tete,Queue);
+
+    printf("\n Voici la table Huffman \n");
+    print4(tableHead);
+
+    printf("\n Voici le mot non décodé en Binaire \n");
+    afficherK(*Tete);
+
+    //Conversion de la table de Huffman de type maillon en type arbre
+    arbre* tree = arbreFromTable(tableHead);
+    printArbre(tree);
+
+    //Decodage du message
+    return decodageHuffman2(*Tete,tree);
 }

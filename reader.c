@@ -107,6 +107,17 @@ void writeByte(char byte, FILE* data){
     fputc(byte, data);
 }
 
+void writeInt(int Int, FILE* data){
+    char byte1 = Int >> (3*8);
+    char byte2 = (Int >> 16) % 8 ;
+    char byte3 = (Int>>8) %8;
+    char byte4 = Int % 8;
+    writeByte( byte1, data );
+    writeByte( byte2, data );
+    writeByte( byte3, data );
+    writeByte( byte4, data );
+}
+
 FILE* CreerFichier(char *nom_fichier){
     return fopen(nom_fichier,"w");
 }
@@ -146,10 +157,13 @@ void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed){
     maillon* AC = Table;
     while(AC != NULL){
         writeByte(AC->lettre, fileCompressed);
-        writeByte((char) AC->autre, fileCompressed); //Le codage du symbole ne depasse pas 1 octet
+        writeInt( AC->autre, fileCompressed); //Le codage du symbole ne depasse pas 1 octet
         writeByte((char) AC->autre2, fileCompressed); //Le nombre de bit significatif d'un octet est de toute façon limité a 0 < bit < 8 < 255.
         AC = AC->suivant;
     }
+    writeByte('#', fileCompressed);
+    writeByte('#', fileCompressed);
+    writeByte('#', fileCompressed);
     writeByte('#', fileCompressed);
     writeByte('#', fileCompressed);
     writeByte('#', fileCompressed);
@@ -157,22 +171,46 @@ void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed){
 
 
 maillon* readHuffmanTable(maillon** Tete, maillon** Queue){ 
+    /* ######################################################################" */
+    //Fonctions auxiliaires
+    int getInt(maillon* Tete){
+        int res=0;
+        if (size(Tete)>=4){
+            res = ((((((Tete->lettre<<8) + Tete->suivant->lettre)<<8) + Tete->suivant->suivant->lettre)<<8) + Tete->suivant->suivant->suivant->lettre); 
+            return res;
+        }else{
+            printf("Erreur de lecture de l'integer Code dans la table de Huffman <getInt>");
+            exit(1);
+        }
+    }
+
+    int getMarque(maillon* Tete){
+        int cpt=0;
+        while(Tete != NULL && cpt<6 && Tete->lettre == '#'){
+            cpt++;
+            Tete = Tete->suivant;
+        }
+        return cpt==6;
+    }
+
+    /* ######################################################################" */
+
     //Declarations
     maillon* AC = *Tete, *tableHead=NULL; 
 
-    if (AC != NULL && AC->suivant != NULL && AC->suivant->suivant !=NULL){ //Size>=3
+    if (size(AC)>=6){ //Size>=6
         //Nous lisons la table
         //Tant que le maillon suivant AC != Queue (donc j'ai au moins 3 symbole a lire) et que ce n'est pas une succession de 3 #
-        while (AC != NULL && AC->suivant != *Queue && !(AC->lettre == '#' && AC->suivant->lettre == '#' && AC->suivant->suivant->lettre == '#')){
+        while (size(AC)>=6 && !(getMarque(AC))){
 
-            ajouterEnQueue2(&tableHead, AC->lettre, AC->suivant->lettre, AC->suivant->suivant->lettre);
-            AC = AC->suivant->suivant->suivant;
+            ajouterEnQueue2(&tableHead, AC->lettre, getInt(AC->suivant), AC->suivant->suivant->suivant->suivant->suivant->lettre);
+            AC = AC->suivant->suivant->suivant->suivant->suivant->suivant;
         }
-        if (AC !=NULL && AC->suivant != *Queue) {
+        if (size(AC)>=6) {
             //C'est que j'ai fini de lire la table car j'ai rencontré les 3#
 
-            //On saute les 3#
-            AC = AC->suivant->suivant->suivant;
+            //On saute les 6#
+            AC = AC->suivant->suivant->suivant->suivant->suivant->suivant;
 
             //Soit il n'y a aucun symbole, donc AC==NULL 
             if (AC == NULL){
@@ -205,10 +243,10 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
 
             return tableHead;
         } else {
-            if(AC == NULL)
-                printf("Nous n'avons pas pu lire la table, AC==NULL");
-            else
-                printf("Nous n'avons pas pu lire la table, AC->suivant == Queue ");
+            if(size(AC)<6)
+                printf("Nous n'avons pas pu lire la table, size(AC) < 6");
+//            else
+//                printf("Nous n'avons pas pu lire la table, AC->suivant == Queue ");
             exit(1);
         }
     } else { 
