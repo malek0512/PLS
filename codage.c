@@ -35,11 +35,21 @@ int main(int argc, char *argv[]){
                 coderRle(Tete); 
                 writeListeBytes(Tete,fileCompressed);
                 break;
-            case 2: 
-                //resultatTete = MTF(Tete); 
+            case 2:{ 
+
+                //Calcul des occurences
+                maillon *listeFrequency=NULL;
+                listeFrequency = calculateFrequency(Tete);
+                //Calcul de la table de de Huffman
+                arbre* treeHuffman = ArbreHufman(listeFrequency);
+                maillon* Table =  creationTableHuffman(treeHuffman);
+                
+                resultatTete = MTF2(Tete, Table); 
+                print(resultatTete);
                 //writeListeBytes(resultatTete,fileCompressed);
                 //liberer(resultatTete);
                 break;
+                   }
             case 3: { 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE HUFFMAN ...                     *");

@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
                     //Nous lisons la table
                     //Tant que le maillon suivant AC != Queue (donc j'ai au moins 3 symbole a lire) et que ce n'est pas une succession de 3 #
                     while (AC != NULL && AC->suivant != Queue && !(AC->lettre == '#' && AC->suivant->lettre == '#' && AC->suivant->suivant->lettre == '#')){
-                /*fprintf(stderr,"Zouzou1");*/
+
                         ajoutEnQueue(&tableHead, &tableTail, AC->lettre, AC->suivant->lettre);
                         tableTail->autre2 = AC->suivant->suivant->lettre;
 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
                             exit(1);
                         }
 
-                        //Soit il y a au moins 1 symbole et il est suivit de 1 octet indiquant le nombre de bit significatif, donc AC !=NULL et AC->suivant==Queue
+                        //Soit il y a au moins 1 symbole et il est suivi de 1 octet indiquant le nombre de bit significatif, donc AC !=NULL et AC->suivant==Queue
 
                         Tete = AC;
                         AC = Tete;
@@ -90,11 +90,15 @@ int main(int argc, char *argv[]){
 
 
                         printf("\n Voici la table Huffman \n");
+                        print4(tableHead);
                         
                         printf("\n Voici le mot non codé en Binaire \n");
                         afficherK(Tete);
-                        //arbre* tab = huffmanTableListToTree(tableHead);
-                        //resultatTete = decodageHuffman2(Tete,tab);
+                fprintf(stderr,"Zouzou1");
+                        arbre* tree = arbreFromTable(tableHead);
+                        printArbre(tree);
+                        //resultatTete = decodageHuffman2(Tete,tree);
+                fprintf(stderr,"Zouzou2");
                         //print2(resultatTete);
                         //writeListeBytes(resultatTete,fileCompressed);
                         //liberer(resultatTete);

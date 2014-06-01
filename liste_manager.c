@@ -172,6 +172,19 @@ void print2(maillon* tete)
 	}
         printf("\n");
 }
+void print4(maillon* tete){
+	maillon* save = tete;
+	while(save != NULL)
+	{
+        if (save->lettre != '\n')
+            printf(" Symbole : %c, Code : %d, Nb_bits : %d\n", save->lettre, save->autre, save->autre2);
+        else
+            printf(" Symbole : Retour charriot, Code : %d, Nb_bits : %d\n", save->autre, save->autre2);
+    	save = save->suivant;	
+	}
+        printf("\n");
+}
+
 //Verifie si la liste est vide
 int estVide(maillon* liste)
 {

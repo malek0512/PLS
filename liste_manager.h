@@ -51,6 +51,7 @@ void print(maillon* tete);
 //Car la champs <autre> peut être egale a 0
 //author : Alexandre
 void print2(maillon* tete);
+void print4(maillon* tete);
 
 //renvoie la taille de la liste a partir du pointeur donée
 //author : Alexandre
