@@ -129,9 +129,11 @@ while(save->suivant != NULL)
 
 void liberer(maillon* tete)
 {
-	if(tete->suivant != NULL)
-		liberer(tete->suivant);
-	free(tete);
+    if (tete != NULL){ 
+        if(tete->suivant != NULL)
+            liberer(tete->suivant);
+        free(tete);
+    }
 }
 
 void print(maillon* tete)
@@ -165,21 +167,10 @@ void print2(maillon* tete)
 	maillon* save = tete;
 	while(save != NULL)
 	{
-        if (save->lettre == -1)
-            //On signal que c'est un caractere de EOF, théoriquement non present dans la liste
-            printf("Symbole/Autre : %s / %d\n","Fin de fichier\0" , save->autre);
-        else if (save->lettre == '\n')
-            //On signal que c'est un retour charriot
-            printf("Symbole/Autre : %s / %d\n","Retour charriot\0" , save->autre);
-        else if (save->lettre <128 && save->lettre>=0)
-            //On affiche le caractere
-            printf("Symbole/Autre : %c / %d\n", save->lettre, save->autre);
-        else
-            //On affiche son numero
-            printf("Symbole/Autre : Caractère numero %d / %d\n", save->lettre, save->autre);
-        
+        printf("            %02x", save->lettre);
     	save = save->suivant;	
 	}
+        printf("\n");
 }
 //Verifie si la liste est vide
 int estVide(maillon* liste)
@@ -279,8 +270,8 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
 // Auteur : Marie
 void supprimer(maillon* A, maillon* tete){
 	maillon* tmp;
-	tmp = tete;
-	while(tmp->suivant != NULL && tmp->suivant != A){
+	tmp = tete;                                         //Ajouter un if (tete != NULL)
+	while(tmp->suivant != NULL && tmp->suivant != A){   // Dans le cas où A == tete ?
 		tmp = tmp->suivant;
 	}
 	if(tmp->suivant==NULL)
@@ -424,7 +415,7 @@ int readBit(maillon* Tete, maillon* Queue, char* bit){
         }
 
         //S'il y a au moins un bit a lire
-        if( windowBuffer != -1 && pointeurDeListe->autre2 != 0){
+        if( windowBuffer != -1 && pointeurDeListe->autre != 0){
 
             *bit = 0;
             *bit |= (buffer & (1<<windowBuffer)) >> windowBuffer;
@@ -468,4 +459,14 @@ void copieAutre(maillon* src, maillon* dest)
 		src = src->suivant;
 
 	}
+}
+maillon* getQueue(maillon* Tete){
+    maillon* AC = Tete;
+    if (AC != NULL){ 
+        while(AC->suivant != NULL){
+            AC = AC->suivant;
+        }
+        return AC;
+    }else
+        return NULL;
 }
