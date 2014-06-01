@@ -2,6 +2,24 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+	void printDebug(maillon* liste)
+	{
+		int lulu=0;
+	   maillon *tmp = liste;
+		while(tmp != NULL)
+		{
+			if(lulu ==4)
+			{
+			lulu = 0;
+			printf(" ");
+			}
+			printf("%c", tmp->lettre);
+			tmp = tmp->suivant;
+			lulu++;
+		}
+	    printf("\n");
+	}
+
 void afficherK(maillon* res)
 {
     int i;
@@ -40,38 +58,34 @@ int main()
     //init liste
     liste = ajouterEnQueue(liste,'a',1);
     liste = ajouterEnQueue(liste,'b',2);
-    liste = ajouterEnQueue(liste,'c',2);
-    liste = ajouterEnQueue(liste,'d',4);
+    liste = ajouterEnQueue(liste,'c',1);
+    liste = ajouterEnQueue(liste,'d',2);
     liste = ajouterEnQueue(liste,'e',1);
 
     listeR = ajouterEnQueue(listeR,'a',1);
     listeR = ajouterEnQueue(listeR,'b',1);
-    listeR = ajouterEnQueue(listeR,'c',1);
-    listeR = ajouterEnQueue(listeR,'d',1);
-    listeR = ajouterEnQueue(listeR,'d',1);
-    listeR = ajouterEnQueue(listeR,'c',1);
-    listeR = ajouterEnQueue(listeR,'d',1);
     listeR = ajouterEnQueue(listeR,'b',1);
-    listeR = ajouterEnQueue(listeR,'e',1);
+    listeR = ajouterEnQueue(listeR,'c',1);
     listeR = ajouterEnQueue(listeR,'d',1);
+    listeR = ajouterEnQueue(listeR,'d',1);
+    listeR = ajouterEnQueue(listeR,'e',1);
 
+
+	printf("print du mot NON codé : \n");
+	printDebug(listeR);
 
     tab = ArbreHufman(liste);
-
-    printf("print du mot NON codé : \n");
-    print3(listeR);
-
-    tab = ArbreHufman(liste);
-    printArbre(tab);
+//    printArbre(tab);
 
     res = codageHuffman(listeR, tab);
-    printf("\n\nprint du mot codé : \n");
-    afficherK(res);
+    //printf("\n\nprint du mot codé : \n");
+    //afficherK(res);
 
     //afficherK(res);
     res = decodageHuffman2(res,tab);
+
     printf("\n\nprint du mot décodé : \n");
-    print3(res);
+    printDebug(res);
     
     //afficherK(res);
     //liberer
