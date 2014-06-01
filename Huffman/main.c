@@ -21,21 +21,6 @@
 	    printf("\n");
 	}
 
-void afficherK(maillon* res)
-{
-    int i;
-    maillon *tmp = res;
-    while(tmp != NULL)
-    {
-        for (i=8;i>8-tmp->autre;i--)
-            printf("%d",(tmp->lettre >>(i-1))&1);
-        printf(" ");
-        tmp = tmp->suivant;
-    }
-    printf("\n");
-
-}
-
 void print3(maillon* liste)
 {
 
@@ -55,20 +40,21 @@ int main()
 	maillon* liste2=NULL;
 	arbre* tree;
 
-    liste2 = ajouterEnQueue(liste2,'a',1);
-    liste2 = ajouterEnQueue(liste2,'b',2);
+    liste2 = ajouterEnQueue(liste2,'a',11);
+    liste2 = ajouterEnQueue(liste2,'b',1);
     liste2 = ajouterEnQueue(liste2,'c',3);
-    liste2 = ajouterEnQueue(liste2,'d',6);
-    liste2 = ajouterEnQueue(liste2,'e',12);
+    liste2 = ajouterEnQueue(liste2,'d',8);
+    liste2 = ajouterEnQueue(liste2,'e',2);
+    liste2 = ajouterEnQueue(liste2,'f',7);
 tree = ArbreHufman(liste2);
-printf(" # # source # #\n");
+printf("   # # source # #\n");
 printArbre(tree);
 
-ajouterEnQueue2(&liste,'a',14,4);
-ajouterEnQueue2(&liste,'b',15,4);
-ajouterEnQueue2(&liste,'c',6,3);
+ajouterEnQueue2(&liste,'a',3,2);
+ajouterEnQueue2(&liste,'b',2,4);
+ajouterEnQueue2(&liste,'c',0,3);
 ajouterEnQueue2(&liste,'d',2,2);
-ajouterEnQueue2(&liste,'e',0,1);
+ajouterEnQueue2(&liste,'e',3,4);
 printf("\n\n   # # res # #\n");
 printArbre(arbreFromTable(liste));
 
