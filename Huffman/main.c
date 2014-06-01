@@ -21,6 +21,21 @@
 	    printf("\n");
 	}
 
+//Transferé dans list_manager
+//void afficherK(maillon* res)
+//{
+//    int i;
+//    maillon *tmp = res;
+//    while(tmp != NULL)
+//    {
+//        for (i=8;i>8-tmp->autre;i--)
+//            printf("%d",(tmp->lettre >>(i-1))&1);
+//        printf(" ");
+//        tmp = tmp->suivant;
+//    }
+//    printf("\n");
+//
+//}
 void print3(maillon* liste)
 {
 

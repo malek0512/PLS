@@ -60,8 +60,37 @@ maillon* MTF(maillon* liste,char *mot){
 }
 
 
+maillon* MTF2(maillon* liste, maillon* texte){
+	maillon *tmp,*tmp2;
+	maillon *liste_retour = NULL;
+	maillon *liste_tmp = copieList(liste);	
+    maillon* AC = texte;
 
 
+	if (!estVide(liste))
+	{
+	
+		//creation d'une deuxieme liste chainée mettant dans l'orde les symbole
+        while(AC != NULL)
+		{
 
+			tmp=rechercherElement(liste,AC->lettre);
+			maillon copie;
+			copie.lettre = tmp->lettre;
+			copie.autre = tmp->autre;
+			tmp2=rechercherElement(liste_tmp,AC->lettre);
+			maillon copie2;
+			copie2.lettre = tmp2->lettre;
+			copie2.autre = tmp2->autre;
+			liste_retour = ajouterEnQueue(liste_retour,copie.lettre,copie2.autre);
+			liste_tmp = supprimerElement(liste_tmp,copie2.lettre,copie2.autre);
+			liste_tmp = ajoutEnTete(liste_tmp,copie.lettre,copie.autre);
+			copieAutre(liste,liste_tmp);
 
+            AC = AC->suivant;
+		}
 
+		return liste_retour;
+	}
+	
+}

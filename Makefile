@@ -32,7 +32,7 @@ decodage : decodage.c reader.o RLE.o MTF.o huffman.o liste_manager.o
 	gcc $^ $(CFLAGS) -o $@
 
 huffman.o : Huffman/huffman.c Huffman/huffman.h liste_manager.o 
-	gcc -c $< $(CFLAGS) 
+	gcc -c $< $(CFLAGS)  
 
 RLE.o : Pretraitement/RLE.c Pretraitement/RLE.h liste_manager.o
 	gcc -c $< $(CFLAGS) 
