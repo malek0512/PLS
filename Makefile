@@ -1,11 +1,5 @@
-######################
-# Author : 
-#		   
-######################
-
-
 ######### Variables #########
-
+EXECUTABLES = codage decodage testReader
 #a mettre plus tard pour la forme
 #EMPLACEMENT DES SOURCES
 #CSRC = src/
@@ -14,7 +8,7 @@
 #CINC = include/
 
 # FLAGS POUR GCC: -Idirectory cherche les fichiers des #include< >
-CFLAGS = -std=c99 # -Wall -Werror
+CFLAGS = -std=c99 -Wall -Werror
 
 # NOM DU COMPILATEUR
 CC = gcc
@@ -27,15 +21,24 @@ OBJS = $(SRCS:.c=.o)
 
 ######### Regle générique de compilation #########
 %.o: %.c %.h 
-	gcc -c $< -std=c99
-
+	gcc -c $< $(CFLAGS)
 
 ######### Regles de compilation #########
 
-#
-
-main : 
+codage : codage.c reader.o RLE.o MTF.o huffman.o liste_manager.o
 	gcc $^ $(CFLAGS) -o $@
+
+decodage : decodage.c reader.o RLE.o MTF.o huffman.o liste_manager.o
+	gcc $^ $(CFLAGS) -o $@
+
+huffman.o : Huffman/huffman.c Huffman/huffman.h liste_manager.o 
+	gcc -c $< $(CFLAGS) 
+
+RLE.o : Pretraitement/RLE.c Pretraitement/RLE.h liste_manager.o
+	gcc -c $< $(CFLAGS) 
+
+MTF.o : Pretraitement/MTF.c Pretraitement/MTF.h liste_manager.o
+	gcc -c $< -std=c99 
 
 testReader: testReader.c reader.o liste_manager.o
 	gcc $(CFLAGS) -o testReader testReader.c reader.o liste_manager.o
@@ -46,5 +49,5 @@ All.o :
 ######### Regles de nettoyage #########
 clean :
 	@echo "On supprime tout les .o et les executables"
-	rm -f *.o main
+	rm -f *.o $(EXECUTABLES)
 

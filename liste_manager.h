@@ -139,5 +139,7 @@ int readBit(maillon* Tete, maillon* Queue, char* bit);
 
 void copieAutre(maillon* src, maillon* dest);
 
+//Renvoie la queue de la liste
+maillon* getQueue(maillon* Tete);
 #endif
 

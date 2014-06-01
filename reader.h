@@ -23,11 +23,13 @@ int readFromFileInt(FILE *data);
 
 //Ecrit la liste d'octets passée en parametre, dans le fichier passé en paramètre
 //Ne modifie pas la liste chainée
-void writeListeBytes(maillon* Tete, maillon* Queue, FILE* data);
+void writeListeBytes(maillon* Tete, FILE* data);
 
 //Ecrit un octet passé en parametre, dans le fichier passé en paramètre
 void writeByte(char byte, FILE* data);
 
 FILE* CreerFichier(char *nom_fichier);
 FILE* OuvrirFichier(char *nom_fichier);
+
+maillon* calculateFrequency(maillon* Tete);
 #endif

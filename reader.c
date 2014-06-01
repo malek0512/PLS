@@ -3,7 +3,7 @@
 #include"liste_manager.h"
 
 maillon* readFromFileAlphabet(FILE *data){
-    maillon* Tete, AC;    
+    maillon* Tete;    
 
     // Initialisation du tableau de fréquences, indicé par lettre de 0 a 25
     int freq[26];
@@ -36,9 +36,7 @@ maillon* readFromFileAlphabet(FILE *data){
 }
 
 void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data){
-    maillon* AC;
     char octet = 0;
-    //char c;
     int nb=0;
 
     // Initialisation du tableau de fréquences, indicé par 0 à 255 pour chaque octet
@@ -49,7 +47,8 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
 
     do {
         nb = fread(&octet,sizeof(char),1,data);
-        /*printf("Octet numero %d \n",(int) octet);*/
+
+        //Dans le cas où le premier octet est la fin de fichier
         if (octet != EOF )
             freq[(int) octet] ++;
     }
@@ -64,7 +63,6 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
 }
 
 void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
-    maillon* AC;
     char octet = 0;
     int nb=0;
 
@@ -92,19 +90,12 @@ int readFromFileInt(FILE *data){
     return integer;
 }
 
-void writeListeBytes(maillon* Tete, maillon* Queue, FILE* data){
-    maillon* AC = Queue;
-    //Si Queue == NULL alors Tete == NULL donc la liste est vide
-    if (AC != NULL){ 
-//        //On se trouve a la derniere cellule, on ecrit le nombre de bit significatif du dernier octet 
-//        fwrite(&(AC->autre), sizeof(AC->autre),1,data); //L'affichage sous hexpdumb -Cn 60 "fichier" confirme l'ecriture de l'integer. Peut etre mal interprété par l'editeur de texte
-//        fputc('\n', data);
-
-        AC = Tete;
-        while (AC != NULL){
-            fputc(AC->lettre, data);
-            AC = AC->suivant;
-        }
+void writeListeBytes(maillon* Tete, FILE* data){
+    maillon* AC;
+    AC = Tete;
+    while (AC != NULL){
+        fputc(AC->lettre, data);
+        AC = AC->suivant;
     }
 }
 
@@ -118,4 +109,31 @@ FILE* CreerFichier(char *nom_fichier){
 
 FILE* OuvrirFichier(char *nom_fichier){
     return fopen(nom_fichier,"r");
+}
+maillon* calculateFrequency(maillon* Tete){
+    maillon* AC = Tete;
+
+    // Initialisation du tableau de fréquences, indicé par 0 à 255 pour chaque octet
+    int freq[256];
+
+    for(int i=0; i<256; i++)
+        freq[i]=0;
+
+    while (AC != NULL){ 
+        freq[(int) AC->lettre] ++;
+        AC = AC->suivant;
+    }
+
+//    AC = Tete;
+//    while (AC != NULL){ 
+//        AC->autre = freq[(int) AC->lettre];
+//        AC = AC->suivant;
+//    }
+    maillon *resTete = NULL, *resQueue=NULL;
+    for(int i=0; i<256; i++){
+        if (freq[i] != 0){ 
+            ajoutEnQueue(&resTete, &resQueue, (char) i, freq[i]);
+        }
+    }
+    return resTete;
 }
