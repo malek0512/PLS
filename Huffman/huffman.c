@@ -342,22 +342,36 @@ arbre* arbreFromTable(maillon *table)
 {
 	void ajouterDansArbre(arbre* tree, int code,char symb,int taille)
 	{
-//fprintf(stderr,"\nIN FUN :: Symbole/Valeur/taille en cours de traitement : %c / %i / %i \n",symb,code,taille);
-//fprintf(stderr,"code >> taille -1 == %i\n",code>>(taille-1));		
+		#ifdef DEBUG
+		fprintf(stderr,"\nIN FUN :: Symbole/Valeur/taille en cours de traitement : %c / %i / %i \n",symb,code,taille);
+		fprintf(stderr,"bit lu == %i\n",(code>>(taille-1)) &1);
+		#endif
 		if(taille>1) //il y a encore des bits a lire
 		{
 			if( ( (code>>(taille-1)) &1) == 0)
 			{
-				//	fprintf(stderr,"G");
+				#ifdef DEBUG
+				fprintf(stderr,"G");
+				#endif
 				if (tree -> G == NULL)
+				{
 					tree->G = malloc(sizeof(arbre));
+					(tree->G)->D = NULL;
+					(tree->G)->G = NULL;
+				}
 				ajouterDansArbre(tree->G,code,symb,taille-1);
 			}
 			else
 			{
-				//	fprintf(stderr,"D");
+				#ifdef DEBUG
+				fprintf(stderr,"D");
+				#endif
 				if (tree -> D == NULL)
+				{
 					tree->D = malloc(sizeof(arbre));
+					(tree->D)->D = NULL;
+					(tree->D)->G = NULL;
+				}
 				ajouterDansArbre(tree->D,code,symb,taille-1);
 			}
 		}
@@ -366,13 +380,17 @@ arbre* arbreFromTable(maillon *table)
 
 			if( ((code>>(taille-1)) & 1)== 0)
 			{
-				//	fprintf(stderr,"G // fin");
+				#ifdef DEBUG
+				fprintf(stderr,"G // fin");
+				#endif
 				tree->G = malloc(sizeof(arbre));
 				tree = tree->G;
 			}
 			else//(code>>(taille-1))&1 == 1
 			{
-				 //	fprintf(stderr,"D // fin");
+				#ifdef DEBUG
+				 fprintf(stderr,"D // fin");
+				#endif
 				tree->D = malloc(sizeof(arbre));
 				tree = tree->D;
 			}
@@ -386,12 +404,15 @@ arbre* arbreFromTable(maillon *table)
 	res->D = NULL;
 	while(table != NULL)
 	{
-//		fprintf(stderr,"\n # # Avant apelle FUN");		
-//		printArbre(res);
-//		fprintf(stderr,"\nSymbole/Valeur/taille en cours de traitement : %c / %i / %i \n",table->lettre,table->autre,table->autre2);
+		#ifdef DEBUG
+		fprintf(stderr,"\n # # Avant apelle FUN\n");		
+		printArbre(res);
+		fprintf(stderr,"\nSymbole/Valeur/taille en cours de traitement : %c / %i / %i \n",table->lettre,table->autre,table->autre2);
+		#endif
 		ajouterDansArbre(res,table->autre,table->lettre,table->autre2);
-//		fprintf(stderr,"\n # # Apres apelle FUN");		
-//		printArbre(res);
+		#ifdef DEBUG
+		fprintf(stderr,"\n # # Apres apelle FUN\n");		
+		#endif
 		table = table->suivant;
 	}
 return res;
@@ -408,10 +429,10 @@ void printArbre(arbre* tree)
 		{
 			if(tree->D == NULL && tree->G == NULL)
 			{
-				printf("Symbole/Valeur : %c / ",tree->i.symbole);
+				fprintf(stderr,"Symbole/Valeur : %c / ",tree->i.symbole);
 				for (i=taille-1;i>=0;i--)
-					printf("%d",(value>>i)&1);
-				printf("\n");
+					fprintf(stderr,"%d",(value>>i)&1);
+				fprintf(stderr,"\n");
 			}
 			else
 			{
@@ -423,6 +444,6 @@ void printArbre(arbre* tree)
 		}
 	}
 	
-	printf("\n\nAffichage de l'arbre d'huffman : \n");
+	fprintf(stderr,"\n\nAffichage de l'arbre d'huffman : \n");
 	printArbre_rec(tree,0,0); //peut etre mettre taille a 1, a voir...
 }
