@@ -29,6 +29,7 @@ maillon* creationTableHuffman(arbre* arbreHuffman)
 }
 
 //author : Alex
+//maillon -> lettre == symbole sans codage
 //la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
 maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 {
@@ -332,6 +333,70 @@ arbre* ArbreHufman(maillon* liste)
 	#endif
 	return *tab;
 }
+
+//author : Alex
+// maillon -> lettre == symbole sans codage
+// maillon -> autre == symbole codé par huffman
+// maillon -> autre2 == nombre de bit significatif
+arbre* arbreFromTable(maillon *table)
+{
+	void ajouterDansArbre(arbre* tree, int code,char symb,int taille)
+	{
+//fprintf(stderr,"\nIN FUN :: Symbole/Valeur/taille en cours de traitement : %c / %i / %i \n",symb,code,taille);
+//fprintf(stderr,"code >> taille -1 == %i\n",code>>(taille-1));		
+		if(taille>1) //il y a encore des bits a lire
+		{
+			if( ( (code>>(taille-1)) &1) == 0)
+			{
+				//	fprintf(stderr,"G");
+				if (tree -> G == NULL)
+					tree->G = malloc(sizeof(arbre));
+				ajouterDansArbre(tree->G,code,symb,taille-1);
+			}
+			else
+			{
+				//	fprintf(stderr,"D");
+				if (tree -> D == NULL)
+					tree->D = malloc(sizeof(arbre));
+				ajouterDansArbre(tree->D,code,symb,taille-1);
+			}
+		}
+		else	
+		{	
+
+			if( ((code>>(taille-1)) & 1)== 0)
+			{
+				//	fprintf(stderr,"G // fin");
+				tree->G = malloc(sizeof(arbre));
+				tree = tree->G;
+			}
+			else//(code>>(taille-1))&1 == 1
+			{
+				 //	fprintf(stderr,"D // fin");
+				tree->D = malloc(sizeof(arbre));
+				tree = tree->D;
+			}
+			tree->G = NULL;
+			tree->D = NULL;
+			tree->i.symbole = symb;
+		}
+	}
+	arbre* res = malloc(sizeof(arbre));
+	res->G = NULL;
+	res->D = NULL;
+	while(table != NULL)
+	{
+//		fprintf(stderr,"\n # # Avant apelle FUN");		
+//		printArbre(res);
+//		fprintf(stderr,"\nSymbole/Valeur/taille en cours de traitement : %c / %i / %i \n",table->lettre,table->autre,table->autre2);
+		ajouterDansArbre(res,table->autre,table->lettre,table->autre2);
+//		fprintf(stderr,"\n # # Apres apelle FUN");		
+//		printArbre(res);
+		table = table->suivant;
+	}
+return res;
+}
+
 
 //author : Alex
 void printArbre(arbre* tree)

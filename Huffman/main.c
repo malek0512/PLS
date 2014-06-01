@@ -50,6 +50,31 @@ void print3(maillon* liste)
 
 int main()
 {
+	maillon* liste=NULL;
+	maillon* liste2=NULL;
+	arbre* tree;
+
+    liste2 = ajouterEnQueue(liste2,'a',1);
+    liste2 = ajouterEnQueue(liste2,'b',2);
+    liste2 = ajouterEnQueue(liste2,'c',3);
+    liste2 = ajouterEnQueue(liste2,'d',6);
+    liste2 = ajouterEnQueue(liste2,'e',12);
+tree = ArbreHufman(liste2);
+printf(" # # source # #\n");
+printArbre(tree);
+
+ajouterEnQueue2(&liste,'a',14,4);
+ajouterEnQueue2(&liste,'b',15,4);
+ajouterEnQueue2(&liste,'c',6,3);
+ajouterEnQueue2(&liste,'d',2,2);
+ajouterEnQueue2(&liste,'e',0,1);
+printf("\n\n   # # res # #\n");
+printArbre(arbreFromTable(liste));
+
+return 0;
+}
+// A supprimer: ligne suivante
+/*
     maillon* liste = NULL;
     maillon* res=NULL;
 	maillon* listeR = NULL;
@@ -93,6 +118,8 @@ int main()
     liberer(listeR);
     return 0;
 }
+*/
+
 /*creationTableHuffman
   test 
   arbre* tab = NULL;

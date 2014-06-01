@@ -45,6 +45,9 @@ arbre* ArbreHufman(maillon* liste);
 //affiche le tableau de huffman
 void printArbre(arbre* tree);
 
+//retourne l'arbre associé a une table huffman
+arbre* arbreFromTable(maillon *table);
+
 //utiliser pour le printAbre
 void printArbre_rec(arbre* tree,int value,int taille);
 
