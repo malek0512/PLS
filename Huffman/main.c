@@ -1,6 +1,7 @@
 #include "huffman.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include"../reader.h"
 
 void afficherK(maillon* res)
 {
@@ -32,23 +33,28 @@ void print3(maillon* liste)
 
 int main()
 {
-    maillon* liste = NULL;
+    maillon* liste = NULL, *Queue=NULL;
     maillon* res=NULL;
     arbre* tab=NULL;
     //maillon* tableHuffman = NULL;
     //init liste
-    liste = ajouterEnQueue(liste,'a',1);
-    liste = ajouterEnQueue(liste,'b',2);
-    liste = ajouterEnQueue(liste,'c',2);
-    liste = ajouterEnQueue(liste,'d',4);
-    liste = ajouterEnQueue(liste,'e',16);
-    tab = ArbreHufman(liste);
+        FILE* file = OuvrirFichier("fichier");
+        readFromFileBytesInOrder(&liste,&Queue,file);
+        maillon *listeFrequency=NULL;
+        listeFrequency = calculateFrequency(liste);
+        fclose(file);
+//    liste = ajouterEnQueue(liste,'a',1);
+//    liste = ajouterEnQueue(liste,'b',2);
+//    liste = ajouterEnQueue(liste,'c',2);
+//    liste = ajouterEnQueue(liste,'d',4);
+//    liste = ajouterEnQueue(liste,'e',16);
+    tab = ArbreHufman(listeFrequency);
     //tableHuffman = creationTableHuffman(tab);
     //print2(tableHuffman);
     printf("print du mot NON codé : \n");
     print3(liste);
 
-    tab = ArbreHufman(liste);
+    //tab = ArbreHufman(liste);
     printArbre(tab);
 
     res = codageHuffman(liste, tab);

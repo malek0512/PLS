@@ -1,7 +1,6 @@
 #ifndef DEF_READER
 #define DEF_READER
 
-
 //Retourne la liste des caracteres lus dans un fichier, le champs <autre> contient le nombre d'occurence du caractère
 //Attention l'ordre n'est pas pertinent
 maillon* readFromFileAlphabet(FILE *data);
@@ -32,4 +31,5 @@ FILE* CreerFichier(char *nom_fichier);
 FILE* OuvrirFichier(char *nom_fichier);
 
 maillon* calculateFrequency(maillon* Tete);
+void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed); 
 #endif

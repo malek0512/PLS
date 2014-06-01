@@ -167,7 +167,7 @@ void print2(maillon* tete)
 	maillon* save = tete;
 	while(save != NULL)
 	{
-        printf("            %02x", save->lettre);
+        printf(" %02x", save->lettre);
     	save = save->suivant;	
 	}
         printf("\n");
@@ -469,4 +469,17 @@ maillon* getQueue(maillon* Tete){
         return AC;
     }else
         return NULL;
+}
+void afficherK(maillon* res){
+    int i;
+    maillon *tmp = res;
+    while(tmp != NULL)
+    {
+        for (i=8;i>8-tmp->autre;i--)
+            printf("%d",(tmp->lettre >>(i-1))&1);
+        printf(" ");
+        tmp = tmp->suivant;
+    }
+    printf("\n");
+
 }
