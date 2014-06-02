@@ -6,38 +6,36 @@
 
 int main(void){
 
-	maillon* l;
 	maillon* ft;
 	maillon* fq;
 
-	l = initialiser(l);
 	ft = initialiser(ft);
 	fq = initialiser(fq);
 
-	l = ajouterEnQueue(l, 'a', 1);
-	l = ajouterEnQueue(l, 'a', 1);
-	l = ajouterEnQueue(l, 'c', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'o', 1);
-	l = ajouterEnQueue(l, 'o', 1);
-	l = ajouterEnQueue(l, 'o', 1);
+	ajouterEnQueue(&ft, &fq, 'a', 1);
+	ajouterEnQueue(&ft, &fq, 'a', 1);
+	ajouterEnQueue(&ft, &fq, 'c', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'o', 1);
+	ajouterEnQueue(&ft, &fq, 'o', 1);
+	ajouterEnQueue(&ft, &fq, 'o', 1);
 
 	printf("Affichage de la liste initiale\n");
-	print(l);
+	print(ft);
 
 	printf("\nTest n°1 : Application de l'algorithme RLE sur la liste\n");
-	coderRle(l);
-	print(l);
+	coderRle(ft);
+	print(ft);
 	printf("Fin du test\n");
 
 	printf("\nTest n°2 : Décodage de la nouvelle liste\n");
-	decoderRle(l);
-	print(l);
+	decoderRle(ft);
+	print(ft);
 	printf("Fin du test\n");
 
 	printf("\nTest n°3 : Code d'un fichier texte\n");
