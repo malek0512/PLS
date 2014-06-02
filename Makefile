@@ -41,7 +41,7 @@ MTF.o : Pretraitement/MTF.c Pretraitement/MTF.h liste_manager.o
 	gcc -c $< -std=c99 
 
 testReader: testReader.c reader.o liste_manager.o
-	gcc $(CFLAGS) -o testReader testReader.c reader.o liste_manager.o
+	gcc  -o testReader testReader.c reader.o liste_manager.o
 
 All.o :
 	gcc -c $< $(CFLAGS)

@@ -10,17 +10,19 @@ maillon* creationTableHuffman(arbre* arbreHuffman)
 {
 	void creationTableHuffmanRec(arbre* arbreHuffman,int code, int taille,maillon** res)
 	{
-		if(arbreHuffman->G == NULL && arbreHuffman->D == NULL)
-		{
-			ajouterEnQueue2(res,arbreHuffman->i.symbole,code,taille);
-		}
-		else
-		{
-			if(arbreHuffman->D!=NULL)
-				creationTableHuffmanRec(arbreHuffman->D,(code<<1)+1,taille+1,res);
-			if(arbreHuffman->G!=NULL)
-				creationTableHuffmanRec(arbreHuffman->G,(code<<1),taille+1,res);
-		}
+        if (arbreHuffman != NULL){   
+            if(arbreHuffman->G == NULL && arbreHuffman->D == NULL)
+            {
+                ajouterEnQueue2(res,arbreHuffman->i.symbole,code,taille);
+            }
+            else
+            {
+                if(arbreHuffman->D!=NULL)
+                    creationTableHuffmanRec(arbreHuffman->D,(code<<1)+1,taille+1,res);
+                if(arbreHuffman->G!=NULL)
+                    creationTableHuffmanRec(arbreHuffman->G,(code<<1),taille+1,res);
+            }
+        }
 	}
 	
 	maillon *res = NULL;
