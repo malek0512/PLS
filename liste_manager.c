@@ -45,12 +45,62 @@ maillon* ajoutEnTete(maillon* liste, int lettre, int frequence){
 	return nouvelElement;
 } 
 
+maillon* ajoutEnTete2(maillon* liste, int lettre, int frequence, int autre2){
+	// On crée un nouvel élément 
+	maillon* nouvelElement = malloc(sizeof(maillon));
+ 
+	//On assigne la valeur au nouvel élément 
+	nouvelElement->lettre = lettre;
+
+	//On assigne la frequence au nouvel élément 
+	nouvelElement->autre = frequence;
+
+	//On assigne la frequence au nouvel élément 
+	nouvelElement->autre2 = autre2;	
+ 
+	//On assigne l'adresse de l'élément suivant au nouvel élément 
+	nouvelElement->suivant = liste;
+
+ 
+	//On retourne la nouvelle liste, i.e. le pointeur sur le premier élément
+	return nouvelElement;
+} 
+
 
 maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence)
 {
 	maillon* nouvelElement = malloc(sizeof(maillon));  
 	nouvelElement->lettre = lettre;
 	nouvelElement->autre = frequence;
+ 	// On ajoute en fin, donc aucun élément ne va suivre 
+	nouvelElement->suivant = NULL;
+ 
+	if(liste == NULL)
+	{
+		// Si la liste est videé il suffit de renvoyer l'élément créé 
+		return nouvelElement;
+	}
+	else
+	{
+		/* Sinon, on parcourt la liste à l'aide d'un pointeur temporaire et on
+		indique que le dernier élément de la liste est relié au nouvel élément */
+		maillon* tmp=liste;
+		while(tmp->suivant != NULL)
+		{
+			tmp = tmp->suivant;
+		}
+		tmp->suivant = nouvelElement;
+		return liste;
+    	}
+}
+
+
+maillon* ajouterEnQueue3(maillon* liste, int lettre, int frequence,int autre2)
+{
+	maillon* nouvelElement = malloc(sizeof(maillon));  
+	nouvelElement->lettre = lettre;
+	nouvelElement->autre = frequence;
+	nouvelElement->autre2 = autre2;
  	// On ajoute en fin, donc aucun élément ne va suivre 
 	nouvelElement->suivant = NULL;
  
@@ -278,6 +328,33 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre)
     }
 }
 
+maillon* supprimerElement2(maillon* liste, int lettre, int autre,int autre2)
+{
+    // Liste vide, il n'y a plus rien à supprimer 
+    if(liste == NULL)
+        return NULL;
+ 
+    // Si l'élément en cours de traitement doit être supprimé 
+    if((liste->lettre == lettre) && (liste->autre == autre) &&(liste->autre2 == autre2))
+    {
+        /* On le supprime en prenant soin de mémoriser 
+        l'adresse de l'élément suivant */
+        maillon* tmp = liste->suivant;
+        free(liste);
+        // L'élément ayant été supprimé, la liste commencera à l'élément suivant pointant sur une liste qui ne contient plus aucun élément ayant la valeur recherchée 
+        tmp = supprimerElement2(tmp, lettre,autre,autre2);
+        return tmp;
+    }
+    else
+    {
+        /* Si l'élement en cours de traitement ne doit pas être supprimé,
+        alors la liste finale commencera par cet élément et suivra une liste ne contenant
+        plus d'élément ayant la valeur recherchée */
+        liste->suivant = supprimerElement2(liste->suivant, lettre,autre,autre2);
+        return liste;
+    }
+}
+
 // Supprime l'élément A de la liste tete (et seulement celui là)
 // S'il n'est pas présent dans la liste, on affiche un message
 // Auteur : Marie
@@ -308,6 +385,19 @@ while(save != NULL)
 	return res;	
 }
 
+maillon* copieList2(maillon *liste)
+{
+maillon *res=NULL;
+maillon *save = liste;
+while(save != NULL)
+	{
+	res=ajouterEnQueue3(res,save->lettre,save->autre,save->autre2);
+	save = save->suivant;
+	}
+	return res;	
+}
+
+
 
 void afficherListe(maillon *liste)
 {
@@ -315,6 +405,16 @@ void afficherListe(maillon *liste)
 	while(tmp != NULL)
 	{
 		printf("%c, %d \n", tmp->lettre,tmp->autre);
+		tmp = tmp->suivant;
+	}
+}
+
+void afficherListe2(maillon *liste)
+{
+   maillon *tmp = liste;
+	while(tmp != NULL)
+	{
+		printf("%c, %d , %d\n", tmp->lettre,tmp->autre,tmp->autre2);
 		tmp = tmp->suivant;
 	}
 }
@@ -473,6 +573,19 @@ void copieAutre(maillon* src, maillon* dest)
 
 	}
 }
+
+void copieAutre2(maillon* src, maillon* dest)
+{
+	while((src != NULL) && (dest !=NULL))
+	{
+		dest->autre = src->autre;
+		dest->autre2 = src->autre2;
+		dest = dest->suivant;
+		src = src->suivant;
+
+	}
+}
+
 maillon* getQueue(maillon* Tete){
     maillon* AC = Tete;
     if (AC != NULL){ 

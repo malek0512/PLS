@@ -63,7 +63,7 @@ maillon* MTF(maillon* liste,char *mot){
 maillon* MTF2(maillon* liste, maillon* texte){
 	maillon *tmp,*tmp2;
 	maillon *liste_retour = NULL;
-	maillon *liste_tmp = copieList(liste);	
+	maillon *liste_tmp = copieList2(liste);	
     maillon* AC = texte;
 
 
@@ -78,14 +78,18 @@ maillon* MTF2(maillon* liste, maillon* texte){
 			maillon copie;
 			copie.lettre = tmp->lettre;
 			copie.autre = tmp->autre;
+			copie.autre2 = tmp->autre2;
 			tmp2=rechercherElement(liste_tmp,AC->lettre);
 			maillon copie2;
 			copie2.lettre = tmp2->lettre;
 			copie2.autre = tmp2->autre;
-			liste_retour = ajouterEnQueue(liste_retour,copie.lettre,copie2.autre);
-			liste_tmp = supprimerElement(liste_tmp,copie2.lettre,copie2.autre);
-			liste_tmp = ajoutEnTete(liste_tmp,copie.lettre,copie.autre);
-			copieAutre(liste,liste_tmp);
+			copie2.autre2 = tmp2->autre2;
+
+		
+			liste_retour = ajouterEnQueue3(liste_retour,copie.lettre,copie2.autre,copie2.autre2);
+			liste_tmp = supprimerElement2(liste_tmp,copie2.lettre,copie2.autre,copie2.autre2);
+			liste_tmp = ajoutEnTete2(liste_tmp,copie.lettre,copie.autre,copie.autre2);
+			copieAutre2(liste,liste_tmp);
 
             AC = AC->suivant;
 		}
@@ -94,3 +98,5 @@ maillon* MTF2(maillon* liste, maillon* texte){
 	}
 	
 }
+
+
