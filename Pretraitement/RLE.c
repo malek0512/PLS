@@ -1,10 +1,11 @@
-#include "RLE.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "RLE.h"
 
 // On traite la liste tete en suivant l'algorithme RLE
 // Auteur : Marie
 void coderRle(maillon* tete){
+
 	// On vérifie que la liste courante comporte au moins deux éléments
 	if(tete != NULL && tete->suivant != NULL){
 		maillon* tmp;
@@ -17,12 +18,14 @@ void coderRle(maillon* tete){
 			// Si deux éléments qui se suivent ont les mêmes lettres, on commence à compter le
 			// nombre d'éléments comportant la même lettre après les deux premiers
 			if(tmp->lettre == tmp->suivant->lettre){
+
 				cmp = 0;
 				tmp = tmp->suivant;
 
 				// Tant que l'élément suivant est identique à l'élément courant, on le supprime et
 				// on compte
 				while(tmp->suivant != NULL && tmp->lettre == tmp->suivant->lettre){
+
 					cmp++;
 					supprimer(tmp->suivant, tete);
 				}
@@ -36,10 +39,8 @@ void coderRle(maillon* tete){
 				new->autre = 0;
 				insererElement(new, tmp);
 			}
-			else{
-				if(tmp->suivant != NULL)
-					tmp = tmp->suivant;
-			}
+			if(tmp->suivant != NULL)
+				tmp = tmp->suivant;
 		}
 	}
 }
@@ -74,10 +75,8 @@ void decoderRle(maillon* tete){
 					insererElement(new, tmp);
 				}
 			}
-			else{
-				if(tmp->suivant != NULL)
-					tmp = tmp->suivant;
-			}
+			if(tmp->suivant != NULL)
+				tmp = tmp->suivant;
 		}
 	}
 }

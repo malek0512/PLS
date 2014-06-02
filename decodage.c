@@ -49,7 +49,7 @@ int main(int argc, char *argv[]){
                 resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
 
                 printf("\nVoici le message décodé en Hexa\n");
-                print2(resultatTete);
+               // print2(resultatTete);
                 
                 //Ecriture du message dans le fichier
                 writeListeBytes(resultatTete,fileCompressed);
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]){
                    }
             default: printf("Erreur de choix");
         }
-
+	
                 liberer(Tete);
                 fclose(fileCompressed);
     }
@@ -120,10 +120,11 @@ maillon* decodageHuffmanFinal(maillon** Tete, maillon** Queue){
     afficherK(*Tete);
 #endif
 
+
     //Conversion de la table de Huffman de type maillon en type arbre
     arbre* tree = arbreFromTable(tableHead);
-    printArbre(tree);
+   // printArbre(tree);
 
     //Decodage du message
-    return decodageHuffman2(*Tete,tree);
+    return decodageHuffman(*Tete,tree);
 }

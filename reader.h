@@ -1,5 +1,7 @@
 #ifndef DEF_READER
 #define DEF_READER
+#include "Huffman/huffman.h"	// j'ai été oubligée de rajouter cette ligne pour que ça compile chez moi
+								// à enlever si jamais ça vous pose problème...
 
 //Retourne la liste des caracteres lus dans un fichier, le champs <autre> contient le nombre d'occurence du caractère
 //Attention l'ordre n'est pas pertinent
