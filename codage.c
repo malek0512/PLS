@@ -118,12 +118,19 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE COCKTAIL ...                    *");
                 printf("\n**********************************************************\n");
-
+				printf("Veuillez faire un choix des prétraitements à opérer :\n");
+				printf("RLE?\n");
+				int RLE,mtf;
+				if(scanf("%d", &RLE)==0)
+					return -1;
+				printf("MTF?\n");
+				if(scanf("%d", &mtf)==0)
+					return -1;
 #ifdef DEBUGG
                 printf("\n Voici le contenu du fichier en Hexa \n");
                 print2(Tete);
 #endif
-
+				if(RLE){
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE ...                        *");
                 printf("\n**********************************************************\n");
@@ -133,7 +140,8 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE FIN                    *");
                 printf("\n**********************************************************\n");
-
+				}	
+                if(mtf){
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE MTF ...                        *");
                 printf("\n**********************************************************\n");
@@ -146,7 +154,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE MTF FIN                    *");
                 printf("\n**********************************************************\n");
-
+			}
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE HUFFMAN ...                     *");
                 printf("\n**********************************************************\n");
