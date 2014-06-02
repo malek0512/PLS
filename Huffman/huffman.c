@@ -87,18 +87,22 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 			#endif
 		}
 		#ifdef DEBUG
+		/*
 		fprintf(stderr,"%c -> ",saveArbre->lettre);
 		cpt=0;
+		*/
 		#endif
 		for(i=saveArbre->autre2-1;i>=0;i--)
 		{
 			#ifdef DEBUG
+			/*
 			if(cpt == 4)
 				{
 				cpt=0;
 				printf(" ");
 				}
 			fprintf(stderr,"%d",( (saveArbre->autre)>>i)&1);
+			*/
 			#endif
 			writeBit2(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
