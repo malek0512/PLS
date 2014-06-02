@@ -93,7 +93,6 @@ int main(int argc, char *argv[]){
                 printf("\n Voici la table de Huffman \n");
                 printArbre(arbreFromTable(creationTableHuffman(tree)));
 #endif
-=======
 
                 //Encodage du fichier
                 resultatTete = codageHuffman(Tete, tree);

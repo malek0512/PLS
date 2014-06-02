@@ -44,7 +44,6 @@ MTF.o : Pretraitement/MTF.c Pretraitement/MTF.h liste_manager.o
 testReader: testReader.c reader.o liste_manager.o
 	gcc  -o testReader testReader.c reader.o liste_manager.o
 
-
 ######### Regles de nettoyage #########
 clean :
 	@echo "On supprime tout les .o et les executables"

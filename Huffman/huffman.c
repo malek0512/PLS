@@ -19,29 +19,30 @@
 //author : Alex
 maillon* creationTableHuffman(arbre* arbreHuffman)
 {
-	void creationTableHuffmanRec(arbre* arbreHuffman,int code, int taille,maillon** res)
+	void creationTableHuffmanRec(arbre* arbreHuffman,int code, int taille,maillon** res_T,maillon** res_Q)
 	{
         if (arbreHuffman != NULL){   
             if(arbreHuffman->G == NULL && arbreHuffman->D == NULL)
             {
-                ajouterEnQueue2(res,arbreHuffman->i.symbole,code,taille);
+                ajouterEnQueue2(res_T,res_Q,arbreHuffman->i.symbole,code,taille);
             }
             else
             {
                 if(arbreHuffman->D!=NULL)
-                    creationTableHuffmanRec(arbreHuffman->D,(code<<1)+1,taille+1,res);
+                    creationTableHuffmanRec(arbreHuffman->D,(code<<1)+1,taille+1,res_T,res_Q);
                 if(arbreHuffman->G!=NULL)
-                    creationTableHuffmanRec(arbreHuffman->G,(code<<1),taille+1,res);
+                    creationTableHuffmanRec(arbreHuffman->G,(code<<1),taille+1,res_T,res_Q);
             }
         }
 	}
 	
-	maillon *res = NULL;
+	maillon *res_T = NULL;
+	maillon *res_Q = NULL;
 	if(arbreHuffman == 0)
 		fprintf(stderr,"   # # # Error # # #\nhuffman.c // creationTableHuffman() \nL'arbre d'huffman donnée est vide\n");
 		
-	creationTableHuffmanRec(arbreHuffman,0,0,&res);
-	return res;
+	creationTableHuffmanRec(arbreHuffman,0,0,&res_T,&res_Q);
+	return res_T;
 }
 
 //author : Alex
@@ -95,7 +96,7 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 		}
 		for(i=saveArbre->autre2-1;i>=0;i--)
 		{
-			writeBit2(&tete, &queue, ( (saveArbre->autre)>>i)&1);
+			writeBit(&tete, &queue, ( (saveArbre->autre)>>i)&1);
 		}
 		saveArbre = tableHuffman;
 		saveListe = saveListe->suivant;	
@@ -137,7 +138,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
     maillon* Tete = liste;
     arbre* AvC = tableHuffman;
 
-    int bit = readBit2(Tete);
+    int bit = readBit(Tete);
 
 	#ifdef HUFDEBUG_DECODAGE
 	fprintf(stderr,"   ### Fin : decodageHuffman ###\n");
@@ -150,10 +151,10 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 			AvC = AvC->D;
 		if (AvC->D == NULL && AvC->G == NULL)
 		{ 
-	    		ajoutEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
+	    		ajouterEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
 	    		AvC = tableHuffman;
 		}
-	        bit = readBit2(Tete);
+	        bit = readBit(Tete);
 	}
 	#ifdef HUFDEBUG_DECODAGE
 	printf("\nMot décodé : \n");

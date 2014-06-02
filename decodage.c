@@ -6,7 +6,6 @@
 #include"Pretraitement/RLE.h"
 #include"reader.h"
 #include<string.h>
-#define DEBUGG
 
 
 //Author Malek
