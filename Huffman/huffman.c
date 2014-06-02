@@ -1,5 +1,5 @@
 #include "huffman.h"
-//#define DEBUG
+#define DEBUG
 //author : Alex
 
 #ifdef DEBUG
@@ -24,8 +24,11 @@ maillon* creationTableHuffman(arbre* arbreHuffman)
             }
         }
 	}
-
+	
 	maillon *res = NULL;
+	if(arbreHuffman == 0)
+		fprintf(stderr,"   # # # Error # # #\nhuffman.c // creationTableHuffman() \nL'arbre d'huffman donnée est vide\n");
+		
 	creationTableHuffmanRec(arbreHuffman,0,0,&res);
 	return res;
 }
@@ -70,10 +73,18 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 	{	
 		
 		//lecture d'un octet
-		saveArbre = tableHuffman;
 		while (saveArbre->lettre != saveListe->lettre)
-		{//le symbole apartient donc wdec de check la valeur du i
+		{//le symbole apartient a l'arbre comme il doit appartenir a la liste
 			saveArbre= saveArbre->suivant;
+			#ifdef DEBUG
+			if(saveArbre==NULL)
+			{
+				fprintf(stderr,"\n   # # # Error # # #\n");
+				fprintf(stderr,"hufman.c  // codageHuffman() \n");
+				fprintf(stderr,"Le caractere \"%c\" de la liste de caractere devant etre codé n'a pas était trouver dans l'arbre \n",saveListe->lettre);
+				fprintf(stderr,"Segmentation fault en approche\n");
+			}
+			#endif
 		}
 		#ifdef DEBUG
 		fprintf(stderr,"%c -> ",saveArbre->lettre);
@@ -94,6 +105,7 @@ maillon* codageHuffman(maillon *liste, arbre *arbreHuffman)
 		#ifdef DEBUG
 		fprintf(stderr,"\n");
 		#endif
+		saveArbre = tableHuffman;
 		saveListe = saveListe->suivant;	
 	}
 	liberer(tableHuffman);
@@ -253,6 +265,15 @@ arbre* ArbreHufman(maillon* liste)
 	#ifdef DEBUG
 	fprintf(stderr,"Liste des noeuds fusionner :\n");
 	#endif
+	if(tailleT == 1)
+	{
+	#ifdef DEBUG
+	fprintf(stderr,"Aucun noeud fusionner, liste à symbole unique\n");
+	#endif
+	tab[0] -> D = malloc(sizeof(arbre));
+	(tab[0] -> D) -> i.proba=liste->autre;
+	(tab[0] -> D) -> i.symbole=liste->lettre;
+	}
 	while(tailleT>=2)
 	{//tant que tous les symbole sont non traité (au moins deux arbre a fusionner) :
 		//initialisation des varaible min1 et min2 au premiers indice
@@ -404,19 +425,28 @@ arbre* arbreFromTable(maillon *table)
 	arbre* res = malloc(sizeof(arbre));
 	res->G = NULL;
 	res->D = NULL;
+	#ifdef DEBUG
+	fprintf(stderr,"\n   # # Debut : arbreFromTable() # # #\n");		
+	#endif
 	while(table != NULL)
 	{
 		#ifdef DEBUG
-		fprintf(stderr,"\n # # Avant apelle FUN\n");		
-		printArbre(res);
-		fprintf(stderr,"\nSymbole/Valeur/taille en cours de traitement : %c / %i / %i \n",table->lettre,table->autre,table->autre2);
+		//fprintf(stderr,"\n #Avant apelle FUN\n");		
+		//printArbre(res);
+		//fprintf(stderr,"\nSymbole/Valeur/taille en cours de traitement : %c / %i / %i \n",table->lettre,table->autre,table->autre2);
 		#endif
 		ajouterDansArbre(res,table->autre,table->lettre,table->autre2);
 		#ifdef DEBUG
-		fprintf(stderr,"\n # # Apres apelle FUN\n");		
+		//fprintf(stderr,"\n # # Apres apelle FUN\n");		
 		#endif
 		table = table->suivant;
 	}
+	#ifdef DEBUG
+	fprintf(stderr,"arbre obtenu : \n");
+	printArbre(res);
+	fprintf(stderr,"\n   # # Fin : arbreFromTable() # # #\n");		
+	#endif
+
 return res;
 }
 

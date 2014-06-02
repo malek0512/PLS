@@ -51,68 +51,34 @@ void print3(maillon* liste)
 
 int main()
 {
-	maillon* liste=NULL;
-	maillon* liste2=NULL;
-	arbre* tree;
-
-    liste2 = ajouterEnQueue(liste2,'a',11);
-    liste2 = ajouterEnQueue(liste2,'b',1);
-    liste2 = ajouterEnQueue(liste2,'c',3);
-    liste2 = ajouterEnQueue(liste2,'d',8);
-    liste2 = ajouterEnQueue(liste2,'e',2);
-    liste2 = ajouterEnQueue(liste2,'f',7);
-tree = ArbreHufman(liste2);
-printf("   # # source # #\n");
-printArbre(tree);
-
-ajouterEnQueue2(&liste,'a',3,2);
-ajouterEnQueue2(&liste,'b',2,4);
-ajouterEnQueue2(&liste,'c',0,3);
-ajouterEnQueue2(&liste,'d',2,2);
-ajouterEnQueue2(&liste,'e',3,4);
-printf("\n\n   # # res # #\n");
-printArbre(arbreFromTable(liste));
-
-return 0;
-}
-// A supprimer: ligne suivante
-/*
     maillon* liste = NULL;
-=======
-    maillon* liste = NULL, *Queue=NULL;
->>>>>>> e24f478dba5d31f6007a495c5094605355b8529e
-    maillon* res=NULL;
-	maillon* listeR = NULL;
+//    maillon* res=NULL;
+    maillon* listeR = NULL;
     arbre* tab=NULL;
     //maillon* tableHuffman = NULL;
-    //init liste
-<<<<<<< HEAD
     liste = ajouterEnQueue(liste,'a',1);
-    liste = ajouterEnQueue(liste,'b',2);
-    liste = ajouterEnQueue(liste,'c',1);
-    liste = ajouterEnQueue(liste,'d',2);
-    liste = ajouterEnQueue(liste,'e',1);
+//    liste = ajouterEnQueue(liste,'b',2);
+//    liste = ajouterEnQueue(liste,'c',1);
+//    liste = ajouterEnQueue(liste,'d',2);
+//    liste = ajouterEnQueue(liste,'e',1);
 
     listeR = ajouterEnQueue(listeR,'a',1);
-    listeR = ajouterEnQueue(listeR,'b',1);
-    listeR = ajouterEnQueue(listeR,'b',1);
-    listeR = ajouterEnQueue(listeR,'c',1);
-    listeR = ajouterEnQueue(listeR,'d',1);
-    listeR = ajouterEnQueue(listeR,'d',1);
-    listeR = ajouterEnQueue(listeR,'e',1);
+//    listeR = ajouterEnQueue(listeR,'b',1);
+//    listeR = ajouterEnQueue(listeR,'c',1);
+//    listeR = ajouterEnQueue(listeR,'c',1);
+//    listeR = ajouterEnQueue(listeR,'d',1);
+//    listeR = ajouterEnQueue(listeR,'d',1);
+//    listeR = ajouterEnQueue(listeR,'e',1);
 
 
 	printf("print du mot NON codé : \n");
 	printDebug(listeR);
 
     tab = ArbreHufman(liste);
-//    printArbre(tab);
-=======
-        FILE* file = OuvrirFichier("fichier");
-        readFromFileBytesInOrder(&liste,&Queue,file);
-        maillon *listeFrequency=NULL;
-        listeFrequency = calculateFrequency(liste);
-        fclose(file);
+   printArbre(tab);
+return 0;
+}
+/*
 //    liste = ajouterEnQueue(liste,'a',1);
 //    liste = ajouterEnQueue(liste,'b',2);
 //    liste = ajouterEnQueue(liste,'c',2);
@@ -126,7 +92,6 @@ return 0;
 
     //tab = ArbreHufman(liste);
     printArbre(tab);
->>>>>>> e24f478dba5d31f6007a495c5094605355b8529e
 
     res = codageHuffman(listeR, tab);
     //printf("\n\nprint du mot codé : \n");
@@ -145,7 +110,6 @@ return 0;
     return 0;
 }
 */
-
 /*creationTableHuffman
   test 
   arbre* tab = NULL;
