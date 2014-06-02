@@ -56,7 +56,7 @@ int main(int argc, char *argv[]){
                 printf("\n Voici la table de Huffman après MTF \n");
                 print4(resultatTete);
 #endif
-                
+                writeListeBytes(resultatTete,fileCompressed);
                 liberer(resultatTete);
                 liberer(Tete);
                 printf("\n**********************************************************");
