@@ -1,0 +1,118 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 54.55      0.90     0.90        1     0.90     1.26  decodageHuffman
+ 17.58      1.19     0.29 39664893     0.00     0.00  readBit
+  7.88      1.32     0.13  9924172     0.00     0.00  ajouterEnQueue
+  5.45      1.41     0.09        1     0.09     0.15  readHuffmanTable
+  4.85      1.49     0.08        2     0.04     0.04  liberer
+  3.64      1.55     0.06        1     0.06     0.06  size
+  3.64      1.61     0.06        1     0.06     0.06  writeListeBytes
+  1.21      1.63     0.02        1     0.02     0.08  readFromFileBytesInOrder
+  0.61      1.64     0.01                             ajoutEnTete2
+  0.61      1.65     0.01                             copieAutre
+  0.00      1.65     0.00      256     0.00     0.00  ArbreHufman
+  0.00      1.65     0.00      256     0.00     0.00  ajouterEnQueue2
+  0.00      1.65     0.00      256     0.00     0.00  writeHuffmanTable
+  0.00      1.65     0.00        1     0.00     0.00  CreerFichier
+  0.00      1.65     0.00        1     0.00     0.00  OuvrirFichier
+  0.00      1.65     0.00        1     0.00     0.00  arbreFromTable
+  0.00      1.65     0.00        1     0.00     1.41  decodageHuffmanFinal
+  0.00      1.65     0.00        1     0.00     0.00  initReadBit
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 0.61% of 1.65 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     98.8    0.00    1.63                 main [1]
+                0.00    1.41       1/1           decodageHuffmanFinal [2]
+                0.02    0.06       1/1           readFromFileBytesInOrder [7]
+                0.08    0.00       2/2           liberer [8]
+                0.06    0.00       1/1           writeListeBytes [10]
+                0.00    0.00       1/1           OuvrirFichier [17]
+                0.00    0.00       1/1           CreerFichier [16]
+-----------------------------------------------
+                0.00    1.41       1/1           main [1]
+[2]     85.2    0.00    1.41       1         decodageHuffmanFinal [2]
+                0.90    0.36       1/1           decodageHuffman [3]
+                0.09    0.06       1/1           readHuffmanTable [5]
+                0.00    0.00       1/1           arbreFromTable [18]
+-----------------------------------------------
+                0.90    0.36       1/1           decodageHuffmanFinal [2]
+[3]     76.1    0.90    0.36       1         decodageHuffman [3]
+                0.29    0.00 39664893/39664893     readBit [4]
+                0.07    0.00 4964517/9924172     ajouterEnQueue [6]
+                0.00    0.00       1/1           initReadBit [19]
+-----------------------------------------------
+                0.29    0.00 39664893/39664893     decodageHuffman [3]
+[4]     17.6    0.29    0.00 39664893         readBit [4]
+-----------------------------------------------
+                                 257             readHuffmanTable [5]
+                0.09    0.06       1/1           decodageHuffmanFinal [2]
+[5]      9.1    0.09    0.06       1+257     readHuffmanTable [5]
+                0.06    0.00       1/1           size [9]
+                0.00    0.00     256/256         writeHuffmanTable [15]
+                0.00    0.00     256/256         ajouterEnQueue2 [14]
+                                 257             readHuffmanTable [5]
+-----------------------------------------------
+                0.06    0.00 4959655/9924172     readFromFileBytesInOrder [7]
+                0.07    0.00 4964517/9924172     decodageHuffman [3]
+[6]      7.9    0.13    0.00 9924172         ajouterEnQueue [6]
+-----------------------------------------------
+                0.02    0.06       1/1           main [1]
+[7]      5.1    0.02    0.06       1         readFromFileBytesInOrder [7]
+                0.06    0.00 4959655/9924172     ajouterEnQueue [6]
+-----------------------------------------------
+                0.08    0.00       2/2           main [1]
+[8]      4.8    0.08    0.00       2         liberer [8]
+-----------------------------------------------
+                0.06    0.00       1/1           readHuffmanTable [5]
+[9]      3.6    0.06    0.00       1         size [9]
+-----------------------------------------------
+                0.06    0.00       1/1           main [1]
+[10]     3.6    0.06    0.00       1         writeListeBytes [10]
+-----------------------------------------------
+                                                 <spontaneous>
+[11]     0.6    0.01    0.00                 ajoutEnTete2 [11]
+-----------------------------------------------
+                                                 <spontaneous>
+[12]     0.6    0.01    0.00                 copieAutre [12]
+-----------------------------------------------
+                                1796             ArbreHufman [13]
+                0.00    0.00     256/256         arbreFromTable [18]
+[13]     0.0    0.00    0.00     256+1796    ArbreHufman [13]
+                                1796             ArbreHufman [13]
+-----------------------------------------------
+                0.00    0.00     256/256         readHuffmanTable [5]
+[14]     0.0    0.00    0.00     256         ajouterEnQueue2 [14]
+-----------------------------------------------
+                0.00    0.00     256/256         readHuffmanTable [5]
+[15]     0.0    0.00    0.00     256         writeHuffmanTable [15]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[16]     0.0    0.00    0.00       1         CreerFichier [16]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[17]     0.0    0.00    0.00       1         OuvrirFichier [17]
+-----------------------------------------------
+                0.00    0.00       1/1           decodageHuffmanFinal [2]
+[18]     0.0    0.00    0.00       1         arbreFromTable [18]
+                0.00    0.00     256/256         ArbreHufman [13]
+-----------------------------------------------
+                0.00    0.00       1/1           decodageHuffman [3]
+[19]     0.0    0.00    0.00       1         initReadBit [19]
+-----------------------------------------------
+
+Index by function name
+
+  [13] ArbreHufman            [18] arbreFromTable          [4] readBit
+  [16] CreerFichier           [12] copieAutre              [7] readFromFileBytesInOrder
+  [17] OuvrirFichier           [3] decodageHuffman         [5] readHuffmanTable
+  [11] ajoutEnTete2            [2] decodageHuffmanFinal    [9] size
+   [6] ajouterEnQueue         [19] initReadBit            [15] writeHuffmanTable
+  [14] ajouterEnQueue2         [8] liberer                [10] writeListeBytes

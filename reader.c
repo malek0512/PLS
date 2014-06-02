@@ -90,9 +90,12 @@ unsigned char readFromFileByte(FILE *data){
 
 
 int readFromFileInt(FILE *data){
-    int integer;
-    fread(&integer,sizeof(int),1,data);
-    return integer;
+    int integer=0;
+    if(fread(&integer,sizeof(int),1,data)!=0)
+		return integer;
+    else {printf("Erreur de lecture dans readFromFileInt");
+		return integer;
+		}
 }
 
 void writeListeBytes(maillon* Tete, FILE* data){

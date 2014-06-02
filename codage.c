@@ -28,7 +28,8 @@ int main(int argc, char *argv[]){
 
 
         printf("Veuillez faire un choix de compression : \n 1 - RLE \n 2 - MTF \n 3 - Huffman \n 4 - Combinaison des 3 modes de compression \n");
-        scanf("%d", &choix);
+        if(scanf("%d", &choix)==0)
+			return -1;
 
         switch(choix){
             case 1: 
