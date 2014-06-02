@@ -33,11 +33,16 @@ void insererElement(maillon* A, maillon* B);
 //author Quentin
 maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
 
+maillon* ajoutEnTete2(maillon* liste, int lettre, int frequence, int autre2);
+
+
 //Ajout en queue
 maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence);
 
 //Ajout en queue avec 3 parametre
 void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2);
+
+maillon* ajouterEnQueue3(maillon* liste, int lettre, int frequence,int autre2);
 
 //Ajoute en Queue un maillon
 //Author : Malek
@@ -92,14 +97,18 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre);
 // Auteur : Marie
 void supprimer(maillon* A, maillon* tete);
 
+maillon* supprimerElement2(maillon* liste, int lettre, int autre,int autre2);
+
 //Renvoie une copie de la liste donnée en argument
 //author : Alexandre
 maillon* copieList(maillon *liste);
 
+maillon* copieList2(maillon *liste);
+
 //Afficher la liste
 void afficherListe(maillon *liste);
 
-
+void afficherListe2(maillon *liste);
 
 //Et pouf un miracle aparrait
 //author : Alex
@@ -139,6 +148,8 @@ void writeBit(maillon** Tete, maillon** Queue, char bit);
 int readBit(maillon* Tete, maillon* Queue, char* bit);
 
 void copieAutre(maillon* src, maillon* dest);
+
+void copieAutre2(maillon* src, maillon* dest);
 
 //Renvoie la queue de la liste
 maillon* getQueue(maillon* Tete);

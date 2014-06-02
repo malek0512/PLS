@@ -9,6 +9,8 @@ maillon* MTF(maillon* liste,char *mot);
 
 maillon* MTF2(maillon* liste, maillon* texte);
 
+
+
 #endif
 
 
