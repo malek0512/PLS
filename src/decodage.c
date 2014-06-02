@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"liste_manager.h"
-#include"Huffman/huffman.h"
-#include"Pretraitement/MTF.h"
-#include"Pretraitement/RLE.h"
-#include"reader.h"
+#include"../includes/liste_manager.h"
+#include"../includes/huffman.h"
+#include"../includes/MTF.h"
+#include"../includes/RLE.h"
+#include"../includes/reader.h"
 #include<string.h>
 
 

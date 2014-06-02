@@ -1,0 +1,17 @@
+
+COMPILATION:
+La commande make suffit a générer l'ensemble des .o dans le dossier objs/,
+ainsi que les deux executables "codage" et "decodage" dans le repertoire courant.
+
+
+UTILISATION:
+Des fichiers test sont présents dans le dossier tests/
+Les deux executables prennent un fichier en parametre
+exemple : ./codage tests/fichier ou ./decodage tests/fichier
+
+L'execution de la fonction codage, après renseignement du type d'encodage, ecrit
+le resultat dans un fichier "nom_du_fichier".comp
+De même, decodage, ecrit le resultat dans un fichier "nom_du_fichier".decomp
+L'idée est de pouvoir comparer ces deux fichiers par la commande :
+./diff fichier.comp fichier.decomp
+

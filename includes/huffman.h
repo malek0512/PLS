@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "../liste_manager.h"
+#include "liste_manager.h"
 
 //gauche zero ; droite 1
 //#### TypeDef ###//
