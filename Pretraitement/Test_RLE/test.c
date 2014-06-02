@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../RLE.h"
-#include "../../liste_manager.h"
-#include "../../reader.h"
+#include "../../includes/RLE.h"
+#include "../../includes/liste_manager.h"
+#include "../../includes/reader.h"
 
 int main(void){
 
