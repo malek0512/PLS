@@ -22,9 +22,10 @@ void coderRle(maillon* tete){
 				cmp = 0;
 				tmp = tmp->suivant;
 
-				// Tant que l'élément suivant est identique à l'élément courant, on le supprime et
-				// on compte
-				while(tmp->suivant != NULL && tmp->lettre == tmp->suivant->lettre){
+				// Tant que l'élément suivant est identique à l'élément courant et qu'on ne dépasse pas 255
+				// répétitions (puisqu'on code le nombre de répétitions sur un octet), on le supprime et on
+				// compte
+				while(tmp->suivant != NULL && tmp->lettre == tmp->suivant->lettre && cmp<255){
 
 					cmp++;
 					supprimer(tmp->suivant, tete);

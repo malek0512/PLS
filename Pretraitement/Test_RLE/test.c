@@ -110,9 +110,19 @@ int main(void){
 	writeListeBytes(ft, htmlFD);
 	printf("Fin du test\n");
 
-	liberer(l);
-	liberer(ft);
-	liberer(fq);
+	printf("\nTest n°7 : Code d'un son (MP3)\n");
+	char sound[] = "files/sound.mp3";
+	char soundS[] = "files/soundS.mp3";
+	char soundD[] = "files/soundD.mp3";
+	FILE* soundF = OuvrirFichier(sound);
+	FILE* soundFS = CreerFichier(soundS);
+	FILE* soundFD = CreerFichier(soundD);
+	readFromFileBytesInOrder(&ft, &fq, soundF);
+	coderRle(ft);
+	writeListeBytes(ft, soundFS);
+	decoderRle(ft);
+	writeListeBytes(ft, soundFD);
+	printf("Fin du test\n");
 
 	return 0;
 
