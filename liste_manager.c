@@ -3,7 +3,6 @@
 #include "liste_manager.h"
 
 //Variables globale de la fonction writeBit et readBit
-static int cptMagic =0;
 static unsigned char buffer2=0;
 static int windowBuffer2=-1;
 static int windowBuffer3=8;
@@ -122,8 +121,6 @@ int size(maillon* tete)
 int res = 1;
 maillon* save=tete;
 
-cptMagic++;
-printf("%i\n",cptMagic);
 if (save == NULL)
 	return 0;
 while(save->suivant != NULL)

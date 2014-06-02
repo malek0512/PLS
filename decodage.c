@@ -46,9 +46,11 @@ int main(int argc, char *argv[]){
                 printf("\n*               DECODAGE HUFFMAN ...                     *");
                 printf("\n**********************************************************\n");
                 resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
-
+				
+				#ifdef DEBUGG
                 printf("\nVoici le message décodé en Hexa\n");
-               // print2(resultatTete);
+				print2(resultatTete);
+				#endif
                 
                 //Ecriture du message dans le fichier
                 writeListeBytes(resultatTete,fileCompressed);
