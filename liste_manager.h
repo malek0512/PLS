@@ -31,16 +31,16 @@ void insererElement(maillon* A, maillon* B);
 
 //Ajoute en Tete une lettre et sa frequence
 //author Quentin
-maillon* ajoutEnTete(maillon* Tete, int lettre, int frequence);
+void ajoutEnTete(maillon** liste, maillon** queue, int lettre, int frequence);
 
-maillon* ajoutEnTete2(maillon* liste, int lettre, int frequence, int autre2);
+void ajoutEnTete2(maillon** liste, maillon** queue, int lettre, int frequence, int autre2);
 
 
 //Ajout en queue
-maillon* ajouterEnQueue(maillon* liste, int lettre, int frequence);
+void ajouterEnQueue(maillon** tete,maillon** queue, int lettre, int autre);
 
 //Ajout en queue avec 3 parametre
-void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2);
+void ajouterEnQueue2(maillon** tete,maillon** queue, int lettre, int autre,int autre2);
 
 maillon* ajouterEnQueue3(maillon* liste, int lettre, int frequence,int autre2);
 
@@ -101,9 +101,7 @@ maillon* supprimerElement2(maillon* liste, int lettre, int autre,int autre2);
 
 //Renvoie une copie de la liste donnée en argument
 //author : Alexandre
-maillon* copieList(maillon *liste);
-
-maillon* copieList2(maillon *liste);
+void copieList(maillon** teteSrc, maillon** teteDest, maillon** queueDest);
 
 //Afficher la liste
 void afficherListe(maillon *liste);
@@ -112,40 +110,11 @@ void afficherListe2(maillon *liste);
 
 //Et pouf un miracle aparrait
 //author : Alex
-void writeBit2(maillon** Tete, maillon** Queue, unsigned char bit);
+void writeBit(maillon** Tete, maillon** Queue, unsigned char bit);
 
 //Et pas, un second miracle aparrait
 //author : Alex
-int readBit2(maillon* Tete);
-
-// Ecrit un bit dans la liste chainée passée en parametre. 
-// N'effectue que des ajouts en queue. 
-// Si Tete == Queue == NULL alors la Tete est mise a jour, par ajoutEnQueue
-// Met a jour, le nombre de bit significatif
-//Ecrit un bit dans la liste chainée passée en parametre. N'effectue que des ajouts en queue
-//Attention, NE PAS OUBLIER d'ECRIRE LE NOMBRE DE BITS SIGNIFICATIF (après encodage) DANS LA CELULLE QUEUE (champs <autre>).
-//author : Malek
-void writeBit(maillon** Tete, maillon** Queue, char bit);
-
-// ********************************************************************************
-// *INVARIANT 
-// * Pré condition : Si windowBuffer != -1 alors il pointe sur le bit lu
-// *                 Sinon C'est qu'il n'y a plus rien a lire
-// * Post condition : Si windowBuffer != -1 alors windowBuffer pointe sur le bit suivant
-// *                  Sinon C'est qu'il n'y a plus rien a lire
-
-// * Au 2eme appel de la fonction, s'il ne s'agit pas d'une nouvelle liste, 
-// * donc pointeurDeListeTete == Tete 
-// * Lit un bit dans la liste chainée passée en parametre. 
-// * Le bit lu est mis dans la variable *bit en paramtre.
-// * @return: 0 s'il a lu un bit, sinon renvoie 1.
-// * Ne modifie pas la liste et n'utilise pas la Queue 
-//_ATTENTION ! FONCTION A NE PAS UTILISER SUR DEUX LISTES DIFFERENTE EN SIMULTANÉ, 
-// OU EN MÊME TEMPS QUE writeBit
-//_ATTENTION ! TANT QU'UNE LISTE N'EST PAS LU JUSQUA LA FIN, LE BUFFER N'EST PAS VIDE.
-// *********************************************************************************
-//author : Malek
-int readBit(maillon* Tete, maillon* Queue, char* bit);
+int readBit(maillon* Tete);
 
 void copieAutre(maillon* src, maillon* dest);
 

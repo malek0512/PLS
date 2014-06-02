@@ -4,7 +4,8 @@
 #include"Huffman/huffman.h"
 
 maillon* readFromFileAlphabet(FILE *data){
-    maillon* Tete;    
+    maillon* Tete=NULL;    
+    maillon* queue=NULL;
 
     // Initialisation du tableau de fréquences, indicé par lettre de 0 a 25
     int freq[26];
@@ -30,7 +31,7 @@ maillon* readFromFileAlphabet(FILE *data){
     Tete = NULL;
     for(int i=0; i<26; i++){
         if (freq[i] != 0)
-            Tete = ajoutEnTete(Tete, (unsigned char) i, freq[i]);
+            ajoutEnTete(&Tete,&queue, (unsigned char) i, freq[i]);
     }
 
     return Tete;
@@ -58,7 +59,7 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
     *Tete = NULL;
     for(int i=0; i<256; i++){
         if (freq[i] != 0){ 
-            ajoutEnQueue(Tete, Queue, (unsigned char) i, freq[i]);
+            ajouterEnQueue(Tete, Queue, (unsigned char) i, freq[i]);
         }
     }
 }
@@ -79,7 +80,7 @@ void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
 //    }
 //    while ( nb != 0); 
       while((octet = fgetc(data)) != EOF){
-            ajoutEnQueue(Tete,Queue,(unsigned char) octet, -1);
+            ajouterEnQueue(Tete,Queue,(unsigned char) octet, -1);
       }
 }
 
@@ -147,7 +148,7 @@ maillon* calculateFrequency(maillon* Tete){
     maillon *resTete = NULL, *resQueue=NULL;
     for(int i=0; i<256; i++){
         if (freq[i] != 0){ 
-            ajoutEnQueue(&resTete, &resQueue, (unsigned char) i, freq[i]);
+            ajouterEnQueue(&resTete, &resQueue, (unsigned char) i, freq[i]);
         }
     }
     return resTete;
@@ -197,13 +198,13 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
 
     //Declarations
     maillon* AC = *Tete, *tableHead=NULL; 
+    maillon* tableTail = NULL;
 
     if (size(AC)>=6){ //Size>=6
         //Nous lisons la table
         //Tant que le maillon suivant AC != Queue (donc j'ai au moins 3 symbole a lire) et que ce n'est pas une succession de 3 #
         while (size(AC)>=6 && !(getMarque(AC))){
-
-            ajouterEnQueue2(&tableHead, AC->lettre, getInt(AC->suivant), AC->suivant->suivant->suivant->suivant->suivant->lettre);
+            ajouterEnQueue2(&tableHead,&tableTail, AC->lettre, getInt(AC->suivant), AC->suivant->suivant->suivant->suivant->suivant->lettre);
             AC = AC->suivant->suivant->suivant->suivant->suivant->suivant;
         }
         if (size(AC)>=6) {
