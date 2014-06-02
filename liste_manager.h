@@ -56,6 +56,9 @@ void print(maillon* tete);
 //Car la champs <autre> peut être egale a 0
 //author : Alexandre
 void print2(maillon* tete);
+
+//Sert a l'affichage d'une table de huffman de type maillon
+//Author Malek
 void print4(maillon* tete);
 
 //renvoie la taille de la liste a partir du pointeur donée

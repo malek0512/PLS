@@ -44,18 +44,32 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
                 break;
             case 2:{ 
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE MTF ...                        *");
+                printf("\n**********************************************************\n");
 
                 //Calcul des occurences
                 maillon *listeFrequency=NULL;
                 listeFrequency = calculateFrequency(Tete);
+
                 //Calcul de la table de de Huffman
                 arbre* treeHuffman = ArbreHufman(listeFrequency);
                 maillon* Table =  creationTableHuffman(treeHuffman);
+                resultatTete = MTF2(Table,Tete);
+#ifdef DEBUGG
+                printf("\n Voici la table de Huffman \n");
+                printArbre(treeHuffman);
+
+                printf("\n Voici la table de Huffman après MTF \n");
+                print4(resultatTete);
+#endif
                 
-                resultatTete = MTF2(Tete, Table); 
-                print(resultatTete);
-                //writeListeBytes(resultatTete,fileCompressed);
-                //liberer(resultatTete);
+                liberer(resultatTete);
+                liberer(listeFrequency);
+                liberer(Tete);
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE MTF FIN                    *");
+                printf("\n**********************************************************\n");
                 break;
                    }
             case 3: { 
@@ -63,8 +77,10 @@ int main(int argc, char *argv[]){
                 printf("\n*                 CODAGE HUFFMAN ...                     *");
                 printf("\n**********************************************************\n");
 
+#ifdef DEBUGG
                 printf("\n Voici le contenu du fichier en Hexa \n");
                 print2(Tete);
+#endif
 
                 //Calcul des occurences
                 maillon *listeFrequency=NULL;
@@ -73,16 +89,20 @@ int main(int argc, char *argv[]){
                 //Calcul de la table de de Huffman
                 tree = ArbreHufman(listeFrequency);
                 
+#ifdef DEBUGG
                 printf("\n Voici la table de Huffman \n");
                 printArbre(arbreFromTable(creationTableHuffman(tree)));
+#endif
 
                 //Encodage du fichier
                 resultatTete = codageHuffman(Tete, tree);
 
+#ifdef DEBUGG
                 printf("\n Voici le message codé en Hexa\n");
                 print2(resultatTete);
                 printf("\n Voici le message codé en Binaire\n");
                 afficherK(resultatTete);
+#endif
 
                 //Ecriture de la table dans le fichier
                 writeHuffmanTable(tree, fileCompressed);
@@ -91,7 +111,7 @@ int main(int argc, char *argv[]){
                 writeListeBytes(resultatTete,fileCompressed);
 
                 //Ecriture du nombre de bit significatif du dernier octet
-                writeByte( (char) getQueue(resultatTete)->autre,fileCompressed);
+                writeByte( (unsigned char) getQueue(resultatTete)->autre,fileCompressed);
 
                 //Restitution de la memoire allouée
                 liberer(resultatTete);
@@ -106,39 +126,71 @@ int main(int argc, char *argv[]){
                 printf("\n*                 CODAGE COCKTAIL ...                    *");
                 printf("\n**********************************************************\n");
 
+#ifdef DEBUGG
                 printf("\n Voici le contenu du fichier en Hexa \n");
                 print2(Tete);
+#endif
 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE ...                        *");
                 printf("\n**********************************************************\n");
 
-                coderRle(Tete);
+                //coderRle(Tete);
 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE FIN                    *");
                 printf("\n**********************************************************\n");
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE HUFFMAN ...                     *");
+                printf("\n*                 CODAGE MTF ...                        *");
                 printf("\n**********************************************************\n");
+
                 //Calcul des occurences
                 maillon *listeFrequency=NULL;
+                listeFrequency = calculateFrequency(Tete);
+
+                //Calcul de la table de de Huffman
+                arbre* treeHuffman = ArbreHufman(listeFrequency);
+                maillon* Table =  creationTableHuffman(treeHuffman);
+                resultatTete = MTF2(Table,Tete);
+
+                liberer(Tete);
+                Tete = resultatTete;
+
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE MTF FIN                    *");
+                printf("\n**********************************************************\n");
+
+                printf("\n**********************************************************");
+                printf("\n*                 CODAGE HUFFMAN ...                     *");
+                printf("\n**********************************************************\n");
+
+#ifdef DEBUGG
+                printf("\n Voici le contenu du fichier en Hexa \n");
+                print2(Tete);
+#endif
+
+                //Calcul des occurences
+                //maillon *listeFrequency=NULL;
                 listeFrequency = calculateFrequency(Tete);
                 
                 //Calcul de la table de de Huffman
                 tree = ArbreHufman(listeFrequency);
                 
+                #ifdef DEBUGG
                 printf("\n Voici la table de Huffman \n");
                 printArbre(arbreFromTable(creationTableHuffman(tree)));
+            	#endif
 
                 //Encodage du fichier
                 resultatTete = codageHuffman(Tete, tree);
 
+#ifdef DEBUGG
                 printf("\n Voici le message codé en Hexa\n");
                 print2(resultatTete);
                 printf("\n Voici le message codé en Binaire\n");
                 afficherK(resultatTete);
+#endif
 
                 //Ecriture de la table dans le fichier
                 writeHuffmanTable(tree, fileCompressed);
@@ -147,7 +199,7 @@ int main(int argc, char *argv[]){
                 writeListeBytes(resultatTete,fileCompressed);
 
                 //Ecriture du nombre de bit significatif du dernier octet
-                writeByte( (char) getQueue(resultatTete)->autre,fileCompressed);
+                writeByte( (unsigned char) getQueue(resultatTete)->autre,fileCompressed);
 
                 //Restitution de la memoire allouée
                 liberer(resultatTete);
