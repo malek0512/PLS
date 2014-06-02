@@ -177,6 +177,7 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
     int getInt(maillon* Tete){
         int res=0;
         if (size(Tete)>=4){
+	printf("size dans getIn // readHuffmanTable // reader.c");
             res = ((((((Tete->lettre<<8) + Tete->suivant->lettre)<<8) + Tete->suivant->suivant->lettre)<<8) + Tete->suivant->suivant->suivant->lettre); 
             return res;
         }else{

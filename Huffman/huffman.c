@@ -135,10 +135,9 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 	#endif
     maillon* resultatTete = NULL;
     maillon* resultatQueue = NULL;
-    maillon* Tete = liste;
     arbre* AvC = tableHuffman;
-
-    int bit = readBit(Tete);
+    initReadBit(liste);
+    int bit = readBit();
 
 	#ifdef HUFDEBUG_DECODAGE
 	fprintf(stderr,"   ### Fin : decodageHuffman ###\n");
@@ -154,7 +153,7 @@ maillon* decodageHuffman(maillon *liste, arbre *tableHuffman)
 	    		ajouterEnQueue(&resultatTete,&resultatQueue, AvC->i.symbole, -1 );
 	    		AvC = tableHuffman;
 		}
-	        bit = readBit(Tete);
+	        bit = readBit();
 	}
 	#ifdef HUFDEBUG_DECODAGE
 	printf("\nMot décodé : \n");
@@ -184,14 +183,13 @@ arbre* ArbreHufman(maillon* liste)
 		}
 	}
 	#endif
-
-	arbre* tab[size(liste)];	//création de l'arbre de codage
+	int tailleT = size(liste);//nombre de caractere different dans notre liste
+	arbre* tab[tailleT];	//création de l'arbre de codage
 	arbre* new=NULL; //le nouvelle arbre
 	maillon* save=liste;
 	int i,cpt; //cpt de for
 	int min1,min2; //proba minimals, min1<=min2
 	int i1,i2; //indice ou sont trouver les valeurs min
-	int tailleT = size(liste);//nombre de caractere different dans notre liste
 	#ifdef HUFDEBUG_ARBRE
 	fprintf(stderr,"   ### Debut : ArbreHuffman ### \n");
 	fprintf(stderr,"\nPour la lecture des noeuds fusioné, (a,b) signifie que l'on fusionne le noeud dont les fils sont a et b (respectviement a gauche et a droite)\nle symbole \"..\" signifie qu'il n'y a pas de fils de ce cote de l'arbre\n\n");
