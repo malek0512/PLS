@@ -1,5 +1,7 @@
 #ifndef DEF_READER
 #define DEF_READER
+#include "Huffman/huffman.h"	// j'ai été oubligée de rajouter cette ligne pour que ça compile chez moi
+								// à enlever si jamais ça vous pose problème...
 
 //Retourne la liste des caracteres lus dans un fichier, le champs <autre> contient le nombre d'occurence du caractère
 //Attention l'ordre n'est pas pertinent
@@ -15,7 +17,7 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
 void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data);
 
 //Ecrit un octet dans un fichier
-char readFromFileByte(FILE *data);
+unsigned readFromFileByte(FILE *data);
 
 //Ecrit un Integer dans un fichier, utile pour l'ecriture d'un coadage de huffman, pour preciser la taille des octets significatif du dernier octet
 int readFromFileInt(FILE *data);
@@ -25,7 +27,7 @@ int readFromFileInt(FILE *data);
 void writeListeBytes(maillon* Tete, FILE* data);
 
 //Ecrit un octet passé en parametre, dans le fichier passé en paramètre
-void writeByte(char byte, FILE* data);
+void writeByte(unsigned byte, FILE* data);
 
 //Ecrit un octet passé en parametre, dans le fichier passé en paramètre
 void writeInt(int Int, FILE* data);

@@ -1,5 +1,5 @@
 #include "huffman.h"
-#define DEBUG
+//#define DEBUG
 //author : Alex
 
 #ifdef DEBUG

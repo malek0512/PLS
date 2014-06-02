@@ -12,7 +12,7 @@ maillon* readFromFileAlphabet(FILE *data){
     for(int i=0; i<26; i++)
         freq[i]=0;
 
-    char c=fgetc(data);
+    unsigned char c=fgetc(data);
     //freq[c-'a'] ++;
     //if (c != EOF){ 
     if (c != EOF){ 
@@ -30,14 +30,14 @@ maillon* readFromFileAlphabet(FILE *data){
     Tete = NULL;
     for(int i=0; i<26; i++){
         if (freq[i] != 0)
-            Tete = ajoutEnTete(Tete, (char) i, freq[i]);
+            Tete = ajoutEnTete(Tete, (unsigned char) i, freq[i]);
     }
 
     return Tete;
 }
 
 void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data){
-    char octet = 0;
+    unsigned char octet = 0;
     int nb=0;
 
     // Initialisation du tableau de fréquences, indicé par 0 à 255 pour chaque octet
@@ -47,7 +47,7 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
         freq[i]=0;
 
     do {
-        nb = fread(&octet,sizeof(char),1,data);
+        nb = fread(&octet,sizeof(unsigned char),1,data);
 
         //Dans le cas où le premier octet est la fin de fichier
         if (octet != EOF )
@@ -58,7 +58,7 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
     *Tete = NULL;
     for(int i=0; i<256; i++){
         if (freq[i] != 0){ 
-            ajoutEnQueue(Tete, Queue, (char) i, freq[i]);
+            ajoutEnQueue(Tete, Queue, (unsigned char) i, freq[i]);
         }
     }
 }
@@ -70,7 +70,7 @@ void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
     *Queue = NULL;
     *Tete = NULL;
 //    do { 
-//        nb = fread(&octet,sizeof(char),1,data);
+//        nb = fread(&octet,sizeof(unsigned char),1,data);
 //        if (octet != EOF ){ 
 //            //Ajout en Queue avec fonction ajout en tete
 //            ajoutEnQueue(Tete,Queue, octet, -1);
@@ -79,11 +79,11 @@ void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
 //    }
 //    while ( nb != 0); 
       while((octet = fgetc(data)) != EOF){
-            ajoutEnQueue(Tete,Queue,(char) octet, -1);
+            ajoutEnQueue(Tete,Queue,(unsigned char) octet, -1);
       }
 }
 
-char readFromFileByte(FILE *data){
+unsigned char readFromFileByte(FILE *data){
     return fgetc(data);
 }
 
@@ -103,15 +103,15 @@ void writeListeBytes(maillon* Tete, FILE* data){
     }
 }
 
-void writeByte(char byte, FILE* data){
+void writeByte(unsigned char byte, FILE* data){
     fputc(byte, data);
 }
 
 void writeInt(int Int, FILE* data){
-    char byte1 = Int >> (3*8);
-    char byte2 = (Int >> 16) % 8 ;
-    char byte3 = (Int>>8) %8;
-    char byte4 = Int % 8;
+    unsigned char byte1 = (Int >> (3*8)) & 255;
+    unsigned char byte2 = (Int >> 2*8) & 255 ;
+    unsigned char byte3 = (Int>>8) & 255;
+    unsigned char byte4 = (Int & 255);
     writeByte( byte1, data );
     writeByte( byte2, data );
     writeByte( byte3, data );
@@ -147,7 +147,7 @@ maillon* calculateFrequency(maillon* Tete){
     maillon *resTete = NULL, *resQueue=NULL;
     for(int i=0; i<256; i++){
         if (freq[i] != 0){ 
-            ajoutEnQueue(&resTete, &resQueue, (char) i, freq[i]);
+            ajoutEnQueue(&resTete, &resQueue, (unsigned char) i, freq[i]);
         }
     }
     return resTete;
@@ -158,7 +158,7 @@ void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed){
     while(AC != NULL){
         writeByte(AC->lettre, fileCompressed);
         writeInt( AC->autre, fileCompressed); //Le codage du symbole ne depasse pas 1 octet
-        writeByte((char) AC->autre2, fileCompressed); //Le nombre de bit significatif d'un octet est de toute façon limité a 0 < bit < 8 < 255.
+        writeByte((unsigned char) AC->autre2, fileCompressed); //Le nombre de bit significatif d'un octet est de toute façon limité a 0 < bit < 8 < 255.
         AC = AC->suivant;
     }
     writeByte('#', fileCompressed);
