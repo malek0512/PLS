@@ -392,7 +392,7 @@ int readBit(maillon* Tete)
 {
 		return -1; //plus rien a lire
 }
-	if((windowBuffer3+ptMG->autre)<=8) //trouver la condition pour dire que sur l'octet actuelle on a fini de lire
+	else if((windowBuffer3+ptMG->autre)<=8) //trouver la condition pour dire que sur l'octet actuelle on a fini de lire
 	{		
 		return -1;
 	}

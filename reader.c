@@ -174,14 +174,14 @@ void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed){
 maillon* readHuffmanTable(maillon** Tete, maillon** Queue){ 
     /* ######################################################################" */
     //Fonctions auxiliaires
-    int getInt(maillon* Tete){
+    int getInt(maillon* Tete,int taille){
         int res=0;
-        if (size(Tete)>=4){
+        if (taille>=4){
             res = ((((((Tete->lettre<<8) + Tete->suivant->lettre)<<8) + Tete->suivant->suivant->lettre)<<8) + Tete->suivant->suivant->suivant->lettre); 
             return res;
         }else{
             printf("Erreur de lecture de l'integer Code dans la table de Huffman <getInt>");
-            exit(1);
+			exit(1);
         }
     }
 
@@ -206,7 +206,7 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
         //Tant que le maillon suivant AC != Queue (donc j'ai au moins 3 symbole a lire) et que ce n'est pas une succession de 3 #
         while (taille>=6 && !(getMarque(AC))){
 
-            ajouterEnQueue2(&tableHead,&tableTail, AC->lettre, getInt(AC->suivant), AC->suivant->suivant->suivant->suivant->suivant->lettre);
+            ajouterEnQueue2(&tableHead,&tableTail, AC->lettre, getInt(AC->suivant,taille), AC->suivant->suivant->suivant->suivant->suivant->lettre);
             AC = AC->suivant->suivant->suivant->suivant->suivant->suivant;
             taille=taille-6;
         }
