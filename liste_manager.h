@@ -3,7 +3,7 @@
 
 //Liste chainee
 typedef struct maillon {
-    char lettre; //information contenant les info du symbole
+    unsigned char lettre; //information contenant les info du symbole
         //(Huffman: symbole) 
         //(Reader: Un octet lu)
     
@@ -41,7 +41,7 @@ void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2);
 
 //Ajoute en Queue un maillon
 //Author : Malek
-void ajoutEnQueue(maillon** Tete, maillon** Queue, char byte, int autre);
+void ajoutEnQueue(maillon** Tete, maillon** Queue, unsigned char byte, int autre);
 
 //affiche la liste chainer
 //author : Alexandre
@@ -68,7 +68,7 @@ int estVide(maillon* liste);
 void liberer(maillon* tete);
 
 //Aloue une cellule de type maillon, avec les paramètres lettre et (frequence ou Prob)
-maillon* Allouer(char lettre, int autre);
+maillon* Allouer(unsigned char lettre, int autre);
 
 //Recherche d'un élément
 //author : Quentin
@@ -103,7 +103,7 @@ void afficherListe(maillon *liste);
 
 //Et pouf un miracle aparrait
 //author : Alex
-void writeBit2(maillon** Tete, maillon** Queue, char bit);
+void writeBit2(maillon** Tete, maillon** Queue, unsigned char bit);
 
 //Et pas, un second miracle aparrait
 //author : Alex

@@ -3,9 +3,9 @@
 #include "liste_manager.h"
 
 //Variables globale de la fonction writeBit et readBit
-static char buffer=0;
+static unsigned char buffer=0;
 static int windowBuffer=7;
-static char buffer2=0;
+static unsigned char buffer2=0;
 static int windowBuffer2=-1;
 static int windowBuffer3=8;
 static maillon* ptMG = NULL;
@@ -101,7 +101,7 @@ void ajouterEnQueue2(maillon** liste, int lettre, int autre, int autre2)
 	
 }
 
-void ajoutEnQueue(maillon** Tete, maillon** Queue, char byte, int autre){
+void ajoutEnQueue(maillon** Tete, maillon** Queue, unsigned char byte, int autre){
     maillon* AC = Allouer( byte, autre );
 	if (*Queue != NULL)
 	    (*Queue)->suivant = AC;
@@ -198,7 +198,7 @@ int estVide(maillon* liste)
     }
 }
 
-maillon* Allouer(char lettre, int autre){
+maillon* Allouer(unsigned char lettre, int autre){
     maillon* cellule = malloc(sizeof(maillon));
     cellule->lettre = lettre;
     cellule->autre = autre;
@@ -319,7 +319,7 @@ void afficherListe(maillon *liste)
 	}
 }
 
-void writeBit2(maillon **Tete, maillon **Queue, char bit)
+void writeBit2(maillon **Tete, maillon **Queue, unsigned char bit)
 {
 if(windowBuffer2==-1)
 {//le buffer est archi full, on doit donc ajouter sur un octet libre, qui na pas était crée au préalable pour eviter d'avoir un octet vide...
