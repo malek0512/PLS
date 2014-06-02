@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
                 writeListeBytes(Tete,fileCompressed);
                 break;
             case 2: 
-                resultatTete = MTF(Tete); 
+                resultatTete = MTF2(Tete); 
                 writeListeBytes(resultatTete,fileCompressed);
                 //liberer(resultatTete);
                 break;
