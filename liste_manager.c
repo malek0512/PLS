@@ -3,6 +3,7 @@
 #include "liste_manager.h"
 
 //Variables globale de la fonction writeBit et readBit
+static int cptMagic =0;
 static unsigned char buffer2=0;
 static int windowBuffer2=-1;
 static int windowBuffer3=8;
@@ -121,6 +122,8 @@ int size(maillon* tete)
 int res = 1;
 maillon* save=tete;
 
+cptMagic++;
+printf("%i\n",cptMagic);
 if (save == NULL)
 	return 0;
 while(save->suivant != NULL)
@@ -379,19 +382,23 @@ if(windowBuffer2==-1)
 
 }
 
-int readBit(maillon* Tete)
+void initReadBit(maillon *Tete)
 {
-	if(ptMG == NULL)
-		ptMG = Tete;
-	if(windowBuffer3==0)
-		{
-		ptMG = ptMG->suivant;
-		windowBuffer3=8;
-		}
-	if(ptMG ==NULL)
-{
-		return -1; //plus rien a lire
+	ptMG = Tete;
 }
+
+int readBit()
+{
+	if(windowBuffer3==0)
+	{
+		ptMG = ptMG->suivant;
+		if(ptMG == NULL)
+		{
+			return -1; //plus rien a lire
+		}
+	windowBuffer3=8;
+}
+		
 	else if((windowBuffer3+ptMG->autre)<=8) //trouver la condition pour dire que sur l'octet actuelle on a fini de lire
 	{		
 		return -1;

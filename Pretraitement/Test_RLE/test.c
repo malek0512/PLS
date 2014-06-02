@@ -6,38 +6,36 @@
 
 int main(void){
 
-	maillon* l;
 	maillon* ft;
 	maillon* fq;
 
-	l = initialiser(l);
 	ft = initialiser(ft);
 	fq = initialiser(fq);
 
-	l = ajouterEnQueue(l, 'a', 1);
-	l = ajouterEnQueue(l, 'a', 1);
-	l = ajouterEnQueue(l, 'c', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'm', 1);
-	l = ajouterEnQueue(l, 'o', 1);
-	l = ajouterEnQueue(l, 'o', 1);
-	l = ajouterEnQueue(l, 'o', 1);
+	ajouterEnQueue(&ft, &fq, 'a', 1);
+	ajouterEnQueue(&ft, &fq, 'a', 1);
+	ajouterEnQueue(&ft, &fq, 'c', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'm', 1);
+	ajouterEnQueue(&ft, &fq, 'o', 1);
+	ajouterEnQueue(&ft, &fq, 'o', 1);
+	ajouterEnQueue(&ft, &fq, 'o', 1);
 
 	printf("Affichage de la liste initiale\n");
-	print(l);
+	print(ft);
 
 	printf("\nTest n°1 : Application de l'algorithme RLE sur la liste\n");
-	coderRle(l);
-	print(l);
+	coderRle(ft);
+	print(ft);
 	printf("Fin du test\n");
 
 	printf("\nTest n°2 : Décodage de la nouvelle liste\n");
-	decoderRle(l);
-	print(l);
+	decoderRle(ft);
+	print(ft);
 	printf("Fin du test\n");
 
 	printf("\nTest n°3 : Code d'un fichier texte\n");
@@ -110,9 +108,19 @@ int main(void){
 	writeListeBytes(ft, htmlFD);
 	printf("Fin du test\n");
 
-	liberer(l);
-	liberer(ft);
-	liberer(fq);
+	printf("\nTest n°7 : Code d'un son (MP3)\n");
+	char sound[] = "files/sound.mp3";
+	char soundS[] = "files/soundS.mp3";
+	char soundD[] = "files/soundD.mp3";
+	FILE* soundF = OuvrirFichier(sound);
+	FILE* soundFS = CreerFichier(soundS);
+	FILE* soundFD = CreerFichier(soundD);
+	readFromFileBytesInOrder(&ft, &fq, soundF);
+	coderRle(ft);
+	writeListeBytes(ft, soundFS);
+	decoderRle(ft);
+	writeListeBytes(ft, soundFD);
+	printf("Fin du test\n");
 
 	return 0;
 

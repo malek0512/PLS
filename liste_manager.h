@@ -115,9 +115,13 @@ void afficherListe2(maillon *liste);
 //author : Alex
 void writeBit(maillon** Tete, maillon** Queue, unsigned char bit);
 
+//Permet l'utilisation de readBit()
+//author : Alex
+void initReadBit(maillon *Tete);
+
 //Et pas, un second miracle aparrait
 //author : Alex
-int readBit(maillon* Tete);
+int readBit();
 
 void copieAutre(maillon* src, maillon* dest);
 
