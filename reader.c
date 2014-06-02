@@ -176,7 +176,6 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
     //Fonctions auxiliaires
     int getInt(maillon* Tete,int taille){
         int res=0;
-
         if (taille>=4){
             res = ((((((Tete->lettre<<8) + Tete->suivant->lettre)<<8) + Tete->suivant->suivant->lettre)<<8) + Tete->suivant->suivant->suivant->lettre); 
             return res;
