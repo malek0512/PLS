@@ -70,14 +70,7 @@ int main(int argc, char *argv[]){
                 liberer(Tete);
                 Tete = resultatTete;
                 
-                //Calcul des occurences
-                maillon *listeFrequency=NULL;
-                listeFrequency = calculateFrequency(Tete);
-
-                //Calcul de la table de de Huffman
-                arbre* treeHuffman = ArbreHufman(listeFrequency);
-                maillon* Table =  creationTableHuffman(treeHuffman);
-                resultatTete = MTF2(Table,Tete);
+                resultatTete = MTF(Tete);
 
                 liberer(Tete);
                 Tete = resultatTete;
@@ -86,7 +79,7 @@ int main(int argc, char *argv[]){
                 printf("\nVoici le message décodé en Hexa\n");
                 print2(Tete);
 #endif
-                //decoderRle(Tete); 
+                decoderRle(Tete); 
                 
                 //Ecriture du message dans le fichier
                 writeListeBytes(Tete,fileCompressed);

@@ -5,10 +5,10 @@
 #include <string.h>
 #include "../liste_manager.h"
  
-maillon* MTF(maillon* liste,char *mot);
 
-maillon* MTF2(maillon* liste, maillon* texte);
+maillon* MTF(maillon* texte);
 
+void initList();
 
 
 #endif

@@ -48,14 +48,7 @@ int main(int argc, char *argv[]){
                 printf("\n*                 CODAGE MTF ...                        *");
                 printf("\n**********************************************************\n");
 
-                //Calcul des occurences
-                maillon *listeFrequency=NULL;
-                listeFrequency = calculateFrequency(Tete);
-
-                //Calcul de la table de de Huffman
-                arbre* treeHuffman = ArbreHufman(listeFrequency);
-                maillon* Table =  creationTableHuffman(treeHuffman);
-                resultatTete = MTF2(Table,Tete);
+                resultatTete = MTF(Tete);
 #ifdef DEBUGG
                 printf("\n Voici la table de Huffman \n");
                 printArbre(treeHuffman);
@@ -65,7 +58,6 @@ int main(int argc, char *argv[]){
 #endif
                 
                 liberer(resultatTete);
-                liberer(listeFrequency);
                 liberer(Tete);
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE MTF FIN                    *");
@@ -135,7 +127,7 @@ int main(int argc, char *argv[]){
                 printf("\n*                 CODAGE RLE ...                        *");
                 printf("\n**********************************************************\n");
 
-                //coderRle(Tete);
+                coderRle(Tete);
 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE FIN                    *");
@@ -145,14 +137,7 @@ int main(int argc, char *argv[]){
                 printf("\n*                 CODAGE MTF ...                        *");
                 printf("\n**********************************************************\n");
 
-                //Calcul des occurences
-                maillon *listeFrequency=NULL;
-                listeFrequency = calculateFrequency(Tete);
-
-                //Calcul de la table de de Huffman
-                arbre* treeHuffman = ArbreHufman(listeFrequency);
-                maillon* Table =  creationTableHuffman(treeHuffman);
-                resultatTete = MTF2(Table,Tete);
+                resultatTete = MTF(Tete);
 
                 liberer(Tete);
                 Tete = resultatTete;
@@ -171,7 +156,7 @@ int main(int argc, char *argv[]){
 #endif
 
                 //Calcul des occurences
-                //maillon *listeFrequency=NULL;
+                maillon *listeFrequency=NULL;
                 listeFrequency = calculateFrequency(Tete);
                 
                 //Calcul de la table de de Huffman
