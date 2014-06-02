@@ -1,0 +1,133 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 81.65      4.36     4.36        1     4.36     4.92  codageHuffman
+  7.87      4.78     0.42 39664892     0.00     0.00  writeBit
+  4.12      5.00     0.22  9922885     0.00     0.00  ajouterEnQueue
+  2.25      5.12     0.12        4     0.03     0.03  liberer
+  1.12      5.18     0.06        1     0.06     0.06  calculateFrequency
+  0.94      5.23     0.05        1     0.05     0.05  getQueue
+  0.75      5.27     0.04        1     0.04     0.15  readFromFileBytesInOrder
+  0.75      5.31     0.04                             afficherListe2
+  0.56      5.34     0.03        1     0.03     0.03  writeListeBytes
+  0.00      5.34     0.00     1543     0.00     0.00  writeByte
+  0.00      5.34     0.00      512     0.00     0.00  ajouterEnQueue2
+  0.00      5.34     0.00      256     0.00     0.00  writeInt
+  0.00      5.34     0.00        2     0.00     0.00  MTF2
+  0.00      5.34     0.00        2     0.00     0.00  creationTableHuffman
+  0.00      5.34     0.00        2     0.00     0.00  size
+  0.00      5.34     0.00        1     0.00     0.00  ArbreHufman
+  0.00      5.34     0.00        1     0.00     0.00  CreerFichier
+  0.00      5.34     0.00        1     0.00     0.00  OuvrirFichier
+  0.00      5.34     0.00        1     0.00     0.00  writeHuffmanTable
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 0.19% of 5.34 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     99.3    0.00    5.30                 main [1]
+                4.36    0.56       1/1           codageHuffman [2]
+                0.04    0.11       1/1           readFromFileBytesInOrder [5]
+                0.09    0.00       3/4           liberer [6]
+                0.06    0.00       1/1           calculateFrequency [7]
+                0.05    0.00       1/1           getQueue [8]
+                0.03    0.00       1/1           writeListeBytes [10]
+                0.00    0.00       1/1           OuvrirFichier [19]
+                0.00    0.00       1/1           CreerFichier [18]
+                0.00    0.00       1/1           ArbreHufman [17]
+                0.00    0.00       1/1           writeHuffmanTable [20]
+                0.00    0.00       1/1543        writeByte [11]
+-----------------------------------------------
+                4.36    0.56       1/1           main [1]
+[2]     92.1    4.36    0.56       1         codageHuffman [2]
+                0.42    0.11 39664892/39664892     writeBit [3]
+                0.03    0.00       1/4           liberer [6]
+                0.00    0.00       1/2           creationTableHuffman [15]
+-----------------------------------------------
+                0.42    0.11 39664892/39664892     codageHuffman [2]
+[3]      9.9    0.42    0.11 39664892         writeBit [3]
+                0.11    0.00 4958112/9922885     ajouterEnQueue [4]
+-----------------------------------------------
+                0.00    0.00     256/9922885     calculateFrequency [7]
+                0.11    0.00 4958112/9922885     writeBit [3]
+                0.11    0.00 4964517/9922885     readFromFileBytesInOrder [5]
+[4]      4.1    0.22    0.00 9922885         ajouterEnQueue [4]
+-----------------------------------------------
+                0.04    0.11       1/1           main [1]
+[5]      2.8    0.04    0.11       1         readFromFileBytesInOrder [5]
+                0.11    0.00 4964517/9922885     ajouterEnQueue [4]
+-----------------------------------------------
+                0.03    0.00       1/4           codageHuffman [2]
+                0.09    0.00       3/4           main [1]
+[6]      2.2    0.12    0.00       4         liberer [6]
+-----------------------------------------------
+                0.06    0.00       1/1           main [1]
+[7]      1.1    0.06    0.00       1         calculateFrequency [7]
+                0.00    0.00     256/9922885     ajouterEnQueue [4]
+-----------------------------------------------
+                0.05    0.00       1/1           main [1]
+[8]      0.9    0.05    0.00       1         getQueue [8]
+-----------------------------------------------
+                                                 <spontaneous>
+[9]      0.7    0.04    0.00                 afficherListe2 [9]
+-----------------------------------------------
+                0.03    0.00       1/1           main [1]
+[10]     0.6    0.03    0.00       1         writeListeBytes [10]
+-----------------------------------------------
+                0.00    0.00       1/1543        main [1]
+                0.00    0.00     518/1543        writeHuffmanTable [20]
+                0.00    0.00    1024/1543        writeInt [13]
+[11]     0.0    0.00    0.00    1543         writeByte [11]
+-----------------------------------------------
+                0.00    0.00     512/512         MTF2 [14]
+[12]     0.0    0.00    0.00     512         ajouterEnQueue2 [12]
+-----------------------------------------------
+                0.00    0.00     256/256         writeHuffmanTable [20]
+[13]     0.0    0.00    0.00     256         writeInt [13]
+                0.00    0.00    1024/1543        writeByte [11]
+-----------------------------------------------
+                                1020             MTF2 [14]
+                0.00    0.00       2/2           creationTableHuffman [15]
+[14]     0.0    0.00    0.00       2+1020    MTF2 [14]
+                0.00    0.00     512/512         ajouterEnQueue2 [12]
+                                1020             MTF2 [14]
+-----------------------------------------------
+                0.00    0.00       1/2           writeHuffmanTable [20]
+                0.00    0.00       1/2           codageHuffman [2]
+[15]     0.0    0.00    0.00       2         creationTableHuffman [15]
+                0.00    0.00       2/2           MTF2 [14]
+-----------------------------------------------
+                0.00    0.00       2/2           ArbreHufman [17]
+[16]     0.0    0.00    0.00       2         size [16]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[17]     0.0    0.00    0.00       1         ArbreHufman [17]
+                0.00    0.00       2/2           size [16]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[18]     0.0    0.00    0.00       1         CreerFichier [18]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[19]     0.0    0.00    0.00       1         OuvrirFichier [19]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[20]     0.0    0.00    0.00       1         writeHuffmanTable [20]
+                0.00    0.00     518/1543        writeByte [11]
+                0.00    0.00     256/256         writeInt [13]
+                0.00    0.00       1/2           creationTableHuffman [15]
+-----------------------------------------------
+
+Index by function name
+
+  [17] ArbreHufman             [7] calculateFrequency      [3] writeBit
+  [18] CreerFichier            [2] codageHuffman          [11] writeByte
+  [14] MTF2                   [15] creationTableHuffman   [20] writeHuffmanTable
+  [19] OuvrirFichier           [8] getQueue               [13] writeInt
+   [9] afficherListe2          [6] liberer                [10] writeListeBytes
+   [4] ajouterEnQueue          [5] readFromFileBytesInOrder
+  [12] ajouterEnQueue2        [16] size
