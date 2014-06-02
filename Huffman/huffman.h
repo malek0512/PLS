@@ -21,23 +21,21 @@ typedef struct arbre
 }arbre;
 
 
-//lit un bit de position numero dans le chiffre source
-//author : Alex
-//int readBit(char source, int numero);
-//Mis en commentaire Par malek, Plus besoin dans decodage huffman. La fonction est redefinit dans liste_manager 
-
 //retourne la table de Huffman,
 //prend un arbre de Huffman
 //author : Alex
 maillon* creationTableHuffman(arbre* arbreHuffman);
 
+//author : Alex
+//maillon -> lettre == symbole sans codage
+//la liste de retour sera de la forme (octect / nb Significatif (effectif que pour le dernier bit))
+maillon* codageHuffman(maillon *liste, arbre *arbreHuffman);
+
 //Prend en argument une liste et ca table de huffman, crée par la fonction ArbreHuffman
 //retourne la liste codé
-maillon* codageHuffman(maillon *liste, arbre *tableHuffman);
-
 //Et paf, un autre miracle apparait !
 //Author Alex
-maillon* decodageHuffman2(maillon *liste, arbre *tableHuffman);
+maillon* decodageHuffman(maillon *liste, arbre *tableHuffman);
 
 //Retourne la table d'huffman a partir de l'arbre
 maillon* creationTableHuffman(arbre* arbreHuffman);

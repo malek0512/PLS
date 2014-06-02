@@ -97,5 +97,5 @@ maillon* decodageHuffmanFinal(maillon** Tete, maillon** Queue){
    // printArbre(tree);
 
     //Decodage du message
-    return decodageHuffman2(*Tete,tree);
+    return decodageHuffman(*Tete,tree);
 }
