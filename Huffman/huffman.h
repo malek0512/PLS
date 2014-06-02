@@ -1,3 +1,6 @@
+#ifndef DEF_HUFFMAN
+#define DEF_HUFFMAN
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "../liste_manager.h"
@@ -51,3 +54,5 @@ arbre* arbreFromTable(maillon *table);
 //utiliser pour le printAbre
 void printArbre_rec(arbre* tree,int value,int taille);
 
+
+#endif
