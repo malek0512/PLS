@@ -1,7 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include"liste_manager.h"
-#include"Huffman/huffman.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "liste_manager.h"
+#include "Huffman/huffman.h"
 
 maillon* readFromFileAlphabet(FILE *data){
     maillon* Tete=NULL;    
@@ -197,17 +197,20 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
     /* ######################################################################" */
 
     //Declarations
-    maillon* AC = *Tete, *tableHead=NULL; 
-    maillon* tableTail = NULL;
-
-    if (size(AC)>=6){ //Size>=6
+    maillon* AC = *Tete, *tableHead=NULL;
+	maillon* tableTail = NULL;	
+	int taille=size(*Tete);
+    if (taille>=6){ 
+		//Size>=6
         //Nous lisons la table
         //Tant que le maillon suivant AC != Queue (donc j'ai au moins 3 symbole a lire) et que ce n'est pas une succession de 3 #
-        while (size(AC)>=6 && !(getMarque(AC))){
+        while (taille>=6 && !(getMarque(AC))){
+
             ajouterEnQueue2(&tableHead,&tableTail, AC->lettre, getInt(AC->suivant), AC->suivant->suivant->suivant->suivant->suivant->lettre);
             AC = AC->suivant->suivant->suivant->suivant->suivant->suivant;
+            taille=taille-6;
         }
-        if (size(AC)>=6) {
+        if (taille>=6) {
             //C'est que j'ai fini de lire la table car j'ai rencontré les 3#
 
             //On saute les 6#
@@ -244,7 +247,7 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
 
             return tableHead;
         } else {
-            if(size(AC)<6)
+            if(taille<6)
                 printf("Nous n'avons pas pu lire la table, size(AC) < 6");
 //            else
 //                printf("Nous n'avons pas pu lire la table, AC->suivant == Queue ");

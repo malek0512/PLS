@@ -1,4 +1,6 @@
 #include "huffman.h"
+
+//author : Alex
 #ifdef HUFDEBUG
 	#ifndef HUFDEBUG_CODAGE
 		#define HUFDEBUG_CODAGE //fonction de codage

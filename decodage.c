@@ -60,14 +60,39 @@ int main(int argc, char *argv[]){
                 break;
                    }
             case 4:{  
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE  ...                     *");
+                printf("\n**********************************************************\n");
                 resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
-                decoderRle(resultatTete);
+
+                liberer(Tete);
+                Tete = resultatTete;
+                
+                //Calcul des occurences
+                maillon *listeFrequency=NULL;
+                listeFrequency = calculateFrequency(Tete);
+
+                //Calcul de la table de de Huffman
+                arbre* treeHuffman = ArbreHufman(listeFrequency);
+                maillon* Table =  creationTableHuffman(treeHuffman);
+                resultatTete = MTF2(Table,Tete);
+
+                liberer(Tete);
+                Tete = resultatTete;
+
+#ifdef DEBUGG
                 printf("\nVoici le message décodé en Hexa\n");
-                print2(resultatTete);
+                print2(Tete);
+#endif
+                //decoderRle(Tete); 
                 
                 //Ecriture du message dans le fichier
-                writeListeBytes(resultatTete,fileCompressed);
-                liberer(resultatTete);
+                writeListeBytes(Tete,fileCompressed);
+                liberer(Tete);
+
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE FIN                     *");
+                printf("\n**********************************************************\n");
                 break;
                    }
             default: printf("Erreur de choix");
@@ -86,11 +111,14 @@ maillon* decodageHuffmanFinal(maillon** Tete, maillon** Queue){
     //Recupération de la table de Huffman
     tableHead = readHuffmanTable(Tete,Queue);
 
+#ifdef DEBUGG
     printf("\n Voici la table Huffman \n");
-   // print4(tableHead);
+    print4(tableHead);
 
     printf("\n Voici le mot non décodé en Binaire \n");
-  //  afficherK(*Tete);
+    afficherK(*Tete);
+#endif
+
 
     //Conversion de la table de Huffman de type maillon en type arbre
     arbre* tree = arbreFromTable(tableHead);

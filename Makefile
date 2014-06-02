@@ -8,7 +8,7 @@ EXECUTABLES = codage decodage testReader
 #CINC = include/
 
 # FLAGS POUR GCC: -Idirectory cherche les fichiers des #include< >
-CFLAGS = -std=c99 -Wall -Werror -g
+CFLAGS = -std=c99 -Wall -Werror -g -pg
 
 # NOM DU COMPILATEUR
 CC = gcc
@@ -24,6 +24,7 @@ OBJS = $(SRCS:.c=.o)
 	gcc -c $< $(CFLAGS)
 
 ######### Regles de compilation #########
+all: codage decodage
 
 codage : codage.c reader.o RLE.o MTF.o huffman.o liste_manager.o
 	gcc $^ $(CFLAGS) -o $@
@@ -47,4 +48,6 @@ testReader: testReader.c reader.o liste_manager.o
 clean :
 	@echo "On supprime tout les .o et les executables"
 	rm -f *.o $(EXECUTABLES)
+	rm -f *.Comp Decompresser
+	
 
