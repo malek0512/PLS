@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "liste_manager.h"
 
 //Variables globale de la fonction writeBit et readBit
@@ -179,10 +179,12 @@ while(save->suivant != NULL)
 
 void liberer(maillon* tete)
 {
-    if (tete != NULL){ 
-        if(tete->suivant != NULL)
-            liberer(tete->suivant);
-        free(tete);
+	maillon* parcours=tete;
+	while (parcours!=NULL){
+        //if(tete->suivant != NULL)
+          //  liberer(tete->suivant);
+        free(parcours);
+        parcours=parcours->suivant;
     }
 }
 
