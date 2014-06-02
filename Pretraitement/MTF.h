@@ -7,7 +7,7 @@
  
 
 maillon* MTF(maillon* texte);
-
+maillon* MTF2(maillon* texte);
 void initList();
 
 
