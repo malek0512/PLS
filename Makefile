@@ -48,6 +48,7 @@ testReader: testReader.c reader.o liste_manager.o
 clean :
 	@echo "On supprime tout les .o et les executables"
 	rm -f *.o $(EXECUTABLES)
-	rm -f Test/*.comp Test/*.Decompresse
+	rm -f Test/*.comp Test/*.decomp
+	rm -f *.comp *.decomp
 	
 

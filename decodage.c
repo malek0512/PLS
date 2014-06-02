@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 
         FILE* file = OuvrirFichier(argv[1]);
         *(argv[1]+strlen(argv[1])-4)='\0';
-        FILE* fileCompressed = CreerFichier(strcat(argv[1],"Decompresse"));
+        FILE* fileCompressed = CreerFichier(strcat(argv[1],"decomp"));
         maillon *Tete, *Queue, *resultatTete=NULL;
         int choix;
 
@@ -35,13 +35,30 @@ int main(int argc, char *argv[]){
 		
         switch(choix){
             case 1: 
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE RLE ...                         *");
+                printf("\n**********************************************************\n");
+
                 decoderRle(Tete); 
                 writeListeBytes(Tete,fileCompressed);
+
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE RLE FIN                         *");
+                printf("\n**********************************************************\n");
                 break;
             case 2: 
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE MTF ...                         *");
+                printf("\n**********************************************************\n");
+
                 resultatTete = MTF2(Tete); 
                 writeListeBytes(resultatTete,fileCompressed);
-                //liberer(resultatTete);
+                liberer(resultatTete);
+
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE MTF FIN                         *");
+                printf("\n**********************************************************\n");
+                
                 break;
             case 3:{  
                 printf("\n**********************************************************");
@@ -65,30 +82,66 @@ int main(int argc, char *argv[]){
                    }
             case 4:{  
                 printf("\n**********************************************************");
-                printf("\n*               DECODAGE  ...                     *");
+                printf("\n*               DECODAGE  COCKTAIL ...                    *");
                 printf("\n**********************************************************\n");
-                resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
+				printf("Veuillez faire un choix des prétraitements à opérer :\n");
+				printf("RLE?\n");
+				int RLE,mtf;
+				if(scanf("%d", &RLE)==0)
+					return -1;
+				printf("MTF?\n");
+				if(scanf("%d", &mtf)==0)
+					return -1;
 
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE HUFFMAN ...                     *");
+                printf("\n**********************************************************\n");
+
+                resultatTete = decodageHuffmanFinal(&Tete, &Queue); 
+                liberer(Tete);
+                Tete = resultatTete;
+
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE HUFFMAN FIN                     *");
+                printf("\n**********************************************************\n");
+
+                
+                if (mtf){ 
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE MTF ...                         *");
+                printf("\n**********************************************************\n");
+                
+                resultatTete = MTF2(Tete);
                 liberer(Tete);
                 Tete = resultatTete;
                 
-                resultatTete = MTF(Tete);
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE MTF FIN                         *");
+                printf("\n**********************************************************\n");
+                }
 
-                liberer(Tete);
-                Tete = resultatTete;
+                if (RLE){ 
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE RLE ...                         *");
+                printf("\n**********************************************************\n");
+                
+                decoderRle(Tete); 
+
+                printf("\n**********************************************************");
+                printf("\n*               DECODAGE RLE FIN                         *");
+                printf("\n**********************************************************\n");
+                }
 
 #ifdef DEBUGG
                 printf("\nVoici le message décodé en Hexa\n");
                 print2(Tete);
 #endif
-                decoderRle(Tete); 
                 
                 //Ecriture du message dans le fichier
                 writeListeBytes(Tete,fileCompressed);
-                liberer(Tete);
 
                 printf("\n**********************************************************");
-                printf("\n*               DECODAGE FIN                     *");
+                printf("\n*               DECODAGE COCKTAIL FIN                    *");
                 printf("\n**********************************************************\n");
                 break;
                    }

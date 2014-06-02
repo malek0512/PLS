@@ -50,16 +50,10 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 resultatTete = MTF(Tete);
-#ifdef DEBUGG
-                printf("\n Voici la table de Huffman \n");
-                printArbre(treeHuffman);
-
-                printf("\n Voici la table de Huffman après MTF \n");
-                print4(resultatTete);
-#endif
                 writeListeBytes(resultatTete,fileCompressed);
                 liberer(resultatTete);
                 liberer(Tete);
+
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE MTF FIN                    *");
                 printf("\n**********************************************************\n");
