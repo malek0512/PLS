@@ -86,9 +86,7 @@ maillon* rechercherElement2(maillon* liste,int value)
 		//creation d'une deuxieme liste chainée mettant dans l'orde les symbole
         while(AC != NULL)
 		{
-fprintf(stderr,"Bug ? RLy ?\n");
 			tmp=rechercherElement2(liste_T,AC->lettre);
-fprintf(stderr,"\nBug pas !\n");
 			copie.lettre = tmp->lettre;
 			copie.autre = tmp->autre;
 
