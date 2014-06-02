@@ -64,7 +64,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 printf("\n Voici le contenu du fichier en Hexa \n");
-                print2(Tete);
+               // print2(Tete);
 
                 //Calcul des occurences
                 maillon *listeFrequency=NULL;
@@ -74,15 +74,15 @@ int main(int argc, char *argv[]){
                 tree = ArbreHufman(listeFrequency);
                 
                 printf("\n Voici la table de Huffman \n");
-                printArbre(arbreFromTable(creationTableHuffman(tree)));
+            //    printArbre(arbreFromTable(creationTableHuffman(tree)));
 
                 //Encodage du fichier
                 resultatTete = codageHuffman(Tete, tree);
 
                 printf("\n Voici le message codé en Hexa\n");
-                print2(resultatTete);
+             //   print2(resultatTete);
                 printf("\n Voici le message codé en Binaire\n");
-                afficherK(resultatTete);
+             //   afficherK(resultatTete);
 
                 //Ecriture de la table dans le fichier
                 writeHuffmanTable(tree, fileCompressed);
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 printf("\n Voici le contenu du fichier en Hexa \n");
-                print2(Tete);
+              	  print2(Tete);
 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE ...                        *");
