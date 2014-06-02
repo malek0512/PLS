@@ -21,7 +21,8 @@ int main(int argc, char *argv[]){
     } else {
 
         FILE* file = OuvrirFichier(argv[1]);
-        FILE* fileCompressed = CreerFichier("Decompresser"); //strcat(argv[1],".Decompresse"));
+        *(argv[1]+strlen(argv[1])-4)='\0';
+        FILE* fileCompressed = CreerFichier(strcat(argv[1],"Decompresse"));
         maillon *Tete, *Queue, *resultatTete=NULL;
         int choix;
 
