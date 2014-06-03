@@ -131,7 +131,7 @@ int main(int argc, char *argv[]){
                 coderRle(Tete);
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE RLE FIN                    	   *");
+                printf("\n*                 CODAGE RLE FIN                    	 *");
                 printf("\n**********************************************************\n");
 				}	
                 if(mtf){
@@ -145,7 +145,7 @@ int main(int argc, char *argv[]){
                 Tete = resultatTete;
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE MTF FIN                    	   *");
+                printf("\n*                 CODAGE MTF FIN                    	 *");
                 printf("\n**********************************************************\n");
 			}
                 printf("\n**********************************************************");
