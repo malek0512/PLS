@@ -1,0 +1,107 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 30.40      3.45     3.45                             codageHuffman
+ 28.55      6.69     3.24                             MTF
+ 26.87      9.74     3.05 10727428     0.00     0.00  rechercherElement
+  8.90     10.75     1.01 81154450     0.00     0.00  writeBit
+  1.85     10.96     0.21 21455368     0.00     0.00  ajouterEnQueue
+  0.97     11.07     0.11                             calculateFrequency
+  0.70     11.15     0.08                             getQueue
+  0.62     11.22     0.07 10727428     0.00     0.00  ajoutEnTete
+  0.53     11.28     0.06                             writeListeBytes
+  0.44     11.33     0.05                             readFromFileBytesInOrder
+  0.18     11.35     0.02        2    10.00    10.00  liberer
+  0.00     11.35     0.00      512     0.00     0.00  ajouterEnQueue2
+  0.00     11.35     0.00        9     0.00     0.00  writeRle
+  0.00     11.35     0.00        1     0.00     0.00  creationTableHuffman
+  0.00     11.35     0.00        1     0.00     0.00  estVide
+  0.00     11.35     0.00        1     0.00     0.00  size
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 0.09% of 11.35 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     57.0    3.24    3.23                 MTF [1]
+                3.05    0.00 10727428/10727428     rechercherElement [3]
+                0.10    0.00 10727684/21455368     ajouterEnQueue [5]
+                0.07    0.00 10727428/10727428     ajoutEnTete [9]
+                0.01    0.00       1/2           liberer [11]
+                0.00    0.00       1/1           estVide [15]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     39.4    3.45    1.02                 codageHuffman [2]
+                1.01    0.00 81154450/81154450     writeBit [4]
+                0.01    0.00       1/2           liberer [11]
+                0.00    0.00       1/512         ajouterEnQueue2 [12]
+                0.00    0.00       1/9           writeRle [13]
+-----------------------------------------------
+                3.05    0.00 10727428/10727428     MTF [1]
+[3]     26.9    3.05    0.00 10727428         rechercherElement [3]
+-----------------------------------------------
+                1.01    0.00 81154450/81154450     codageHuffman [2]
+[4]      8.9    1.01    0.00 81154450         writeBit [4]
+-----------------------------------------------
+                0.00    0.00     256/21455368     calculateFrequency [7]
+                0.10    0.00 10727428/21455368     readFromFileBytesInOrder [6]
+                0.10    0.00 10727684/21455368     MTF [1]
+[5]      1.9    0.21    0.00 21455368         ajouterEnQueue [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[6]      1.4    0.05    0.10                 readFromFileBytesInOrder [6]
+                0.10    0.00 10727428/21455368     ajouterEnQueue [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[7]      1.0    0.11    0.00                 calculateFrequency [7]
+                0.00    0.00     256/21455368     ajouterEnQueue [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]      0.7    0.08    0.00                 getQueue [8]
+-----------------------------------------------
+                0.07    0.00 10727428/10727428     MTF [1]
+[9]      0.6    0.07    0.00 10727428         ajoutEnTete [9]
+-----------------------------------------------
+                                                 <spontaneous>
+[10]     0.5    0.06    0.00                 writeListeBytes [10]
+-----------------------------------------------
+                0.01    0.00       1/2           codageHuffman [2]
+                0.01    0.00       1/2           MTF [1]
+[11]     0.2    0.02    0.00       2         liberer [11]
+-----------------------------------------------
+                0.00    0.00       1/512         codageHuffman [2]
+                0.00    0.00       9/512         creationTableHuffman [14]
+                0.00    0.00     502/512         writeRle [13]
+[12]     0.0    0.00    0.00     512         ajouterEnQueue2 [12]
+-----------------------------------------------
+                                   1             writeRle [13]
+                0.00    0.00       1/9           codageHuffman [2]
+                0.00    0.00       8/9           creationTableHuffman [14]
+[13]     0.0    0.00    0.00       9+1       writeRle [13]
+                0.00    0.00     502/512         ajouterEnQueue2 [12]
+                                   1             writeRle [13]
+-----------------------------------------------
+                0.00    0.00       1/1           writeHuffmanTable [60]
+[14]     0.0    0.00    0.00       1         creationTableHuffman [14]
+                0.00    0.00       9/512         ajouterEnQueue2 [12]
+                0.00    0.00       8/9           writeRle [13]
+-----------------------------------------------
+                0.00    0.00       1/1           MTF [1]
+[15]     0.0    0.00    0.00       1         estVide [15]
+-----------------------------------------------
+                0.00    0.00       1/1           ArbreHufman [18]
+[16]     0.0    0.00    0.00       1         size [16]
+-----------------------------------------------
+
+Index by function name
+
+   [1] MTF                    [14] creationTableHuffman   [16] size
+   [9] ajoutEnTete            [15] estVide                 [4] writeBit
+   [5] ajouterEnQueue          [8] getQueue               [10] writeListeBytes
+  [12] ajouterEnQueue2        [11] liberer                [13] writeRle
+   [7] calculateFrequency      [6] readFromFileBytesInOrder
+   [2] codageHuffman           [3] rechercherElement

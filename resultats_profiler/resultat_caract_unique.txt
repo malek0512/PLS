@@ -1,0 +1,70 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00      262     0.00     0.00  ajouterEnQueue
+  0.00      0.00     0.00        4     0.00     0.00  ajouterEnQueue2
+  0.00      0.00     0.00        2     0.00     0.00  ajoutEnTete
+  0.00      0.00     0.00        2     0.00     0.00  liberer
+  0.00      0.00     0.00        2     0.00     0.00  readHuffmanTable
+  0.00      0.00     0.00        2     0.00     0.00  rechercherElement
+  0.00      0.00     0.00        2     0.00     0.00  writeBit
+  0.00      0.00     0.00        1     0.00     0.00  creationTableHuffman
+  0.00      0.00     0.00        1     0.00     0.00  estVide
+  0.00      0.00     0.00        1     0.00     0.00  size
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) no time propagated
+
+index % time    self  children    called     name
+                0.00    0.00       2/262         readFromFileBytesInOrder [49]
+                0.00    0.00       2/262         calculateFrequency [23]
+                0.00    0.00     258/262         MTF [14]
+[1]      0.0    0.00    0.00     262         ajouterEnQueue [1]
+-----------------------------------------------
+                0.00    0.00       1/4           readHuffmanTable [5]
+                0.00    0.00       1/4           codageHuffman [24]
+                0.00    0.00       2/4           creationTableHuffman [8]
+[2]      0.0    0.00    0.00       4         ajouterEnQueue2 [2]
+-----------------------------------------------
+                0.00    0.00       2/2           MTF [14]
+[3]      0.0    0.00    0.00       2         ajoutEnTete [3]
+-----------------------------------------------
+                0.00    0.00       1/2           codageHuffman [24]
+                0.00    0.00       1/2           MTF [14]
+[4]      0.0    0.00    0.00       2         liberer [4]
+-----------------------------------------------
+                0.00    0.00       1/2           creationTableHuffman [8]
+                0.00    0.00       1/2           codageHuffman [24]
+[5]      0.0    0.00    0.00       2         readHuffmanTable [5]
+                0.00    0.00       1/4           ajouterEnQueue2 [2]
+-----------------------------------------------
+                0.00    0.00       2/2           MTF [14]
+[6]      0.0    0.00    0.00       2         rechercherElement [6]
+-----------------------------------------------
+                0.00    0.00       2/2           codageHuffman [24]
+[7]      0.0    0.00    0.00       2         writeBit [7]
+-----------------------------------------------
+                0.00    0.00       1/1           writeHuffmanTable [57]
+[8]      0.0    0.00    0.00       1         creationTableHuffman [8]
+                0.00    0.00       2/4           ajouterEnQueue2 [2]
+                0.00    0.00       1/2           readHuffmanTable [5]
+-----------------------------------------------
+                0.00    0.00       1/1           MTF [14]
+[9]      0.0    0.00    0.00       1         estVide [9]
+-----------------------------------------------
+                0.00    0.00       1/1           ArbreHufman [12]
+[10]     0.0    0.00    0.00       1         size [10]
+-----------------------------------------------
+
+Index by function name
+
+   [3] ajoutEnTete             [9] estVide                [10] size
+   [1] ajouterEnQueue          [4] liberer                 [7] writeBit
+   [2] ajouterEnQueue2         [5] readHuffmanTable
+   [8] creationTableHuffman    [6] rechercherElement
