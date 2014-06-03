@@ -54,26 +54,31 @@ maillon* c;
 void decoderRle(maillon* tete){
 	if(tete != NULL && tete->suivant != NULL){
 		maillon* tmp;
+		maillon* tmpS; //suite de tmp
+		maillon* tmpP; //pred de tmp
 		maillon* c;
 		tmp = tete;
 		int nb;
 		int i;
-		while(tmp->suivant != NULL){
+		tmpP = tmp;
+		tmpS = tmp->suivant;
+		while(tmpS != NULL){
 
 			// Un élément de fréquence nulle indique combien de fois l'élément précédent est répété dans
 			// le code initial (convention) : on répète donc l'élément précédent le nombre de fois
 			// indiqué par cet élément
+//			if(tmpP->lettre == tmp->lettre){
 			if(tmp->suivant->autre == 0){
-
+//				tmpS->autre = 0;
 				// On récupère le code de la lettre, qui correspond au nombre de fois où l'on doit
 				// répéter tmp
-				nb = tmp->suivant->lettre;
+				nb = tmpS->lettre;
 
 				// On supprime l'élément qui nous indiquait la répétition
-				c=tmp->suivant;
-				tmp->suivant = (tmp->suivant)->suivant;
+				c=tmpS;
+				tmpS = tmpS->suivant;
+				tmp->suivant = tmpS;
 				free(c);
-				//supprimer(tmp->suivant, &tete);
 
 				// Si le nombre d'itérations est supérieur ou égal à 1, on répète nb fois l'élément tmp
 				for(i=1; i<=nb; i++){
@@ -81,10 +86,16 @@ void decoderRle(maillon* tete){
 					new->lettre = tmp->lettre;
 					new->autre = tmp->autre;
 					insererElement(new, tmp);
+					tmpS = tmp->suivant;
 				}
 			}
-			if(tmp->suivant != NULL)
-				tmp = tmp->suivant;
+			if(tmpS != NULL)
+				tmp = tmpS;
+		if(!(tmpP->suivant ==tmp))
+		{
+			tmpP = tmpP->suivant;
+		}
+		tmpS=tmp->suivant;
 		}
 	}
 }
@@ -93,19 +104,21 @@ void decoderRle(maillon* tete){
 // Auteur : Marie
 maillon* predecodeRle(maillon* tete){
 	maillon* tmp;
+	//maillon* c;
 	int i;
 	tmp = tete;
 	if(tmp->lettre == 'R' && (tmp->suivant)->lettre == 'L' && ((tmp->suivant)->suivant)->lettre == 'E'){
 		for(i=0; i<=2; i++){
-			supprimer(tete, &tete);
+			tmp= tmp->suivant;
 		}
-	tmp = tete;
+		tmp = tete;
 		while(tmp->suivant != NULL){
 			if(tmp->lettre == (tmp->suivant)->lettre){
 				tmp = (tmp->suivant)->suivant;
 				tmp->autre = 0;
 			}
-			tmp = tmp->suivant;
+			else
+				tmp = tmp->suivant;
 		}
 	}
 	return tete;
