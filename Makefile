@@ -37,7 +37,7 @@ decodage : src/decodage.c $(OBJS)
 clean :
 	@echo "On supprime tout les .o et les executables"
 	rm -fr objs/* $(EXECUTABLES)
-	rm -f Test/*.comp Test/*.decomp
+	rm -f Tests/*.comp Tests/*.decomp
 	rm -f *.comp *.decomp
 	
 

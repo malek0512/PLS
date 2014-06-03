@@ -1,0 +1,2715 @@
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#" lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+	<meta charset="iso-8859-1">
+	<title>Mode d'emploi de GCC
+
+</title>
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Mode d'emploi de GCC">
+	<meta name="keywords" content="gcc">
+	<script src="Mode%20d%27emploi%20de%20GCC_fichiers/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/jquery-1.js"></script>
+	<script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/a.html"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="http://c.developpez.com/template/favicon.ico">
+	<link rel="image_src" href="http://www.developpez.com/facebook-icon.png">
+	<link rel="stylesheet" type="text/css" href="Mode%20d%27emploi%20de%20GCC_fichiers/gabarit0.css">
+	<link rel="stylesheet" type="text/css" media="print" href="Mode%20d%27emploi%20de%20GCC_fichiers/printer.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="Mode%20d%27emploi%20de%20GCC_fichiers/developpez-kit-generation.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="Mode%20d%27emploi%20de%20GCC_fichiers/code.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="Mode%20d%27emploi%20de%20GCC_fichiers/lightbox.css">
+	<script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/developpez-kit-generation.js"></script>
+	<script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/lightbox.js"></script>
+	<script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/fonctions-kit.js"></script>
+	<meta name="author" content="Christian Casteyde">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie8.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="http://www.developpez.com/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="http://www.developpez.com/template/kit/html5_ie.js"></script><![endif]-->
+
+</head>
+<body>
+<header class="layout">
+
+<div id="quicknav">
+	<div id="quicksearch">
+		<form method="get" action="http://www.developpez.com/recherche/" id="cse-search-box">
+			<p>
+				<input style="background: url(&quot;http://www.google.com/cse/intl/fr/images/google_custom_search_watermark.gif&quot;) no-repeat scroll left center rgb(255, 255, 255);" name="q" id="recherche_g" type="text">
+				<input name="sa" id="recherche_submit" alt="Go" title="Rechercher" src="Mode%20d%27emploi%20de%20GCC_fichiers/go-gray.png" type="image">
+				<input name="cx" value="006424388311999799839:-31tnf0iuqy" type="hidden">
+				<input name="cof" value="FORID:9" type="hidden">
+				<input name="ie" value="ISO-8859-1" type="hidden">
+			</p>
+		<input value="c.developpez.com/cours/mode-emploi-gcc/" name="siteurl" type="hidden"><input name="ref" type="hidden"><input name="ss" type="hidden"></form>
+		<script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/brand"></script>
+	</div>
+<nav>	<ul id="quicklinks">
+		<li class="first"><a href="http://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="http://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="http://magazine.developpez.com/" title="">Magazine</a></li>
+		<li><a href="http://general.developpez.com/faq/" title="">FAQs</a></li>
+		<li><a href="http://blog.developpez.com/" title="">Blogs</a></li>
+		<li><a href="http://projets.developpez.com/" title="">Projets</a></li>
+		<li><a href="http://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="http://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="http://etudes.developpez.com/">Études</a></li>
+		<li><a href="http://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="http://club.developpez.com/">Club</a></li>
+		<li><a href="http://club.developpez.com/contacts/" title="">Contacts</a></li>
+	</ul>
+</nav></div>
+	<div id="publicite">
+		<!-- BEGIN Hi-Media Media Settings - v1.0 -->
+<script type="text/javascript">
+<!--
+	var adlSite='developpez.com';
+	var adlZone='c';
+	var adlKv='';
+	var adlHasDcopt = false;
+	var adlPro=window.location.protocal=='https:'?'https:':'http:';
+	document.write('<'+'sc'+'ript type="text/javascript" src="'+adlPro+'//js.himediads.com/js?lang=fr&s='+adlSite+'&z='+adlZone+'&d='+Math.floor(Math.random()*10000000000)+'"><\/'+'sc'+'ript>');
+//-->
+</script><script type="text/javascript" src="Mode%20d%27emploi%20de%20GCC_fichiers/js.js"></script>
+<!-- END Hi-Media Media Settings - v1.0 -->
+
+<!-- BEGIN Hi-Media Media AdTag, developpez.com 728x90 - v1.0 -->
+<div id="adl_728x90">
+	<table class="gabarit_pub_bigbanner">
+		<tbody><tr>
+			<td>
+				<script type="text/javascript">if (typeof getAdLinkAdTag=='function') getAdLinkAdTag( '728x90' );</script>
+				<noscript>
+					<a href="http://rd.himediads.com/fr/jump/developpez.com/c;sz=728x90;tile=2;ord=" target="_blank"><img src="http://rd.himediads.com/fr/ad/developpez.com/homepage;sz=728x90;tile=2;ord=?" width="728" height="90" alt="" /></a>
+				</noscript>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<!-- END Hi-Media Media AdTag, developpez.com 728x90 - v1.0 -->
+			</div>
+
+	<div id="logo_dvp">
+		<a href="http://www.developpez.com/" title="Accueil Developpez.com">
+			<img src="Mode%20d%27emploi%20de%20GCC_fichiers/logo.png" alt="">
+		</a>
+	</div>
+
+<nav id="gabarit">
+
+<div id="gabarit_tabmenu">
+	<div>&nbsp;</div>
+	<ul id="tabs">
+	<li class="item first">
+	
+	<a href="http://www.developpez.com/">
+		Accueil
+	<span class="tooltip">Actualités IT Pro</span>	</a>
+
+		</li>
+	<li class="item">
+	
+	<a href="http://alm.developpez.com/">
+		ALM
+	<span class="tooltip">Cycle de vie du logiciel</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://alm.developpez.com/">ALM</a></li>
+					<li>			<a href="http://merise.developpez.com/">Merise</a></li>
+					<li class="last">			<a href="http://uml.developpez.com/">UML</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://java.developpez.com/">
+		Java
+	<span class="tooltip">Plateforme et langage Java</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://java.developpez.com/">Java</a></li>
+					<li>			<a href="http://javaweb.developpez.com/">Java Web</a></li>
+					<li>			<a href="http://spring.developpez.com/">Spring</a></li>
+					<li>			<a href="http://android.developpez.com/">Android</a></li>
+					<li>			<a href="http://eclipse.developpez.com/">Eclipse</a></li>
+					<li class="last">			<a href="http://netbeans.developpez.com/">NetBeans</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://dotnet.developpez.com/">
+		.NET
+	<span class="tooltip">Microsoft Framework .NET</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://dotnet.developpez.com/">Microsoft DotNET</a></li>
+					<li>			<a href="http://dotnet.developpez.com/visual-studio/">Visual Studio</a></li>
+					<li>			<a href="http://dotnet.developpez.com/aspnet/">ASP.NET</a></li>
+					<li>			<a href="http://dotnet.developpez.com/csharp/">C#</a></li>
+					<li>			<a href="http://dotnet.developpez.com/vbnet/">VB.NET</a></li>
+					<li>			<a href="http://windowsphone.developpez.com/">Windows Phone</a></li>
+					<li class="last">			<a href="http://windows-azure.developpez.com/">Windows Azure</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://web.developpez.com/">
+		Dév. Web
+	<span class="tooltip">Développement Web et Webmarketing</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://web.developpez.com/">Développement Web</a></li>
+					<li>			<a href="http://ajax.developpez.com/">AJAX</a></li>
+					<li>			<a href="http://apache.developpez.com/">Apache</a></li>
+					<li>			<a href="http://asp.developpez.com/">ASP</a></li>
+					<li>			<a href="http://css.developpez.com/">CSS</a></li>
+					<li>			<a href="http://flash.developpez.com/">Flash / Flex</a></li>
+					<li>			<a href="http://javascript.developpez.com/">JavaScript</a></li>
+					<li>			<a href="http://php.developpez.com/">PHP</a></li>
+					<li>			<a href="http://ruby.developpez.com/">Ruby &amp; Rails</a></li>
+					<li>			<a href="http://web-semantique.developpez.com/">Web sémantique</a></li>
+					<li>			<a href="http://webmarketing.developpez.com/">Webmarketing</a></li>
+					<li class="last">			<a href="http://xhtml.developpez.com/">(X)HTML</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://edi.developpez.com/">
+		EDI
+	<span class="tooltip">Environnements de Développement Intégré</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://edi.developpez.com/">EDI</a></li>
+					<li>			<a href="http://4d.developpez.com/">4D</a></li>
+					<li>			<a href="http://delphi.developpez.com/">Delphi</a></li>
+					<li>			<a href="http://eclipse.developpez.com/">Eclipse</a></li>
+					<li>			<a href="http://labview.developpez.com/">LabVIEW</a></li>
+					<li>			<a href="http://netbeans.developpez.com/">NetBeans</a></li>
+					<li>			<a href="http://matlab.developpez.com/">MATLAB</a></li>
+					<li>			<a href="http://scilab.developpez.com/">Scilab</a></li>
+					<li>			<a href="http://dotnet.developpez.com/visual-studio/">Visual Studio</a></li>
+					<li>			<a href="http://wind.developpez.com/">WinDev</a></li>
+					<li>			<a href="http://vb.developpez.com/">Visual Basic 6</a></li>
+					<li>			<a href="http://lazarus.developpez.com/">Lazarus</a></li>
+					<li class="last">			<a href="http://qt-creator.developpez.com/">Qt Creator</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://programmation.developpez.com/" class="selected">
+		Programmation
+	<span class="tooltip">Programmation et langages de programmation applicatifs</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://programmation.developpez.com/">Programmation</a></li>
+					<li>			<a href="http://algo.developpez.com/">Débuter - Algorithmique</a></li>
+					<li>			<a href="http://jeux.developpez.com/">2D - 3D - Jeux</a></li>
+					<li>			<a href="http://asm.developpez.com/">Assembleur</a></li>
+					<li>			<a href="http://c.developpez.com/">C</a></li>
+					<li>			<a href="http://cpp.developpez.com/">C++</a></li>
+					<li>			<a href="http://objective-c.developpez.com/">Objective C</a></li>
+					<li>			<a href="http://pascal.developpez.com/">Pascal</a></li>
+					<li>			<a href="http://perl.developpez.com/">Perl</a></li>
+					<li>			<a href="http://python.developpez.com/">Python</a></li>
+					<li>			<a href="http://qt.developpez.com/">Qt</a></li>
+					<li>			<a href="http://xml.developpez.com/">XML</a></li>
+					<li class="last">			<a href="http://general.developpez.com/cours/">Autres</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://sgbd.developpez.com/">
+		SGBD
+	<span class="tooltip">Systèmes de Gestion de Bases de Données</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://sgbd.developpez.com/">SGBD &amp; SQL</a></li>
+					<li>			<a href="http://4d.developpez.com/">4D</a></li>
+					<li>			<a href="http://access.developpez.com/">Access</a></li>
+					<li>			<a href="http://db2.developpez.com/">DB2</a></li>
+					<li>			<a href="http://firebird.developpez.com/">Firebird</a></li>
+					<li>			<a href="http://interbase.developpez.com/">InterBase</a></li>
+					<li>			<a href="http://mysql.developpez.com/">MySQL</a></li>
+					<li>			<a href="http://nosql.developpez.com/">NoSQL</a></li>
+					<li>			<a href="http://postgresql.developpez.com/">PostgreSQL</a></li>
+					<li>			<a href="http://oracle.developpez.com/">Oracle</a></li>
+					<li>			<a href="http://sybase.developpez.com/">Sybase</a></li>
+					<li class="last">			<a href="http://sqlserver.developpez.com/">SQL-Server</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://office.developpez.com/">
+		Office
+	<span class="tooltip">Bureautique pour l'entreprise</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://office.developpez.com/">Microsoft Office</a></li>
+					<li>			<a href="http://access.developpez.com/">Access</a></li>
+					<li>			<a href="http://excel.developpez.com/">Excel</a></li>
+					<li>			<a href="http://word.developpez.com/">Word</a></li>
+					<li>			<a href="http://outlook.developpez.com/">Outlook</a></li>
+					<li>			<a href="http://powerpoint.developpez.com/">PowerPoint</a></li>
+					<li>			<a href="http://sharepoint.developpez.com/">SharePoint</a></li>
+					<li class="last">			<a href="http://project.developpez.com/">Microsoft Project</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://solutions-entreprise.developpez.com/">
+		Solutions d'entreprise
+	<span class="tooltip">Autres logiciels pour l'entreprise</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://solutions-entreprise.developpez.com/">Solutions d'entreprise</a></li>
+					<li>			<a href="http://business-intelligence.developpez.com/">Business Intelligence</a></li>
+					<li>			<a href="http://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/">ERP / PGI</a></li>
+					<li>			<a href="http://crm.developpez.com/">CRM</a></li>
+					<li>			<a href="http://sas.developpez.com/">SAS</a></li>
+					<li>			<a href="http://cloud-computing.developpez.com/">Cloud Computing</a></li>
+					<li>			<a href="http://sap.developpez.com/">SAP</a></li>
+					<li>			<a href="http://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/">Microsoft BizTalk Server</a></li>
+					<li class="last">			<a href="http://talend.developpez.com/">Talend</a></li>
+		
+			</ul>	</li>
+	<li class="item">
+	
+	<a href="http://applications.developpez.com/">
+		Applications
+	<span class="tooltip">Applications logicielles</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://applications.developpez.com/">Applications</a></li>
+					<li>			<a href="http://open-source.developpez.com/">Libres &amp; Open Source</a></li>
+					<li>			<a href="http://openoffice-libreoffice.developpez.com/">OpenOffice &amp; LibreOffice</a></li>
+					<li class="last">			<a href="http://portail-projets.developpez.com/">Projets</a></li>
+		
+			</ul>	</li>
+	<li class="item prelast">
+	
+	<a href="http://mobiles.developpez.com/">
+		Mobiles
+	<span class="tooltip">Logiciels et matériels mobiles</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://mobiles.developpez.com/">Mobiles</a></li>
+					<li>			<a href="http://android.developpez.com/">Android</a></li>
+					<li>			<a href="http://ios.developpez.com/">iOS</a></li>
+					<li class="last">			<a href="http://windowsphone.developpez.com/">Windows Phone</a></li>
+		
+			</ul>	</li>
+	<li class="item last">
+	
+	<a href="http://systeme.developpez.com/">
+		Systèmes
+	<span class="tooltip">Logiciels et matériels systèmes</span>	</a>
+
+	<ul class="submenu">
+		<li><a href="http://systeme.developpez.com/">Systèmes</a></li>
+					<li>			<a href="http://windows.developpez.com/">Windows</a></li>
+					<li>			<a href="http://linux.developpez.com/">Linux Professionnel</a></li>
+					<li>			<a href="http://securite.developpez.com/">Sécurité</a></li>
+					<li>			<a href="http://hardware.developpez.com/">PC</a></li>
+					<li>			<a href="http://mac.developpez.com/">Mac</a></li>
+					<li>			<a href="http://reseau.developpez.com/">Réseau</a></li>
+					<li>			<a href="http://green-it.developpez.com/">Green IT</a></li>
+					<li>			<a href="http://virtualisation.developpez.com/">Virtualisation</a></li>
+					<li class="last">			<a href="http://embarque.developpez.com/">Systèmes Embarqués</a></li>
+		
+			</ul>	</li>
+	</ul>
+</div>
+
+	<div id="gabarit_topicmenu">
+		<div>&nbsp;</div>
+		<ul id="topics">
+												<li>
+								<span><strong><a href="http://programmation.developpez.com/">Programmation</a></strong></span></li>
+															<li>
+								<span><strong><a href="http://algo.developpez.com/">Algorithmique</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://jeux.developpez.com/">2D-3D-Jeux</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://asm.developpez.com/">Assembleur</a></strong></span>
+				</li>
+												<li class="selected">
+								<span><strong><a href="http://c.developpez.com/">C</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://cpp.developpez.com/">C++</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://objective-c.developpez.com/">Objective C</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://pascal.developpez.com/">Pascal</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://perl.developpez.com/">Perl</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://python.developpez.com/">Python</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://qt.developpez.com/">Qt</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://xml.developpez.com/">XML</a></strong></span>
+				</li>
+												<li>
+								<span><strong><a href="http://general.developpez.com/cours/">Autres</a></strong></span>
+				</li>
+					</ul>
+	</div>
+
+<div id="gabarit_resourcemenu">
+	<div id="gabarit_resourcemenu_left">&nbsp;</div>
+	<div id="gabarit_resourcemenu_right">&nbsp;</div>
+	
+	<div id="facebook_bloc">
+		<a href="http://www.facebook.com/pages/C/108584359174497" target="_blank"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/facebook.png" alt="Facebook" title="Retrouver Developpez sur Facebook"></a>
+	</div>
+	<div id="twitter_bloc">
+		<a href="http://twitter.com/C_Developpez" target="_blank"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/twitter.png" alt="Twitter" title="Retrouver Developpez sur Twitter"></a>
+	</div>
+	<div id="rss_syndication">
+		<a href="http://c.developpez.com/index/rss" target="_blank"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/rss.png" alt="RSS" title="Flux RSS"></a>
+	</div>
+	<ul id="resources">		<li><span><strong><a href="http://c.developpez.com/">Accueil C</a></strong></span></li>
+			<li><span><strong><a href="http://www.developpez.net/forums/f7/c-cpp/">Forums C</a></strong></span></li>
+			<li><span><strong><a href="http://c.developpez.com/faq/">FAQ C</a></strong></span></li>
+			<li><span><strong><a href="http://c.developpez.com/cours/">Tutoriels C</a></strong></span></li>
+			<li><span><strong><a href="http://c.developpez.com/livres/">Livres C</a></strong></span></li>
+			<li><span><strong><a href="http://c.developpez.com/telecharger/index/categorie/30/Outils-C-C">Compilateurs et outils C</a></strong></span></li>
+			<li><span><strong><a href="http://c.developpez.com/telecharger/index/categorie/149/Sources-C">Sources C</a></strong></span></li>
+			<li><span><strong><a href="http://c.developpez.com/telecharger/index/categorie/451/Bibliotheques-C">Bibliothèques C</a></strong></span></li>
+			<li><span><strong><a href="http://gtk.developpez.com/">GTK+</a></strong></span></li>
+	</ul>
+</div>
+</nav>
+</header>
+
+<section class="layout">
+	<div id="shadow1">
+		<div id="shadow2">
+			<div class="contenuPage">		<article style="margin: 0px 20px;" class="ArticleComplet" itemscope="" itemtype="http://schema.org/Article">
+<meta itemprop="genre" content="informatique">
+<meta itemprop="inLanguage" content="fr-FR">
+		
+<header class="EnteteTitres">
+<h1 class="titre-article" itemprop="name">Mode d'emploi de GCC</h1>
+
+</header><nav style="height: 458px;" class="nav-sommaire" role="navigation">
+<header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des matières<img class="ToggleImgPlier" title="Plier" alt="Plier" src="Mode%20d%27emploi%20de%20GCC_fichiers/fleche-haut-bleue.gif"><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" src="Mode%20d%27emploi%20de%20GCC_fichiers/fleche-bas-bleue.gif" style="display:none;"></h1></header>
+<ul style="overflow-y: scroll; height: 408px;" id="nav_sommaire_ul_principal" class="nav-sommaire-ul">
+    <li><a class="summaryIndent0" href="#LI">I. Introduction</a></li>
+    <li><a class="summaryIndent0" href="#LII">II. Droits d'utilisation</a></li>
+    <li><a class="summaryIndent0" href="#LIII">III. Principaux outils</a></li>
+    <li><a class="summaryIndent0" href="#LIV">IV. Utilisation de GCC</a></li>
+    <li><a class="summaryIndent0" href="#LV">V. Le préprocesseur</a></li>
+    <li><a class="summaryIndent0" href="#LVI">VI. Le compilateur</a></li>
+    <li><a class="summaryIndent0" href="#LVII">VII. L'assembleur</a></li>
+    <li><a class="summaryIndent0" href="#LVIII">VIII. L'archiveur</a></li>
+    <li><a class="summaryIndent0" href="#LIX">IX. L'éditeur de liens</a></li>
+    <li><a class="summaryIndent0" href="#LX">X. Utilisation de make</a></li>
+    <li><a class="summaryIndent0" href="#LXI">XI. strip</a></li>
+    <li><a class="summaryIndent0" href="#LXII">XII. Windres</a></li>
+    <li><a class="summaryIndent0" href="#LXIII">XIII. Dlltool</a></li>
+    <li><a class="summaryIndent0" href="#LXIV">XIV. Le débogueur</a><ul class="nav-sommaire-ul IndentationXIV">
+      
+      
+      <li><a class="summaryIndent1" href="#LXIV-A">XIV-A. Chargement d'un programme</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-B">XIV-B. Commandes fondamentales</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-C">XIV-C. Les points d'arrêt</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-D">XIV-D. Contrôle de l'exécution</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-E">XIV-E. Les chiens de garde</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-F">XIV-F. Examen et modification des données</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-G">XIV-G. Examen du contexte d'exécution</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-H">XIV-H. Gestion des threads</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-I">XIV-I. Gestion des fichiers sources</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-J">XIV-J. Spécification du langage</a></li>
+      <li><a class="summaryIndent1" href="#LXIV-K">XIV-K. Complétion des commandes</a></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#LXV">XV. Le profiler</a></li>
+    <li><a class="summaryIndent0" href="#LXVI">XVI. L'analyseur de couverture</a></li>
+    <li><a class="summaryIndent0" href="#LXVII">XVII. Programmation de composants COM en C++</a></li>
+    <li><a class="summaryIndent0" href="#LXVIII">XVIII. Conclusion</a></li>
+    <li><a class="summaryIndent0" href="#LXIX">XIX. GNU Free Documentation License</a></li>
+  </ul></nav>
+
+
+<div class="fixeMarge"><section itemprop="about" class="SectionSynopsis">
+    <p>Ce document est un mode d'emploi simplifié des divers outils de 
+développement réalisés par la Free Software Foundation dans le cadre du 
+projet GNU. Le projet GNU est un projet visant à réaliser un système 
+Unix complet et libre de droits d'utilisation. Libre signifie ici que 
+l'on peut aussi bien utiliser que modifier le système, le distribuer 
+librement de façon rémunérée ou non.</p>
+    <p>Les outils de développement GNU font partie des meilleurs outils 
+Unix disponibles actuellement. Ils sont fournis en standard avec Linux, 
+mais ils sont également disponibles pour de nombreuses plates-formes. 
+Des portages ont également été réalisés pour DOS, Win32 et OS/2.</p>
+    <p>Ce document est distribué sous la licence FDL du projet GNU. C'est une licence libre, vous en trouverez un exemplaire en <a href="#LXIX" class=" tooltip blue-tooltip  lienArticle simple">Annexe<span>GNU Free Documentation License</span></a>. Vous pourrez trouver la dernière version de ce document sur <a class="lienArticle simple" href="http://casteyde.christian.free.fr/" target="_blank">mon site Web</a>. </p>
+  <p style="display: block;" class="TextNbrVues">Article lu <span id="NbrVues">5847</span> fois.</p></section></div><div style="height: 152px;" class="InfoAuthArtBook">
+	<section class="SectionAuteurs">
+	<header><h1 class="TitreHeader">L'auteur</h1></header>
+<p class="auteur" itemprop="name" itemscope="" itemtype="http://schema.org/Person"><a itemprop="url" class="auteur" href=""><span itemprop="author">Christian Casteyde</span></a><a class="homepage" href="http://casteyde.christian.free.fr/"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-site-personnel.png" title="Site personnel" alt="Site personnel" style="vertical-align:middle;"></a></p>
+</section>
+<section class="SectionInformationArticle">
+<header><h1 class="TitreHeader">L'article</h1></header>
+
+<p class="InfoArticle">Publié&nbsp;le&nbsp;<span itemprop="datePublished">10&nbsp;septembre&nbsp;2000&nbsp;</span>- Mis&nbsp;à&nbsp;jour&nbsp;le&nbsp;<span itemprop="dateModified">21&nbsp;décembre&nbsp;2002&nbsp;</span></p><p>
+<span class="lientelechargementpdf"><a class="lientelechargement" href="http://c.developpez.com/cours/mode-emploi-gcc/mode-emploi-gcc.pdf" title="Télécharger la version PDF de cet article.">Version PDF</a></span>
+<span class="lientelechargementzip"><a class="lientelechargement" href="http://c.developpez.com/cours/mode-emploi-gcc/mode-emploi-gcc.zip" title="Télécharger la version HTML de cet article.">Version hors-ligne</a></span></p>
+<p><span class="lientelechargementebook"><a class="lientelechargement" href="http://c.developpez.com/cours/mode-emploi-gcc/mode-emploi-gcc.epub" title="Télécharger la version ePub de l'article compatible avec la plupart des liseuses non Kindle (Amazon).">ePub</a></span>, <span class="lientelechargementebook"><a class="lientelechargement" href="http://c.developpez.com/cours/mode-emploi-gcc/mode-emploi-gcc.azw" title="Télécharger la version Azw spécifique aux liseuses Kindle (Amazon).">Azw</a></span> et <span class="lientelechargementebook"><a class="lientelechargement" href="http://c.developpez.com/cours/mode-emploi-gcc/mode-emploi-gcc.mobi" title="Télécharger la version Mobi de l'article compatible avec les liseuses Amazon.">Mobi</a></span></p>
+</section>
+<section class="SectionBookmarks">
+<header><h1 class="TitreHeader">Liens&nbsp;sociaux</h1></header>
+<div class="InfoBookmarks"><a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;Title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="Viadeo" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-viadeo.gif"></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F" rel="nofollow"><img alt="Twitter" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-twitter.png"></a>&nbsp;<a title="Google Bookmarks !" href="http://www.google.com/bookmarks/mark?op=edit&amp;bkmk=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="Google Bookmarks !" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-google.png"></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F" rel="nofollow"><img alt="Facebook" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-facebook.gif"></a>&nbsp;<a title="Digg" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="Digg" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-digg.png"></a>&nbsp;<a title="del.icio.us" href="http://del.icio.us/post?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="del.icio.us" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-delicious.png"></a>&nbsp;<a title="Yahoo MyWeb" href="http://myweb2.search.yahoo.com/myresults/bookmarklet?t=Mode+d%27emploi+de+GCC&amp;u=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F" rel="nofollow"><img alt="Yahoo MyWeb" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-yahoomyweb.png"></a>&nbsp;<a title="Blinklist" href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&amp;Url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;Title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="Blinklist" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-blinklist.png"></a>&nbsp;<a title="Netvouz" href="http://www.netvouz.com/action/submitBookmark?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="Netvouz" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-netvouz.png"></a>&nbsp;<a title="Reddit" href="http://reddit.com/submit?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="Reddit" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-reddit.png"></a>&nbsp;<a title="Simpy" href="http://simpy.com/simpy/LinkAdd.do?note=Mode+d%27emploi+de+GCC&amp;href=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F" rel="nofollow"><img alt="Simpy" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-simpy.png"></a>&nbsp;<a title="StumbleUpon" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F&amp;title=Mode+d%27emploi+de+GCC" rel="nofollow"><img alt="StumbleUpon" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-stumbleupon.png"></a>&nbsp;<a title="Bookmarks" href="http://www.bookmarks.fr/Connexion/?action=add&amp;address=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F" rel="nofollow"><img alt="Bookmarks" src="Mode%20d%27emploi%20de%20GCC_fichiers/kitbm-bookmarks.gif"></a>&nbsp;<a href="https://plus.google.com/share?url=http%3A%2F%2Fc.developpez.com%2Fcours%2Fmode-emploi-gcc%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/gplus-16.png" alt="Share on Google+"></a>&nbsp;</div>
+</section></div><section style="margin-left: 251px; margin-top: 20px; clear: none;" itemprop="articleBody" class="articleBody">
+    
+		<h1 class="TitreSection0" id="LI">I. Introduction<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>GCC est le nom générique de la suite d'outils de développement 
+contenant, entre autres, le compilateur C/C++ GNU développé par la Free 
+Software Foundation. C'est en fait un front-end qui permet d'utiliser 
+les programmes de développement. Ce front-end est très souple et peut 
+être utilisé pour les différentes phases de production des 
+binaires&nbsp;: preprocessing des fichiers sources, compilation, 
+assemblage et édition de liens. Il dispose d'un grand nombre d'options, 
+et peut être paramétré à l'aide d'un fichier de configuration. </p>
+      <p>GCC existe en plusieurs versions. La dernière version 
+officielle disponible est la 3.0.3. Cette version comprend un 
+compilateur C/C++ et un compilateur Java. Le compilateur C++ est capable
+ de comprendre la plupart des constructions de ce langage, excepté le 
+mot-clé <span class="codeinline">export</span>. Il existe également une 
+version plus ancienne mais nettement plus stable, la version 2.95.3, que
+ l'on utilisera donc de préférence si l'on ne recherche pas les 
+dernières fonctionnalités du langage et de la norme C++. Cette version 
+ne comprend pas de compilateur Java. </p>
+      <p>La suite de développement GNU est certainement l'une des plus 
+portables qui soit. Fondamentalement, elle a été conçue pour être 
+utilisée sous UNIX. Cependant, il en existe également des versions pour 
+d'autres systèmes d'exploitation. Ce document donne les notions 
+relatives au développement avec le compilateur C/C++ de la suite de 
+compilateurs GCC, pour les principales plates-formes pour lesquelles GCC
+ a été porté. Ils donne également quelques informations spécifiques à 
+chaque plate-forme, lorsque cela est nécessaire. Ces informations sont 
+clairement identifiées dans le document. </p>
+      <p><b>SPÉCIFIQUE DOS&nbsp;: </b>La version DOS est appelée DJGPP, elle correspond à la version 2.8.1. de GCC. </p>
+      <p><b>SPÉCIFIQUE WIN32&nbsp;: </b>Les versions Windows sont pour les plates-formes 32 bits de ce système. Il en existe trois version de GCC pour Windows. </p>
+      <p>La version fournie par Cygwin utilise une DLL d'émulation des 
+appels UNIX sous l'API Win32 pour faire fonctionner la suite de 
+développement GNU. Les programmes générés par Cygwin utilisent également
+ cette DLL, ce qui fait de cette version l'outil idéal pour compiler des
+ programmes UNIX sous Windows. Il est également possible de générer des 
+programmes natifs pour Windows, qui n'utilisent pas la DLL d'émulation 
+d'UNIX, pourvu que ces programmes n'utilisent pas la librairie C++. </p>
+      <p>Les deux autres versions utilisent le portage de la librairie C
+ mingw32. Ces deux versions sont liées aux deux librairies C standard du
+ système <span class="codeinline">CRTDLL.DLL</span> ou <span class="codeinline">MSVCRT.DLL</span>.
+ Les programmes créés sont donc des programmes natifs (que ce soient des
+ programmes C ou C++). Ces deux versions utilisent le portage réalisé 
+par Cygwin (en particulier les extensions du linker pour gérer la 
+plate-forme Win32) et ont été recompilées avec mingw32. </p>
+      <p>Comme toutes ces versions sont réalisées à partir des mêmes 
+fichiers sources, toutes les options de ces plates-formes sont 
+identiques. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LII">II. Droits d'utilisation<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Tous les programmes de la suite de développement sont soumis à 
+la GPL (General Public License). La librairie GNU C++ est soumise à la 
+LGPL (Library General Public License). </p>
+      <p><b>Note&nbsp;: </b>La GPL implique un certain nombre de droits 
+et d'obligations pour leurs utilisateurs. Le but principal de cette 
+licence est de garantir le droit à échanger, utiliser et modifier 
+librement les programmes qui sont soumis à cette licence. Ceci signifie 
+que les distributeurs de ces programmes doivent également fournir les 
+sources, ou au moins suffisamment d'information pour que les 
+récipiendaires puissent obtenir les sources librement. Bien entendu, 
+toute personne désirant modifier le logiciel doit se plier aux exigences
+ de la GPL, c'est à dire que la modification doit être signalée, que la 
+version modifiée doit elle-même être soumise à la GPL, et que la version
+ originale doit être accessible aux récipiendaires. Il en va de même 
+pour les logiciels qui utilisent une partie du code licencié sous les 
+termes de la GPL. Il va donc de soi que le fait d'être libre pour un 
+logiciel supprime toute garantie quant à son utilisation. En effet, le 
+code source peut avoir été modifié, et un dysfonctionnement de sa part 
+ne peut être imputé à l'auteur du logiciel. </p>
+      <p>La LGPL s'applique spécifiquement aux bibliothèques 
+logicielles. Elle permet de faire la distinction entre l'utilisation 
+d'une bibliothèque, qui est à la convenance de l'utilisateur, et 
+l'utilisation d'une partie du code source d'un logiciel soumis à la GPL.
+ Elle permet à des développeurs de programmes non libres d'utiliser des 
+bibliothèques soumises à la LGPL. </p>
+      <p>La LGPL stipule que tout programme qui utilise la bibliothèque 
+n'est pas soumise à la GPL, puisqu'il ne contient pas de code 
+appartenant à cette bibliothèque. Cependant, la version compilée de ce 
+programme contient une partie du code de la bibliothèque, et est donc 
+soumis à la LGPL. La version compilée peut être distribuée selon les 
+termes de son auteur, mais elle doit impérativement être fournie avec le
+ code source de la bibliothèque, y compris les modifications qui y ont 
+été apportées, et avec le code source ou le code objet du programme qui 
+utilise la bibliothèque. Cette obligation a pour but d'assurer la 
+liberté de tout un chacun de modifier la bibliothèque et d'effectuer 
+l'édition de lien et du logiciel avec cette version modifiée et son 
+débogage. Le distributeur n'est toutefois pas tenu d'assurer une édition
+ de lien correcte si les fichiers d'en-tête de la bibliothèque ont été 
+modifiés. </p>
+      <p>Ces licences impliquent que vous pouvez utiliser les 
+compilateurs GCC pour développer des produits libres ou commerciaux. 
+Cependant, si vous utilisez une bibliothèque soumise à la LGPL, vous 
+devez fournir au moins les fichiers objets de votre produit en plus des 
+sources de la bibliothèque utilisée, afin que les utilisateurs puissent 
+toujours avoir le droit de modifier la bibliothèque et d'utiliser cette 
+version modifiée avec votre produit. Vous pouvez également lier vos 
+exécutables avec les bibliothèques chargeables dynamiquement afin de 
+séparer votre code de celui des bibliothèques utilisées. </p>
+      <p>La bibliothèque GNU libgpp est soumise à la LGPL (classes 
+d'entrées/sorties C++). Cette bibliothèque est en cours de remplacement 
+par la librairie libstdc++ (ou libstdcxx), qui est également soumise à 
+la LGPL (ce remplacement a été réalisé avec les versions 3.0 et 
+ultérieures de GCC). Cependant, les exécutables liés avec cette 
+librairie ne sont pas soumis à la LGPL à titre exceptionnel. </p>
+      <p>Les compilateurs GNU sont fournis également avec la librairie 
+standard C++ (STL). Celle-ci est copyrightée par Hewlett Packard. Elle 
+peut être librement utilisée, sans aucune contrainte. Elle n'est fournie
+ sans aucune garantie. De plus, les librairies C fournies avec les 
+versions portées de GCC sont copyrightées par les auteurs respectifs du 
+portage. Leur utilisation est soumise à la notice de copyright fournie 
+par ces auteurs. </p>
+      <p>DJGPP requiert que l'utilisateur puisse trouver DJGPP librement
+ et que votre programme mentionne dans sa documentation et sa publicité 
+la notice suivante&nbsp;: </p>
+      <p>This product includes software developed by the University of</p>
+      <p>California, Berkeley and its contributors.</p>
+      <p>En effet, une partie de la librairie C de DJGPP est utilise du 
+code copyrighté par BSD. Mingw32 est librement utilisable (c'est une 
+bibliothèque freeware). Cygwin32 est également librement utilisable.</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LIII">III. Principaux outils<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Les outils disponibles sont les suivants&nbsp;:</p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:21%;background-color:#b3b3b3;">Outil</td>
+          <td class="colonne" style="text-align:center;width:79%;background-color:#b3b3b3;">Description</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">gcc</td>
+          <td class="colonne" style="">Front-end pour le compilateur GNU C.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">g++</td>
+          <td class="colonne" style="">Front-end pour le compilateur GNU C++.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">c++</td>
+          <td class="colonne" style="">Alias de g++.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">cpp</td>
+          <td class="colonne" style="">Préprocesseur C.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">cc1</td>
+          <td class="colonne" style="">Compilateur C.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">cc1plus</td>
+          <td class="colonne" style="">Compilateur C++.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">gasp</td>
+          <td class="colonne" style="">Préprocesseur pour l'assembleur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">as</td>
+          <td class="colonne" style="">Assembleur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">ar</td>
+          <td class="colonne" style="">Archiveur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">ld</td>
+          <td class="colonne" style="">Éditeur de liens.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">make</td>
+          <td class="colonne" style="">Programme de gestion des dépendances pour la construction des projets.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">gdb</td>
+          <td class="colonne" style="">Débogueur symbolique.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">strip</td>
+          <td class="colonne" style="">Extracteur d'informations symboliques de débogage.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">gperf</td>
+          <td class="colonne" style="">Profiler.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">gcov</td>
+          <td class="colonne" style="">Analyseur de taux de couverture.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">g77</td>
+          <td class="colonne" style="">Traducteur de Fortran 77 en C.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">dlltool</td>
+          <td class="colonne" style="">Outil de génération des tables d'exportation et des bibliothèques d'importation des DLLs pour Windows.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">windres</td>
+          <td class="colonne" style="">Compilateur de fichiers de ressources pour Windows.</td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Outils de développement GNU</p>
+      <p><b>gcc</b> est un front-end qui permet d'appeler le 
+préprocesseur, le compilateur, l'assembleur et le linker pour les 
+langages C et C++. Les opérations que ce programme réalise sont les 
+suivantes&nbsp;: </p>
+      <ul class="ListeDVP">
+        <li>appel du préprocesseur C (nommé <b>cpp</b>)&nbsp;; </li>
+        <li>appel du compilateur C (nommé <b>cc1</b>), ou C++ (<b>cc1plus</b>)
+ selon le type de fichier à compiler (les fichiers .c sont compilés en 
+C, les fichiers .C, .cc et .cpp sont compilés en C++). Les compilateurs 
+génèrent un fichier assembleur&nbsp;; </li>
+        <li>appel de l'assembleur (<b>as</b>) pour générer le fichier objet, si l'option <span class="codeinline">-S</span> n'est pas spécifiée&nbsp;; </li>
+        <li>appel de l'éditeur de liens (<b>ld</b>) pour générer l'exécutable ou la bibliothèque, si l'option <span class="codeinline">-c</span>
+ n'est pas spécifiée. Dans ce cas, la librairie C standard est incluse 
+par défaut dans la ligne de commande de l'édition de liens. La librairie
+ C++ n'est en revanche pas incluse. </li>
+      </ul>
+      <p><b>g++</b> est un front-end pour le langage C++, qui effectue 
+le même travaille que gcc, mais qui ajoute également les librairies C++ à
+ la ligne de commande de l'éditeur de liens. <b>c++</b>, s'il est présent, est le même programme que <b>g++</b>, fourni sous un autre nom. </p>
+      <p><b>SPÉCIFIQUE WIN32&nbsp;: </b>L'éditeur de liens n'est pas 
+capable de générer des bibliothèques dynamiques pour Windows (DLL). En 
+effet, les DLL de Windows contiennent ce que l'on appelle une table de 
+fonctions exportées, qui n'est rien d'autre qu'un tableau de pointeurs 
+vers les fonctions exportées de la DLL. Cette table est utilisée par le 
+chargeur de Windows pour résoudre dynamiquement les liens vers les 
+fonctions de la DLL dans les programmes qui l'utilisent. Comme <b>ld</b> n'est qu'un éditeur de liens, il ne génère pas ces tables, et il faut recourrir à l'outil <b>dlltool</b>.
+ Celui-ci peut créer un fichier objet contenant la table des fonctions 
+exportées, que l'on utilisera ensuite pour effectuer l'édition de liens 
+complète. L'outil <b>dlltool</b> permet également de générer les 
+bibliothèques d'importation statiques pour les DLL existantes, afin de 
+pouvoir les charger automatiquement au chargement d'un programme. </p>
+      <p>Les chemins passés aux programmes appelés peuvent être 
+spécifiés aussi bien au format DOS qu'au format UNIX. Cependant, il est 
+préférable d'utiliser le format UNIX, car dans les fichiers makefile, le
+ séparateur \ ne peut être obtenu qu'en le doublant en raison de sa 
+signification particulière de fin de ligne. Ce problème n'apparaît pas 
+avec les chemins UNIX, qui utilisent le séparateur /. </p>
+      <p><b>SPÉCIFIQUE DOS&nbsp;: </b>Même remarque pour les chemins que
+ pour Windows. De plus, les noms de fichiers doivent être limités à 8 
+lettres et d'une extension au plus, de 3 lettres maximum. </p>
+      <p>La suite de développement GNU utilise un fichier spécial pour 
+permettre à l'utilisateur de définir de nouvelles options pour ses 
+programmes. Ce fichier est souvent placé dans le répertoire où se 
+trouvent les bibliothèques, il se nomme <span class="codeinline">specs</span>.
+ Il permet, pour chaque programme, de définir les nouvelles options, les
+ conditions d'applications et ce par quoi ces options doivent être 
+remplacées dans la ligne de commande de l'outil. </p>
+      <p>L'utilisation des différents outils est décrite dans la suite de ce fichier. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LIV">IV. Utilisation de GCC<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><b>gcc</b> dispose des options classiques de la plupart des 
+front-end de compilateurs. Les principales options sont définies 
+ci-dessous&nbsp;:</p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:26%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:74%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--help</td>
+          <td class="colonne" style="">Affiche l'aide de GCC.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--version</td>
+          <td class="colonne" style="">Donne la version de GCC.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-E</td>
+          <td class="colonne" style="">Appelle le préprocesseur. N'effectue pas la compilation.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-S</td>
+          <td class="colonne" style="">Appelle le préprocesseur et 
+effectue la compilation. N'effectue pas l'assemblage ni l'édition de 
+lien. Seuls les fichiers assembleur («&nbsp;.S&nbsp;») sont générés.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-c</td>
+          <td class="colonne" style="">Appelle le préprocesseur, 
+effectue la compilation et l'assemblage, mais ne fait pas l'édition de 
+lien. Seuls les fichiers objets («&nbsp;.o&nbsp;») sont générés.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-o nom</td>
+          <td class="colonne" style="">Fixe le nom du fichier objet généré lors de la compilation d'un fichier source.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-g</td>
+          <td class="colonne" style="">Génère les informations symboliques de débogage.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-fexceptions</td>
+          <td class="colonne" style="">Active la gestion des exceptions C++.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-fpic</td>
+          <td class="colonne" style="">Génère du code relogeable. Cette 
+option est nécessaire pour la compilation des fichiers utilisés dans une
+ DLL ou un fichier chargeable dynamiquement.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-On</td>
+          <td class="colonne" style="">Indique le niveau d'optimisation (n peut prendre les valeurs allant de 0 à 3, ou « s » pour optimiser la taille des binaires).</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-mcpu=cpu</td>
+          <td class="colonne" style="">Indique le type de processeur 
+pour lequel le code doit être optimisé. Le code fonctionnera sur tous 
+les processeurs de la famille de ce processeur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-march=cpu</td>
+          <td class="colonne" style="">Indique le type de processeur 
+pour lequel le code doit être généré. Le code généré sera spécifique à 
+ce processeur, et ne fonctionnera peut-être pas sur un autre modèle de 
+la même famille. Cette option active automatiquement l'option -mcpu avec
+ le même processeur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-pipe</td>
+          <td class="colonne" style="">Utilise les pipes systèmes au 
+lieu des fichiers temporaires pour les communications entre le 
+préprocesseur, le compilateur et l'assembleur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-w</td>
+          <td class="colonne" style="">Supprime tous les warnings.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-W</td>
+          <td class="colonne" style="">Active les warnings supplémentaires.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-Wall</td>
+          <td class="colonne" style="">Active tous les warnings possibles.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-mwindows</td>
+          <td class="colonne" style="">Crée un exécutable GUI Windows.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-mdll</td>
+          <td class="colonne" style="">Crée une DLL Windows.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-fvtable-thunks</td>
+          <td class="colonne" style="">Utilise le mécanisme des tables 
+de fonctions virtuelles. Cette option est nécessaire pour utiliser les 
+interfaces COM sous Windows.</td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options de gcc</p>
+      <p>La plupart des autres options ne sont pas gérées directement par <b>gcc</b>.
+ Elles sont directement communiquées aux programmes appelés par lui. Les
+ options de ces programmes peuvent donc souvent être utilisées avec <b>gcc</b>, voir la documentation de ces programmes pour plus de renseignements. </p>
+      <p><b>SPÉCIFIQUE WIN32&nbsp;: </b>Les options <span class="codeinline">-mwindows</span> et <span class="codeinline">-dll</span> ne sont pas des options natives de la suite de développement GNU. Elles sont définies dans le fichiers <span class="codeinline">specs</span> de la version Windows. </p>
+      <p>Il est également possible de passer des options spécifiques aux programmes appelés par <b>gcc</b> à l'aide de l'option <span class="codeinline">-W&lt;lettre&gt;</span>. Les options les plus utiles sont les suivantes&nbsp;: </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:25%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:75%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-Wa,&lt;options&gt;</td>
+          <td class="colonne" style="">Passe les options suivantes à l'assembleur. Les options doivent être séparées par des virgules.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-Wp,&lt;options&gt;</td>
+          <td class="colonne" style="">Passe les options suivantes au préprocesseur. Les options doivent être séparées par des virgules.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-Wl,&lt;options&gt;</td>
+          <td class="colonne" style="">Passe les options suivantes à l'éditeur de liens. Les options doivent être séparées par des virgules.</td>
+        </tr>
+      </tbody></table></div>
+      <p><b>gcc</b> prend directement en ligne de commande les fichiers à
+ traiter. L'ordre des fichiers n'a pas d'importance, sauf pour les 
+fichiers de bibliothèques. Les bibliothèques doivent être passées à la 
+fin, parce qu'elles ne sont utilisées que si l'éditeur de liens y trouve
+ des symboles non résolus au moment de l'utilisation de la bibliothèque.
+ </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LV">V. Le préprocesseur<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Le préprocesseur est le premier programme appelé par gcc. Son 
+rôle est de supprimer les commentaires, d'inclure les fichiers spécifiés
+ avec la directive «&nbsp;<span class="codeinline">#include</span>&nbsp;»
+ et d'évaluer les macros. À l'issue de l'exécution du préprocesseur, le 
+fichier peut être compilé directement sans autre traitement par le 
+compilateur.</p>
+      <p>La ligne de commande du préprocesseur est donnée ci-dessous :</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e751">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e751" onclick="selectionCode('contenuCoded0e751');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e751" class="contenuCode">cpp options source destination
+</code></pre></div>
+      <p>où <span class="codeinline">options</span> représente les diverses options que l'on peut passer au préprocesseur, <span class="codeinline">source</span> est le nom du fichier source à traiter et <span class="codeinline">destination</span> est le nom du fichier de sortie.</p>
+      <p>Les principales options du préprocesseur sont les suivantes&nbsp;: </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:29%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:71%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--help</td>
+          <td class="colonne" style="">Affiche l'écran d'aide du préprocesseur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-I répertoire</td>
+          <td class="colonne" style="">Ajoute le répertoire répertoire à la liste des répertoires. Ce répertoire est ajouté en tête de liste.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-D nom</td>
+          <td class="colonne" style="">Déclare l'identificateur nom.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-D macro=définition</td>
+          <td class="colonne" style="">Définit la macro macro.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-U nom</td>
+          <td class="colonne" style="">Supprime la définition du symbole nom.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-trigraphs</td>
+          <td class="colonne" style="">Autorise l'utilisation des trigraphes C. </td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Option du préprocesseur</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LVI">VI. Le compilateur<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Le compilateur appelé par <b>gcc</b> est soit <b>cc1</b>, si le fichier source est un fichier C, soit <b>cc1plus</b>,
+ s'il s'agit d'un fichier C++. Seules les principales options sont 
+décrites ici. Pour plus de renseignements, consulter la documentation de
+ GCC, ou demandez l'écran d'aide du compilateur. </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:30%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:70%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--help</td>
+          <td class="colonne" style="">Affiche l'écran d'aide du compilateur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--version</td>
+          <td class="colonne" style="">Affiche la version du compilateur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-o nom</td>
+          <td class="colonne" style="">Donne le nom du fichier de sortie.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-g</td>
+          <td class="colonne" style="">Génère les informations symboliques de débogage.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-On</td>
+          <td class="colonne" style="">Active les optimisations (n allant de 0 à 3, ou «&nbsp;s&nbsp;» pour optimiser la taille du code généré).</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-f&lt;option&gt;</td>
+          <td class="colonne" style="">Active une option.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-ansi</td>
+          <td class="colonne" style="">Demande la compilation du code ANSI.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-pedantic</td>
+          <td class="colonne" style="">Affiche les warnings requis par la norme ANSI du langage.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-pedantic-errors</td>
+          <td class="colonne" style="">Génère les erreurs requis par la norme ANSI du langage.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-w</td>
+          <td class="colonne" style="">Supprime tous les warnings.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-W</td>
+          <td class="colonne" style="">Active les warnings supplémentaires.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-Wall</td>
+          <td class="colonne" style="">Active tous les warnings possibles.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-p</td>
+          <td class="colonne" style="">Active le profiling des fonctions.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-a</td>
+          <td class="colonne" style="">Active le profiling des blocks.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-ax</td>
+          <td class="colonne" style="">Active le profiling des branchements.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-fPIC</td>
+          <td class="colonne" style="">Génère du code indépendant de son
+ adresse de chargement (nécessaire pour les bibliothèques dynamiques, 
+dont le chargement peut être réalisé par le système n'importe où en 
+mémoire a priori).</td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options du compilateur C</p>
+      <p>Le compilateur prend en ligne de commande le fichier à compiler. Il génère le code assembleur résultant de la compilation.</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LVII">VII. L'assembleur<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>L'assembleur GNU a été créé pour permettre l'assemblage des 
+fichiers assembleurs générés par le compilateur. Ceci signifie que 
+toutes les constructions des autres assembleurs conçus spécialement pour
+ utiliser l'assembleur en tant que code source d'un programme ne sont 
+pas forcément gérées par l'assembleur GNU. En revanche, la syntaxe de 
+l'assembleur reste à peu près identique entre les différentes versions 
+pour les différentes plates-formes. Bien entendu, les mnémoniques sont 
+toujours spécifiques au processeur. </p>
+      <p>L'assembleur GNU ne sera donc utilisé qu'avec le compilateur 
+GNU pour la plate-forme correspondante en pratique. Si l'on veut 
+réaliser du code assembleur soi-même, il est recommandé d'utiliser un 
+assembleur spécialisé. </p>
+      <p>Les principales options de l'assembleur sont les suivantes&nbsp;: </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:27%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:73%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--help</td>
+          <td class="colonne" style="">Affiche l'écran d'aide de l'assembleur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--version</td>
+          <td class="colonne" style="">Affiche le numéro de version de l'assembleur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--statistics</td>
+          <td class="colonne" style="">Affiche les statistiques sur l'exécution de l'assembleur.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-I répertoire</td>
+          <td class="colonne" style="">Ajoute un répertoire pour la recherche des fichiers inclus.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-o nom</td>
+          <td class="colonne" style="">Donne le nom du fichier objet à générer.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-W</td>
+          <td class="colonne" style="">Supprime l'affichage des warnings. </td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options de l'assembleur</p>
+      <p>En général, l'assemblage d'un fichier se fera avec la ligne de commande suivante :</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1105">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1105" onclick="selectionCode('contenuCoded0e1105');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1105" class="contenuCode">as -o objet source
+</code></pre></div>
+      <p>où <span class="codeinline">objet</span> est le nom du fichier objet résultat et <span class="codeinline">source</span> le nom du fichier assembleur à assembler. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LVIII">VIII. L'archiveur<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>L'archiveur permet de regrouper plusieurs fichiers objets dans un seul fichier bibliothèque. Les principales commandes de <b>ar</b>
+ sont l'ajout, la suppression et l'extraction des fichiers objets de la 
+bibliothèque. Toutes les commandes prennent en paramètre une lettre 
+indiquant l'action à réaliser, avec éventuellement quelques 
+modificateurs, et le fichier bibliothèque sur lequel <b>ar</b> doit travailler. Les noms des fichiers objets doivent parfois être fournis également. </p>
+      <p>Pour créer une bibliothèque ou lui ajouter des fichiers, on utilisera la ligne de commande suivante&nbsp;: </p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1135">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1135" onclick="selectionCode('contenuCoded0e1135');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1135" class="contenuCode">ar -r bibliothèque fichiers
+</code></pre></div>
+      <p>où <span class="codeinline">bibliothèque</span> est le nom de la bibliothèque et <span class="codeinline">fichiers</span> est la liste des fichiers objets à ajouter. <b>ar</b>
+ n'ajoute pas les extensions aux noms des fichiers, le nom de la 
+bibliothèque doit donc comprendre l'extension «&nbsp;.a&nbsp;» et le nom
+ des fichiers objets l'extension «&nbsp;.o&nbsp;». Si l'archive contient
+ déjà les fichiers objets passés en paramètre, ceux-ci sont remplacés. 
+Si l'on ne veut remplacer que les fichiers de l'archive dont la date et 
+l'heure de création est antérieure à la date et l'heure de création des 
+fichiers à ajouter, il faut utiliser l'option <span class="codeinline">-ru</span> à la place de l'option <span class="codeinline">-r</span>.</p>
+      <p>Pour supprimer un fichier objet d'une bibliothèque, il faut utiliser la ligne de commande suivante&nbsp;: </p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1159">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1159" onclick="selectionCode('contenuCoded0e1159');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1159" class="contenuCode">ar -d bibliothèque fichier
+</code></pre></div>
+      <p>Pour lister les fichiers objets d'une archive, il faut utiliser la commande suivante :</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1165">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1165" onclick="selectionCode('contenuCoded0e1165');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1165" class="contenuCode">ar -t bibliothèque
+</code></pre></div>
+      <p>Pour extraire des fichiers objets d'une archive, il faut utiliser la ligne de commande suivante :</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1171">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1171" onclick="selectionCode('contenuCoded0e1171');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1171" class="contenuCode">ar -x bibliothèque fichier
+</code></pre></div>
+      <p>Si aucun fichier n'est spécifié, tous les fichiers sont 
+extraits de l'archive. Si l'on fixer la date et l'heure de création des 
+fichiers extraits à leur date d'archivage, il faut utiliser l'option <span class="codeinline">-xo</span> à la place de <span class="codeinline">-x</span>. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LIX">IX. L'éditeur de liens<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>L'éditeur de liens permet de regrouper les fichiers .o et les 
+bibliothèques .a pour former un exécutable ou une nouvelle bibliothèque.
+ La plupart des options spécifiques au système cible sont indiquées lors
+ de la phase d'édition de liens. </p>
+      <p>La syntaxe de l'éditeur de liens est relativement simple. Il 
+prend en ligne de commande la liste des fichiers à utiliser pour la 
+résolution des symboles, dans l'ordre dans lequel ils doivent être 
+utilisés. Les principales options sont décrites ci-dessous&nbsp;:</p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:30%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:70%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--help</td>
+          <td class="colonne" style="">Affiche l'écran d'aide de l'éditeur de liens.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--version</td>
+          <td class="colonne" style="">Donne le numéro de version de l'éditeur de liens.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-o nom</td>
+          <td class="colonne" style="">Spécifie le nom du fichier généré par l'éditeur de liens.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-L chemin</td>
+          <td class="colonne" style="">Ajoute un répertoire à la liste des répertoires utilisés pour la recherche des bibliothèques.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-l bibliothèque</td>
+          <td class="colonne" style="">Ajoute une bibliothèque dans la liste des fichiers à utiliser pour l'édition de liens.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-e symbole</td>
+          <td class="colonne" style="">Spécifie le symbole devant être utilisé comme point d'entrée dans le fichier généré.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-i</td>
+          <td class="colonne" style="">Utilise l'édition de lien incrémentale.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-s</td>
+          <td class="colonne" style="">Supprime tous les symboles du fichier généré.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-S</td>
+          <td class="colonne" style="">Supprime les informations symboliques de débogage du fichier généré.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--subsystem système</td>
+          <td class="colonne" style="">Permet d'indiquer le sous-système pour lequel l'exécutable est généré.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--rpath chemin</td>
+          <td class="colonne" style="">Permet de donner le chemin dans 
+lequel l'éditeur de liens doit rechercher les bibliothèques dynamiques 
+dont dépend la bibliothèque ou le programme dont on réalise l'édition de
+ liens. Cette option permet de réaliser une édition de lien avec des 
+symboles externes se trouvant dans des bibliothèques chargeables 
+dynamiquement autre que celles installées dans le système.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--soname nom</td>
+          <td class="colonne" style="">Permet de donner un nom interne à
+ la librairie autre que le nom du fichier généré par l'éditeur de lien. 
+Ce nom est utilisé lors de l'édition de liens dynamiques afin de 
+déterminer quelle bibliothèque doit être utilisée avec le programme en 
+cours de chargement.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--dll</td>
+          <td class="colonne" style="">Permet de créer une DLL Windows.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--base-file fichier</td>
+          <td class="colonne" style="">Permet de créer un fichier map des symboles des DLL de Windows. </td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options de l'éditeur de liens</p>
+      <p><b>Note&nbsp;: </b>On notera que bien que les fichiers contenant les bibliothèques ont tous la forme <span class="codeinline">libNNN.a</span> ou <span class="codeinline">libNNN.so</span>, seul le nom <span class="codeinline">NNN</span> de la bibliothèque doit être utilisé dans la ligne de commande du linker. Par exemple, pour utiliser la bibliothèque <span class="codeinline">libc.a</span>, il faudra utiliser l'option <span class="codeinline">-lc</span>. </p>
+      <p><b>SPÉCIFIQUE WIN32&nbsp;: </b>Les bibliothèques chargeables 
+dynamiquement ne se nomme pas de la même manière sous Windows que sous 
+Unix. En effet, l'extension de ces bibliothèques est <span class="codeinline">.DLL</span> d'une part, et les fichiers de bibliothèques ne disposent pas du suffixe <span class="codeinline">lib</span>.
+ De plus, l'édition de liens avec une bibliothèque dynamique ne se fait 
+pas directement, mais plutôt avec une librairie d'importation statique. </p>
+      <p>Les options <span class="codeinline">-mdll</span> et <span class="codeinline">-mwindows</span> de <b>gcc</b> activent respectivement les options <span class="codeinline">-subsystem windows</span> et <span class="codeinline">-dll</span> de l'éditeur de liens. La première option effectue l'édition de liens avec les bibliothèques <span class="codeinline">user32</span>, <span class="codeinline">gdi32</span> et <span class="codeinline">comdlg32</span>, et spécifie le fichier <span class="codeinline">crt1.o</span>
+ comme fichier de démarrage. Elle permet donc de réaliser un exécutable 
+GUI Windows. La deuxième option spécifie comme point d'entrée la 
+fonction <span class="codeinline">DllMainCRTStartup</span>, et le comme fichier de démarrage le fichier <span class="codeinline">dllcrt1.0</span>.
+ Cette option permet donc de réaliser une DLL Windows. Aucune option 
+particulière ne doit être utilisée pour réaliser un programme Win32 en 
+mode console. </p>
+      <p>L'option suivante <span class="codeinline">-base-file fichier</span>
+ est disponible afin de permettre la création de DLL relogeable. Elle 
+permet de demander à l'éditeur de liens de générer un fichier contenant 
+les informations sur les adresses relatives des symboles du fichier 
+objet passé en paramètre par rapport à leur adresse de base. Ce fichier 
+peut être exploité par l'outil <b>dlltool</b>, afin de générer le 
+fichier contenant la table d'exportation des symboles de la DLL. Cette 
+table doit être communiquée en ligne de commande, comme un fichier objet
+ classique, lors de l'édition de lien finale de la DLL. L'outil <b>dlltool</b> sera décrit plus en détail plus loin. </p>
+      <p>Enfin, le fichier <span class="codeinline">specs</span> fourni avec les versions Win32 de GCC ajoute les bibliothèques suivantes à la ligne de commande de l'éditeur de liens&nbsp;: </p>
+      <ul class="ListeDVP">
+        <li><span class="codeinline">kernel32</span> </li>
+        <li><span class="codeinline">advapi32</span> </li>
+        <li><span class="codeinline">shell32</span> </li>
+      </ul>
+      <p>Ces bibliothèques sont les bibliothèques de base pour tous les programmes Windows. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LX">X. Utilisation de make<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><b>make</b> permet d'interpréter un fichier de dépendance entre
+ les différents éléments nécessaires à la création d'un projet. Ce 
+fichier est appelé «&nbsp;<span class="codeinline">makefile</span>&nbsp;».
+ En fait, il contient les relations entre fichiers qui permettent 
+d'établir les dépendances nécessaires à la création d'autres fichiers. 
+Si, pour créer un fichier <span class="codeinline">A</span>, il faut utiliser un fichier <span class="codeinline">B</span>, alors il va d'abord falloir créer le fichier <span class="codeinline">B</span>. </p>
+      <p>Le travail de <b>make</b> est essentiellement de vérifier les 
+dates des fichiers pour déterminer quels sont ceux qui sont à jour et 
+ceux qu'il faut recréer afin de générer le projet. Pour chacun des 
+fichiers à recréer, une ligne de commande est exécutée. </p>
+      <p>La syntaxe des fichiers makefile dépasse le cadre de ce document. En revanche, l'utilisation de <b>make</b> lui-même est élémentaire, puisqu'il suffit de l'appeler en passant en paramètre le nom du projet à créer&nbsp;: </p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1477">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1477" onclick="selectionCode('contenuCoded0e1477');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1477" class="contenuCode">make cible
+</code></pre></div>
+      <p>En général, les fichiers makefile contiennent une cible nommée «&nbsp;<span class="codeinline">all</span>&nbsp;», qui permet de générer tout le projet. </p>
+      <p>En réalité, <b>make</b> peut être utilisé dans un autre 
+contexte que la programmation&nbsp;: il permet d'effectuer des commandes
+ de mises à jour de fichiers qui dépendent de la mise à jour d'autres 
+fichiers. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXI">XI. strip<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><b>strip</b> est un petit utilitaire qui permet de retirer les 
+informations symboliques de débogage d'un fichier. Son utilisation est 
+des plus simples&nbsp;: </p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1503">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1503" onclick="selectionCode('contenuCoded0e1503');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1503" class="contenuCode">strip fichier
+</code></pre></div>
+      <p>Le fichier est modifié à l'issue de cette commande. Il ne 
+contient plus d'informations symboliques de débogage. Rappelons que ces 
+informations sont générées par le compilateur si l'option <span class="codeinline">-g</span>
+ est passée en ligne de commande. On notera toutefois que le fait de ne 
+pas mettre cette option n'implique pas que le résultat de l'édition de 
+lien ne contient pas de telles informations, en effet, les bibliothèques
+ utilisées par l'éditeur de liens peuvent avoir été compilées avec cette
+ option. </p>
+      <p>Les principales options de <b>strip</b> sont les suivantes&nbsp;: </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:27%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:73%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-help</span>
+          </td>
+          <td class="colonne" style="">Affiche l'écran d'aide de strip. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-version</span>
+          </td>
+          <td class="colonne" style="">Affiche le numéro de version de strip. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-strip-all</span>
+          </td>
+          <td class="colonne" style="">Supprime toutes les informations de symboliques. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-strip-debug</span>
+          </td>
+          <td class="colonne" style="">Supprime les informations symboliques de débogage.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-strip-unneeded</span>
+          </td>
+          <td class="colonne" style="">Supprime toutes les informations symboliques, sauf celles nécessaires au relogement des bibliothèques.</td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options de strip</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXII">XII. Windres<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>L'outil <b>windres</b> permet de compiler les fichiers 
+ressources «&nbsp;.RC&nbsp;» de windows en fichiers objets, que 
+l'éditeur de lien peut utiliser pour créer des exécutables ou des 
+bibliothèques dynamiques. Les principales options que ce programme 
+acceptent sont décrites ci-dessous&nbsp;: </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:41%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:59%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">--help</td>
+          <td class="colonne" style="">Affiche l'écran d'aide de windres. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">--version</span>
+          </td>
+          <td class="colonne" style="">Donne le numéro de version de windres.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-i source</span> ou <span class="codeinline">-input-file source</span></td>
+          <td class="colonne" style="">Nom du fichier .RC de ressource à compiler.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-o objet</span> ou <span class="codeinline">-output-file objet</span></td>
+          <td class="colonne" style="">Nom du fichier objet à produire.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-include-dir répertoire</span>
+          </td>
+          <td class="colonne" style="">Ajoute le répertoire <span class="codeinline">répertoire</span> à la liste des répertoires pour les fichiers d'inclusion. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-define symbole</span>
+          </td>
+          <td class="colonne" style="">Définit le symbole <span class="codeinline">symbole</span> pour la compilation conditionnelle. </td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options de windres</p>
+      <p><b>windres</b> définit automatiquement l'identificateur <span class="codeinline">RC_INVOKED</span>, qui peut être utilisé dans la compilation conditionnelle des fichiers d'en-tête. </p>
+      <p>L'éditeur de liens n'accepte qu'un seul fichier objet pour les 
+fichiers de ressources. Il faut donc placer toutes les ressources dans 
+le même fichier de ressources. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXIII">XIII. Dlltool<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><b>dlltool</b> est un outil utilisé pour la création de DLL 
+windows et la création de bibliothèques d'importation pour les DLL 
+existantes. La plupart de ses options sont disponibles sous deux formes,
+ une forme courte et une forme détaillée. Ces deux formes sont 
+strictement équivalentes. Les options les plus utiles sont les 
+suivantes&nbsp;:</p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:40%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:60%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-help</span>
+          </td>
+          <td class="colonne" style="">Affiche l'écran d'aide de dlltool. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-V</span> ou <span class="codeinline">-version</span></td>
+          <td class="colonne" style="">Affiche le numéro de version de dlltool. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-e export</span> ou <span class="codeinline">-output-exp export</span></td>
+          <td class="colonne" style="">Permet de générer un fichier <span class="codeinline">export</span>
+ contenant la table des symboles exportés par la DLL. Ce fichier est 
+utilisé par l'éditeur de liens lors de la création des DLL. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-l bibliothèque </span>ou -<span class="codeinline">output-lib bibliothèque</span></td>
+          <td class="colonne" style="">Permet de générer une bibliothèque d'importation <span class="codeinline">bibliothèque</span> pour permettre l'utilisation d'une bibliothèque dynamique.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-D nom</span> ou <span class="codeinline">-dll-name nom</span></td>
+          <td class="colonne" style="">Permet de donner le nom de la DLL pour les références à cette DLL dans les chemins stockés dans les fichiers générés.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-d def</span> ou <span class="codeinline">-input-def def</span></td>
+          <td class="colonne" style="">Permet de donner le nom du fichier .DEF à utiliser. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-z def</span> ou <span class="codeinline">-output-def def</span></td>
+          <td class="colonne" style="">Permet de donner le nom du fichier .DEF à générer. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-export-all-symbols</span>
+          </td>
+          <td class="colonne" style="">Permet d'exporter tous les symboles d'un fichier objet dans le fichier <span class="codeinline">.DEF</span> généré. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style=""><span class="codeinline">-b base</span> ou <span class="codeinline">-base-file base</span></td>
+          <td class="colonne" style="">Permet de donner le nom du fichier d'informations à utiliser pour le relogement des DLL relogeables. </td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options de dlltool</p>
+      <p>La première utilisation de <b>dlltool</b> est de générer les bibliothèques d'importation pour les DLL existantes. Pour cela, il faut disposer du fichier <span class="codeinline">.DEF</span> contenant la déclaration des symboles exportés par la DLL. Si l'on a développé cette DLL, ce fichier <span class="codeinline">.DEF</span> est disponible, sinon, il faut le générer. Pour cela, un petit utilitaire nommé <b>impdef</b> peut être utilisé. Sa syntaxe est très simple&nbsp;:</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1873">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1873" onclick="selectionCode('contenuCoded0e1873');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1873" class="contenuCode">impdef dll
+</code></pre></div>
+      <p>où <span class="codeinline">dll</span> est le nom de la DLL à lire. Le fichier <span class="codeinline">.DEF</span> est affiché à l'écran, il suffit de rediriger la sortie de <b>impdef</b> pour obtenir ce fichier sur disque.</p>
+      <p>Une fois que le fichier <span class="codeinline">.DEF</span> créé, il suffit d'appeler <b>dlltool</b> avec la ligne de commande suivante&nbsp;:</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1897">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1897" onclick="selectionCode('contenuCoded0e1897');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1897" class="contenuCode">dlltool -dllname dll -input-def def -output-lib bibliothèque
+</code></pre></div>
+      <p>où <span class="codeinline">dll</span> est le nom de la DLL dont on veut faire une bibliothèque d'importation, <span class="codeinline">def</span> est le nom du fichier <span class="codeinline">.DEF</span> généré par <b>impdef</b>, et <span class="codeinline">bibliothèque</span> est le nom de la bibliothèque d'importation à créer.</p>
+      <p>La deuxième utilisation de <b>dlltool</b> est de générer le fichier <span class="codeinline">.DEF</span> pour une DLL en cours de développement. <b>dlltool</b> permet en effet de générer le fichier <span class="codeinline">.DEF</span> à partir des fichiers objets créés par le compilateur. Ces fichiers <span class="codeinline">.DEF</span> contiennent la déclaration des symboles exportés dans le fichier objet. Cette fonctionnalité de <b>dlltool</b> est très pratique pour exporter des symboles C++, dont le nom est décoré par le compilateur. </p>
+      <p>Pour que cette opération fonctionne correctement, il est 
+nécessaire que les symboles qui doivent être exportés aient été déclarés
+ avec l'attribut <span class="codeinline">dllexport</span> dans le fichier source. Ceci se fait simplement à l'aide du mot-clé <span class="codeinline">__attribute__</span>&nbsp;:</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1948">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1948" onclick="selectionCode('contenuCoded0e1948');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1948" class="contenuCode">__attribute((dllexport))
+</code></pre></div>
+      <p><b>Note&nbsp;: </b>Les doubles parenthèses sont nécessaires. </p>
+      <p>La macro <span class="codeinline">__declspec</span> est également utilisable, elle est définie pour la portabilité avec le mot-clef du même nom dans Visual C++. </p>
+      <p>Une fois le fichier compilé, il suffit d'appeler <b>dlltool</b> avec la syntaxe suivante&nbsp;:</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1968">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1968" onclick="selectionCode('contenuCoded0e1968');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1968" class="contenuCode">dlltool objet -output-def def
+</code></pre></div>
+      <p>où <span class="codeinline">objet</span> représente le fichier objet contenant la définition des symboles exportés, et <span class="codeinline">def</span> le nom du fichier <span class="codeinline">.DEF</span> à générer.</p>
+      <p><b>Note&nbsp;: </b>Notez que d'une manière générale, si les 
+fonctions à exporter sont définies dans plusieurs fichiers objets, il 
+faudra générer plusieurs fichiers <span class="codeinline">.DEF</span> et les fusionner. </p>
+      <p>La troisième et plus importante utilisation de <b>dlltool</b> 
+est la création de la table des symboles exportés, que le linker utilise
+ pour créer la DLL. Cette opération nécessite le fichier <span class="codeinline">.DEF</span>
+ contenant la liste des symboles exportés par la DLL, et éventuellement 
+le fichier d'information généré par le linker pour le relogement de la 
+DLL (il est impératif de faire des DLL relogeables, faute de quoi on 
+s'expose à de graves problèmes lors de l'initialisation des programmes 
+qui les utilisent). </p>
+      <p>La syntaxe à utiliser est la suivante&nbsp;:</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2003">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2003" onclick="selectionCode('contenuCoded0e2003');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2003" class="contenuCode">dlltool -dllname dll -base-file base -output-exp exp -input-def def
+</code></pre></div>
+      <p>où <span class="codeinline">dll</span> est le nom de la DLL (utilisé dans le fichier d'exportation), <span class="codeinline">base</span> est le nom du fichier d'information de relogement généré par le linker, <span class="codeinline">exp</span> est le nom du fichier d'exportation à créer et <span class="codeinline">def</span> est le nom du fichier d'importation <span class="codeinline">.DEF</span>.</p>
+      <p>Le fichier d'exportation ainsi créé doit alors être passé 
+directement, comme un fichier objet normal, dans la ligne de commande du
+ linker pour être lié avec le code objet de la DLL. </p>
+      <p><b>Note&nbsp;: </b>Normalement, les fonctions exportées par les DLL suivent la convention d'appel <span class="codeinline">STDCALL</span>
+ de Windows, qui est en fait la convention d'appel standard du Pascal. 
+Cependant, il n'est pas nécessaire d'utiliser ces conventions, sauf si 
+l'on veut utiliser la DLL avec un autre compilateur. </p>
+      <p>Par ailleurs, la convention de nommage classique des fonctions exportées est le nom de la fonction, sans '<span class="codeinline">_</span>' en préfixe, et avec le suffixe «&nbsp;<span class="codeinline">@n</span>&nbsp;», où <span class="codeinline">n</span>
+ est le nombre d'octets passés sur la pile. Certaines DLL emploient une 
+convention de nommage différente, où seul le nom de la fonction est 
+utilisé. Les fichiers <span class="codeinline">.DEF</span> générés par l'utilitaire <b>impdef</b>
+ pour ces DLL contiennent donc toujours le nom exact des fonctions 
+exportées dans la DLL passée en paramètre, c'est à dire avec «&nbsp;<span class="codeinline">@n</span>&nbsp;» ou sans selon le type de DLL. </p>
+      <p>Le problème est que le compilateur utilise toujours le nom décoré de «&nbsp;<span class="codeinline">@n</span>&nbsp;» d'une fonction dès lors qu'elle est déclarée avec <span class="codeinline">STDCALL</span> ou <span class="codeinline">PASCAL</span>. La bibliothèque d'importation générée par <b>dlltool</b> à partir de ce fichier <span class="codeinline">.DEF</span> ne permet donc pas de résoudre les symboles lors de l'édition de liens des programmes avec cette bibliothèque. </p>
+      <p>Ce problème peut être résolu en rajoutant les «&nbsp;<span class="codeinline">@n</span>&nbsp;» manquant aux noms de fonctions du fichier <span class="codeinline">.DEF</span> généré par <b>impdef</b>. La bibliothèque d'importation créée par <b>dlltool</b>
+ résoudra alors tous les symboles de la DLL lors de l'édition de liens 
+du programme qui l'utilise. Cependant, cette technique provoque une 
+erreur à l'exécution, parce que cette fois, les symboles appelés par les
+ fonctions d'importation de la bibliothèque statique d'importation 
+utiliseront les symboles «&nbsp;<span class="codeinline">@n</span>&nbsp;»
+ pour appeler les fonctions de la DLL, or ces fonctions n'ont pas ces 
+symboles dans leurs noms... C'est pour résoudre ce deuxième problème que
+ <b>dlltool</b> dispose de l'option <span class="codeinline">-k</span>, qui permet de supprimer les symboles «&nbsp;<span class="codeinline">@n</span>&nbsp;»
+ du nom des fonctions dans la bibliothèque statique d'importation, mais 
+de les conserver pour les noms des fonctions d'importations en interne. 
+Ainsi, la bibliothèque d'importation est liée correctement au programme 
+qui utilise la DLL, et les symboles de la DLL sont correctement résolus à
+ l'exécution. </p>
+      <p>Un autre problème peut se poser lorsque l'on cherche à réaliser
+ une DLL dont les fonctions exportées n'ont pas les symboles «&nbsp;<span class="codeinline">@n</span>&nbsp;»,
+ car les noms des fonctions générées par le compilateur ont toujours ces
+ symboles. La solution consiste cette fois à exporter les fonctions des 
+DLL sous un autre nom. Pour cela, il faut spécifier les noms sous 
+lesquels les fonctions seront exportées dans le fichier <span class="codeinline">.DEF</span>, et indiquer leurs noms réels à l'aide de la syntaxe suivante&nbsp;:</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2110">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2110" onclick="selectionCode('contenuCoded0e2110');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2110" class="contenuCode">EXPORTS
+
+    export=nom@n
+</code></pre></div>
+      <p>où <span class="codeinline">export</span> est le nom sous lequel la fonction de la DLL doit être exportée, et <span class="codeinline">nom@n</span>
+ est le nom réel de la fonction dans le code objet de la DLL (c'est à 
+dire le nom utilisé par le compilateur). Ceci peut se faire simplement 
+en éditant le fichier <span class="codeinline">.DEF</span> généré par <b>dlltool</b>
+ à partir du fichier objet contenant les fonctions à exporter, pour 
+rajouter la définition des alias pour l'exportation. L'option <span class="codeinline">-A</span> de <b>dlltool</b> permet de faire en sorte que <b>dlltool</b>
+ génère automatiquement ces alias lors de la création des fichiers de 
+définition à partir des fichiers objets. La DLL ainsi générée exportera 
+chacune des fonctions sous les deux noms, avec et sans les symboles 
+«&nbsp;<span class="codeinline">@n</span>&nbsp;». L'option <span class="codeinline">-k</span>
+ fonctionne toujours lors de la création de la bibliothèque 
+d'importation, elle permet de n'utiliser que les noms sans ces symboles.</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXIV">XIV. Le débogueur<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><b>gdb</b> est un débogueur complet permettant de travailler au
+ niveau langage machine et au niveau source, pour les langages C et C++.
+ Pour qu'un programme puisse être débogué avec <b>gdb</b>, il faut que 
+son fichier exécutable contienne des informations symboliques de 
+débogage. Ces informations peuvent être générées si l'option <span class="codeinline">-g</span>
+ est passée au compilateur et si ces informations n'ont pas été retirées
+ de l'exécutable généré par l'éditeur de lien à l'aide du programme <b>strip</b>.</p>
+      
+		<h2 class="TitreSection1" id="LXIV-A">XIV-A. Chargement d'un programme<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le chargement d'un programme au lancement de <b>gdb</b> se fait simplement en passant le nom du programme en ligne de commande&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2174">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2174" onclick="selectionCode('contenuCoded0e2174');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2174" class="contenuCode">gdb programme
+</code></pre></div>
+        <p>Lorsque <b>gdb</b> se lance, le programme est chargé en mémoire mais n'est pas lancé. </p>
+        <p>Le chargement d'un fichier core peut être réalisé en 
+précisant le nom du fichier core à la suite du nom du programme. Les 
+informations symboliques de débogage seront lues à partir du fichier 
+exécutable&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2186">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2186" onclick="selectionCode('contenuCoded0e2186');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2186" class="contenuCode">gdb programme core
+</code></pre></div>
+        <p><b>SPÉCIFIQUE DOS&nbsp;: </b>Les fichiers core n'existent pas sous DOS. </p>
+        <p><b>SPÉCIFIQUE WIN32&nbsp;: </b>Il est possible de générer des fichiers core sous Windows NT, 2000 ou XP à l'aide de l'outil Dr. Watson. Cependant, <b>gdb</b>
+ ne sait pas lire ces fichiers. Pour cela, vous devrez utiliser le 
+débogueur WinDBG, fourni en standard avec le Platform SDK de Windows. </p>
+        <p>Pour s'attacher à un programme, il est nécessaire de 
+connaître son PID. La ligne de commande suivante peut alors être 
+utilisée&nbsp;:</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2205">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2205" onclick="selectionCode('contenuCoded0e2205');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2205" class="contenuCode">gdb programme PID
+</code></pre></div>
+        <p>Il est également possible de charger un programme une fois <b>gdb</b> démarré. Pour cela, on utilisera la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2214">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2214" onclick="selectionCode('contenuCoded0e2214');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2214" class="contenuCode">file exécutable
+</code></pre></div>
+        <p>De même, l'attachement à un processus depuis <b>gdb</b> se fait à l'aide de la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2223">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2223" onclick="selectionCode('contenuCoded0e2223');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2223" class="contenuCode">attach PID
+</code></pre></div>
+        <p>Il est nécessaire d'utiliser la commande <b>file</b> pour 
+charger le fichier exécutable avant de s'attacher à un processus, faute 
+de quoi les informations symboliques de débogage ne seront pas 
+disponibles. Enfin, pour se détacher d'un programme, il suffit de taper <b>detach</b>. </p>
+        <p>La lecture d'un fichier core depuis <b>gdb</b> peut être réalisée avec la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2241">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2241" onclick="selectionCode('contenuCoded0e2241');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2241" class="contenuCode">core-file &lt;core&gt;
+</code></pre></div>
+        <p>Comme pour l'attachement, cette commande suppose que le fichier exécutable ait été chargé au préalable avec la commande <b>file</b>. </p>
+        <p><b>Note&nbsp;: </b>Si l'exécutable et les informations 
+symboliques de débogage ne sont pas dans le même fichier, il est 
+possible d'utiliser les commandes suivantes pour spécifier ces fichiers 
+indépendamment l'un de l'autre&nbsp;:</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2255">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2255" onclick="selectionCode('contenuCoded0e2255');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2255" class="contenuCode">exec_file exécutable
+
+symbol_file symboles
+</code></pre></div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-B">XIV-B. Commandes fondamentales<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Une fois <b>gdb</b> démarré, il est possible de lancer l'exécution du programme à l'aide de la commande <b>run paramètres</b>, où <span class="codeinline">paramètres</span>
+ représente les options en ligne de commande du programme. La ligne de 
+commande peut être lue à tout moment à l'aide de la commande <b>show args</b>. Pour terminer un programme en cours d'exécution, il faut utiliser la commande <b>kill</b>. Pour quitter <b>gdb</b>, il suffit de taper <b>quit</b>. </p>
+        <p><b>gdb</b> dispose d'un grand nombre de commandes, que l'on 
+saisie interactivement en fonction de l'état du programme en cours de 
+débogage. Cependant, il est également possible de programmer gdb avec un
+ fichier de commande, qui lui sera passé en paramètre au lancement à 
+l'aide de la syntaxe suivante&nbsp;:</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2293">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2293" onclick="selectionCode('contenuCoded0e2293');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2293" class="contenuCode">gdb -command fichier
+</code></pre></div>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-C">XIV-C. Les points d'arrêt<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>La commande <b>run</b> citée ci-dessus lance l'exécution du 
+programme inconditionnellement. Si le programme ne génère pas d'erreur, 
+il se terminera normalement. Il faut donc utiliser les commandes de 
+point d'arrêts pour stopper l'exécution du programme afin d'examiner son
+ état. <b>gdb</b> gère un grand nombre de types de points d'arrêt et permet de contrôler finement leur fonctionnement. </p>
+        <p>Pour placer un point d'arrêt dans le programme, il faut utiliser la commande <b>break</b>.
+ Cette commande permet de poser tout type de point d'arrêt, les formes 
+les plus utiles de cette commande sont données ci-dessous&nbsp;:</p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;width:44%;background-color:#b3b3b3;">Commande</td>
+            <td class="colonne" style="text-align:center;width:56%;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>break fonction</b>
+            </td>
+            <td class="colonne" style="">Pose un point d'arrêt à l'entrée de la fonction <span class="codeinline">fonction</span> du fichier courant. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>break fichier:fonction</b>
+            </td>
+            <td class="colonne" style="">Pose un point d'arrêt sur la fonction <span class="codeinline">fonction</span> du fichier <span class="codeinline">fichier</span>. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style=""><b>break &lt;+offset&gt;</b> ou <b>break &lt;-offset&gt;</b></td>
+            <td class="colonne" style="">Pose un point d'arrêt à la position courante plus l'offset précisé en paramètre. Cet offset est exprimé en nombre de lignes. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>break &lt;ligne&gt;</b>
+            </td>
+            <td class="colonne" style="">Pose un point d'arrêt à la ligne <span class="codeinline">ligne</span> du fichier courant. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>break &lt;fichier:ligne&gt;</b>
+            </td>
+            <td class="colonne" style="">Pose un point d'arrêt à la ligne <span class="codeinline">ligne</span> du fichier <span class="codeinline">fichier</span>. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>break &lt;*adresse&gt;</b>
+            </td>
+            <td class="colonne" style="">Pose un point d'arrêt à l'adresse spécifiée en langage machine. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>break</b>
+            </td>
+            <td class="colonne" style="">Pose un point d'arrêt à 
+l'instruction suivante de celle en cours d'exécution. Si l'on se trouve 
+dans un appel de fonction, il est possible de changer le contexte 
+d'appel pour celui de la fonction appelante (voir plus loin pour plus de
+ détails à ce sujet). Dans ce cas, l'instruction suivante sera 
+l'instruction qui suit l'appel de cette fonction. La commande <b>break</b> permet donc de placer un point d'arrêt au retour de la fonction en cours d'exécution. </td>
+          </tr>
+        </tbody></table></div>
+        <p>Toutes ces commandes peuvent prendre une condition en 
+paramètre. Cette condition est exprimée à l'aide d'une expression 
+utilisant le langage du programme. Cette condition est évaluée à chaque 
+passage sur le point d'arrêt, et le programme n'est stoppé que si elle 
+est vérifiée. La syntaxe pour poser une condition sur le point d'arrêt 
+est la suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2438">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2438" onclick="selectionCode('contenuCoded0e2438');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2438" class="contenuCode">break paramètres if condition
+</code></pre></div>
+        <p>où <span class="codeinline">paramètres</span> représente les paramètres de la commande <b>break</b> sans condition, et <span class="codeinline">condition</span> est l'expression permettant d'évaluer la condition.</p>
+        <p>Tous les points d'arrêt se voient attribué un numéro par <b>gdb</b>. Il est possible d'utiliser la commande suivante&nbsp;:</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2459">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2459" onclick="selectionCode('contenuCoded0e2459');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2459" class="contenuCode">info breakpoints [n]
+</code></pre></div>
+        <p>pour obtenir des informations sur le point d'arrêt <span class="codeinline">n</span>. Si le numéro du point d'arrêt n'est pas indiqué, <b>gdb</b> affiche ces informations pour tous les points d'arrêt existants.</p>
+        <p>Il est possible de changer la condition sur un point d'arrêt à l'aide de la commande <b>condition</b>. La syntaxe de cette commande est donnée ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2477">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2477" onclick="selectionCode('contenuCoded0e2477');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2477" class="contenuCode">condition n condition
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro du point d'arrêt, et <span class="codeinline">condition</span>
+ la nouvelle condition à utiliser. Si cette nouvelle condition est vide,
+ le point d'arrêt redevient un point d'arrêt non conditionnel.</p>
+        <p>Pour supprimer un point d'arrêt, il suffit d'utiliser la commande <b>clear</b>. Cette commande fonctionne avec la même syntaxe que la commande <b>break</b> correspondante. Les principales formes de la commande <b>clear</b> sont données ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2501">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2501" onclick="selectionCode('contenuCoded0e2501');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2501" class="contenuCode">clear &lt;fonction&gt;
+
+clear &lt;fichier:fonction&gt;
+
+clear &lt;ligne&gt;
+
+clear &lt;fichier:ligne&gt;
+
+clear
+</code></pre></div>
+        <p>Cette dernière forme de <b>clear</b> supprime le point d'arrêt de l'instruction suivante. Comme pour la commande <b>break</b>, cette commande agit sur le contexte d'appel en vigueur au moment où elle est utilisée. La commande <b>delete</b> est également disponible, elle permet de supprimer des points d'arrêt en spécifiant leur numéro&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2516">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2516" onclick="selectionCode('contenuCoded0e2516');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2516" class="contenuCode">delete n…
+</code></pre></div>
+        <p>Si aucun argument n'est donné à la commande <b>delete</b>, elle supprime tous les points d'arrêt existants. </p>
+        <p>Pour désactiver un point d'arrêt sans le supprimer, il suffit d'utiliser la commande <b>disable</b>. La syntaxe de cette commande est donnée ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2531">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2531" onclick="selectionCode('contenuCoded0e2531');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2531" class="contenuCode">disable n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro du point d'arrêt à désactiver. Si aucun numéro n'est passé en paramètre, la commande <b>disable</b> désactive tous les points d'arrêt existants.</p>
+        <p>La commande <b>enable</b> permet de réactiver ces points 
+d'arrêt. Il est possible d'activer un point d'arrêt de plusieurs 
+manières différentes. Les différentes formes de cette commande sont 
+données ci-dessous&nbsp;: </p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;width:27%;background-color:#b3b3b3;">Commande</td>
+            <td class="colonne" style="text-align:center;width:73%;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>enable liste</b>
+            </td>
+            <td class="colonne" style="">Active les points d'arrêt de la liste de points d'arrêt <span class="codeinline">liste</span>. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>enable once liste</b>
+            </td>
+            <td class="colonne" style="">Active les points d'arrêt 
+spécifiés pour un seul passage uniquement. Lorsque ces points d'arrêt 
+seront atteints, ils seront automatiquement désactivés. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>enable delete liste</b>
+            </td>
+            <td class="colonne" style="">Active les points d'arrêt spécifiés. Lorsque ces points d'arrêt seront atteints, ils seront automatiquement détruits. </td>
+          </tr>
+        </tbody></table></div>
+        <p>Dans toutes ces commandes, <span class="codeinline">liste</span>
+ est la liste des numéros des points d'arrêt à activer. Si aucun numéro 
+n'est spécifié, la commande s'appliquera à tous les points d'arrêt 
+existants. </p>
+        <p>Il est possible de spécifier une condition sur le compteur de
+ passage d'un point d'arrêt. À chaque fois que ce point d'arrêt sera 
+rencontré, le compteur de passage sera incrémenté. Le point d'arrêt ne 
+devient valide que lorsque la limite sur le nombre de passage est 
+atteinte. Cette limite peut être fixée à l'aide de la commande 
+suivantes&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2609">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2609" onclick="selectionCode('contenuCoded0e2609');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2609" class="contenuCode">ignore n compte
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro du point d'arrêt et <span class="codeinline">compte</span> est le nombre de passages qui doivent se faire avant que le point d'arrêt ne soit activé.</p>
+        <p><b>gdb</b> permet de définir une série de commande à 
+effectuer pour un point d'arrêt lorsque celui-ci est atteint (et si la 
+condition qu'il contient est vérifiée). Cette série de commande peut 
+être spécifiée à l'aide de la syntaxe suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2626">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2626" onclick="selectionCode('contenuCoded0e2626');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2626" class="contenuCode">commands n
+
+c1
+
+c2
+
+ &amp;vellip;
+
+cn
+
+end
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> représente le numéro du point d'arrêt, et <span class="codeinline">c1</span>, <span class="codeinline">c2</span>,
+ etc... les commandes à exécuter. Pour supprimer une série de commande 
+d'un point d'arrêt, il suffit de spécifier une série de commande vide. </p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-D">XIV-D. Contrôle de l'exécution<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Comme on l'a vu ci-dessous, la commande <b>run</b> lance l'exécution du programme. On ne peut utiliser la commande <b>run</b>
+ qu'une fois pour une instance donnée du programme, si on l'utilise une 
+deuxième fois, le programme est redémarré. Il existe donc d'autres 
+commandes, qui permettent de relancer l'exécution du programme si 
+celle-ci s'est arrêtée. </p>
+        <p>Un programme peut être arrêté pour trois raisons&nbsp;: soit 
+parce qu'il s'est terminé, soit parce qu'il a atteint un point d'arrêt 
+et que la condition de celui-ci est vérifiée, soit parce qu'il a reçu un
+ signal du système. Dans le premier cas, il faut utiliser à nouveau la 
+commande <b>run</b> pour relancer une nouvelle instance de ce programme.
+ Le programme est rechargé exactement au même endroit en mémoire, si 
+bien que les adresses des points d'arrêts sont toujours valides. Dans 
+les deux autres cas, il faut relancer l'exécution. Ceci peut être fait à
+ l'aide d'une des commandes décrites ci-dessous. </p>
+        <p>La commande <b>continue</b> permet de relancer l'exécution du programme jusqu'à ce qu'il soit à nouveau arrêté. La commande <b>continue</b> peut prendre en paramètre un nombre entier si le programme vient juste d'être interrompu par un point d'arrêt&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2671">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2671" onclick="selectionCode('contenuCoded0e2671');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2671" class="contenuCode">continue n
+</code></pre></div>
+        <p>Ce nombre <span class="codeinline">n</span> indique la valeur
+ du compteur à utiliser pour activer ce point d'arrêt. Ainsi, le 
+programme ne sera à nouveau stoppé par ce point d'arrêt que si 
+l'exécution passe <span class="codeinline">n</span> fois dessus. </p>
+        <p>La commande <b>step</b> permet d'exécuter une instruction du 
+programme. La notion d'instruction ici est celle du langage du fichier 
+source où le pointeur d'instruction se trouve. Si l'on veut exécuter une
+ instruction du langage machine, il faut utiliser la commande <b>stepi</b>, ou <b>si</b> en abrégé. Si l'instruction à exécuter est un appel de fonction, l'exécution se poursuit à l'intérieur de cette fonction. </p>
+        <p>Les commandes <b>next</b> et <b>nexti</b> sont similaires à <b>step</b> et <b>stepi</b>, à ceci près qu'elles n'entrent pas dans les fonctions lorsqu'elles sont utilisées pour exécuter un appel de fonction. </p>
+        <p>La commande <b>finish</b> permet de sortir de la fonction 
+courante, et de s'arrêter avant l'instruction qui suit son appel. Le 
+reste du code de la fonction s'exécute normalement. Si l'on veut sortir 
+immédiatement de la fonction (sans exécuter le code restant jusqu'à la 
+prochaine instruction de retour de fonction), il faut utiliser la 
+commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2716">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2716" onclick="selectionCode('contenuCoded0e2716');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2716" class="contenuCode">return expression
+</code></pre></div>
+        <p>où <span class="codeinline">expression</span> une expression permettant d'évaluer l'éventuelle valeur de retour de la fonction.</p>
+        <p>La commande <b>until</b> permet de reprendre l'exécution du 
+programme jusqu'à ce qu'il atteigne un point du code placé après 
+l'endroit où se trouve le compteur d'instruction. La syntaxe de cette 
+commande est la même que celle de la commande <b>break</b>. L'exécution du programme est automatiquement arrêtée par la commande <b>until</b> si la fonction courante se termine. </p>
+        <p>Si l'on veut placer le compteur d'instruction en un endroit donné, sans relancer le programme, il faut utiliser la commande <b>jump</b>. La syntaxe de cette commande est la même que celle de la commande <b>break</b>. </p>
+        <p>Enfin, si le programme a été arrêté par la réception d'un 
+signal, la reprise de l'exécution de ce programme se fait en général par
+ le traitement du signal par le programme. Il est cependant possible 
+d'envoyer un autre signal au programme que celui qu'il a reçu, grâce à 
+la commande <b>signal</b>&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2752">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2752" onclick="selectionCode('contenuCoded0e2752');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2752" class="contenuCode">signal n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro du signal à envoyer. Si ce numéro est <span class="codeinline">0</span>, le programme reprend son exécution comme s'il n'avait pas reçu de signal.</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-E">XIV-E. Les chiens de garde<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>En plus des points d'arrêt, <b>gdb</b> gère la notion de 
+chien de garde. Les chiens de garde permettent d'arrêter l'exécution 
+d'un programme dès qu'une condition est vérifiée. À la différence des 
+points d'arrêts, cette condition est évaluée à chaque instruction du 
+programme et non à l'arrivée sur le point d'arrêt qui définit la 
+condition. Les chiens de garde permettent donc de faire une condition 
+d'arrêt globale sur tout le programme. Il va de soi que les chiens de 
+garde ralentissent l'exécution d'un programme (sauf s'ils sont gérés par
+ un dispositif matériel quelconque), car leur condition doit être 
+évaluée à chaque instruction du programme. </p>
+        <p>Il existe plusieurs formes de chiens de garde. La forme la 
+plus générale permet d'évaluer une expression à chaque instruction et de
+ stopper l'exécution du programme si cette expression change de valeur. 
+Ceci permet de vérifier la validité d'un invariant dans un programme ou 
+de localiser les instructions qui modifient certaines variables. La 
+syntaxe pour ce type de points d'arrêts est donnée ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2779">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2779" onclick="selectionCode('contenuCoded0e2779');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2779" class="contenuCode">watch expression
+</code></pre></div>
+        <p>La deuxième forme de chien de garde permet de stopper 
+l'exécution du programme lorsqu'une donnée est lue (mais pas forcément 
+modifiée). La syntaxe est donnée ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2785">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2785" onclick="selectionCode('contenuCoded0e2785');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2785" class="contenuCode">rwatch variable
+</code></pre></div>
+        <p>Enfin, la troisième et dernière forme permet de stopper 
+l'exécution dès qu'une variable est accédée, que ce soit en lecture ou 
+en écriture. La syntaxe est donnée ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2791">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2791" onclick="selectionCode('contenuCoded0e2791');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2791" class="contenuCode">awatch variable
+</code></pre></div>
+        <p>Ces deux derniers types de chiens de garde ne sont 
+disponibles que sur les plates-formes capables de gérer les points 
+d'arrêt matériel. Ceci implique qu'un nombre limité seulement de tels 
+points d'arrêt peut être créé. En revanche, les chiens de garde créés à 
+l'aide de la commande <b>watch</b> sont toujours gérés, car ils ne nécessitent aucun support matériel particulier. </p>
+        <p><b>SPÉCIFIQUE WIN32&nbsp;: </b>Bien que les processeurs ix86 
+puissent gérer les points d'arrêt et les chiens de garde au niveau 
+matériel, la version Win32 actuelle de gdb n'est pas capable d'utiliser 
+ces fonctionnalités sous Windows. Il n'est donc possible de créer des 
+chiens de garde qu'avec la commande <b>watch</b>. </p>
+        <p>Tous les chiens de garde sont traités comme des points d'arrêt par <b>gdb</b>.
+ Des numéros de points d'arrêt leurs sont donc affectés, et les 
+commandes permettant de supprimer, d'activer et de désactiver les points
+ d'arrêt sont utilisables sur les chiens de garde. En particulier, il 
+est possible d'obtenir des informations sur les chiens de garde grâce à 
+l'instruction <b>info watchpoints</b>. </p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-F">XIV-F. Examen et modification des données<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Il est possible d'examiner la valeur de toute expression 
+exprimée dans le langage du fichier source. L'expression est évaluée 
+dans le contexte du programme en cours de débogage, ce qui implique que 
+si elle dispose d'effets de bords, l'état du programme est modifié. La 
+commande pour afficher le résultat d'une expression est <b>print</b>, elle s'utilise de la manière suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2829">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2829" onclick="selectionCode('contenuCoded0e2829');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2829" class="contenuCode">print [/format] expression
+</code></pre></div>
+        <p>Le paramètre <span class="codeinline">/format</span> est facultatif. Il permet de spécifier le type avec lequel l'expression doit être affichée. Si ce type est indiqué, <span class="codeinline">format</span> peut prendre l'une des valeurs suivantes&nbsp;: </p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Valeur</td>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">x</td>
+            <td class="colonne" style="">Entier en hexadécimal. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">d</td>
+            <td class="colonne" style="">Entier signé. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">u</td>
+            <td class="colonne" style="">Entier non signé. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">o</td>
+            <td class="colonne" style="">Entier en octal. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">t</td>
+            <td class="colonne" style="">Entier en binaire. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">a</td>
+            <td class="colonne" style="">Adresse.</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">c</td>
+            <td class="colonne" style="">Caractère.</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">
+              <span class="codeinline">f</span>
+            </td>
+            <td class="colonne" style="">Flottant.</td>
+          </tr>
+        </tbody></table></div>
+        <p>La commande <b>call</b> permet d'évaluer l'expression sans 
+afficher le résultat. Elle peut être utilisée pour évaluer les 
+expressions qui ne renvoient pas de valeur, et éviter ainsi l'affichage 
+de <span class="codeinline">void</span>. Sa syntaxe est la même que celle de <b>print</b>. </p>
+        <p><b>gdb</b> peut afficher le résultat d'une expression à 
+chaque arrêt du programme. Ceci permet de tracer l'évolution de la 
+valeur de cette expression au fur et à mesure de l'exécution du 
+programme. Pour tracer une expression, il faut utiliser la commande <b>display</b> à la place de la commande <b>print</b>. Pour chaque expression tracée, <b>gdb</b> affecte un numéro automatique. La commande <b>info</b> permet d'afficher la liste des expressions tracées&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2957">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2957" onclick="selectionCode('contenuCoded0e2957');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2957" class="contenuCode">info display
+</code></pre></div>
+        <p>Comme pour les points d'arrêt, il est possible d'activer et 
+de désactiver la trace d'une expression à l'aide des commandes 
+suivantes&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2963">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2963" onclick="selectionCode('contenuCoded0e2963');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2963" class="contenuCode">enable display n
+
+disable display n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro de la trace.</p>
+        <p>Pour supprimer la trace automatique d'une variable, il faut utiliser l'une des commandes suivantes&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2975">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2975" onclick="selectionCode('contenuCoded0e2975');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2975" class="contenuCode">undisplay n
+
+delete display n
+</code></pre></div>
+        <p>Il est possible d'examiner la mémoire du programme avec la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2981">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2981" onclick="selectionCode('contenuCoded0e2981');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2981" class="contenuCode">x [[/NFT] adresse]
+</code></pre></div>
+        <p>où <span class="codeinline">adresse</span> est l'adresse de la zone de mémoire à afficher, et <span class="codeinline">NFT</span> permet de spécifier respectivement le nombre d'objets à afficher (paramètre <span class="codeinline">N</span>), le format avec lequel ces objets doivent être affichés (paramètre <span class="codeinline">F</span>), et la taille de ces objets (paramètre <span class="codeinline">T</span>). Les formats disponibles sont les mêmes que les formats de la commande <b>print</b>. La taille des objets affichés est spécifiée par l'une des valeurs suivantes&nbsp;:</p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Format</td>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">b</td>
+            <td class="colonne" style="">Taille d'un octet. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">h</td>
+            <td class="colonne" style="">Taille d'un demi-mot, soit deux octets. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">w</td>
+            <td class="colonne" style="">Taille d'un mot mémoire, soit quatre octets. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">g</td>
+            <td class="colonne" style="">Taille d'un double mot, soit huit octets. </td>
+          </tr>
+        </tbody></table></div>
+        <p>Il est possible d'utiliser deux autres formats avec la commande <b>x</b>, qui ne sont pas disponibles avec la commande <b>print</b>. Ces formats sont donnés ci-dessous&nbsp;:</p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;width:36%;background-color:#b3b3b3;">Format</td>
+            <td class="colonne" style="text-align:center;width:64%;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">i</td>
+            <td class="colonne" style="">Instruction langage machine. </td>
+          </tr>
+          <tr>
+            <td class="colonne" style="text-align:center;">s</td>
+            <td class="colonne" style="">Chaîne de caractère terminée par un caractère nul. </td>
+          </tr>
+        </tbody></table></div>
+        <p>Pour ces deux formats, on ne peut pas spécifier la taille des objets, car elle est variable et déterminée automatiquement par <b>gdb</b>. </p>
+        <p>Le paramètre <span class="codeinline">/NFT</span> est facultatif, s'il n'est pas précisé, les mêmes options sont reprises pour la commande <b>x</b> suivante. De même, le paramètre <span class="codeinline">adresse</span> est facultatif, s'il n'est pas précisé, la commande <b>x</b>
+ affiche l'objet suivant avec le même format et en supposant qu'il a la 
+même taille que celle utilisée pour la dernière commande. </p>
+        <p>Les registres du microprocesseur peuvent être examinés à l'aide de la commande <b>info registers</b>.
+ Les registres flottants ne sont pas affichés par cette commande. Si 
+l'on veut consulter leur valeur, il faut utiliser la commande <b>info all-registers</b>.
+ Il est également possible de consulter la valeur de quelques registres 
+indépendamment les uns des autres à l'aide de la syntaxe suivante&nbsp;:
+ </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3122">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3122" onclick="selectionCode('contenuCoded0e3122');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3122" class="contenuCode">info registers registres
+</code></pre></div>
+        <p>où <span class="codeinline">registres</span> est la liste des
+ registres à consulter. Les valeurs des registres sont affichées dans le
+ contexte d'exécution sélectionné. Ceci signifie que les valeurs 
+affichées sont celles qui seraient stockées dans les registres si l'on 
+se trouvait dans la fonction en cours ou dans l'une des fonctions 
+appelantes, selon le contexte d'exécution sélectionné. Voir plus loin 
+pour plus de détails à ce sujet.</p>
+        <p><b>gdb</b> définit quatre noms standards pour les registres 
+les plus classiques. Ces noms peuvent être utilisés pour référencer ces 
+registres indépendamment de la plate-forme. Il s'agit du registre <span class="codeinline">pc</span> pour le pointeur d'instruction, du registre <span class="codeinline">sp</span> pour le pointeur de pile, du registre <span class="codeinline">fp</span> pour le pointeur de structure de pile et du registre <span class="codeinline">ps</span> pour le registre d'état du processeur. </p>
+        <p>La modification des données se fait simplement par 
+l'évaluation d'une expression contenant une affectation. Il est 
+également possible d'utiliser la commande <b>set</b>&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3154">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3154" onclick="selectionCode('contenuCoded0e3154');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3154" class="contenuCode">set [variable] variable=valeur
+</code></pre></div>
+        <p>où <span class="codeinline">variable</span> est la variable à modifier et <span class="codeinline">valeur</span> est sa valeur. Par défaut, il n'est pas nécessaire d'utiliser le mot-clé <span class="codeinline">variable</span>, mais comme la commande <b>set</b> peut être utilisée pour fixer les variables d'environnement, il est préférable de le faire.</p>
+        <p>La commande <b>set</b> doit être utilisée si l'on veut 
+modifier la valeur d'un registre du processeur. Le nom de la variable à 
+utiliser est alors le nom du registre, précédé d'un dollar&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3178">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3178" onclick="selectionCode('contenuCoded0e3178');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3178" class="contenuCode">set $registre=valeur
+</code></pre></div>
+        <p>où <span class="codeinline">registre</span> est l'un des noms de registres affiché par la commande <b>info all-registers</b>. </p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-G">XIV-G. Examen du contexte d'exécution<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Le contexte d'exécution est sauvegardé lors de chaque appel 
+de fonction. Classiquement, ceci se fait par stockage dans la pile de 
+certains registres du processeur. En particulier, le registre de 
+sélection de structure de pile est le registre qui sert d'adresse de 
+base pour accéder à toutes les variables locales. </p>
+        <p><b>gdb</b> permet de consulter la liste des appelants de la 
+fonction en cours pour déterminer le contexte d'exécution qui a permis 
+d'arriver aux points d'arrêts. Il permet également de choisir un 
+contexte d'exécution donné, c'est à dire de remonter dans la pile des 
+appels, afin de permettre la manipulation des variables locales d'une 
+des fonctions appelantes de la fonction en cours. Les contextes 
+d'exécution sont numérotés par gdb dans l'ordre inverse des appels. 
+Normalement, le contexte d'exécution est toujours celui de la fonction 
+en cours d'exécution, c'est à dire le contexte 0. Le contexte de la 
+fonction appelante est le contexte 1, et ainsi de suite. </p>
+        <p>Pour changer ce contexte, il faut utiliser la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3207">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3207" onclick="selectionCode('contenuCoded0e3207');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3207" class="contenuCode">frame n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro du contexte désiré. La commande <b>frame</b>
+ affiche le contexte d'exécution atteint à chaque changement. Pour 
+changer de contexte sans avoir cet affichage, il faut utiliser la 
+commande <b>select-frame</b> à la place de la commande <b>frame</b>. Il est possible de déterminer le contexte courant à l'aide de la commande <b>frame</b> sans arguments. Une description plus détaillée est disponible avec la commande <b>info frame</b>.</p>
+        <p>Les commandes <b>up</b> et <b>down</b> permettent de remonter
+ et de redescendre dans la pile d'appel d'un certain nombre de contextes
+ d'exécution. Leur syntaxe est donnée ci-dessous&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3240">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3240" onclick="selectionCode('contenuCoded0e3240');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3240" class="contenuCode">up n
+
+down n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le nombre de contextes d'exécution dont on veut se déplacer. Comme pour frame, les commandes <b>up</b> et <b>down</b>
+ affichent le contexte d'exécution atteint à chaque fois. Pour se 
+déplacer sans avoir cet affichage, il faut utiliser les commandes <b>up-silently</b> et <b>down-silently</b>.</p>
+        <p>Pour visualiser le contexte d'exécution après un point d'arrêt, il faut utiliser la commande <b>backtrace</b> (<b>bt</b> en abrégé). Cette commande peut prendre un paramètre&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3270">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3270" onclick="selectionCode('contenuCoded0e3270');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3270" class="contenuCode">backtrace n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est un entier. Si <span class="codeinline">n</span>
+ est positif, les n contextes d'exécutions précédents sont affichés. 
+S'il est négatif, ce sont les n premiers contextes d'exécution qui sont 
+affichés.</p>
+        <p>À tout moment, <b>gdb</b> peut afficher les arguments, les 
+variables locales et les gestionnaires d'exceptions C++ disponibles pour
+ le contexte d'exécution sélectionné. Ceci se fait à l'aide des 
+commandes suivantes&nbsp;: </p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Commande</td>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>info args</b>
+            </td>
+            <td class="colonne" style="">Affiche les arguments.</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>info locals</b>
+            </td>
+            <td class="colonne" style="">Affiche les variables locales.</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>info catch</b>
+            </td>
+            <td class="colonne" style="">Affiche les gestionnaires d'exceptions actifs. </td>
+          </tr>
+        </tbody></table></div>
+        <p><b>Note&nbsp;: </b>Le contexte d'exécution influe sur le résultat des commandes d'affichage des valeurs de registres et sur l'effet de la commande <b>break</b>.</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-H">XIV-H. Gestion des threads<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p><b>gdb</b> prend en charge les programmes multithreadés pour 
+les plates-formes qui disposent de cette fonctionnalité. À chaque fois 
+qu'un processus est stoppé, tous ses threads sont gelés. De même, 
+lorsque le processus est relancé, tous les threads sont relancés. Il 
+n'est donc pas possible de «&nbsp;geler&nbsp;» certains threads et de 
+laisser les autres s'exécuter, car l'exécution des threads est du 
+ressort du scheduler du système sous-jacent. </p>
+        <p><b>SPÉCIFIQUE LINUX&nbsp;: </b>Le débogage des threads sous Linux nécessite la version 4.18 ou postérieure de <b>gdb</b>. D'autre part, <b>gdb</b>
+ récupère des paramètres de linuxthreads en lisant dans la mémoire de 
+celui-ci lorsque le programme à déboguer est chargé. Par conséquent, il 
+est nécessaire (et recommandé de toutes manières) que la libraire C du 
+système soit compilée avec les informations symboliques de débogage. </p>
+        <p>Lorsque l'on manipule un programme stoppé, le contexte 
+d'exécution courant est celui du thread qui a provoqué l'arrêt du 
+programme. Ceci signifie que les variables locales accessibles sont 
+celles qui se trouvent sur la pile de ce thread, et que les registres du
+ processeur ont pour valeurs celles qui sont associées à ce thread. Ce 
+thread spécial se nomme le «&nbsp;thread courant&nbsp;». </p>
+        <p>Bien entendu, il est possible de changer de thread courant, à l'aide de la commande <b>thread</b>&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3375">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3375" onclick="selectionCode('contenuCoded0e3375');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3375" class="contenuCode">thread n
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro que <b>gdb</b> a assigné à ce thread. Ce numéro n'est pas forcément l'identifiant utilisé par le système pour ce thread. <b>gdb</b>
+ utilise en effet sa propre numérotation. Vous pourrez obtenir la liste 
+des threads du processus à l'aide de la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3390">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3390" onclick="selectionCode('contenuCoded0e3390');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3390" class="contenuCode">info threads
+</code></pre></div>
+        <p><b>gdb</b> permet également de spécifier les threads pour 
+lequels les points d'arrêts et les chiens de garde sont valides. Par 
+défaut, ceux-ci sont actifs pour tous les threads du processus, mais il 
+est possible de ne définir un point d'arrêt que pour un thread donné. 
+Ceci se fait avec le mot-clé <span class="codeinline">thread</span> à la suite de la définition du point d'arrêt (et avant la condition de ce point d'arrêt si elle existe)&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3401">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3401" onclick="selectionCode('contenuCoded0e3401');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3401" class="contenuCode">break ligne thread n
+
+break ligne thread n condition
+</code></pre></div>
+        <p>où <span class="codeinline">n</span> est le numéro du thread pour lequel ce point d'arrêt est défini. Les paramètres <span class="codeinline">ligne</span> et <span class="codeinline">condition</span> spécifient l'emplacement du point d'arrêt et la condition d'activation, comme pour la commande <b>break</b> générale.</p>
+        <p><b>Note&nbsp;: </b>Les chiens de garde gérés au niveau 
+hardware ne peuvent pas, actuellement, être utilisés dans un programme 
+multithreadé. En particulier, sur les plates-formes qui gèrent les 
+chiens de garde avec un support matériel (dont les plates-formes x86, 
+sauf Windows) utilisent systématiquement des chiens de garde matériels 
+s'il reste des registres de débogage dans le processeur. </p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-I">XIV-I. Gestion des fichiers sources<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>La commande <b>list</b> permet d'afficher les lignes du 
+fichier source correspondantes à l'endroit où l'exécution du programme 
+s'est arrêté. Par défaut, la commande <b>list</b> affiche dix lignes, 
+centrées autour de l'instruction en cours. Il est également possible 
+d'afficher dix lignes centrées autour d'un symbole, avec la syntaxe 
+suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3439">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3439" onclick="selectionCode('contenuCoded0e3439');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3439" class="contenuCode">list symbole
+</code></pre></div>
+        <p>La manière de spécifier le symbole <span class="codeinline">symbole</span> est la même que pour la commande <b>break</b>. Si l'on répète la commande <b>list</b>, les dix lignes suivantes sont affichées. La commande <b>list -</b> permet d'afficher les dix lignes précédentes. </p>
+        <p>Le nombre de lignes affichées par la commande <b>list</b> peut être fixé à l'aide de la commande suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3463">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3463" onclick="selectionCode('contenuCoded0e3463');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3463" class="contenuCode">set listsize n
+</code></pre></div>
+        <p>Enfin, <b>gdb</b> peut afficher une partie du fichier source, à l'aide de la syntaxe suivante&nbsp;: </p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3472">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3472" onclick="selectionCode('contenuCoded0e3472');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3472" class="contenuCode">list [début],fin | début,[fin]
+</code></pre></div>
+        <p>où <span class="codeinline">début</span> et <span class="codeinline">fin</span> sont les spécifications des lignes du début et de la fin de la zone à lister.</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-J">XIV-J. Spécification du langage<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p><b>gdb</b> utilise le langage correspondant à l'extension du 
+fichier source correspondant aux informations symboliques de débogage 
+dont il dispose. Ceci implique qu'il comprend automatiquement les 
+expressions et la syntaxe de ce langage. </p>
+        <p>Cependant, si le programme a été compilé par un front-end qui a traduit le code source d'un langage en un autre langage, <b>gdb</b> peut se tromper de langage. Les commandes suivantes pourront être utiles&nbsp;: </p>
+        <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+          <tbody><tr>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Commande</td>
+            <td class="colonne" style="text-align:center;background-color:#b3b3b3;">Signification</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>show language</b>
+            </td>
+            <td class="colonne" style="">Affiche le langage courant.</td>
+          </tr>
+          <tr>
+            <td class="colonne" style="">
+              <b>set language langage</b>
+            </td>
+            <td class="colonne" style="">Fixe le langage manuellement. </td>
+          </tr>
+        </tbody></table></div>
+        <p>Dans la dernière commande, les valeurs acceptées pour <span class="codeinline">langage</span> sont <span class="codeinline">c</span>, <span class="codeinline">c++</span>, <span class="codeinline">modula-2</span>, <span class="codeinline">asm</span> et <span class="codeinline">local</span>. Cette dernière option permet de demander à <b>gdb</b> de détecter automatiquement le langage en fonction de l'extension du fichier source. <b>gdb</b> ne gère nativement que les langages C, C++ et Modula2. </p>
+      </div>
+      
+		<h2 class="TitreSection1" id="LXIV-K">XIV-K. Complétion des commandes<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>Il est inutile de taper les commandes entièrement dans <b>gdb</b>.
+ En effet, celui-ci utilise un mécanisme de complétion pour toutes les 
+commandes et pour les symboles du programme, s'il n'y a pas d'ambiguïté.
+ Pour l'utiliser, il suffit de taper le début de la commande et 
+d'appuyer sur la touche de tabulation. La commande sera alors complétée,
+ sauf s'il y a ambiguïté. Dans ce cas, <b>gdb</b> émettra un bip, et 
+attendra la suite de la saisie. Pour voir la liste des commandes 
+ambiguës, il suffit d'appuyer à nouveau sur la touche de tabulation. <b>gdb</b>
+ recopie automatiquement la saisie après avoir affiché la liste des 
+commandes correspondantes afin de permettre la suite de la saisie. Ce 
+mécanisme de complétion est également valable avec les symboles du 
+programme. </p>
+        <p>Il est souvent inutile d'utiliser la complétion des 
+commandes, parce que la plupart des commandes peuvent être utilisées 
+même lorsqu'elles sont partiellement saisies. En fait, certaines 
+commandes partiellement saisies peuvent être ambiguës, dans ce cas, 
+c'est la commande la plus couramment utilisée qui est exécutée. </p>
+        <p>Enfin, la touche Entrée permet en général de répéter la 
+commande précédente, sauf pour certaines commandes pour lesquelles ce 
+comportement serait très gênant. </p>
+      </div>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXV">XV. Le profiler<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Le compilateur C/C++ GNU peut, lors de la compilation, inclure 
+du code additionnel pour chacune des fonctions afin de tracer le temps 
+que le processeur passe dans celles-ci. Le programme est ainsi 
+instrumenté, ce qui signifie que les résultats obtenus par cette méthode
+ de mesure changent les temps d'exécution réels. Cependant, le code 
+additionnel généré par le compilateur n'influe pas trop pour les 
+fonctions les plus lentes. On peut ainsi déterminer relativement 
+facilement les parties du programme qui doivent être optimisées. </p>
+      <p>Afin de générer les données de profiling, il faut compiler chacun des fichiers à analyser avec l'option <span class="codeinline">-pg</span>. L'édition de lien doit également se faire avec l'option <span class="codeinline">-pg</span>
+ si l'on utilise GCC. Cette option sert en fait à préciser un fichier de
+ démarrage différent à l'éditeur de lien, fichier qui permet 
+l'initialisation du code de profiling et l'écriture des résultats lors 
+de la terminaison du programme. </p>
+      <p>Comme l'écriture des résultats est réalisée dans le code de 
+terminaison normale du programme, il est nécessaire que celui-ci se 
+termine correctement. Il faut donc qu'il appelle la fonction <span class="codeinline">exit</span> ou qu'il fasse un <span class="codeinline">return</span>
+ dans la fonction principale. S'il se termine en raison d'un signal ou 
+d'une exception, aucune donnée ne sera écrite sur disque. </p>
+      <p>Une fois le programme compilé, il suffit de l'exécuter. Il va 
+de soi que les résultats dépendront des tâches effectuées par le 
+programme&nbsp;: ils varieront selon les fonctions appelées et selon les
+ paramètres fournis. On notera qu'une même fonction peut s'exécuter plus
+ ou moins rapidement selon les paramètres qu'elle reçoit. La méthode de 
+profiling utilisée ici est globale, on ne pourra donc obtenir que des 
+résultats moyens, sauf si l'on répète plusieurs fois le même cas de 
+test. </p>
+      <p>Lorsque le programme se termine, il génère un fichier de données nommé <span class="codeinline">gmon.out</span>.
+ Si un fichier de même nom existe, il est écrasé. Il n'est pas possible 
+de spécifier un autre nom pour ce fichier. En revanche, il est toujours 
+possible de le renommer et de l'utiliser sous ce nouveau nom par la 
+suite. Ce fichier est écrit dans le répertoire courant du programme au 
+moment où il s'est terminé. </p>
+      <p>Pour analyser ces résultats, il faut utiliser le programme <b>gprof</b>. La ligne de commande de ce programme est donnée ci-dessous&nbsp;: </p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3631">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3631" onclick="selectionCode('contenuCoded0e3631');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3631" class="contenuCode">gprof option [exécutable [données]]
+</code></pre></div>
+      <p>Parmi les options, on trouvera celles-ci (liste non exhaustive)&nbsp;: </p>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;" border="1">
+        <tbody><tr>
+          <td class="colonne" style="text-align:center;width:17%;background-color:#b3b3b3;">Option</td>
+          <td class="colonne" style="text-align:center;width:83%;background-color:#b3b3b3;">Signification</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-help</span>
+          </td>
+          <td class="colonne" style="">Affiche l'écran d'aide de gprof. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-version</span>
+          </td>
+          <td class="colonne" style="">Affiche le numéro de version de gprof. </td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">
+            <span class="codeinline">-b</span>
+          </td>
+          <td class="colonne" style="">Supprime les commentaires expliquant la signification des données.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">-s</td>
+          <td class="colonne" style="">Consolide les résultats passés en
+ paramètres avec des résultats existants. Le résultat de la 
+consolidation est écrit dans un fichier nommé <span class="codeinline">gmon.sum</span>.
+ Si ce fichier existe déjà, les résultats sont consolidés avec ceux déjà
+ présent dans ce fichier. Cette option permet de regrouper des 
+statistiques sur plusieurs cas de test. </td>
+        </tr>
+      </tbody></table></div>
+      <p>Tableau : Options du profiler</p>
+      <p>À part pour les deux premières options, le nom de l'exécutable doit être fourni en paramètre à <b>gprof</b>. Si aucun exécutable n'est donné, <span class="codeinline">a.out</span>
+ est utilisé par défaut. Cet exécutable est requis parce que gprof 
+utilise les informations symboliques de débogage pour interpréter les 
+données. </p>
+      <p>Un ou plusieurs fichiers de données peuvent être passés en paramètre. Ces fichiers sont les différents fichiers <span class="codeinline">gmon.out</span> générés par l'exécutable (éventuellement renommés). Si aucun fichier n'est passé en paramètre, le fichier <span class="codeinline">gmon.out</span> est utilisé par défaut. </p>
+      <p><b>SPÉCIFIQUE DOS&nbsp;: </b>Le profiler ne fonctionne pas très bien sous DOS. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXVI">XVI. L'analyseur de couverture<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>L'analyseur de couverture <b>gcov</b> utilise, comme le 
+profiler, une instrumentation du code. Il permet de déterminer le nombre
+ de fois que chaque branche du programme a été exécutée. Il génère un 
+fichier de donnée pour chaque fichier source. Ces fichiers sont nommés 
+comme les fichiers sources, et l'extension «&nbsp;.gcov&nbsp;» leur est 
+ajoutée. </p>
+      <p>Pour pouvoir utiliser l'analyseur de couverture, il faut avoir compilé le programme avec les options <span class="codeinline">-fprofile-arcs</span> et <span class="codeinline">-ftest-coverage</span>.
+ Il faut ensuite exécuter le programme. Celui-ci écrira alors des 
+fichiers de données lorsqu'il se terminera. Comme pour le profiler, les 
+résultats dépendront des actions effectuées par le programme. Les 
+résultats sont automatiquement cumulés par le code d'analyse de 
+couverture dans les fichiers de données, ce qui permet de calculer le 
+taux de couverture d'une série de cas de tests. Si l'on veut remettre à 
+zéro le décompte de passage pour chaque branche, il faut supprimer les 
+multiples fichiers de données générés après l'exécution du programme. </p>
+      <p>Les résultats de ces fichiers de données peuvent être interprétés grâce au programme <b>gcov</b>.
+ Ce programme prend en paramètre le nom d'un fichier source et génère un
+ fichier du même nom et portant l'extension .gcov. Ce fichier contient 
+les statistiques de couverture pour ce fichier source. </p>
+      <p><b>SPÉCIFIQUE DOS&nbsp;: </b>L'analyseur de couverture n'est 
+pas disponible dans la version actuelle de GCC pour DOS (impossibilité 
+d'avoir plus d'une extension dans un nom de fichier). </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXVII">XVII. Programmation de composants COM en C++<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Les interfaces de programmation COM ont été définies par 
+Microsoft au niveau binaire. Une interface COM est en réalité un 
+pointeur sur un tableau de pointeurs fonctions, qui prennent toutes en 
+premier paramètre le pointeur sur le premier pointeur. Cette structure 
+est exactement la structure qu'utilise le compilateur Visual C++ pour 
+les classes C++ qui disposent de fonctions virtuelles. Les instances de 
+ces classes contiennent en effet un pointeur sur la table des fonctions 
+virtuelles, fonctions qui elles-mêmes prennent en premier paramètre un 
+pointeur sur l'objet <span class="codeinline">this</span> (donc 
+l'adresse du pointeur sur la table de fonctions virtuelles). De ce fait,
+ il est très facile de définir une interface en C++ avec Visual 
+C++&nbsp;: il suffit de définir une classe abstraite, dont les méthodes 
+virtuelles pures sont les méthodes de l'interface. </p>
+      <p>Pour des raisons de portabilité entre les différentes 
+plates-formes sur lesquelles il est supposé fonctionner, GCC n'utilise 
+pas cette structure pour les tables de fonctions virtuelles (il utilise 
+un mécanisme un peu plus complexe en fait). Par conséquent, il n'est pas
+ possible de définir des interfaces COM simplement en définissant une 
+classe abstraite. </p>
+      <p>Cependant, étant donné l'importance des composants COM dans le 
+monde Windows, une extension a été ajoutée à la version Windows de GCC 
+pour permettre la définition des interfaces en C++. Cette extension 
+indique au compilateur qu'il doit utiliser le même mécanisme que Visual 
+C++ pour gérer les fonctions virtuelles d'une classe. Cependant, cette 
+extension n'est activée que classe par classe. </p>
+      <p>Les classes qui doivent utiliser ce mécanisme doivent être déclarées avec la syntaxe suivante&nbsp;: </p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e3776">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e3776" onclick="selectionCode('contenuCoded0e3776');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e3776" class="contenuCode"><code class="c_keyword3">struct</code> <code class="c_function">__attribute__</code>((com_interface)) structure
+
+<code class="c_operator">{</code>
+
+    …
+
+<code class="c_operator">}</code>;
+</code></pre></div>
+      <p>où <span class="codeinline">structure</span> est le nom de l'interface.</p>
+      <p>L'attribut qui est ainsi spécifié doit être placé entre le mot clef <span class="codeinline">struct</span> et le nom de l'interface. Pour des raisons de portabilité, il est préférable d'utiliser les macros du type <span class="codeinline">DECLARE_INTERFACE</span>,
+ qui ajoutent automatiquement cet attribut et qui s'utilisent de la même
+ manière qu'avec Visual C++. Enfin, il faut compiler tous les fichiers 
+sources avec l'option <span class="codeinline">-fvtable-thunks</span> du compilateur pour autoriser la gestion des tables de fonctions virtuelles. </p>
+      <p>Ainsi, il est possible de déclarer une interface en C++ avec 
+GCC. Cependant, aucun compilateur de fichier IDL n'est fourni, et GCC 
+n'est pas capable de compiler les fichiers d'en-têtes générés par MIDL 
+(il utilise des extensions spécifiques à Visual C++). Vous pouvez donc 
+utiliser des composants, à condition de redéfinir vous-même les 
+interfaces de manière portable (c'est à dire sans les extensions 
+spécifiques à Visual C++), mais vous ne pouvez pas en créer de nouveau. </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXVIII">XVIII. Conclusion<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Les outils de la suite de développement GNU sont puissants, 
+fiables, portables et très souples. Ils disposent d'un grand nombre 
+d'options pour les paramétrer. En revanche, ce sont des produits 
+provenant du monde UNIX, ce qui signifie que leur puissance se paie un 
+peu par l'ésotérisme, et tout est en ligne de commande. Le compilateur 
+est excellent&nbsp;: il comprend très bien la plupart des constructions 
+grammaticales des langages C et C++ et le code généré est performant. 
+Malheureusement, le support partiel de COM ainsi que la grande 
+complexité de la gestion des bibliothèques dynamiques Windows réduit 
+sérieusement l'utilité de GCC sous Windows. </p>
+      <p>En général, pour simplifier l'utilisation de ces outils, il est recommandé d'utiliser <b>gcc</b> et <b>g++</b>
+ pour les appeler. Ceci arrange sérieusement les lignes de commande et 
+résout beaucoup de problèmes relatifs aux mauvaises options que l'on 
+peut passer aux outils. </p>
+      <p>Cependant, il est bon de savoir comment le processus de 
+compilation est réalisé. Si l'on veut avoir un ordre d'idée du travail 
+réalisé par <b>gcc</b>, il suffit de l'appeler avec l'option <span class="codeinline">-v</span>
+ dans les commandes de compilation et d'édition de liens. Il affichera 
+alors toutes les commandes qu'il utilise pour effectuer le travail 
+demandé. Cette option peut être utilisée pour mettre au point des 
+makefile qui ne fonctionnent pas bien. </p>
+      <p>Rappelons que tous ces outils sont disponibles sur un grand 
+nombre de plates-formes, ce qui signifie que les programmes créés seront
+ relativement portables. Enfin ils sont absolument gratuits, alors, 
+pourquoi ne pas les utiliser&nbsp;? </p>
+    </div>
+    
+		<h1 class="TitreSection0" id="LXIX">XIX. GNU Free Documentation License<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>Version 1.1, March 2000 </p>
+      <p>Copyright © 2000 Free Software Foundation, Inc.</p>
+      <p>59 Temple Place, Suite 330, Boston, MA 02111-1307 USA </p>
+      <p>Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. </p>
+      <p>0. PREAMBLE</p>
+      <p>The purpose of this License is to make a manual, textbook, or 
+other written document "free" in the sense of freedom: to assure 
+everyone the effective freedom to copy and redistribute it, with or 
+without modifying it, either commercially or noncommercially. 
+Secondarily, this License preserves for the author and publisher a way 
+to get credit for their work, while not being considered responsible for
+ modifications made by others. </p>
+      <p>This License is a kind of "copyleft", which means that 
+derivative works of the document must themselves be free in the same 
+sense. It complements the GNU General Public License, which is a 
+copyleft license designed for free software. </p>
+      <p>We have designed this License in order to use it for manuals 
+for free software, because free software needs free documentation: a 
+free program should come with manuals providing the same freedoms that 
+the software does. But this License is not limited to software manuals; 
+it can be used for any textual work, regardless of subject matter or 
+whether it is published as a printed book. We recommend this License 
+principally for works whose purpose is instruction or reference. </p>
+      <p>1. APPLICABILITY AND DEFINITIONS</p>
+      <p>This License applies to any manual or other work that contains a
+ notice placed by the copyright holder saying it can be distributed 
+under the terms of this License. The "Document", below, refers to any 
+such manual or work. Any member of the public is a licensee, and is 
+addressed as "you". </p>
+      <p>A "Modified Version" of the Document means any work containing 
+the Document or a portion of it, either copied verbatim, or with 
+modifications and/or translated into another language. </p>
+      <p>A "Secondary Section" is a named appendix or a front-matter 
+section of the Document that deals exclusively with the relationship of 
+the publishers or authors of the Document to the Document's overall 
+subject (or to related matters) and contains nothing that could fall 
+directly within that overall subject. (For example, if the Document is 
+in part a textbook of mathematics, a Secondary Section may not explain 
+any mathematics.) The relationship could be a matter of historical 
+connection with the subject or with related matters, or of legal, 
+commercial, philosophical, ethical or political position regarding them.
+ </p>
+      <p>The "Invariant Sections" are certain Secondary Sections whose 
+titles are designated, as being those of Invariant Sections, in the 
+notice that says that the Document is released under this License. </p>
+      <p>The "Cover Texts" are certain short passages of text that are 
+listed, as Front-Cover Texts or Back-Cover Texts, in the notice that 
+says that the Document is released under this License. </p>
+      <p>A "Transparent" copy of the Document means a machine-readable 
+copy, represented in a format whose specification is available to the 
+general public, whose contents can be viewed and edited directly and 
+straightforwardly with generic text editors or (for images composed of 
+pixels) generic paint programs or (for drawings) some widely available 
+drawing editor, and that is suitable for input to text formatters or for
+ automatic translation to a variety of formats suitable for input to 
+text formatters. A copy made in an otherwise Transparent file format 
+whose markup has been designed to thwart or discourage subsequent 
+modification by readers is not Transparent. A copy that is not 
+"Transparent" is called "Opaque". </p>
+      <p>Examples of suitable formats for Transparent copies include 
+plain ASCII without markup, Texinfo input format, LaTeX input format, 
+SGML or XML using a publicly available DTD, and standard-conforming 
+simple HTML designed for human modification. Opaque formats include 
+PostScript, PDF, proprietary formats that can be read and edited only by
+ proprietary word processors, SGML or XML for which the DTD and/or 
+processing tools are not generally available, and the machine-generated 
+HTML produced by some word processors for output purposes only. </p>
+      <p>The "Title Page" means, for a printed book, the title page 
+itself, plus such following pages as are needed to hold, legibly, the 
+material this License requires to appear in the title page. For works in
+ formats which do not have any title page as such, "Title Page" means 
+the text near the most prominent appearance of the work's title, 
+preceding the beginning of the body of the text. </p>
+      <p>2. VERBATIM COPYING</p>
+      <p>You may copy and distribute the Document in any medium, either 
+commercially or noncommercially, provided that this License, the 
+copyright notices, and the license notice saying this License applies to
+ the Document are reproduced in all copies, and that you add no other 
+conditions whatsoever to those of this License. You may not use 
+technical measures to obstruct or control the reading or further copying
+ of the copies you make or distribute. However, you may accept 
+compensation in exchange for copies. If you distribute a large enough 
+number of copies you must also follow the conditions in section 3. </p>
+      <p>You may also lend copies, under the same conditions stated above, and you may publicly display copies. </p>
+      <p>3. COPYING IN QUANTITY</p>
+      <p>If you publish printed copies of the Document numbering more 
+than 100, and the Document's license notice requires Cover Texts, you 
+must enclose the copies in covers that carry, clearly and legibly, all 
+these Cover Texts: Front-Cover Texts on the front cover, and Back-Cover 
+Texts on the back cover. Both covers must also clearly and legibly 
+identify you as the publisher of these copies. The front cover must 
+present the full title with all words of the title equally prominent and
+ visible. You may add other material on the covers in addition. Copying 
+with changes limited to the covers, as long as they preserve the title 
+of the Document and satisfy these conditions, can be treated as verbatim
+ copying in other respects. </p>
+      <p>If the required texts for either cover are too voluminous to 
+fit legibly, you should put the first ones listed (as many as fit 
+reasonably) on the actual cover, and continue the rest onto adjacent 
+pages. </p>
+      <p>If you publish or distribute Opaque copies of the Document 
+numbering more than 100, you must either include a machine-readable 
+Transparent copy along with each Opaque copy, or state in or with each 
+Opaque copy a publicly-accessible computer-network location containing a
+ complete Transparent copy of the Document, free of added material, 
+which the general network-using public has access to download 
+anonymously at no charge using public-standard network protocols. If you
+ use the latter option, you must take reasonably prudent steps, when you
+ begin distribution of Opaque copies in quantity, to ensure that this 
+Transparent copy will remain thus accessible at the stated location 
+until at least one year after the last time you distribute an Opaque 
+copy (directly or through your agents or retailers) of that edition to 
+the public. </p>
+      <p>It is requested, but not required, that you contact the authors
+ of the Document well before redistributing any large number of copies, 
+to give them a chance to provide you with an updated version of the 
+Document. </p>
+      <p>4. MODIFICATIONS</p>
+      <p>You may copy and distribute a Modified Version of the Document 
+under the conditions of sections 2 and 3 above, provided that you 
+release the Modified Version under precisely this License, with the 
+Modified Version filling the role of the Document, thus licensing 
+distribution and modification of the Modified Version to whoever 
+possesses a copy of it. In addition, you must do these things in the 
+Modified Version: </p>
+      <ol type="A">
+        <li>Use in the Title Page (and on the covers, if any) a title 
+distinct from that of the Document, and from those of previous versions 
+(which should, if there were any, be listed in the History section of 
+the Document). You may use the same title as a previous version if the 
+original publisher of that version gives permission. </li>
+        <li>List on the Title Page, as authors, one or more persons or 
+entities responsible for authorship of the modifications in the Modified
+ Version, together with at least five of the principal authors of the 
+Document (all of its principal authors, if it has less than five). </li>
+        <li>State on the Title page the name of the publisher of the Modified Version, as the publisher. </li>
+        <li>Preserve all the copyright notices of the Document. </li>
+        <li>Add an appropriate copyright notice for your modifications adjacent to the other copyright notices. </li>
+        <li>Include, immediately after the copyright notices, a license 
+notice giving the public permission to use the Modified Version under 
+the terms of this License, in the form shown in the Addendum below. </li>
+        <li>Preserve in that license notice the full lists of Invariant 
+Sections and required Cover Texts given in the Document's license 
+notice. </li>
+        <li>Include an unaltered copy of this License. </li>
+        <li>Preserve the section entitled "History", and its title, and 
+add to it an item stating at least the title, year, new authors, and 
+publisher of the Modified Version as given on the Title Page. If there 
+is no section entitled "History" in the Document, create one stating the
+ title, year, authors, and publisher of the Document as given on its 
+Title Page, then add an item describing the Modified Version as stated 
+in the previous sentence. </li>
+        <li>Preserve the network location, if any, given in the Document
+ for public access to a Transparent copy of the Document, and likewise 
+the network locations given in the Document for previous versions it was
+ based on. These may be placed in the "History" section. You may omit a 
+network location for a work that was published at least four years 
+before the Document itself, or if the original publisher of the version 
+it refers to gives permission. </li>
+        <li>In any section entitled "Acknowledgements" or "Dedications",
+ preserve the section's title, and preserve in the section all the 
+substance and tone of each of the contributor acknowledgements and/or 
+dedications given therein. </li>
+        <li>Preserve all the Invariant Sections of the Document, 
+unaltered in their text and in their titles. Section numbers or the 
+equivalent are not considered part of the section titles. </li>
+        <li>Delete any section entitled "Endorsements". Such a section may not be included in the Modified Version. </li>
+        <li>Do not retitle any existing section as "Endorsements" or to conflict in title with any Invariant Section. </li>
+      </ol>
+      <p>If the Modified Version includes new front-matter sections or 
+appendices that qualify as Secondary Sections and contain no material 
+copied from the Document, you may at your option designate some or all 
+of these sections as invariant. To do this, add their titles to the list
+ of Invariant Sections in the Modified Version's license notice. These 
+titles must be distinct from any other section titles. </p>
+      <p>You may add a section entitled "Endorsements", provided it 
+contains nothing but endorsements of your Modified Version by various 
+parties-for example, statements of peer review or that the text has been
+ approved by an organization as the authoritative definition of a 
+standard. </p>
+      <p>You may add a passage of up to five words as a Front-Cover 
+Text, and a passage of up to 25 words as a Back-Cover Text, to the end 
+of the list of Cover Texts in the Modified Version. Only one passage of 
+Front-Cover Text and one of Back-Cover Text may be added by (or through 
+arrangements made by) any one entity. If the Document already includes a
+ cover text for the same cover, previously added by you or by 
+arrangement made by the same entity you are acting on behalf of, you may
+ not add another; but you may replace the old one, on explicit 
+permission from the previous publisher that added the old one. </p>
+      <p>The author(s) and publisher(s) of the Document do not by this 
+License give permission to use their names for publicity for or to 
+assert or imply endorsement of any Modified Version. </p>
+      <p>5. COMBINING DOCUMENTS</p>
+      <p>You may combine the Document with other documents released 
+under this License, under the terms defined in section 4 above for 
+modified versions, provided that you include in the combination all of 
+the Invariant Sections of all of the original documents, unmodified, and
+ list them all as Invariant Sections of your combined work in its 
+license notice. </p>
+      <p>The combined work need only contain one copy of this License, 
+and multiple identical Invariant Sections may be replaced with a single 
+copy. If there are multiple Invariant Sections with the same name but 
+different contents, make the title of each such section unique by adding
+ at the end of it, in parentheses, the name of the original author or 
+publisher of that section if known, or else a unique number. Make the 
+same adjustment to the section titles in the list of Invariant Sections 
+in the license notice of the combined work. </p>
+      <p>In the combination, you must combine any sections entitled 
+"History" in the various original documents, forming one section 
+entitled "History"; likewise combine any sections entitled 
+"Acknowledgements", and any sections entitled "Dedications". You must 
+delete all sections entitled "Endorsements." </p>
+      <p>6. COLLECTIONS OF DOCUMENTS</p>
+      <p>You may make a collection consisting of the Document and other 
+documents released under this License, and replace the individual copies
+ of this License in the various documents with a single copy that is 
+included in the collection, provided that you follow the rules of this 
+License for verbatim copying of each of the documents in all other 
+respects. </p>
+      <p>You may extract a single document from such a collection, and 
+distribute it individually under this License, provided you insert a 
+copy of this License into the extracted document, and follow this 
+License in all other respects regarding verbatim copying of that 
+document. </p>
+      <p>7. AGGREGATION WITH INDEPENDENT WORKS</p>
+      <p>A compilation of the Document or its derivatives with other 
+separate and independent documents or works, in or on a volume of a 
+storage or distribution medium, does not as a whole count as a Modified 
+Version of the Document, provided no compilation copyright is claimed 
+for the compilation. Such a compilation is called an "aggregate", and 
+this License does not apply to the other self-contained works thus 
+compiled with the Document, on account of their being thus compiled, if 
+they are not themselves derivative works of the Document. </p>
+      <p>If the Cover Text requirement of section 3 is applicable to 
+these copies of the Document, then if the Document is less than one 
+quarter of the entire aggregate, the Document's Cover Texts may be 
+placed on covers that surround only the Document within the aggregate. 
+Otherwise they must appear on covers around the whole aggregate. </p>
+      <p>8. TRANSLATION</p>
+      <p>Translation is considered a kind of modification, so you may 
+distribute translations of the Document under the terms of section 4. 
+Replacing Invariant Sections with translations requires special 
+permission from their copyright holders, but you may include 
+translations of some or all Invariant Sections in addition to the 
+original versions of these Invariant Sections. You may include a 
+translation of this License provided that you also include the original 
+English version of this License. In case of a disagreement between the 
+translation and the original English version of this License, the 
+original English version will prevail. </p>
+      <p>9. TERMINATION</p>
+      <p>You may not copy, modify, sublicense, or distribute the 
+Document except as expressly provided for under this License. Any other 
+attempt to copy, modify, sublicense or distribute the Document is void, 
+and will automatically terminate your rights under this License. 
+However, parties who have received copies, or rights, from you under 
+this License will not have their licenses terminated so long as such 
+parties remain in full compliance. </p>
+      <p>10. FUTURE REVISIONS OF THIS LICENSE</p>
+      <p>The Free Software Foundation may publish new, revised versions 
+of the GNU Free Documentation License from time to time. Such new 
+versions will be similar in spirit to the present version, but may 
+differ in detail to address new problems or concerns. See <a class="lienArticle simple" href="http://www.gnu.org/copyleft/" target="_blank">http://www.gnu.org/copyleft/</a>. </p>
+      <p>Each version of the License is given a distinguishing version 
+number. If the Document specifies that a particular numbered version of 
+this License "or any later version" applies to it, you have the option 
+of following the terms and conditions either of that specified version 
+or of any later version that has been published (not as a draft) by the 
+Free Software Foundation. If the Document does not specify a version 
+number of this License, you may choose any version ever published (not 
+as a draft) by the Free Software Foundation. </p>
+    </div>
+  </section>
+</article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<p class="licence">Les sources présentées sur cette page sont libres de droits 
+et vous pouvez les utiliser à votre convenance. Par contre, la page de présentation
+constitue une œuvre intellectuelle protégée par les droits d'auteur. Copyright ©
+2013 Christian Casteyde. Aucune reproduction, même partielle, ne peut être 
+faite de ce site et de l'ensemble de son contenu&nbsp;: textes, documents, images, etc. 
+sans l'autorisation expresse de l'auteur. Sinon vous encourez selon la loi jusqu'à 
+trois ans de prison et jusqu'à 300&nbsp;000&nbsp;€ de dommages et intérêts.
+</p>
+
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+</section>
+
+<footer class="layout">				<div id="gabarit_footer">
+		<div id="gabarit_footer_right">&nbsp;</div>
+		<div id="gabarit_footer_left">&nbsp;</div>
+
+		<p id="responsable"><strong>
+							Responsable bénévole
+						de la rubrique C :
+
+							le Rédacteur en Chef -
+			
+				<script type="text/javascript">
+	<!--
+	Ch=new Array(4);Res=new Array(4);
+	Ch[0]='le_club_des_developeur';Ch[1]='ÙÆÈÏàä';
+	Ch[2]='¬×ÄÇÍØÖÈÓÓ';Ch[3]='ÐÊÕÈØäÒÏÉß¡ÂÓÒ';
+	for(y=1;y<4;y++){Res[y]="";for(x=0;x<Ch[y].length;x++)
+	Res[y]+=String.fromCharCode(Ch[y].charCodeAt(x)-Ch[0].charCodeAt(x));}
+	var st = '<a href="'+Res[1]+':c'+Res[2]+'-'+Res[3]+'">Contacter par email<\/a>';	document.write(st);
+	//-->
+	</script><a href="mailto:c@redaction-developpez.com">Contacter par email</a>
+
+		</strong></p>
+	</div>
+	
+	<script type="text/javascript">
+	<!--
+	xtn2 = "5";
+	//-->
+	</script>
+	
+
+<div id="gabarit_pied">
+	<div id="gabarit_pied_right">&nbsp;</div>
+
+	<div id="gabarit_pied_left">&nbsp;</div>
+
+	<div id="gabarit_pied_contenu_superieur">
+	<div id="gabarit_pied_contenu">
+		<div class="gabarit_pied_div">
+			<span>Developpez.com</span>
+			<p><a href="http://club.developpez.com/contacts/">Nous contacter</a></p>
+			<p><a href="http://www.developpez.com/participez/">Participez</a></p>
+			<p><a href="http://www.developpez.com/legal/">Informations légales</a></p>
+		</div>
+		<div class="gabarit_pied_div_separation">&nbsp;</div>
+		<div class="gabarit_pied_div">
+			<span>Services</span>
+			<p><a href="http://www.developpez.net/forums/f7/c-cpp/" onclick="window.open(this.href); return false;">Forum C</a></p>
+			<p><a href="http://blog.developpez.com/">Blogs</a></p>
+			<p><a href="http://www.developpez.com/hebergement/">Hébergement</a></p>
+		</div>
+		<div class="gabarit_pied_div_separation">&nbsp;</div>
+		<div class="gabarit_pied_div">
+			<span>Partenaires</span>
+			<p><a href="http://www.developpez.com/redirect/1058" target="_blank">PlanetHoster</a><br><a href="http://www.developpez.com/redirect/991" target="_blank">Ikoula</a></p>
+		</div>
+		<div style="clear: both;"></div>
+		<div id="gabarit_pied_copyright">
+			<p>Copyright © 2000-2014 - www.developpez.com</p>
+		</div>
+	</div>
+	</div>
+</div>
+
+</footer>
+<!-- Google Analytics général -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'c', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Tutoriel', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+		
+<div style="display: none;" id="lightboxOverlay"></div><div style="display: none;" id="lightbox"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image"><div class="lb-nav"><a class="lb-prev"></a><a class="lb-next"></a></div><div class="lb-loader"><a class="lb-cancel"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/lightbox-ico-loading.gif"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"><img src="Mode%20d%27emploi%20de%20GCC_fichiers/lightbox-btn-close.png"></a></div></div></div></div></body></html>
