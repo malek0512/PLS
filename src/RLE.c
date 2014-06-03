@@ -5,7 +5,7 @@
 // On traite la liste tete en suivant l'algorithme RLE
 // Auteur : Marie
 void coderRle(maillon* tete){
-
+maillon* c;
 	// On vérifie que la liste courante comporte au moins deux éléments
 	if(tete != NULL && tete->suivant != NULL){
 		maillon* tmp;
@@ -28,7 +28,10 @@ void coderRle(maillon* tete){
 				while(tmp->suivant != NULL && tmp->lettre == tmp->suivant->lettre && cmp<255){
 
 					cmp++;
-					supprimer(tmp->suivant, &tete);
+					c=tmp->suivant;
+					tmp->suivant = (tmp->suivant)->suivant;
+					free(c);
+					//supprimer(tmp->suivant, &tete);
 				}
 
 				// On donne comme lettre au nouvel élément le nombre d'itérations qu'on a compté
