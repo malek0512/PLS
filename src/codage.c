@@ -134,6 +134,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 coderRle(Tete);
+				writeRle(fileCompressed);
 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE FIN                    	 *");

@@ -45,13 +45,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
 				Tete = predecodeRle(Tete);
-				fprintf(stderr,"travail terminer\n");
-				printf("On est sorti de precode\n");
-				print(Tete);
-				printf("Decode");
                 decoderRle(Tete);
-				printf("On a fini le decodage\n");
-				print(Tete);
                 writeListeBytes(Tete,fileCompressed);
 
                 printf("\n**********************************************************");
@@ -137,6 +131,7 @@ int main(int argc, char *argv[]){
                 printf("\n*               DECODAGE RLE ...                         *");
                 printf("\n**********************************************************\n");
                 
+				Tete = predecodeRle(Tete);
                 decoderRle(Tete); 
 
                 printf("\n**********************************************************");
