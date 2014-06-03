@@ -26,6 +26,10 @@ int main(int argc, char *argv[]){
         //Creation d'un fichier en ecriture
         FILE* fileCompressed = CreerFichier(strcat(argv[1],".comp"));
 
+        if(Tete == NULL){
+            printf("ATTENTION ! Le fichier est vide\n");
+            exit(1);
+        }
 
         printf("Veuillez faire un choix de compression : \n 1 - RLE \n 2 - MTF \n 3 - Huffman \n 4 - Combinaison des 3 modes de compression \n");
         if(scanf("%d", &choix)==0)
