@@ -311,52 +311,6 @@ maillon* supprimerElement2(maillon* liste, int lettre, int autre,int autre2)
     }
 }
 
-/*
-+maillon* deleteAndAdd(maillon* liste,unsigned char lettre)
-
- {
-
-+	maillon* pred = liste;
-
-+	maillon* copie = liste;
-
-+	if(copie->lettre == lettre)
-
- 	{
-
-+		copie = copie->suivant;
-
-+		free(pred);
-
-+		return copie;
-
- 	}
-
-+	copie->autre = copie->autre + 1;
-
-+	copie = copie->suivant;
-
-+	while(copie->lettre != lettre)
-
-+	{
-
-+		copie->autre = copie->autre + 1;
-
-+		pred=copie;
-
-+		copie = copie->suivant;
-
-+	}
-
-+	pred->suivant = copie->suivant;
-
-+	free(copie);
-
-+	return liste;
-
- }
-*/
-
 // Supprime l'élément A de la liste tete (et seulement celui là)
 // S'il n'est pas présent dans la liste, on affiche un message
 // Auteur : Marie
