@@ -82,7 +82,7 @@ int main(int argc, char *argv[]){
                    }
             case 4:{  
                 printf("\n**********************************************************");
-                printf("\n*               DECODAGE  COCKTAIL ...                    *");
+                printf("\n*               DECODAGE  COCKTAIL ...                   *");
                 printf("\n**********************************************************\n");
 				printf("Veuillez faire un choix des prétraitements à opérer :\n");
 				printf("RLE?\n");

@@ -34,28 +34,27 @@ int main(int argc, char *argv[]){
         switch(choix){
             case 1: 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE RLE ...                        *");
+                printf("\n*                 CODAGE RLE ...                         *");
                 printf("\n**********************************************************\n");
 
                 coderRle(Tete);
                 writeListeBytes(Tete,fileCompressed);
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE RLE FIN                    *");
+                printf("\n*                 CODAGE RLE FIN                    	   *");
                 printf("\n**********************************************************\n");
                 break;
             case 2:{ 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE MTF ...                        *");
+                printf("\n*                 CODAGE MTF ...                         *");
                 printf("\n**********************************************************\n");
-
                 resultatTete = MTF(Tete);
                 writeListeBytes(resultatTete,fileCompressed);
                 liberer(resultatTete);
                 liberer(Tete);
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE MTF FIN                    *");
+                printf("\n*                 CODAGE MTF FIN                    	   *");
                 printf("\n**********************************************************\n");
                 break;
                    }
@@ -126,18 +125,18 @@ int main(int argc, char *argv[]){
 #endif
 				if(RLE){
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE RLE ...                        *");
+                printf("\n*                 CODAGE RLE ...                         *");
                 printf("\n**********************************************************\n");
 
                 coderRle(Tete);
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE RLE FIN                    *");
+                printf("\n*                 CODAGE RLE FIN                    	 *");
                 printf("\n**********************************************************\n");
 				}	
                 if(mtf){
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE MTF ...                        *");
+                printf("\n*                 CODAGE MTF ...                         *");
                 printf("\n**********************************************************\n");
 
                 resultatTete = MTF(Tete);
@@ -146,7 +145,7 @@ int main(int argc, char *argv[]){
                 Tete = resultatTete;
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE MTF FIN                    *");
+                printf("\n*                 CODAGE MTF FIN                    	 *");
                 printf("\n**********************************************************\n");
 			}
                 printf("\n**********************************************************");
