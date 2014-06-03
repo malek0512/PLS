@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
                 writeListeBytes(Tete,fileCompressed);
 
                 printf("\n**********************************************************");
-                printf("\n*                 CODAGE RLE FIN                    	   *");
+                printf("\n*                 CODAGE RLE FIN                    	  *");
                 printf("\n**********************************************************\n");
                 break;
             case 2:{ 

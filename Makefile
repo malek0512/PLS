@@ -8,7 +8,7 @@ CSRC = src/
 CINC = includes/
 
 # FLAGS POUR GCC: -Idirectory cherche les fichiers des #include< >
-CFLAGS = -Idirectory -std=c99 -Wall -Werror -O3 -g
+CFLAGS = -Idirectory -std=c99 -Wall -Werror -O3 -pg 
 
 # NOM DU COMPILATEUR
 CC = gcc
