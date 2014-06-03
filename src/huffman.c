@@ -1,4 +1,4 @@
-#include "huffman.h"
+#include "../includes/huffman.h"
 
 //author : Alex
 #ifdef HUFDEBUG

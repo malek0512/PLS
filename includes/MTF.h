@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "../liste_manager.h"
+#include "liste_manager.h"
  
 maillon* deleteAndAdd(maillon* liste,unsigned char lettre);
 maillon* MTF(maillon* texte);

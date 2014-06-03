@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "liste_manager.h"
+#include "../includes/liste_manager.h"
 
 //Variables globale de la fonction writeBit et readBit
 static unsigned char buffer2=0;

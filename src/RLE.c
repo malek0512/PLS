@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "RLE.h"
+#include "../includes/RLE.h"
 
 // On traite la liste tete en suivant l'algorithme RLE
 // Auteur : Marie

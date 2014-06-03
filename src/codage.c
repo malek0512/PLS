@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"liste_manager.h"
-#include"Huffman/huffman.h"
-#include"Pretraitement/MTF.h"
-#include"Pretraitement/RLE.h"
-#include"reader.h"
+#include"../includes/liste_manager.h"
+#include"../includes/huffman.h"
+#include"../includes/MTF.h"
+#include"../includes/RLE.h"
+#include"../includes/reader.h"
 #include<string.h>
 
 int main(int argc, char *argv[]){
@@ -49,16 +49,10 @@ int main(int argc, char *argv[]){
                 printf("\n*                 CODAGE MTF ...                        *");
                 printf("\n**********************************************************\n");
                 resultatTete = MTF(Tete);
-#ifdef DEBUGG
-                printf("\n Voici la table de Huffman \n");
-                printArbre(treeHuffman);
-
-                printf("\n Voici la table de Huffman après MTF \n");
-                print4(resultatTete);
-#endif
                 writeListeBytes(resultatTete,fileCompressed);
                 liberer(resultatTete);
                 liberer(Tete);
+
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE MTF FIN                    *");
                 printf("\n**********************************************************\n");

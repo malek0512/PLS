@@ -1,53 +1,43 @@
 ######### Variables #########
-EXECUTABLES = codage decodage testReader
+EXECUTABLES = codage decodage
 #a mettre plus tard pour la forme
 #EMPLACEMENT DES SOURCES
-#CSRC = src/
+CSRC = src/
 
 #EMPLACEMENT DES INCLUDES
-#CINC = include/
+CINC = includes/
 
 # FLAGS POUR GCC: -Idirectory cherche les fichiers des #include< >
-CFLAGS = -std=c99 -Wall -Werror -O3
+CFLAGS = -Idirectory -std=c99 -Wall -Werror -O3 -g
 
 # NOM DU COMPILATEUR
 CC = gcc
 
 # LISTE DES SOURCES
-SRCS= 
+SRCS= reader.c huffman.c MTF.c RLE.c liste_manager.c
 
 #LES FICHIERS OBJETS
 OBJS = $(SRCS:.c=.o)
 
 ######### Regle générique de compilation #########
-%.o: %.c %.h 
-	gcc -c $< $(CFLAGS)
+%.o: src/%.c #src/%.h 
+	$(CC) -c $< $(CFLAGS)
 
 ######### Regles de compilation #########
 all: codage decodage
+	mv *.o objs/
 
-codage : codage.c reader.o RLE.o MTF.o huffman.o liste_manager.o
-	gcc $^ $(CFLAGS) -o $@
+codage : src/codage.c $(OBJS)
+	$(CC) $^ $(CFLAGS) -o $@
 
-decodage : decodage.c reader.o RLE.o MTF.o huffman.o liste_manager.o
-	gcc $^ $(CFLAGS) -o $@
-
-huffman.o : Huffman/huffman.c Huffman/huffman.h liste_manager.o 
-	gcc -c $< $(CFLAGS)  
-
-RLE.o : Pretraitement/RLE.c Pretraitement/RLE.h liste_manager.o
-	gcc -c $< $(CFLAGS) 
-
-MTF.o : Pretraitement/MTF.c Pretraitement/MTF.h liste_manager.o
-	gcc -c $< -std=c99 
-
-testReader: testReader.c reader.o liste_manager.o
-	gcc  -o testReader testReader.c reader.o liste_manager.o
+decodage : src/decodage.c $(OBJS) 
+	$(CC) $^ $(CFLAGS) -o $@
 
 ######### Regles de nettoyage #########
 clean :
 	@echo "On supprime tout les .o et les executables"
-	rm -f *.o $(EXECUTABLES)
-	rm -f Test/*.comp Test/*.Decompresse
+	rm -fr objs/* $(EXECUTABLES)
+	rm -f Test/*.comp Test/*.decomp
+	rm -f *.comp *.decomp
 	
 

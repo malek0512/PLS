@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "liste_manager.h"
-#include "Huffman/huffman.h"
+#include "../includes/liste_manager.h"
+#include "../includes/huffman.h"
 
 maillon* readFromFileAlphabet(FILE *data){
     maillon* Tete=NULL;    

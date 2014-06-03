@@ -1,4 +1,4 @@
-#include "MTF.h"
+#include "../includes/MTF.h"
 #include <stdio.h>	
 maillon* deleteAndAdd(maillon* liste,unsigned char lettre)
 {
@@ -32,7 +32,7 @@ maillon* MTF(maillon* texte){
 	maillon *liste_tmp_Q=NULL;
     	maillon* AC = texte;
 	maillon copie;
-	maillon copie2;
+	//maillon copie2;
 	for(int i=0; i<256; i++){
 	ajouterEnQueue(&liste_T,&liste_Q,i,i);
 	}
@@ -87,7 +87,7 @@ maillon* rechercherElement2(maillon* liste,int value)
 	maillon *liste_tmp_Q=NULL;
     	maillon* AC = texte;
 	maillon copie;
-	maillon copie2;
+	//maillon copie2;
 	for(int i=0; i<256; i++){
 	ajouterEnQueue(&liste_T,&liste_Q,i,i);
 	}
