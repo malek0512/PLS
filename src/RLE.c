@@ -55,12 +55,10 @@ void decoderRle(maillon* tete){
 	if(tete != NULL && tete->suivant != NULL){
 		maillon* tmp;
 		maillon* tmpS; //suite de tmp
-		maillon* tmpP; //pred de tmp
 		maillon* c;
 		tmp = tete;
 		int nb;
 		int i;
-		tmpP = tmp;
 		tmpS = tmp->suivant;
 		while(tmpS != NULL){
 
@@ -68,7 +66,7 @@ void decoderRle(maillon* tete){
 			// le code initial (convention) : on répète donc l'élément précédent le nombre de fois
 			// indiqué par cet élément
 //			if(tmpP->lettre == tmp->lettre){
-			if(tmp->suivant->autre == 0){
+			if(tmpS->autre == 0){
 //				tmpS->autre = 0;
 				// On récupère le code de la lettre, qui correspond au nombre de fois où l'on doit
 				// répéter tmp
@@ -91,11 +89,11 @@ void decoderRle(maillon* tete){
 			}
 			if(tmpS != NULL)
 				tmp = tmpS;
-		if(!(tmpP->suivant ==tmp))
-		{
-			tmpP = tmpP->suivant;
-		}
 		tmpS=tmp->suivant;
+		if(tmp->suivant!=tmpS)
+		{
+			fprintf(stderr,"error\n");	
+		}
 		}
 	}
 }
@@ -104,6 +102,7 @@ void decoderRle(maillon* tete){
 // Auteur : Marie
 maillon* predecodeRle(maillon* tete){
 	maillon* tmp;
+	maillon* tmpS;
 	//maillon* c;
 	int i;
 	tmp = tete;
@@ -111,14 +110,16 @@ maillon* predecodeRle(maillon* tete){
 		for(i=0; i<=2; i++){
 			tmp= tmp->suivant;
 		}
-		tmp = tete;
-		while(tmp->suivant != NULL){
-			if(tmp->lettre == (tmp->suivant)->lettre){
-				tmp = (tmp->suivant)->suivant;
+		tete = tmp;
+		tmpS = tmp->suivant;
+		while(tmpS != NULL){
+			if(tmp->lettre == tmpS->lettre){
+				tmp =tmpS->suivant;
 				tmp->autre = 0;
 			}
 			else
-				tmp = tmp->suivant;
+				tmp = tmpS;
+			tmpS = tmp->suivant;
 		}
 	}
 	return tete;
