@@ -92,9 +92,7 @@ maillon* predecodeRle(maillon* tete){
 		for(i=0; i<=2; i++){
 			supprimer(tete, &tete);
 		}
-fprintf(stderr,"o");
 	tmp = tete;
-print(tete);
 		while(tmp->suivant != NULL){
 			if(tmp->lettre == (tmp->suivant)->lettre){
 				tmp = (tmp->suivant)->suivant;
@@ -102,7 +100,6 @@ print(tete);
 			}
 			tmp = tmp->suivant;
 		}
-fprintf(stderr,"k\n");
 	}
 	return tete;
 }
