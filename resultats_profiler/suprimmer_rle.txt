@@ -1,0 +1,110 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ns/call  ns/call  name    
+ 30.00      0.03     0.03                             codageHuffman
+ 20.00      0.05     0.02   173388   115.35   115.35  rechercherElement
+ 10.00      0.06     0.01   669595    14.93    14.93  writeBit
+ 10.00      0.07     0.01   527234    18.97    18.97  ajouterEnQueue
+ 10.00      0.08     0.01   173391    57.67    57.67  ajoutEnTete
+ 10.00      0.09     0.01                             MTF
+ 10.00      0.10     0.01                             writeListeBytes
+  0.00      0.10     0.00    10792     0.00     0.00  insererElement
+  0.00      0.10     0.00      512     0.00     0.00  ajouterEnQueue2
+  0.00      0.10     0.00        8     0.00    21.63  writeRle
+  0.00      0.10     0.00        2     0.00     0.00  liberer
+  0.00      0.10     0.00        1     0.00   151.39  creationTableHuffman
+  0.00      0.10     0.00        1     0.00     0.00  estVide
+  0.00      0.10     0.00        1     0.00     0.00  size
+
+			Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 10.00% of 0.10 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     43.3    0.01    0.03                 MTF [1]
+                0.02    0.00  173388/173388      rechercherElement [3]
+                0.01    0.00  173388/173391      ajoutEnTete [6]
+                0.00    0.00  173644/527234      ajouterEnQueue [5]
+                0.00    0.00       1/1           estVide [16]
+                0.00    0.00       1/2           liberer [15]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     40.0    0.03    0.01                 codageHuffman [2]
+                0.01    0.00  669595/669595      writeBit [4]
+                0.00    0.00       1/8           writeRle [10]
+                0.00    0.00       1/512         ajouterEnQueue2 [14]
+                0.00    0.00       1/2           liberer [15]
+-----------------------------------------------
+                0.02    0.00  173388/173388      MTF [1]
+[3]     20.0    0.02    0.00  173388         rechercherElement [3]
+-----------------------------------------------
+                0.01    0.00  669595/669595      codageHuffman [2]
+[4]     10.0    0.01    0.00  669595         writeBit [4]
+-----------------------------------------------
+                0.00    0.00     256/527234      calculateFrequency [9]
+                0.00    0.00  173644/527234      MTF [1]
+                0.01    0.00  353334/527234      readFromFileBytesInOrder [8]
+[5]     10.0    0.01    0.00  527234         ajouterEnQueue [5]
+-----------------------------------------------
+                0.00    0.00       3/173391      writeRle [10]
+                0.01    0.00  173388/173391      MTF [1]
+[6]     10.0    0.01    0.00  173391         ajoutEnTete [6]
+-----------------------------------------------
+                                                 <spontaneous>
+[7]     10.0    0.01    0.00                 writeListeBytes [7]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]      6.7    0.00    0.01                 readFromFileBytesInOrder [8]
+                0.01    0.00  353334/527234      ajouterEnQueue [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[9]      0.0    0.00    0.00                 calculateFrequency [9]
+                0.00    0.00     256/527234      ajouterEnQueue [5]
+-----------------------------------------------
+                                   1             writeRle [10]
+                0.00    0.00       1/8           codageHuffman [2]
+                0.00    0.00       7/8           creationTableHuffman [11]
+[10]     0.0    0.00    0.00       8+1       writeRle [10]
+                0.00    0.00       3/173391      ajoutEnTete [6]
+                0.00    0.00     503/512         ajouterEnQueue2 [14]
+                                   1             writeRle [10]
+-----------------------------------------------
+                0.00    0.00       1/1           writeHuffmanTable [12]
+[11]     0.0    0.00    0.00       1         creationTableHuffman [11]
+                0.00    0.00       7/8           writeRle [10]
+                0.00    0.00       8/512         ajouterEnQueue2 [14]
+-----------------------------------------------
+                                                 <spontaneous>
+[12]     0.0    0.00    0.00                 writeHuffmanTable [12]
+                0.00    0.00       1/1           creationTableHuffman [11]
+-----------------------------------------------
+                0.00    0.00   10792/10792       coderRle [29]
+[13]     0.0    0.00    0.00   10792         insererElement [13]
+-----------------------------------------------
+                0.00    0.00       1/512         codageHuffman [2]
+                0.00    0.00       8/512         creationTableHuffman [11]
+                0.00    0.00     503/512         writeRle [10]
+[14]     0.0    0.00    0.00     512         ajouterEnQueue2 [14]
+-----------------------------------------------
+                0.00    0.00       1/2           codageHuffman [2]
+                0.00    0.00       1/2           MTF [1]
+[15]     0.0    0.00    0.00       2         liberer [15]
+-----------------------------------------------
+                0.00    0.00       1/1           MTF [1]
+[16]     0.0    0.00    0.00       1         estVide [16]
+-----------------------------------------------
+                0.00    0.00       1/1           ArbreHufman [19]
+[17]     0.0    0.00    0.00       1         size [17]
+-----------------------------------------------
+
+Index by function name
+
+   [1] MTF                    [11] creationTableHuffman   [17] size
+   [6] ajoutEnTete            [16] estVide                 [4] writeBit
+   [5] ajouterEnQueue         [13] insererElement          [7] writeListeBytes
+  [14] ajouterEnQueue2        [15] liberer                [10] writeRle
+   [2] codageHuffman           [3] rechercherElement
