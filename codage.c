@@ -48,7 +48,6 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE MTF ...                        *");
                 printf("\n**********************************************************\n");
-
                 resultatTete = MTF(Tete);
 #ifdef DEBUGG
                 printf("\n Voici la table de Huffman \n");

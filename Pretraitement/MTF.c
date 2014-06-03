@@ -1,17 +1,30 @@
-
 #include "MTF.h"
 #include <stdio.h>	
+maillon* deleteAndAdd(maillon* liste,unsigned char lettre)
+{
+	maillon* pred = liste;
+	maillon* copie = liste;
+	if(copie->lettre == lettre)
+	{
+		copie = copie->suivant;
+		free(pred);
+		return copie;
+	}
+	copie->autre = copie->autre + 1;
+	copie = copie->suivant;
+	while(copie->lettre != lettre)
+	{
+		copie->autre = copie->autre + 1;
+		pred=copie;
+		copie = copie->suivant;
+	}
+	pred->suivant = copie->suivant;
+	free(copie);
+	return liste;
+}
 
 maillon* MTF(maillon* texte){
-void incrementerAfter(unsigned char lettre,maillon* liste_T)
-{
-	maillon* tmp = liste_T;
-	while(tmp->lettre != lettre)
-	{
-		tmp->autre++;
-		tmp = tmp -> suivant;
-	}
-}
+
 	maillon* liste_T=NULL;
 	maillon* liste_Q=NULL;
 	maillon *tmp;
@@ -23,10 +36,9 @@ void incrementerAfter(unsigned char lettre,maillon* liste_T)
 	for(int i=0; i<256; i++){
 	ajouterEnQueue(&liste_T,&liste_Q,i,i);
 	}
-	
+
 	if (!estVide(texte))
 	{
-		//creation d'une deuxieme liste chainée mettant dans l'orde les symbole
         while(AC != NULL)
 		{
 			tmp=rechercherElement(liste_T,AC->lettre);
@@ -34,9 +46,8 @@ void incrementerAfter(unsigned char lettre,maillon* liste_T)
 			copie.autre = tmp->autre;
 
 			ajouterEnQueue(&liste_tmp_T,&liste_tmp_Q,copie.autre,copie.lettre);
-			
-			incrementerAfter(tmp->lettre,liste_T);
-			liste_T = supprimerElement(liste_T,copie.lettre,copie.autre-1);
+
+			liste_T = deleteAndAdd(liste_T,copie.lettre);
 			ajoutEnTete(&liste_T,&liste_Q,copie.lettre,0);
            		AC = AC->suivant;
 		}
@@ -83,7 +94,6 @@ maillon* rechercherElement2(maillon* liste,int value)
 
 	if (!estVide(texte))
 	{
-		//creation d'une deuxieme liste chainée mettant dans l'orde les symbole
         while(AC != NULL)
 		{
 			tmp=rechercherElement2(liste_T,AC->lettre);
@@ -91,9 +101,8 @@ maillon* rechercherElement2(maillon* liste,int value)
 			copie.autre = tmp->autre;
 
 			ajouterEnQueue(&liste_tmp_T,&liste_tmp_Q,copie.lettre,copie.autre);
-			
-			incrementerAfter(tmp->lettre,liste_T);
-			liste_T = supprimerElement(liste_T,copie.lettre,copie.autre-1);
+
+			liste_T = deleteAndAdd(liste_T,copie.lettre);
 			ajoutEnTete(&liste_T,&liste_Q,copie.lettre,0);
            		AC = AC->suivant;
 		}
