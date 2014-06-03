@@ -54,6 +54,7 @@ maillon* c;
 void decoderRle(maillon* tete){
 	if(tete != NULL && tete->suivant != NULL){
 		maillon* tmp;
+		maillon* c;
 		tmp = tete;
 		int nb;
 		int i;
@@ -69,7 +70,10 @@ void decoderRle(maillon* tete){
 				nb = tmp->suivant->lettre;
 
 				// On supprime l'élément qui nous indiquait la répétition
-				supprimer(tmp->suivant, &tete);
+				c=tmp->suivant;
+				tmp->suivant = (tmp->suivant)->suivant;
+				free(c);
+				//supprimer(tmp->suivant, &tete);
 
 				// Si le nombre d'itérations est supérieur ou égal à 1, on répète nb fois l'élément tmp
 				for(i=1; i<=nb; i++){
