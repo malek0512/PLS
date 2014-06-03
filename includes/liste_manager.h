@@ -98,7 +98,7 @@ maillon* supprimerElement(maillon* liste, int lettre, int autre);
 // Supprime l'élément A de la liste tete (et seulement celui là)
 // S'il n'est pas présent dans la liste, on affiche un message
 // Auteur : Marie
-void supprimer(maillon* A, maillon* tete);
+void supprimer(maillon* A, maillon** tete);
 
 maillon* supprimerElement2(maillon* liste, int lettre, int autre,int autre2);
 
@@ -130,5 +130,6 @@ void copieAutre2(maillon* src, maillon* dest);
 //Renvoie la queue de la liste
 maillon* getQueue(maillon* Tete);
 void afficherK(maillon* res);
+
 #endif
 

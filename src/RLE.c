@@ -28,7 +28,7 @@ void coderRle(maillon* tete){
 				while(tmp->suivant != NULL && tmp->lettre == tmp->suivant->lettre && cmp<255){
 
 					cmp++;
-					supprimer(tmp->suivant, tete);
+					supprimer(tmp->suivant, &tete);
 				}
 
 				// On donne comme lettre au nouvel élément le nombre d'itérations qu'on a compté
@@ -66,7 +66,7 @@ void decoderRle(maillon* tete){
 				nb = tmp->suivant->lettre;
 
 				// On supprime l'élément qui nous indiquait la répétition
-				supprimer(tmp->suivant, tete);
+				supprimer(tmp->suivant, &tete);
 
 				// Si le nombre d'itérations est supérieur ou égal à 1, on répète nb fois l'élément tmp
 				for(i=1; i<=nb; i++){
@@ -80,4 +80,29 @@ void decoderRle(maillon* tete){
 				tmp = tmp->suivant;
 		}
 	}
+}
+
+// Fonction à utiliser avant le décode si on lit un fichier déjà codé en RLE
+// Auteur : Marie
+maillon* predecodeRle(maillon* tete){
+	maillon* tmp;
+	int i;
+	tmp = tete;
+	if(tmp->lettre == 'R' && (tmp->suivant)->lettre == 'L' && ((tmp->suivant)->suivant)->lettre == 'E'){
+		for(i=0; i<=2; i++){
+			supprimer(tete, &tete);
+		}
+fprintf(stderr,"o");
+	tmp = tete;
+print(tete);
+		while(tmp->suivant != NULL){
+			if(tmp->lettre == (tmp->suivant)->lettre){
+				tmp = (tmp->suivant)->suivant;
+				tmp->autre = 0;
+			}
+			tmp = tmp->suivant;
+		}
+fprintf(stderr,"k\n");
+	}
+	return tete;
 }

@@ -38,6 +38,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 coderRle(Tete);
+				writeRle(fileCompressed);
                 writeListeBytes(Tete,fileCompressed);
 
                 printf("\n**********************************************************");

@@ -14,4 +14,8 @@ void coderRle(maillon* tete);
 // Auteur : Marie
 void decoderRle(maillon* tete);
 
+// Fonction à utiliser avant le décode si on lit un fichier déjà codé en RLE
+// Auteur : Marie
+maillon* predecodeRle(maillon* tete);
+
 #endif

@@ -37,5 +37,11 @@ FILE* OuvrirFichier(char *nom_fichier);
 
 maillon* calculateFrequency(maillon* Tete);
 void writeHuffmanTable(arbre* treeHuffman, FILE* fileCompressed); 
-maillon* readHuffmanTable(maillon** Tete, maillon** Queue); 
+maillon* readHuffmanTable(maillon** Tete, maillon** Queue);
+
+// Rajoute les octets "RLE" en début d'un fichier
+// Permet d'indiquer qu'un fichier a été codé en RLE
+// Auteur : Marie
+void writeRle(FILE* data);
+
 #endif

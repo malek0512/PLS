@@ -66,22 +66,12 @@ void readFromFileBytesWithFrequency(maillon** Tete, maillon** Queue, FILE *data)
 
 void readFromFileBytesInOrder(maillon** Tete, maillon** Queue, FILE *data){
     int octet = 0;
-//    int nb=0;
 
     *Queue = NULL;
     *Tete = NULL;
-//    do { 
-//        nb = fread(&octet,sizeof(unsigned char),1,data);
-//        if (octet != EOF ){ 
-//            //Ajout en Queue avec fonction ajout en tete
-//            ajoutEnQueue(Tete,Queue, octet, -1);
-//
-//        }
-//    }
-//    while ( nb != 0); 
-      while((octet = fgetc(data)) != EOF){
-            ajouterEnQueue(Tete,Queue,(unsigned char) octet, -1);
-      }
+    while((octet = fgetc(data)) != EOF){
+          ajouterEnQueue(Tete,Queue,(unsigned char) octet, -1);
+    }
 }
 
 unsigned char readFromFileByte(FILE *data){
@@ -260,4 +250,13 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
         printf("Erreur de lecture de la table : Size(fichier)<3");
         exit(1);
     }
+}
+
+// Rajoute les octets "RLE" en début d'un fichier
+// Permet d'indiquer qu'un fichier a été codé en RLE
+// Auteur : Marie
+void writeRle(FILE* data){
+	fputc('R', data);
+	fputc('L', data);
+	fputc('E', data);
 }

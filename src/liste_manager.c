@@ -311,21 +311,76 @@ maillon* supprimerElement2(maillon* liste, int lettre, int autre,int autre2)
     }
 }
 
+/*
++maillon* deleteAndAdd(maillon* liste,unsigned char lettre)
+
+ {
+
++	maillon* pred = liste;
+
++	maillon* copie = liste;
+
++	if(copie->lettre == lettre)
+
+ 	{
+
++		copie = copie->suivant;
+
++		free(pred);
+
++		return copie;
+
+ 	}
+
++	copie->autre = copie->autre + 1;
+
++	copie = copie->suivant;
+
++	while(copie->lettre != lettre)
+
++	{
+
++		copie->autre = copie->autre + 1;
+
++		pred=copie;
+
++		copie = copie->suivant;
+
++	}
+
++	pred->suivant = copie->suivant;
+
++	free(copie);
+
++	return liste;
+
+ }
+*/
+
 // Supprime l'élément A de la liste tete (et seulement celui là)
 // S'il n'est pas présent dans la liste, on affiche un message
 // Auteur : Marie
-void supprimer(maillon* A, maillon* tete){
+void supprimer(maillon* A, maillon** tete){
 	maillon* tmp;
-	tmp = tete;                                         //Ajouter un if (tete != NULL)
-	while(tmp->suivant != NULL && tmp->suivant != A){   // Dans le cas où A == tete ?
-		tmp = tmp->suivant;
-	}
-	if(tmp->suivant==NULL)
-		printf("Erreur : l'élément n'est pas dans la liste");
-	else
-	{
-		tmp->suivant = A->suivant;
-		free(A);
+	maillon* supp;
+	tmp = *tete;
+	supp = A;
+	if(tete != NULL){
+		if(tmp == supp){
+			*tete = tmp->suivant;
+			free(supp);
+		}
+		else{
+			while(tmp->suivant != NULL && tmp->suivant != supp){
+				tmp = tmp->suivant;
+			}
+			if(tmp->suivant==NULL)
+				printf("Erreur : l'élément n'est pas dans la liste\n");
+			else{
+				tmp->suivant = supp->suivant;
+				free(supp);
+			}
+		}
 	}
 }	
 

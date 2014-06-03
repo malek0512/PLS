@@ -40,12 +40,13 @@ int main(void){
 
 	printf("\nTest n°3 : Code d'un fichier texte\n");
 	char texte[]="files/texte.txt";
-	char texteS[]="files/texteS.txt";
-	char texteD[]="files/texteD.txt";
+	char texteS[]="files/texteS.comp";
+	char texteD[]="files/texteD.decomp";
 	FILE* texteF = OuvrirFichier(texte);
 	FILE* texteFS = CreerFichier(texteS);
 	FILE* texteFD = CreerFichier(texteD);
 	readFromFileBytesInOrder(&ft, &fq, texteF);
+	fclose(texteF);
 	coderRle(ft);
 	writeListeBytes(ft, texteFS);
 	decoderRle(ft);
@@ -60,6 +61,7 @@ int main(void){
 	FILE* execFS = CreerFichier(execS);
 	FILE* execFD = CreerFichier(execD);
 	readFromFileBytesInOrder(&ft, &fq, execF);
+	fclose(execF);
 	coderRle(ft);
 	writeListeBytes(ft, execFS);
 	decoderRle(ft);
@@ -74,6 +76,7 @@ int main(void){
 	FILE* imageFS = CreerFichier(imageS);
 	FILE* imageFD = CreerFichier(imageD);
 	readFromFileBytesInOrder(&ft, &fq, imageF);
+	fclose(imageF);
 	coderRle(ft);
 	writeListeBytes(ft, imageFS);
 	decoderRle(ft);
@@ -88,6 +91,7 @@ int main(void){
 	FILE* pngFS = CreerFichier(pngS);
 	FILE* pngFD = CreerFichier(pngD);
 	readFromFileBytesInOrder(&ft, &fq, pngF);
+	fclose(pngF);
 	coderRle(ft);
 	writeListeBytes(ft, pngFS);
 	decoderRle(ft);
@@ -102,6 +106,7 @@ int main(void){
 	FILE* htmlFS = CreerFichier(htmlS);
 	FILE* htmlFD = CreerFichier(htmlD);
 	readFromFileBytesInOrder(&ft, &fq, htmlF);
+	fclose(htmlF);
 	coderRle(ft);
 	writeListeBytes(ft, htmlFS);
 	decoderRle(ft);
@@ -116,6 +121,7 @@ int main(void){
 	FILE* soundFS = CreerFichier(soundS);
 	FILE* soundFD = CreerFichier(soundD);
 	readFromFileBytesInOrder(&ft, &fq, soundF);
+	fclose(soundF);
 	coderRle(ft);
 	writeListeBytes(ft, soundFS);
 	decoderRle(ft);
