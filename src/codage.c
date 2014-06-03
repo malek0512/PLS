@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 coderRle(Tete);
-				writeRle(fileCompressed);
+				writeRle(&Tete);
                 writeListeBytes(Tete,fileCompressed);
 
                 printf("\n**********************************************************");
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]){
                 printf("\n**********************************************************\n");
 
                 coderRle(Tete);
-				writeRle(fileCompressed);
+				writeRle(&Tete);
 
                 printf("\n**********************************************************");
                 printf("\n*                 CODAGE RLE FIN                    	 *");

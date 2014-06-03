@@ -255,8 +255,9 @@ maillon* readHuffmanTable(maillon** Tete, maillon** Queue){
 // Rajoute les octets "RLE" en début d'un fichier
 // Permet d'indiquer qu'un fichier a été codé en RLE
 // Auteur : Marie
-void writeRle(FILE* data){
-	fputc('R', data);
-	fputc('L', data);
-	fputc('E', data);
+void writeRle(maillon** Tete){
+    maillon* Queue_fictive = NULL;
+    ajoutEnTete(Tete, &Queue_fictive,'E', 0);
+    ajoutEnTete(Tete, &Queue_fictive,'L', 0);
+    ajoutEnTete(Tete, &Queue_fictive,'R', 0);
 }

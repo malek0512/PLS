@@ -31,7 +31,7 @@ void insererElement(maillon* A, maillon* B);
 
 //Ajoute en Tete une lettre et sa frequence
 //author Quentin
-void ajoutEnTete(maillon** liste, maillon** queue, int lettre, int frequence);
+void ajoutEnTete(maillon** liste, maillon** queue, unsigned char lettre, int frequence);
 
 void ajoutEnTete2(maillon** liste, maillon** queue, int lettre, int frequence, int autre2);
 

@@ -23,7 +23,7 @@ void insererElement(maillon* A, maillon* B){
 	B->suivant = A;
 }
 
-void ajoutEnTete(maillon** tete, maillon** queue,int lettre, int frequence){
+void ajoutEnTete(maillon** tete, maillon** queue,unsigned char lettre, int frequence){
 	// On crée un nouvel élément 
 	maillon* nouvelElement = malloc(sizeof(maillon));
  
